@@ -10,9 +10,7 @@
 		5B0EEC2B1820E0D20084C40C /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B0EEC2A1820E0D20084C40C /* SDL2.framework */; };
 		5B0EEC2D1820E10A0084C40C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B0EEC2C1820E10A0084C40C /* main.cpp */; };
 		5B0EEC301820E17A0084C40C /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B0EEC2A1820E0D20084C40C /* SDL2.framework */; };
-		5B76EC661820DD1B00D499EE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B76EC651820DD1B00D499EE /* Cocoa.framework */; };
-		5B76EC851820DD1B00D499EE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B76EC841820DD1B00D499EE /* XCTest.framework */; };
-		5B76EC861820DD1B00D499EE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B76EC651820DD1B00D499EE /* Cocoa.framework */; };
+		5BBB9E541820EB3F00726BC5 /* Engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BBB9E521820EB3F00726BC5 /* Engine.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,12 +41,9 @@
 		5B0EEC2A1820E0D20084C40C /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2.framework; sourceTree = "<group>"; };
 		5B0EEC2C1820E10A0084C40C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		5B76EC621820DD1B00D499EE /* Bomberman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bomberman.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		5B76EC651820DD1B00D499EE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		5B76EC681820DD1B00D499EE /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		5B76EC691820DD1B00D499EE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		5B76EC6A1820DD1B00D499EE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5B76EC831820DD1B00D499EE /* BombermanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BombermanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5B76EC841820DD1B00D499EE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		5BBB9E521820EB3F00726BC5 /* Engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Engine.cpp; sourceTree = "<group>"; };
+		5BBB9E531820EB3F00726BC5 /* Engine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Engine.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +51,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B76EC661820DD1B00D499EE /* Cocoa.framework in Frameworks */,
 				5B0EEC2B1820E0D20084C40C /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -65,8 +59,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B76EC861820DD1B00D499EE /* Cocoa.framework in Frameworks */,
-				5B76EC851820DD1B00D499EE /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +70,7 @@
 			children = (
 				5B0EEC281820E0BD0084C40C /* Info.plist */,
 				5B76EC6B1820DD1B00D499EE /* Source */,
+				5B7731371820E3C500EF22BC /* Resources */,
 				5B76EC641820DD1B00D499EE /* Frameworks */,
 				5B76EC631820DD1B00D499EE /* Products */,
 			);
@@ -95,31 +88,28 @@
 		5B76EC641820DD1B00D499EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5B76EC651820DD1B00D499EE /* Cocoa.framework */,
-				5B76EC841820DD1B00D499EE /* XCTest.framework */,
 				5B0EEC2A1820E0D20084C40C /* SDL2.framework */,
-				5B76EC671820DD1B00D499EE /* Other Frameworks */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		5B76EC671820DD1B00D499EE /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				5B76EC681820DD1B00D499EE /* AppKit.framework */,
-				5B76EC691820DD1B00D499EE /* CoreData.framework */,
-				5B76EC6A1820DD1B00D499EE /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
 		5B76EC6B1820DD1B00D499EE /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				5B0EEC2C1820E10A0084C40C /* main.cpp */,
+				5BBB9E531820EB3F00726BC5 /* Engine.hpp */,
+				5BBB9E521820EB3F00726BC5 /* Engine.cpp */,
 			);
 			name = Source;
 			path = ../src;
+			sourceTree = "<group>";
+		};
+		5B7731371820E3C500EF22BC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			path = ../resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B0EEC2D1820E10A0084C40C /* main.cpp in Sources */,
+				5BBB9E541820EB3F00726BC5 /* Engine.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

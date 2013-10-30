@@ -8,10 +8,12 @@
 
 #include <SDL2/SDL.h>
 
+#include "Engine.hpp"
+
+using namespace Bomberman;
+
 int main(int argc, char* argv[]) {
-	SDL_Init(SDL_INIT_EVERYTHING);
-	
-	SDL_Quit();
+	Engine();
 	
 	return 0;
 }
