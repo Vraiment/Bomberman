@@ -44,7 +44,16 @@ namespace Bomberman {
 		return *this;
 	}
 	
-	void Texture::draw(SDL_Renderer *render) {
-#warning TODO
+	void Texture::draw(SDL_Renderer *renderer) {
+		SDL_RenderCopy(renderer, texture, nullptr, nullptr);
+	}
+	
+	void Texture::draw(SDL_Renderer *renderer, int i, int j) {
+		SDL_Rect pos;
+		
+		pos.x = i;
+		pos.y = j;
+		
+		SDL_RenderCopy(renderer, texture, &pos, nullptr);
 	}
 }

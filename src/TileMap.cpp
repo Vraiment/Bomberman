@@ -33,8 +33,6 @@ namespace Bomberman {
 	}
 	
 	void TileMap::draw(SDL_Renderer *renderer) {
-		for (int n = 0; n < tiles.size(); ++n) {
-			tiles[n].draw(renderer);
-		}
+		
 	}
 }

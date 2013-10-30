@@ -21,6 +21,7 @@ namespace Bomberman {
 		~Texture();
 		
 		void draw(SDL_Renderer *renderer);
+		void draw(SDL_Renderer *renderer, int i, int j);
 		
 		Texture& operator=(Texture other);
 		
