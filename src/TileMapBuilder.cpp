@@ -10,8 +10,15 @@
 
 #include "Texture.hpp"
 #include "NotImplementedException.hpp"
+#include "../tinyxml2/tinyxml2.h"
 
 namespace Bomberman {
+	TileMapBuilder::TileMapBuilder(std::string fileName) {
+		tinyxml2::XMLDocument file;
+		
+		file.LoadFile(fileName.c_str());
+	}
+	
 	int TileMapBuilder::getMapWidth() const {
 		return mapWidth;
 	}

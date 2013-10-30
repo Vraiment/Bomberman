@@ -16,6 +16,9 @@
 		5BDBF7E71821780000BE71CC /* Viewport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BDBF7E51821780000BE71CC /* Viewport.cpp */; };
 		5BDBF7E918217D4400BE71CC /* TileMapBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BDBF7E818217D4400BE71CC /* TileMapBuilder.cpp */; };
 		5BDBF7F6182180B800BE71CC /* NotImplementedException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BDBF7F4182180B800BE71CC /* NotImplementedException.cpp */; };
+		5BF63CA418218477001315AD /* tinyxml2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BF63CA218218477001315AD /* tinyxml2.cpp */; };
+		5BF63CA6182187CF001315AD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF63CA5182187CF001315AD /* CoreFoundation.framework */; };
+		5BF63CA918218A41001315AD /* Map1.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5BF63CA818218A41001315AD /* Map1.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +62,10 @@
 		5BDBF7E818217D4400BE71CC /* TileMapBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TileMapBuilder.cpp; sourceTree = "<group>"; };
 		5BDBF7F4182180B800BE71CC /* NotImplementedException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NotImplementedException.cpp; sourceTree = "<group>"; };
 		5BDBF7F5182180B800BE71CC /* NotImplementedException.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NotImplementedException.hpp; sourceTree = "<group>"; };
+		5BF63CA218218477001315AD /* tinyxml2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml2.cpp; sourceTree = "<group>"; };
+		5BF63CA318218477001315AD /* tinyxml2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml2.h; sourceTree = "<group>"; };
+		5BF63CA5182187CF001315AD /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		5BF63CA818218A41001315AD /* Map1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Map1.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BF63CA6182187CF001315AD /* CoreFoundation.framework in Frameworks */,
 				5B0EEC2B1820E0D20084C40C /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,6 +93,7 @@
 			children = (
 				5B0EEC281820E0BD0084C40C /* Info.plist */,
 				5B76EC6B1820DD1B00D499EE /* Source */,
+				5BF63CA11821845A001315AD /* TinyXml2 */,
 				5B7731371820E3C500EF22BC /* Resources */,
 				5B76EC641820DD1B00D499EE /* Frameworks */,
 				5B76EC631820DD1B00D499EE /* Products */,
@@ -103,6 +112,7 @@
 		5B76EC641820DD1B00D499EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5BF63CA5182187CF001315AD /* CoreFoundation.framework */,
 				5B0EEC2A1820E0D20084C40C /* SDL2.framework */,
 			);
 			name = Frameworks;
@@ -132,9 +142,29 @@
 		5B7731371820E3C500EF22BC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5BF63CA7182189FA001315AD /* Maps */,
 			);
 			name = Resources;
 			path = ../resources;
+			sourceTree = "<group>";
+		};
+		5BF63CA11821845A001315AD /* TinyXml2 */ = {
+			isa = PBXGroup;
+			children = (
+				5BF63CA318218477001315AD /* tinyxml2.h */,
+				5BF63CA218218477001315AD /* tinyxml2.cpp */,
+			);
+			name = TinyXml2;
+			path = ../tinyxml2;
+			sourceTree = "<group>";
+		};
+		5BF63CA7182189FA001315AD /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				5BF63CA818218A41001315AD /* Map1.xml */,
+			);
+			name = Maps;
+			path = maps;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,6 +244,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BF63CA918218A41001315AD /* Map1.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +266,7 @@
 				5BDBF7F6182180B800BE71CC /* NotImplementedException.cpp in Sources */,
 				5B0EEC2D1820E10A0084C40C /* main.cpp in Sources */,
 				5BDBF7E918217D4400BE71CC /* TileMapBuilder.cpp in Sources */,
+				5BF63CA418218477001315AD /* tinyxml2.cpp in Sources */,
 				5B3795CE1820FBAA0050381F /* Texture.cpp in Sources */,
 				5B3795CA1820F6E60050381F /* TileMap.cpp in Sources */,
 				5BBB9E541820EB3F00726BC5 /* Engine.cpp in Sources */,

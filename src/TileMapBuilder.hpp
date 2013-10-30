@@ -9,11 +9,15 @@
 #ifndef __TileMapBuilder__hpp__
 #define __TileMapBuilder__hpp__
 
+#include <string>
+
 namespace Bomberman {
 	class Texture;
 	
 	class TileMapBuilder {
 	public:
+		TileMapBuilder(std::string fileName);
+		
 		int getMapWidth() const;
 		int getMapHeight() const;
 		
