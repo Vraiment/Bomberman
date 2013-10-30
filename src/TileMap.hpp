@@ -11,7 +11,13 @@
 
 #include "ITileMapBuilder.hpp"
 
+#include <vector>
+
+struct SDL_Renderer;
+
 namespace Bomberman {
+	class Texture;
+	
 	class TileMap {
 	public:
 		TileMap(ITileMapBuilder *builder);
@@ -20,9 +26,11 @@ namespace Bomberman {
 		int getWidth() const;
 		int getHeight() const;
 		
+		void draw(SDL_Renderer *renderer);
+		
 	private:
 		int width, height, total;
-		SDL_Texture **textures;
+		std::vector<Texture> tiles;
 	};
 }
 
