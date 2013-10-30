@@ -12,14 +12,13 @@
 #include <SDL2/SDL.h>
 
 namespace Bomberman {
-	TileMap::TileMap(ITileMapBuilder *builder) {
-		width = builder->width();
-		height = builder->height();
-		total = width * height;
+	TileMap::TileMap(TileMapBuilder *builder) {
+		width = builder->getMapWidth();
+		height = builder->getMapHeight();
 		
 		for (int i = 0; i < width; ++i) {
 			for (int j = 0; j < height; ++j) {
-				tiles.push_back(builder->getTexture(i, j));
+				tileTextures.push_back(builder->getTexture(i, j));
 			}
 		}
 	}
@@ -32,7 +31,7 @@ namespace Bomberman {
 		return height;
 	}
 	
-	void TileMap::draw(SDL_Renderer *renderer) {
-		
+	Texture TileMap::getTileTexture(int i, int j) const {
+		return tileTextures[i + (j * width)];
 	}
 }

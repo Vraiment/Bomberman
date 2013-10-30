@@ -9,7 +9,7 @@
 #ifndef __TileMap__hpp__
 #define __TileMap__hpp__
 
-#include "ITileMapBuilder.hpp"
+#include "TileMapBuilder.hpp"
 
 #include <vector>
 
@@ -20,17 +20,16 @@ namespace Bomberman {
 	
 	class TileMap {
 	public:
-		TileMap(ITileMapBuilder *builder);
+		TileMap(TileMapBuilder *builder);
 		~TileMap();
 		
 		int getWidth() const;
 		int getHeight() const;
-		
-		void draw(SDL_Renderer *renderer);
+		Texture getTileTexture(int i, int j) const;
 		
 	private:
-		int width, height, total;
-		std::vector<Texture> tiles;
+		int width, height;
+		std::vector<Texture> tileTextures;
 	};
 }
 
