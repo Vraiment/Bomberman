@@ -32,6 +32,10 @@ namespace Bomberman {
 	}
 	
 	Texture::~Texture() {
+		if (references == nullptr) {
+			return;
+		}
+		
 		if (--(*references) == 0) {
 			delete references;
 			SDL_DestroyTexture(texture);
