@@ -9,6 +9,8 @@
 #ifndef __Texture__hpp__
 #define __Texture__hpp__
 
+#include <memory>
+
 struct SDL_Texture;
 struct SDL_Renderer;
 
@@ -16,20 +18,12 @@ namespace Bomberman {
 	class Texture {
 	public:
 		Texture(SDL_Texture *texture);
-		Texture(const Texture& other);
-		Texture(Texture&& other);
-		~Texture();
 		
-		void draw(SDL_Renderer *renderer);
-		void draw(SDL_Renderer *renderer, int i, int j);
-		
-		Texture& operator=(Texture other);
+		void draw(std::shared_ptr<SDL_Renderer> renderer);
+		void draw(std::shared_ptr<SDL_Renderer> renderer, int i, int j);
 		
 	private:
-		int *references;
-		SDL_Texture *texture;
-		
-		friend void swap(Texture& first, Texture& second);
+		std::shared_ptr<SDL_Texture> texture;
 	};
 }
 

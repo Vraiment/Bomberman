@@ -12,52 +12,24 @@
 #include <algorithm>
 
 namespace Bomberman {
-	void swap(Texture& first, Texture& second) {
-		using std::swap;
+	void DestroyTexture(SDL_Texture *texture) {
+		SDL_DestroyTexture(texture);
+	}
+	
+	Texture::Texture(SDL_Texture *texture) : texture(texture, DestroyTexture) {
 		
-		swap(first.references, second.references);
-		swap(first.texture, second.texture);
 	}
 	
-	Texture::Texture(SDL_Texture *texture) : texture(texture), references(new int) {
-		*references = 1;
+	void Texture::draw(std::shared_ptr<SDL_Renderer> renderer) {
+		SDL_RenderCopy(renderer.get(), texture.get(), nullptr, nullptr);
 	}
 	
-	Texture::Texture(const Texture& other) : texture(other.texture), references(other.references) {
-		++(*references);
-	}
-	
-	Texture::Texture(Texture&& other) : texture(nullptr), references(nullptr) {
-		swap(*this, other);
-	}
-	
-	Texture::~Texture() {
-		if (references == nullptr) {
-			return;
-		}
-		
-		if (--(*references) == 0) {
-			delete references;
-			SDL_DestroyTexture(texture);
-		}
-	}
-	
-	Texture& Texture::operator=(Texture other) {
-		swap(*this, other);
-		
-		return *this;
-	}
-	
-	void Texture::draw(SDL_Renderer *renderer) {
-		SDL_RenderCopy(renderer, texture, nullptr, nullptr);
-	}
-	
-	void Texture::draw(SDL_Renderer *renderer, int i, int j) {
+	void Texture::draw(std::shared_ptr<SDL_Renderer> renderer, int i, int j) {
 		SDL_Rect pos;
 		
 		pos.x = i;
 		pos.y = j;
 		
-		SDL_RenderCopy(renderer, texture, &pos, nullptr);
+		SDL_RenderCopy(renderer.get(), texture.get(), &pos, nullptr);
 	}
 }
