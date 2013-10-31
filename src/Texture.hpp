@@ -9,20 +9,21 @@
 #ifndef __Texture__hpp__
 #define __Texture__hpp__
 
-#include <memory>
-
 struct SDL_Texture;
-struct SDL_Renderer;
 
 namespace Bomberman {
 	class Texture {
 	public:
-		Texture(SDL_Texture *texture);
+		Texture();
+		Texture(std::string fileName, Renderer renderer);
 		
-		void draw(std::shared_ptr<SDL_Renderer> renderer);
-		void draw(std::shared_ptr<SDL_Renderer> renderer, int i, int j);
+		bool loaded() const;
+		
+		void draw(int i, int j);
 		
 	private:
+		bool _loaded;
+		Renderer renderer;
 		std::shared_ptr<SDL_Texture> texture;
 	};
 }

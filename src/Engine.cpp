@@ -15,18 +15,32 @@
 #endif //__APPLE__
 
 namespace Bomberman {
-	Engine::Engine() {
+	void destroyRenderer(SDL_Renderer *renderer) {
+		SDL_DestroyRenderer(renderer);
+	}
+	
+	void destroyWindow(SDL_Window *window) {
+		SDL_DestroyWindow(window);
+	}
+	
+	Engine::Engine() : window(nullptr), renderer(nullptr) {
 		SDL_Init(SDL_INIT_EVERYTHING);
-		window = SDL_CreateWindow("Bomberman", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);
-		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+		
+		SDL_Window *w = SDL_CreateWindow("Bomberman", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);
+		SDL_Renderer *r = SDL_CreateRenderer(w, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+		
+		renderer.reset(r, destroyRenderer);
+		window.reset(w, destroyWindow);
 		
 		setPath();
 	}
 	
 	Engine::~Engine() {
-		SDL_DestroyRenderer(renderer);
-		SDL_DestroyWindow(window);
 		SDL_Quit();
+	}
+	
+	Renderer Engine::getRenderer() const {
+		return renderer;
 	}
 	
 	void Engine::setPath() {

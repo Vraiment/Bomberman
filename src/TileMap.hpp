@@ -13,8 +13,6 @@
 
 #include <vector>
 
-struct SDL_Renderer;
-
 namespace Bomberman {
 	class Texture;
 	

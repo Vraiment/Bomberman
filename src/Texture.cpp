@@ -8,23 +8,39 @@
 
 #include "Texture.hpp"
 
+#include <string>
 #include <SDL2/SDL.h>
-#include <algorithm>
+#include <SDL2_image/SDL_image.h>
+
+using namespace std;
 
 namespace Bomberman {
 	void DestroyTexture(SDL_Texture *texture) {
 		SDL_DestroyTexture(texture);
 	}
 	
-	Texture::Texture(SDL_Texture *texture) : texture(texture, DestroyTexture) {
+	Texture::Texture() : texture(nullptr), renderer(nullptr), _loaded(false) {
 		
 	}
 	
-	void Texture::draw(std::shared_ptr<SDL_Renderer> renderer) {
-		SDL_RenderCopy(renderer.get(), texture.get(), nullptr, nullptr);
+	Texture::Texture(string fileName, Renderer renderer) : texture(nullptr), renderer(renderer), _loaded(false) {
+		SDL_Texture *t = IMG_LoadTexture(renderer.get(), fileName.c_str());
+		
+		if (t != nullptr) {
+			texture.reset(t, DestroyTexture);
+			_loaded = true;
+		}
 	}
 	
-	void Texture::draw(std::shared_ptr<SDL_Renderer> renderer, int i, int j) {
+	bool Texture::loaded() const {
+		return _loaded;
+	}
+	
+	void Texture::draw(int i, int j) {
+		if (!_loaded) {
+			return;
+		}
+		
 		SDL_Rect pos;
 		
 		pos.x = i;

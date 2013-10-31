@@ -11,6 +11,7 @@
 #include "Engine.hpp"
 
 using namespace Bomberman;
+using namespace std;
 
 int main(int argc, char* argv[]) {
 	Engine();

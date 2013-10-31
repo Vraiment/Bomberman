@@ -10,7 +10,6 @@
 #define __Engine__hpp__
 
 struct SDL_Window;
-struct SDL_Renderer;
 
 namespace Bomberman {
 	class Engine {
@@ -18,11 +17,13 @@ namespace Bomberman {
 		Engine();
 		~Engine();
 		
+		Renderer getRenderer() const;
+		
 	private:
 		void setPath();
 		
-		SDL_Window *window = nullptr;
-		SDL_Renderer *renderer = nullptr;
+		std::shared_ptr<SDL_Window> window;
+		Renderer renderer;
 	};
 }
 

@@ -9,14 +9,17 @@
 #ifndef __TileMapBuilder__hpp__
 #define __TileMapBuilder__hpp__
 
+#include "Matrix.hpp"
 #include <string>
+
+struct SDL_Renderer;
 
 namespace Bomberman {
 	class Texture;
 	
 	class TileMapBuilder {
 	public:
-		TileMapBuilder(std::string fileName);
+		TileMapBuilder(std::string fileName, Renderer renderer);
 		
 		int getMapWidth() const;
 		int getMapHeight() const;
@@ -25,6 +28,8 @@ namespace Bomberman {
 		
 	private:
 		int mapWidth, mapHeight;
+		std::string mapName;
+		Matrix<Texture> tileTextures;
 	};
 }
 
