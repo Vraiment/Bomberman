@@ -9,6 +9,8 @@
 #ifndef __Engine__hpp__
 #define __Engine__hpp__
 
+#include "Configuration.hpp"
+
 struct SDL_Window;
 
 namespace Bomberman {
@@ -18,12 +20,14 @@ namespace Bomberman {
 		~Engine();
 		
 		Renderer getRenderer() const;
+		Configuration getConfiguration() const;
 		
 	private:
 		void setPath();
 		
 		std::shared_ptr<SDL_Window> window;
 		Renderer renderer;
+		Configuration configuration;
 	};
 }
 

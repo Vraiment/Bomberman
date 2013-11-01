@@ -64,6 +64,6 @@ namespace Bomberman {
 	}
 	
 	Texture TileMapBuilder::getTexture(int column, int row) const {
-		throw NotImplementedException();
+		return tileTextures.get(column, row);
 	}
 }

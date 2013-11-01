@@ -26,13 +26,15 @@ namespace Bomberman {
 	Engine::Engine() : window(nullptr), renderer(nullptr) {
 		SDL_Init(SDL_INIT_EVERYTHING);
 		
-		SDL_Window *w = SDL_CreateWindow("Bomberman", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);
+		setPath();
+		
+		configuration = Configuration("config.xml");
+		
+		SDL_Window *w = SDL_CreateWindow(configuration.viewportTitle().c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, configuration.viewportWidth(), configuration.viewportHeight(), SDL_WINDOW_SHOWN);
 		SDL_Renderer *r = SDL_CreateRenderer(w, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 		
 		renderer.reset(r, destroyRenderer);
 		window.reset(w, destroyWindow);
-		
-		setPath();
 	}
 	
 	Engine::~Engine() {
@@ -41,6 +43,10 @@ namespace Bomberman {
 	
 	Renderer Engine::getRenderer() const {
 		return renderer;
+	}
+	
+	Configuration Engine::getConfiguration() const {
+		return configuration;
 	}
 	
 	void Engine::setPath() {
