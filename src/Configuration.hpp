@@ -10,6 +10,7 @@
 #define __Configuration__hpp__
 
 #include <string>
+#include <vector>
 
 namespace Bomberman {
 	class Configuration {
@@ -24,15 +25,20 @@ namespace Bomberman {
 		int viewportWidth() const;
 		int viewportHeight() const;
 		
+		std::vector<std::string> loggers() const;
+		
 	private:
 		void defaults();
 		void loadViewport(void *);
+		void loadLoggers(void *);
 		
 		bool _loaded;
 		std::string _fileName;
 		std::string _viewportTitle;
 		int _viewportWidth;
 		int _viewportHeight;
+		
+		std::vector<std::string> _loggers;
 	};
 }
 

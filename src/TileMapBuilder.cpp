@@ -9,8 +9,7 @@
 #include "TileMapBuilder.hpp"
 
 #include "Texture.hpp"
-#include "NotImplementedException.hpp"
-#include "../tinyxml2/tinyxml2.h"
+#include <tinyxml2/tinyxml2.h>
 #include <SDL2_image/SDL_image.h>
 #include <map>
 

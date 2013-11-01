@@ -10,10 +10,13 @@
 #define __Engine__hpp__
 
 #include "Configuration.hpp"
+#include "Logger.hpp"
 
 struct SDL_Window;
 
 namespace Bomberman {
+	class Logger;
+	
 	class Engine {
 	public:
 		Engine();
@@ -22,8 +25,13 @@ namespace Bomberman {
 		Renderer getRenderer() const;
 		Configuration getConfiguration() const;
 		
+		static std::shared_ptr<Logger> logger();
+		
 	private:
 		void setPath();
+		void setLoggers();
+		
+		static std::shared_ptr<Logger> firstLogger;
 		
 		std::shared_ptr<SDL_Window> window;
 		Renderer renderer;

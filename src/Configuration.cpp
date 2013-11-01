@@ -8,13 +8,15 @@
 
 #include "Configuration.hpp"
 
-#include "../tinyxml2/tinyxml2.h"
+#include <tinyxml2/tinyxml2.h>
 
 using namespace std;
 using namespace tinyxml2;
 
 namespace Bomberman {
 	Configuration::Configuration() : _loaded(false) {
+		Logger::log("Using default configuration.", LogLevel::info);
+		
 		defaults();
 	}
 	
@@ -25,9 +27,14 @@ namespace Bomberman {
 			XMLElement *root = file.RootElement();
 			
 			loadViewport(root->FirstChildElement("viewport"));
+			loadLoggers(root->FirstChildElement("loggers"));
 			
 			_loaded = true;
+			
+			Logger::log("Using configuration file \"" + fileName + "\".", LogLevel::info);
 		} else {
+			Logger::log("Configuration file \"" + fileName + "\" not found.", LogLevel::warning);
+			
 			defaults();
 		}
 	}
@@ -44,17 +51,80 @@ namespace Bomberman {
 		return _viewportHeight;
 	}
 	
+	std::vector<std::string> Configuration::loggers() const {
+		return _loggers;
+	}
+	
 	void Configuration::defaults() {
 		_fileName = ":no_file:";
-		_viewportWidth = 600;
-		_viewportHeight = 460;
+		
+		loadViewport(nullptr);
+		loadLoggers(nullptr);
 	}
 	
 	void Configuration::loadViewport(void *ptr) {
 		XMLElement *node = (XMLElement *)ptr;
 		
-		_viewportTitle = node->FirstChildElement("title")->GetText();
-		_viewportWidth = stoi(node->FirstChildElement("width")->GetText());
-		_viewportHeight = stoi(node->FirstChildElement("height")->GetText());
+		if (node != nullptr) {
+			XMLElement *viewportTitle = node->FirstChildElement("title");
+			if (viewportTitle != nullptr) {
+				_viewportTitle = viewportTitle->GetText();
+			} else {
+				Logger::log("No title for viewport in configuration file.", LogLevel::info);
+			}
+			
+			XMLElement *viewportWidth = node->FirstChildElement("width");
+			if (viewportWidth != nullptr) {
+				string value = viewportWidth->GetText();
+				
+				try {
+					_viewportWidth = stoi(value);
+				} catch (...) {
+					_viewportWidth = 0;
+				}
+			} else {
+				Logger::log("No width for viewport in configuration file, using default.", LogLevel::info);
+			}
+			
+			XMLElement *viewportHeight = node->FirstChildElement("height");
+			if (viewportHeight != nullptr) {
+				string value = viewportHeight->GetText();
+				
+				try {
+					_viewportHeight = stoi(value);
+				} catch (...) {
+					_viewportHeight = 0;
+				}
+			} else {
+				Logger::log("No height for viewport in configuration file, using default.", LogLevel::info);
+			}
+		} else {
+			_viewportWidth = 600;
+			_viewportHeight = 460;
+			
+			return;
+		}
+		
+		if (_viewportWidth < 1) {
+			Logger::log("Invalid value for viewport width in configuration file, using default.", LogLevel::warning);
+			
+			_viewportWidth = 600;
+		}
+		
+		if (_viewportHeight < 1) {
+			Logger::log("Invalid value for viewport height in configuration file, using default.", LogLevel::warning);
+			
+			_viewportWidth = 460;
+		}
+	}
+	
+	void Configuration::loadLoggers(void *ptr) {
+		XMLElement *node = (XMLElement *)ptr;
+		
+		if (node == nullptr) return;
+		
+		for (XMLElement *logger = node->FirstChildElement("logger"); logger != nullptr; logger = logger->FirstChildElement("logger")) {
+			_loggers.push_back(logger->GetText());
+		}
 	}
 }
