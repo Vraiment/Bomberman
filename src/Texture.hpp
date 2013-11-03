@@ -21,10 +21,13 @@ namespace Bomberman {
 		
 		void draw(int i, int j);
 		
+		std::string getName() const;
+		
 	private:
 		bool _loaded;
 		Renderer renderer;
 		std::shared_ptr<SDL_Texture> texture;
+		std::string name;
 	};
 }
 

@@ -9,22 +9,22 @@
 	</textures>
 	
 	<tiles>
-		<tile column="0" row="0">
+		<tile column="1" row="1">
 			<texture>0</texture>
 		</tile>
-		<tile column="1" row="0">
-			<texture>1</texture>
-		</tile>
-		<tile column="2" row="0">
-			<texture>2</texture>
-		</tile>
-		<tile column="0" row="1">
-			<texture>1</texture>
-		</tile>
-		<tile column="1" row="1">
-			<texture>2</texture>
-		</tile>
 		<tile column="2" row="1">
+			<texture>1</texture>
+		</tile>
+		<tile column="3" row="1">
+			<texture>2</texture>
+		</tile>
+		<tile column="1" row="2">
+			<texture>1</texture>
+		</tile>
+		<tile column="2" row="2">
+			<texture>2</texture>
+		</tile>
+		<tile column="3" row="2">
 			<texture>0</texture>
 		</tile>
 	</tiles>

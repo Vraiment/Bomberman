@@ -77,11 +77,23 @@ namespace Bomberman {
 		}
 		
 		T get(int column, int row) const {
+			if (!validPos(column, row)) {
+				throw std::out_of_range("matrix");
+			}
+			
 			return values[column][row];
 		}
 		
 		void set(int column, int row, T value) {
+			if (!validPos(column, row)) {
+				throw std::out_of_range("matrix");
+			}
+			
 			values[column][row] = value;
+		}
+		
+		bool validPos(int column, int row) const {
+			return (0 < column) && (column <= _columns) && (0 < row) && (row <= _rows);
 		}
 		
 	private:

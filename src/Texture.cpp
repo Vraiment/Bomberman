@@ -23,12 +23,14 @@ namespace Bomberman {
 		
 	}
 	
-	Texture::Texture(string fileName, Renderer renderer) : texture(nullptr), renderer(renderer), _loaded(false) {
+	Texture::Texture(string fileName, Renderer renderer) : texture(nullptr), renderer(renderer), _loaded(false), name(fileName) {
 		SDL_Texture *t = IMG_LoadTexture(renderer.get(), fileName.c_str());
 		
 		if (t != nullptr) {
 			texture.reset(t, DestroyTexture);
 			_loaded = true;
+		} else {
+			Logger::log("Could not load texture \"" + fileName + "\".", LogLevel::warning);
 		}
 	}
 	
@@ -38,6 +40,8 @@ namespace Bomberman {
 	
 	void Texture::draw(int i, int j) {
 		if (!_loaded) {
+			Logger::log("Trying to draw not loaded texture \"" + name + "\".", LogLevel::warning);
+			
 			return;
 		}
 		
@@ -47,5 +51,9 @@ namespace Bomberman {
 		pos.y = j;
 		
 		SDL_RenderCopy(renderer.get(), texture.get(), &pos, nullptr);
+	}
+	
+	string Texture::getName() const {
+		return name;
 	}
 }

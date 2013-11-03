@@ -11,8 +11,13 @@
 
 #include "Matrix.hpp"
 #include <string>
+#include <map>
 
 struct SDL_Renderer;
+
+namespace tinyxml2 {
+	struct XMLElement;
+}
 
 namespace Bomberman {
 	class Texture;
@@ -27,6 +32,11 @@ namespace Bomberman {
 		Texture getTexture(int column, int row) const;
 		
 	private:
+		void loadInfo(tinyxml2::XMLElement *root);
+		std::map<int, Texture> loadTextures(tinyxml2::XMLElement *node);
+		void setTextures(tinyxml2::XMLElement * tiles, std::map<int, Texture> textures);
+		
+		Renderer renderer;
 		int mapWidth, mapHeight;
 		std::string mapName;
 		Matrix<Texture> tileTextures;
