@@ -8,6 +8,8 @@
 
 #include "Engine.hpp"
 
+#include "Screen.hpp"
+
 #include <SDL2/SDL.h>
 #include <sstream>
 
@@ -31,8 +33,9 @@ namespace Bomberman {
 		
 		setPath();
 		
-		configuration = Configuration("config.xml");
-		setLoggers();
+		if (configuration.load("config.xml")) {
+			setLoggers();
+		}
 		
 		SDL_Window *w = SDL_CreateWindow(configuration.viewportTitle().c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, configuration.viewportWidth(), configuration.viewportHeight(), SDL_WINDOW_SHOWN);
 		if (w == nullptr) {

@@ -15,13 +15,12 @@ using namespace tinyxml2;
 
 namespace Bomberman {
 	Configuration::Configuration() : _loaded(false) {
-		Logger::log("Using default configuration.", LogLevel::info);
-		
 		defaults();
 	}
 	
-	Configuration::Configuration(string fileName) : _fileName(fileName), _loaded(false) {
+	bool Configuration::load(string fileName) {
 		XMLDocument file;
+		bool result = false;
 		
 		if (file.LoadFile(fileName.c_str()) == XML_NO_ERROR) {
 			XMLElement *root = file.RootElement();
@@ -29,14 +28,18 @@ namespace Bomberman {
 			loadViewport(root->FirstChildElement("viewport"));
 			loadLoggers(root->FirstChildElement("loggers"));
 			
-			_loaded = true;
-			
 			Logger::log("Using configuration file \"" + fileName + "\".", LogLevel::info);
+			
+			result = true;
 		} else {
-			Logger::log("Configuration file \"" + fileName + "\" not found.", LogLevel::warning);
+			Logger::log("Configuration file \"" + fileName + "\" not found, using defaults.", LogLevel::warning);
 			
 			defaults();
 		}
+		
+		_loaded = true;
+		
+		return result;
 	}
 	
 	string Configuration::viewportTitle() const {
