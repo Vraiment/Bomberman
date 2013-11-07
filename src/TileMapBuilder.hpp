@@ -37,6 +37,7 @@ namespace Bomberman {
 		void loadInfo(tinyxml2::XMLElement *root);
 		void fillMatrix(tinyxml2::XMLElement *tiles);
 		
+		int textureWidth, textureHeight;
 		int mapWidth, mapHeight;
 		Matrix<std::string> names;
 		std::string mapName;

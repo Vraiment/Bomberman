@@ -44,11 +44,11 @@ namespace Bomberman {
 	}
 	
 	int TileMapBuilder::getTexturesWidth() const {
-		throw NotImplementedException();
+		return textureWidth;
 	}
 	
 	int TileMapBuilder::getTexturesHeight() const {
-		throw NotImplementedException();
+		return textureHeight;
 	}
 	
 	string TileMapBuilder::getTextureName(int column, int row) const {
@@ -68,16 +68,36 @@ namespace Bomberman {
 		
 		result = root->QueryIntAttribute("width", &mapWidth);
 		if ((result == XML_NO_ERROR && mapWidth < 0) || result == XML_WRONG_ATTRIBUTE_TYPE) {
-			Logger::log("Bad map width.", LogLevel::error);
+			Logger::log("Bad map width.", LogLevel::fatal);
 		} else if (result == XML_NO_ATTRIBUTE) {
-			Logger::log("No width found for map.", LogLevel::error);
+			Logger::log("No width found for map.", LogLevel::fatal);
 		}
 		
 		result = root->QueryIntAttribute("height", &mapHeight);
 		if ((result == XML_NO_ERROR && mapHeight < 0) || result == XML_WRONG_ATTRIBUTE_TYPE) {
-			Logger::log("Bad map height.", LogLevel::error);
+			Logger::log("Bad map height.", LogLevel::fatal);
 		} else if (result == XML_NO_ATTRIBUTE) {
-			Logger::log("No height found for map.", LogLevel::error);
+			Logger::log("No height found for map.", LogLevel::fatal);
+		}
+		
+		XMLElement *textures = root->FirstChildElement("textures");
+		
+		if (textures == nullptr) {
+			Logger::log("No texture information found.", LogLevel::fatal);
+		}
+		
+		XMLElement *textureWidth = textures->FirstChildElement("width");
+		XMLElement *textureHeight = textures->FirstChildElement("height");
+		
+		if (textureWidth == nullptr || textureHeight == nullptr) {
+			Logger::log("Texture information incomplete.", LogLevel::fatal);
+		}
+		
+		try {
+			this->textureWidth = stoi(textureWidth->GetText());
+			this->textureHeight = stoi(textureHeight->GetText());
+		} catch (...) {
+			Logger::log("Invalid values for texture information.", LogLevel::fatal);
 		}
 	}
 	
@@ -116,7 +136,7 @@ namespace Bomberman {
 			}
 			
 			if (!names.validPos(column, row)) {
-				logMsg.clear();
+				logMsg.str(string());
 				logMsg << "Invalid position (" << column << ", " << row << ") for a tile.";
 				
 				Logger::log(logMsg.str(), LogLevel::error);
@@ -126,7 +146,7 @@ namespace Bomberman {
 			string name = tile->FirstChildElement("texture")->GetText();
 			
 			if (done.get(column, row)) {
-				logMsg.clear();
+				logMsg.str(string());
 				logMsg << "Overwritting texture \"" + names.get(column, row) + "\" ";
 				logMsg << "in position (" << column << ", " << row << ").";
 				
@@ -141,7 +161,7 @@ namespace Bomberman {
 		for (int i = 0; i < done.columns(); ++i) {
 			for (int j = 0; j < done.rows(); ++j) {
 				if (!done.get(i, j)) {
-					logMsg.clear();
+					logMsg.str(string());
 					
 					logMsg << "Tile (" << i << ", " << j << ") is empty.";
 					Logger::log(logMsg.str(), LogLevel::warning);

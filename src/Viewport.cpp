@@ -18,8 +18,8 @@ namespace Bomberman {
 	void Viewport::draw() {
 		Coordinate current = _origin;
 		
-		for (int j = 0; j < count.j; ++j, current.j += tileMap.getHeight()) {
-			for (int i = 0; i < count.i; ++i, current.i += tileMap.getHeight()) {
+		for (int j = 0; j < tileMap.getHeight() && j < count.j; ++j, current.j += tileMap.getTexturesHeight()) {
+			for (int i = 0; i < tileMap.getWidth() && i < count.i; ++i, current.i += tileMap.getTexturesWidth()) {
 				if (!validCoordinate(current)) {
 					continue;
 				}

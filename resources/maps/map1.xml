@@ -2,6 +2,11 @@
 <map width="3" height="2">
 	<name>map 1</name>
 	
+	<textures>
+		<width>40</width>
+		<height>40</height>
+	</textures>
+	
 	<tiles>
 		<tile column="0" row="0">
 			<texture>tile0.png</texture>

@@ -39,11 +39,7 @@ int main(int argc, char* argv[]) {
 	viewport->setTileMap(tileMap);
 	
 	MainLoop loop;
-	
-	shared_ptr<Screen> emptyScreen(new EmptyScreen(0, 0));
-	
 	loop.addScreen(viewport);
-	
 	loop.run();
 	
 	return 0;
