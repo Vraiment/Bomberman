@@ -94,4 +94,8 @@ namespace Bomberman {
 	void Screen::heightChanged(int prevHeight) {
 		
 	}
+	
+	shared_ptr<SDL_Renderer> Screen::renderer() const {
+		return _renderer;
+	}
 }

@@ -3,22 +3,22 @@
 	<name>map 1</name>
 	
 	<tiles>
-		<tile column="1" row="1">
+		<tile column="0" row="0">
 			<texture>tile0.png</texture>
 		</tile>
+		<tile column="1" row="0">
+			<texture>tile1.png</texture>
+		</tile>
+		<tile column="2" row="0">
+			<texture>tile2.png</texture>
+		</tile>
+		<tile column="0" row="1">
+			<texture>tile1.png</texture>
+		</tile>
+		<tile column="1" row="1">
+			<texture>tile2.png</texture>
+		</tile>
 		<tile column="2" row="1">
-			<texture>tile1.png</texture>
-		</tile>
-		<tile column="3" row="1">
-			<texture>tile2.png</texture>
-		</tile>
-		<tile column="1" row="2">
-			<texture>tile1.png</texture>
-		</tile>
-		<tile column="2" row="2">
-			<texture>tile2.png</texture>
-		</tile>
-		<tile column="3" row="2">
 			<texture>tile0.png</texture>
 		</tile>
 	</tiles>

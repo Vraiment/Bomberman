@@ -20,7 +20,7 @@ namespace Bomberman {
 	TileMapBuilder::TileMapBuilder(string fileName) : mapWidth(0), mapHeight(0) {
 		XMLDocument file;
 		
-		if (file.LoadFile(fileName.c_str()) != XML_NO_ERROR) {
+		if (file.LoadFile(fileName.c_str()) == XML_NO_ERROR) {
 			Logger::log("Using map file \"" + fileName + "\".", LogLevel::info);
 		} else {
 			Logger::log("Could not open map file \"" + fileName + "\".", LogLevel::fatal);
@@ -32,7 +32,7 @@ namespace Bomberman {
 		
 		names = Matrix<string>(mapWidth, mapHeight);
 		
-		fillMatrix(root->FirstChildElement("textures"));
+		fillMatrix(root->FirstChildElement("tiles"));
 	}
 	
 	int TileMapBuilder::getMapWidth() const {

@@ -23,6 +23,9 @@ namespace Bomberman {
 		width = builder.getMapWidth();
 		height = builder.getMapHeight();
 		
+		texturesWidth = builder.getTexturesWidth();
+		texturesHeight = builder.getTexturesHeight();
+		
 		tileTextures = Matrix<Texture>(width, height);
 		map<string, Texture> textures;
 		
@@ -53,11 +56,11 @@ namespace Bomberman {
 	}
 	
 	int TileMap::getTexturesWidth() const {
-		throw NotImplementedException();
+		return texturesWidth;
 	}
 	
 	int TileMap::getTexturesHeight() const {
-		throw NotImplementedException();
+		return texturesHeight;
 	}
 	
 	Texture TileMap::getTileTexture(int i, int j) const {

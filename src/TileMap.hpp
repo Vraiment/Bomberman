@@ -28,6 +28,7 @@ namespace Bomberman {
 		Texture getTileTexture(int i, int j) const;
 		
 	private:
+		int texturesWidth, texturesHeight;
 		int width, height;
 		Matrix<Texture> tileTextures;
 	};

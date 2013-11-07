@@ -18,7 +18,9 @@ namespace Bomberman {
 	public:
 		Viewport(int width, int height, std::string name);
 		
-		void draw(std::shared_ptr<SDL_Renderer> renderer);
+		void draw();
+		
+		void setTileMap(TileMap tileMap);
 		
 		Coordinate& origin();
 		
@@ -27,6 +29,8 @@ namespace Bomberman {
 		void heightChanged(int prevHeight);
 		
 	private:
+		bool validCoordinate(Coordinate coordinate);
+		
 		Coordinate count;
 		Coordinate _origin;
 		TileMap tileMap;
