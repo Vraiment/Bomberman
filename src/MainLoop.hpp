@@ -17,8 +17,6 @@ namespace Bomberman {
 	
 	class MainLoop {
 	public:
-		MainLoop(Renderer renderer);
-		
 		void run();
 		
 		void addScreen(std::shared_ptr<Screen> screen);
@@ -35,7 +33,6 @@ namespace Bomberman {
 		
 		std::list<std::shared_ptr<Screen>> screens;
 		std::list<std::shared_ptr<EventListener>> eventListeners;
-		Renderer renderer;
 	};
 }
 

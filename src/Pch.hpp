@@ -9,10 +9,7 @@
 #ifndef __Pch__hpp__
 #define __Pch__hpp__
 
-#include <memory>
 #include <exception>
-
-typedef std::shared_ptr<struct SDL_Renderer> Renderer;
 
 namespace Bomberman {
 	class Exception : public std::exception {

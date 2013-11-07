@@ -11,16 +11,11 @@
 #include <SDL2/SDL.h>
 
 #include "Screen.hpp"
+#include "EventListener.hpp"
 
 using namespace std;
 
 namespace Bomberman {
-	MainLoop::MainLoop(Renderer renderer) : renderer(renderer) {
-		if (!renderer) {
-			Logger::log("Not valid renderer for main loop.", LogLevel::fatal);
-		}
-	}
-	
 	void MainLoop::run() {
 		if (screens.empty()) {
 			Logger::log("Main loop is empty.", LogLevel::error);
@@ -35,15 +30,15 @@ namespace Bomberman {
 				if (event.type == SDL_QUIT) {
 					quit = true;
 				}
+				
+				for (auto it = eventListeners.begin(); it != eventListeners.end(); ++it) {
+					(*it)->listenEvent(event);
+				}
 			}
 			
-			for_each(eventListeners.begin(), eventListeners.end(), [=](shared_ptr<EventListener> eventListener) {
-				throw NotImplementedException();
-			});
-			
-			for_each(screens.begin(), screens.end(), [=](shared_ptr<Screen> screen) {
-				screen->draw(renderer);
-			});
+			for (auto it = screens.begin(); it != screens.end(); ++it) {
+				(*it)->draw();
+			}
 		}
 	}
 	
@@ -80,7 +75,7 @@ namespace Bomberman {
 	
 	
 	bool MainLoop::hasScreen(shared_ptr<Screen> screen) {
-		for (list<shared_ptr<Screen>>::iterator it = screens.begin(); it != screens.end(); ++it) {
+		for (auto it = screens.begin(); it != screens.end(); ++it) {
 			if (*it == screen) {
 				return true;
 			}
@@ -90,7 +85,7 @@ namespace Bomberman {
 	}
 	
 	bool MainLoop::hasEventListener(shared_ptr<EventListener> eventListener) {
-		for (list<shared_ptr<EventListener>>::iterator it = eventListeners.begin(); it != eventListeners.end(); ++it) {
+		for (auto it = eventListeners.begin(); it != eventListeners.end(); ++it) {
 			if (*it == eventListener) {
 				return true;
 			}

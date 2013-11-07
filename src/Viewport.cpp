@@ -8,20 +8,27 @@
 
 #include "Viewport.hpp"
 
+using namespace std;
+
 namespace Bomberman {
-	int Viewport::getWidth() const {
-		return width;
+	Viewport::Viewport(int width, int height, string name) : Screen(width, height, name) {
+		widthChanged(0);
+		heightChanged(0);
 	}
 	
-	int Viewport::getHeight() const {
-		return height;
+	void Viewport::draw(shared_ptr<SDL_Renderer> renderer) {
+		throw NotImplementedException();
 	}
 	
-	void Viewport::setWidth(int width) {
-		this->width = width;
+	void Viewport::widthChanged(int prevWidth) {
+		count.i = getWidth() / tileMap.getTexturesWidth();
 	}
 	
-	void Viewport::setHeight(int height) {
-		this->height = height;
+	void Viewport::heightChanged(int prevHeight) {
+		count.j = getHeight() / tileMap.getHeight();
+	}
+	
+	Coordinate& Viewport::origin() {
+		return _origin;
 	}
 }

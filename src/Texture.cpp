@@ -23,7 +23,7 @@ namespace Bomberman {
 		
 	}
 	
-	Texture::Texture(string fileName, Renderer renderer) : texture(nullptr), renderer(renderer), _loaded(false), name(fileName) {
+	Texture::Texture(string fileName, std::shared_ptr<SDL_Renderer> renderer) : texture(nullptr), renderer(renderer), _loaded(false), name(fileName) {
 		SDL_Texture *t = IMG_LoadTexture(renderer.get(), fileName.c_str());
 		
 		if (t != nullptr) {

@@ -16,6 +16,7 @@ namespace Bomberman {
 	class Configuration {
 	public:
 		Configuration();
+		Configuration(std::string fileName);
 		
 		bool load(std::string fileName);
 		bool loaded() const;

@@ -9,12 +9,38 @@
 #ifndef __Screen__hpp__
 #define __Screen__hpp__
 
+#include <SDL2/SDL.h>
+
 namespace Bomberman {
 	class Screen {
 	public:
-		virtual ~Screen() { }
+		Screen(int width, int height, std::string name);
+		virtual ~Screen();
 		
-		virtual void draw(Renderer renderer) = 0;
+		virtual void draw() = 0;
+		
+		std::string getName() const;
+		int getWidth() const;
+		int getHeight() const;
+		
+		void setName(std::string name);
+		void setWidth(int width);
+		void setHeight(int height);
+		
+		std::shared_ptr<SDL_Renderer> renderer() const;
+		
+	protected:
+		virtual void nameChanged(std::string prevName);
+		virtual void widthChanged(int prevWidth);
+		virtual void heightChanged(int prevHeight);
+		
+	private:
+		void initialize();
+		
+		std::string name;
+		std::shared_ptr<SDL_Window> window;
+		std::shared_ptr<SDL_Renderer> _renderer;
+		int width, height;
 	};
 }
 

@@ -7,18 +7,39 @@
 //
 
 #include "TileMap.hpp"
+
+#include <map>
+#include <SDL2/SDL.h>
 #include "Texture.hpp"
 
-#include <SDL2/SDL.h>
+using namespace std;
 
 namespace Bomberman {
-	TileMap::TileMap(TileMapBuilder *builder) {
-		width = builder->getMapWidth();
-		height = builder->getMapHeight();
+	TileMap::TileMap() : width(0), height(0) {
+		
+	}
+	
+	void TileMap::createFrom(TileMapBuilder builder, shared_ptr<SDL_Renderer> renderer) {
+		width = builder.getMapWidth();
+		height = builder.getMapHeight();
+		
+		tileTextures = Matrix<Texture>(width, height);
+		map<string, Texture> textures;
 		
 		for (int i = 0; i < width; ++i) {
 			for (int j = 0; j < height; ++j) {
-				tileTextures.push_back(builder->getTexture(i, j));
+				string textureName = builder.getTextureName(i, j);
+				auto textureInMap = textures.find(textureName);
+				
+				Texture texture;
+				if (textureInMap != textures.end()) {
+					texture = textureInMap->second;
+				} else {
+					texture = Texture(textureName, renderer);
+					textures[textureName] = texture;
+				}
+				
+				tileTextures.set(i, j, texture);
 			}
 		}
 	}
@@ -31,7 +52,15 @@ namespace Bomberman {
 		return height;
 	}
 	
+	int TileMap::getTexturesWidth() const {
+		throw NotImplementedException();
+	}
+	
+	int TileMap::getTexturesHeight() const {
+		throw NotImplementedException();
+	}
+	
 	Texture TileMap::getTileTexture(int i, int j) const {
-		return tileTextures[i + (j * width)];
+		return tileTextures.get(i, j);
 	}
 }

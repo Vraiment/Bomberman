@@ -18,9 +18,17 @@ namespace Bomberman {
 		defaults();
 	}
 	
+	Configuration::Configuration(string fileName) : _loaded(false) {
+		load(fileName);
+	}
+	
 	bool Configuration::load(string fileName) {
 		XMLDocument file;
 		bool result = false;
+		
+		if (_loaded) {
+			Logger::log("Overwritting configuration file \"" + _fileName + "\".", LogLevel::warning);
+		}
 		
 		if (file.LoadFile(fileName.c_str()) == XML_NO_ERROR) {
 			XMLElement *root = file.RootElement();
@@ -31,6 +39,8 @@ namespace Bomberman {
 			Logger::log("Using configuration file \"" + fileName + "\".", LogLevel::info);
 			
 			result = true;
+			
+			_fileName = fileName;
 		} else {
 			Logger::log("Configuration file \"" + fileName + "\" not found, using defaults.", LogLevel::warning);
 			
@@ -42,19 +52,39 @@ namespace Bomberman {
 		return result;
 	}
 	
+	bool Configuration::loaded() const {
+		return _loaded;
+	}
+	
 	string Configuration::viewportTitle() const {
+		if (!loaded()) {
+			Logger::log("Using unloaded configuration!", LogLevel::fatal);
+		}
+		
 		return _viewportTitle;
 	}
 	
 	int Configuration::viewportWidth() const {
+		if (!loaded()) {
+			Logger::log("Using unloaded configuration!", LogLevel::fatal);
+		}
+		
 		return _viewportWidth;
 	}
 	
 	int Configuration::viewportHeight() const {
+		if (!loaded()) {
+			Logger::log("Using unloaded configuration!", LogLevel::fatal);
+		}
+		
 		return _viewportHeight;
 	}
 	
 	std::vector<std::string> Configuration::loggers() const {
+		if (!loaded()) {
+			Logger::log("Using unloaded configuration!", LogLevel::fatal);
+		}
+		
 		return _loggers;
 	}
 	

@@ -9,22 +9,27 @@
 #ifndef __Viewport__hpp__
 #define __Viewport__hpp__
 
-struct SDL_Renderer;
+#include "Screen.hpp"
+#include "TileMap.hpp"
+#include "Coordinate.hpp"
 
 namespace Bomberman {
-	class Viewport {
+	class Viewport : public Screen {
 	public:
-		int getWidth() const;
-		int getHeight() const;
+		Viewport(int width, int height, std::string name);
 		
-		void setWidth(int width);
-		void setHeight(int height);
+		void draw(std::shared_ptr<SDL_Renderer> renderer);
 		
-		void draw(SDL_Renderer *renderer);
+		Coordinate& origin();
+		
+	protected:
+		void widthChanged(int prevWidth);
+		void heightChanged(int prevHeight);
 		
 	private:
-		int width, height;
-		
+		Coordinate count;
+		Coordinate _origin;
+		TileMap tileMap;
 	};
 }
 

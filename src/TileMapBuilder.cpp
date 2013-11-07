@@ -8,34 +8,31 @@
 
 #include "TileMapBuilder.hpp"
 
-#include "Texture.hpp"
 #include <tinyxml2/tinyxml2.h>
 #include <SDL2_image/SDL_image.h>
-#include <map>
+#include <vector>
 #include <sstream>
 
 using namespace tinyxml2;
 using namespace std;
 
 namespace Bomberman {
-	TileMapBuilder::TileMapBuilder(string fileName, Renderer renderer) : mapWidth(0), mapHeight(0), renderer(renderer) {
+	TileMapBuilder::TileMapBuilder(string fileName) : mapWidth(0), mapHeight(0) {
 		XMLDocument file;
 		
 		if (file.LoadFile(fileName.c_str()) != XML_NO_ERROR) {
 			Logger::log("Using map file \"" + fileName + "\".", LogLevel::info);
 		} else {
-			Logger::log("Could not open map file \"" + fileName + "\".", LogLevel::error);
-			
-			return;
+			Logger::log("Could not open map file \"" + fileName + "\".", LogLevel::fatal);
 		}
 		
-		XMLElement *root = file.RootElement();
+		auto root = file.RootElement();
 		
 		loadInfo(root);
 		
-		map<int, Texture> textures = loadTextures(root->FirstChildElement("textures"));
+		names = Matrix<string>(mapWidth, mapHeight);
 		
-		setTextures(root->FirstChildElement("tiles"), textures);
+		fillMatrix(root->FirstChildElement("textures"));
 	}
 	
 	int TileMapBuilder::getMapWidth() const {
@@ -46,8 +43,16 @@ namespace Bomberman {
 		return mapHeight;
 	}
 	
-	Texture TileMapBuilder::getTexture(int column, int row) const {
-		return tileTextures.get(column, row);
+	int TileMapBuilder::getTexturesWidth() const {
+		throw NotImplementedException();
+	}
+	
+	int TileMapBuilder::getTexturesHeight() const {
+		throw NotImplementedException();
+	}
+	
+	string TileMapBuilder::getTextureName(int column, int row) const {
+		return names.get(column, row);
 	}
 	
 	void TileMapBuilder::loadInfo(XMLElement *root) {
@@ -74,51 +79,24 @@ namespace Bomberman {
 		} else if (result == XML_NO_ATTRIBUTE) {
 			Logger::log("No height found for map.", LogLevel::error);
 		}
-		
-		tileTextures = Matrix<Texture>(mapWidth, mapHeight);
 	}
 	
-	map<int, Texture> TileMapBuilder::loadTextures(XMLElement *node) {
-		map<int, Texture> textures;
-		
-		if (node == nullptr) {
-			return textures;
-		}
-		
-		for (XMLElement *texture = node->FirstChildElement("texture"); texture != nullptr; texture = texture->NextSiblingElement("texture")) {
-			string textureName = texture->GetText();
-
-			int textureId = 0;
-			int result = texture->QueryIntAttribute("id", &textureId);
-			if (result == XML_WRONG_ATTRIBUTE_TYPE) {
-				Logger::log("Invalid texture id for texture \"" + textureName + "\".", LogLevel::error);
-			 
-				continue;
-			} else if (result == XML_NO_ATTRIBUTE) {
-				Logger::log("Texture \"" + textureName + "\" has no name.", LogLevel::error);
-			}
-
-			if (textures.find(textureId) != textures.end()) {
-				stringstream warning;
-				warning << "Overwritting texture with id " << textureId << ".";
-
-				Logger::log(warning.str(), LogLevel::warning);
-			}
-
-			textures[textureId] = Texture(texture->GetText(), renderer);
-		}
-		
-		return textures;
-	}
-	
-	void TileMapBuilder::setTextures(XMLElement *tiles, map<int, Texture> textures) {
+	void TileMapBuilder::fillMatrix(XMLElement *tiles) {
 		if (tiles == nullptr) {
 			return;
 		}
 		
 		int column, row, result;
+		Matrix<bool> done(mapWidth, mapHeight);
+		stringstream logMsg;
 		
-		for (XMLElement *tile = tiles->FirstChildElement("tile"); tile != nullptr; tile = tile->NextSiblingElement("tile")) {
+		for (int i = 0; i < done.columns(); ++i) {
+			for (int j = 0; j < done.rows(); ++j) {
+				done.set(i, j, false);
+			}
+		}
+		
+		for (auto tile = tiles->FirstChildElement("tile"); tile != nullptr; tile = tile->NextSiblingElement("tile")) {
 			result = tile->QueryIntAttribute("column", &column);
 			if (result == XML_WRONG_ATTRIBUTE_TYPE) {
 				Logger::log("Invalid column value for a tile.", LogLevel::error);
@@ -137,34 +115,38 @@ namespace Bomberman {
 				continue;
 			}
 			
-			if (!tileTextures.validPos(column, row)) {
-				stringstream error;
-				error << "Invalid position (" << column << ", " << row << ") for a tile.";
+			if (!names.validPos(column, row)) {
+				logMsg.clear();
+				logMsg << "Invalid position (" << column << ", " << row << ") for a tile.";
 				
-				Logger::log(error.str(), LogLevel::error);
-			}
-			
-			string idString = tile->FirstChildElement("texture")->GetText();
-			int id;
-			bool error = false;
-			try {
-				id = stoi(idString);
-				continue;
-			} catch (...) {
-				error = true;
-			}
-			
-			error |= textures.find(id) == textures.end();
-			
-			if (error) {
-				stringstream error;
-				error << "Invalid texture id for tile (" << column << ", " << row << ").";
-				
-				Logger::log(error.str(), LogLevel::error);
+				Logger::log(logMsg.str(), LogLevel::error);
 				continue;
 			}
 			
-			tileTextures.set(column, row, textures[id]);
+			string name = tile->FirstChildElement("texture")->GetText();
+			
+			if (done.get(column, row)) {
+				logMsg.clear();
+				logMsg << "Overwritting texture \"" + names.get(column, row) + "\" ";
+				logMsg << "in position (" << column << ", " << row << ").";
+				
+				Logger::log(logMsg.str(), LogLevel::warning);
+			} else {
+				done.set(column, row, true);
+			}
+			
+			names.set(column, row, name);
+		}
+		
+		for (int i = 0; i < done.columns(); ++i) {
+			for (int j = 0; j < done.rows(); ++j) {
+				if (!done.get(i, j)) {
+					logMsg.clear();
+					
+					logMsg << "Tile (" << i << ", " << j << ") is empty.";
+					Logger::log(logMsg.str(), LogLevel::warning);
+				}
+			}
 		}
 	}
 }

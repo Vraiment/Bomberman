@@ -42,7 +42,7 @@ namespace Bomberman {
 			*references = 1;
 		}
 		
-		Matrix(const Matrix& other) : _columns(other._columns), _rows(other._rows), references(other._references), values(other._values) {
+		Matrix(const Matrix& other) : _columns(other._columns), _rows(other._rows), references(other.references), values(other.values) {
 			++(*references);
 		}
 		
@@ -93,7 +93,7 @@ namespace Bomberman {
 		}
 		
 		bool validPos(int column, int row) const {
-			return (0 < column) && (column <= _columns) && (0 < row) && (row <= _rows);
+			return (0 <= column) && (column < _columns) && (0 <= row) && (row < _rows) && (_columns != 0) && (_rows != 0);
 		}
 		
 	private:
