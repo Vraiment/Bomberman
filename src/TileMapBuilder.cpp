@@ -18,9 +18,13 @@ using namespace std;
 
 namespace Bomberman {
 	TileMapBuilder::TileMapBuilder(string fileName) : mapWidth(0), mapHeight(0) {
+		string fullName = "maps";
+		fullName += dirSeparator;
+		fullName += fileName;
+		
 		XMLDocument file;
 		
-		if (file.LoadFile(fileName.c_str()) == XML_NO_ERROR) {
+		if (file.LoadFile(fullName.c_str()) == XML_NO_ERROR) {
 			Logger::log("Using map file \"" + fileName + "\".", LogLevel::info);
 		} else {
 			Logger::log("Could not open map file \"" + fileName + "\".", LogLevel::fatal);

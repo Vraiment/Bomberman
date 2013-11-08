@@ -34,4 +34,6 @@ namespace Bomberman {
 
 #include "Logger.hpp"
 
+const char dirSeparator = '/';
+
 #endif //__Pch__hpp__

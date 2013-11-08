@@ -14,22 +14,21 @@
 		5B1BF7521822E48B009DCA31 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1BF7511822E48B009DCA31 /* SDL2_image.framework */; };
 		5B3795CA1820F6E60050381F /* TileMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3795C81820F6E60050381F /* TileMap.cpp */; };
 		5B3795CE1820FBAA0050381F /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3795CC1820FBAA0050381F /* Texture.cpp */; };
+		5B3D1310182C717A0070A335 /* tile0.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BD37AF31822199200BB1C28 /* tile0.png */; };
+		5B3D1311182C717A0070A335 /* tile1.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BD37AF5182219F300BB1C28 /* tile1.png */; };
+		5B3D1312182C717A0070A335 /* tile2.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BD37AF6182219F300BB1C28 /* tile2.png */; };
+		5B3D1314182C71A90070A335 /* map1.xml in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BF63CA818218A41001315AD /* map1.xml */; };
 		5B6E81F5182AFE870031B1FE /* EmptyScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E81F3182AFE870031B1FE /* EmptyScreen.cpp */; };
 		5B755C771822E81300DADA25 /* Configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B755C751822E81300DADA25 /* Configuration.cpp */; };
 		5B7732B5182AFB2F003A2747 /* SDL2_image.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B1BF7511822E48B009DCA31 /* SDL2_image.framework */; };
 		5BBB9E541820EB3F00726BC5 /* Engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BBB9E521820EB3F00726BC5 /* Engine.cpp */; };
-		5BD37AF41822199200BB1C28 /* tile0.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BD37AF31822199200BB1C28 /* tile0.png */; };
-		5BD37AF7182219F300BB1C28 /* tile1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BD37AF5182219F300BB1C28 /* tile1.png */; };
-		5BD37AF8182219F300BB1C28 /* tile2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BD37AF6182219F300BB1C28 /* tile2.png */; };
 		5BD37AFE18221A3D00BB1C28 /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B0EEC2A1820E0D20084C40C /* SDL2.framework */; };
-		5BD6AD0118236FC500E661DA /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5BD6AD0018236FC500E661DA /* config.xml */; };
 		5BD6AD0518237F2D00E661DA /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BD6AD0318237CE000E661DA /* Logger.cpp */; };
 		5BD6AD171823A36B00E661DA /* tinyxml2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BD6AD161823A36B00E661DA /* tinyxml2.cpp */; };
 		5BDBF7E71821780000BE71CC /* Viewport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BDBF7E51821780000BE71CC /* Viewport.cpp */; };
 		5BDBF7E918217D4400BE71CC /* TileMapBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BDBF7E818217D4400BE71CC /* TileMapBuilder.cpp */; };
 		5BDC7DA5182AA18C0093391D /* Coordinate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BDC7DA3182AA18C0093391D /* Coordinate.cpp */; };
 		5BF63CA6182187CF001315AD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF63CA5182187CF001315AD /* CoreFoundation.framework */; };
-		5BF63CA918218A41001315AD /* map1.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5BF63CA818218A41001315AD /* map1.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +50,28 @@
 			files = (
 				5B7732B5182AFB2F003A2747 /* SDL2_image.framework in CopyFiles */,
 				5BD37AFE18221A3D00BB1C28 /* SDL2.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B3D130F182C716B0070A335 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = textures;
+			dstSubfolderSpec = 7;
+			files = (
+				5B3D1310182C717A0070A335 /* tile0.png in CopyFiles */,
+				5B3D1311182C717A0070A335 /* tile1.png in CopyFiles */,
+				5B3D1312182C717A0070A335 /* tile2.png in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B3D1313182C71980070A335 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = maps;
+			dstSubfolderSpec = 7;
+			files = (
+				5B3D1314182C71A90070A335 /* map1.xml in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,8 +262,9 @@
 			buildPhases = (
 				5B76EC5E1820DD1B00D499EE /* Sources */,
 				5B76EC5F1820DD1B00D499EE /* Frameworks */,
-				5B76EC601820DD1B00D499EE /* Resources */,
 				5B0EEC2F1820E1700084C40C /* CopyFiles */,
+				5B3D1313182C71980070A335 /* CopyFiles */,
+				5B3D130F182C716B0070A335 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -305,18 +327,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		5B76EC601820DD1B00D499EE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5BD37AF8182219F300BB1C28 /* tile2.png in Resources */,
-				5BD37AF41822199200BB1C28 /* tile0.png in Resources */,
-				5BF63CA918218A41001315AD /* map1.xml in Resources */,
-				5BD37AF7182219F300BB1C28 /* tile1.png in Resources */,
-				5BD6AD0118236FC500E661DA /* config.xml in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		5B76EC811820DD1B00D499EE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
