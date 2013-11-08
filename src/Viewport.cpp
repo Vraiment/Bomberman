@@ -19,6 +19,8 @@ namespace Bomberman {
 		Coordinate current = _origin;
 		
 		for (int j = 0; j < tileMap.getHeight() && j < count.j; ++j, current.j += tileMap.getTexturesHeight()) {
+			current.i = _origin.i;
+			
 			for (int i = 0; i < tileMap.getWidth() && i < count.i; ++i, current.i += tileMap.getTexturesWidth()) {
 				if (!validCoordinate(current)) {
 					continue;

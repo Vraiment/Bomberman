@@ -45,12 +45,14 @@ namespace Bomberman {
 			return;
 		}
 		
-		SDL_Rect pos;
+		SDL_Rect dst;
 		
-		pos.x = i;
-		pos.y = j;
+		dst.x = i;
+		dst.y = j;
 		
-		SDL_RenderCopy(renderer.get(), texture.get(), &pos, nullptr);
+		SDL_QueryTexture(texture.get(), nullptr, nullptr, &dst.w, &dst.h);
+		
+		SDL_RenderCopy(renderer.get(), texture.get(), nullptr, &dst);
 	}
 	
 	string Texture::getName() const {
