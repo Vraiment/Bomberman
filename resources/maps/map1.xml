@@ -2,29 +2,15 @@
 <map width="3" height="2">
 	<name>map 1</name>
 	
-	<textures>
-		<width>40</width>
-		<height>40</height>
-	</textures>
+	<players>
+		<player id="0">
+			<spawn column="0" row="0" />
+		</player>
+	</players>
 	
-	<tiles>
-		<tile column="0" row="0">
-			<texture>tile0.png</texture>
-		</tile>
-		<tile column="1" row="0">
-			<texture>tile1.png</texture>
-		</tile>
-		<tile column="2" row="0">
-			<texture>tile2.png</texture>
-		</tile>
-		<tile column="0" row="1">
-			<texture>tile1.png</texture>
-		</tile>
-		<tile column="1" row="1">
-			<texture>tile2.png</texture>
-		</tile>
-		<tile column="2" row="1">
-			<texture>tile0.png</texture>
-		</tile>
-	</tiles>
+	<bricks>
+		<brick column="1" row="0" />
+		<brick column="1" row="1" destructible="false" />
+		<brick column="1" row="2" destructible="true" />
+	</bricsk>
 </map>

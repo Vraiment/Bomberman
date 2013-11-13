@@ -1,0 +1,20 @@
+//
+//  OperatingSystem.hpp
+//  Bomberman
+//
+//  Created on 11/12/13.
+//  Copyright (c) 2013 Vraiment. All rights reserved.
+//
+
+#ifndef __OperatingSystem__hpp__
+#define __OperatingSystem__hpp__
+
+namespace Bomberman {
+	
+#ifdef __APPLE__
+	const char dirSeparator = '/';
+#endif
+	
+}
+
+#endif //__OperatingSystem__hpp__

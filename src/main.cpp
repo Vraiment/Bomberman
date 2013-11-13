@@ -15,6 +15,7 @@
 #include "MainLoop.hpp"
 #include "Viewport.hpp"
 #include "EmptyScreen.hpp"
+#include "Logger.hpp"
 
 using namespace Bomberman;
 using namespace std;

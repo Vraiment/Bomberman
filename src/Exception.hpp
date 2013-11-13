@@ -1,13 +1,13 @@
 //
-//  Pch.hpp
+//  Exception.hpp
 //  Bomberman
 //
-//  Created on 31/10/13.
+//  Created on 11/12/13.
 //  Copyright (c) 2013 Vraiment. All rights reserved.
 //
 
-#ifndef __Pch__hpp__
-#define __Pch__hpp__
+#ifndef __Exception__hpp__
+#define __Exception__hpp__
 
 #include <exception>
 
@@ -32,8 +32,4 @@ namespace Bomberman {
 	};
 }
 
-#include "Logger.hpp"
-
-const char dirSeparator = '/';
-
-#endif //__Pch__hpp__
+#endif //__Exception__hpp__

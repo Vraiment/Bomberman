@@ -11,6 +11,7 @@
 #include <SDL2/SDL.h>
 
 #include "Screen.hpp"
+#include "Logger.hpp"
 #include "EventListener.hpp"
 
 using namespace std;

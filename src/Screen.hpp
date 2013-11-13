@@ -9,6 +9,8 @@
 #ifndef __Screen__hpp__
 #define __Screen__hpp__
 
+#include <memory>
+#include <string>
 #include <SDL2/SDL.h>
 
 namespace Bomberman {

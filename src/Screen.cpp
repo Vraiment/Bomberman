@@ -8,6 +8,8 @@
 
 #include "Screen.hpp"
 
+#include "Logger.hpp"
+
 using namespace std;
 
 namespace Bomberman {

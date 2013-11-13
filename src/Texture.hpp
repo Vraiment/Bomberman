@@ -9,6 +9,9 @@
 #ifndef __Texture__hpp__
 #define __Texture__hpp__
 
+#include <memory>
+#include <string>
+
 struct SDL_Renderer;
 struct SDL_Texture;
 

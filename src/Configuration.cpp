@@ -10,6 +10,8 @@
 
 #include <tinyxml2/tinyxml2.h>
 
+#include "Logger.hpp"
+
 using namespace std;
 using namespace tinyxml2;
 

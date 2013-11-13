@@ -8,6 +8,7 @@
 
 #include "Viewport.hpp"
 
+#include "Exception.hpp"
 #include "TileMap.hpp"
 
 using namespace std;
