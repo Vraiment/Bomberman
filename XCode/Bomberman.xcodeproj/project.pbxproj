@@ -32,7 +32,6 @@
 		5BD6AD0518237F2D00E661DA /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BD6AD0318237CE000E661DA /* Logger.cpp */; };
 		5BD6AD171823A36B00E661DA /* tinyxml2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BD6AD161823A36B00E661DA /* tinyxml2.cpp */; };
 		5BDBF7E71821780000BE71CC /* Viewport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BDBF7E51821780000BE71CC /* Viewport.cpp */; };
-		5BDBF7E918217D4400BE71CC /* TileMapBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BDBF7E818217D4400BE71CC /* TileMapBuilder.cpp */; };
 		5BDC7DA5182AA18C0093391D /* Coordinate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BDC7DA3182AA18C0093391D /* Coordinate.cpp */; };
 		5BF63CA6182187CF001315AD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF63CA5182187CF001315AD /* CoreFoundation.framework */; };
 /* End PBXBuildFile section */
@@ -98,7 +97,6 @@
 		5B1BF7511822E48B009DCA31 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2_image.framework; sourceTree = "<group>"; };
 		5B3795C81820F6E60050381F /* TileMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TileMap.cpp; sourceTree = "<group>"; };
 		5B3795C91820F6E60050381F /* TileMap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TileMap.hpp; sourceTree = "<group>"; };
-		5B3795CB1820F7B80050381F /* TileMapBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TileMapBuilder.hpp; sourceTree = "<group>"; };
 		5B3795CC1820FBAA0050381F /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		5B3795CD1820FBAA0050381F /* Texture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Texture.hpp; sourceTree = "<group>"; };
 		5B4A11FE18331CAB00C8A950 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
@@ -123,7 +121,6 @@
 		5BD6AD161823A36B00E661DA /* tinyxml2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml2.cpp; sourceTree = "<group>"; };
 		5BDBF7E51821780000BE71CC /* Viewport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Viewport.cpp; sourceTree = "<group>"; };
 		5BDBF7E61821780000BE71CC /* Viewport.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Viewport.hpp; sourceTree = "<group>"; };
-		5BDBF7E818217D4400BE71CC /* TileMapBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TileMapBuilder.cpp; sourceTree = "<group>"; };
 		5BDC7DA3182AA18C0093391D /* Coordinate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Coordinate.cpp; sourceTree = "<group>"; };
 		5BDC7DA4182AA18C0093391D /* Coordinate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Coordinate.hpp; sourceTree = "<group>"; };
 		5BF63CA5182187CF001315AD /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -194,8 +191,6 @@
 				5B755C751822E81300DADA25 /* Configuration.cpp */,
 				5B3795C91820F6E60050381F /* TileMap.hpp */,
 				5B3795C81820F6E60050381F /* TileMap.cpp */,
-				5B3795CB1820F7B80050381F /* TileMapBuilder.hpp */,
-				5BDBF7E818217D4400BE71CC /* TileMapBuilder.cpp */,
 				5B3795CD1820FBAA0050381F /* Texture.hpp */,
 				5B3795CC1820FBAA0050381F /* Texture.cpp */,
 				5BDBF7E61821780000BE71CC /* Viewport.hpp */,
@@ -365,7 +360,6 @@
 				5BD6AD0518237F2D00E661DA /* Logger.cpp in Sources */,
 				5B0EEC2D1820E10A0084C40C /* main.cpp in Sources */,
 				5B0496431825D01600C1FBCB /* MainLoop.cpp in Sources */,
-				5BDBF7E918217D4400BE71CC /* TileMapBuilder.cpp in Sources */,
 				5B755C771822E81300DADA25 /* Configuration.cpp in Sources */,
 				5B3795CE1820FBAA0050381F /* Texture.cpp in Sources */,
 				5BDC7DA5182AA18C0093391D /* Coordinate.cpp in Sources */,

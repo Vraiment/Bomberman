@@ -11,7 +11,6 @@
 
 #include "Engine.hpp"
 #include "Configuration.hpp"
-#include "TileMapBuilder.hpp"
 #include "TileMap.hpp"
 #include "MainLoop.hpp"
 #include "Viewport.hpp"
@@ -81,13 +80,11 @@ int main(int argc, char* argv[]) {
 	//test();
 	
 	Configuration config("config.xml");
-	TileMapBuilder builder("map1.xml");
-	TileMap tileMap;
+	TileMap tileMap("map1.xml");
 	
 	shared_ptr<Viewport> viewport(new Viewport(config.viewportWidth(), config.viewportHeight(), config.viewportTitle()));
 	
-	tileMap.createFrom(builder, viewport->renderer());
-	viewport->setTileMap(tileMap);
+	viewport->loadTileMap(tileMap);
 	
 	MainLoop loop;
 	loop.addScreen(viewport);

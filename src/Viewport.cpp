@@ -8,49 +8,25 @@
 
 #include "Viewport.hpp"
 
+#include "TileMap.hpp"
+
 using namespace std;
 
 namespace Bomberman {
-	Viewport::Viewport(int width, int height, string name) : Screen(width, height, name), count(), _origin() {
+	Viewport::Viewport(int width, int height, string name) : Screen(width, height, name), _origin() {
 		
 	}
 	
 	void Viewport::draw() {
-		Coordinate current = _origin;
-		
-		for (int j = 0; j < tileMap.getHeight() && j < count.j; ++j, current.j += tileMap.getTexturesHeight()) {
-			current.i = _origin.i;
-			
-			for (int i = 0; i < tileMap.getWidth() && i < count.i; ++i, current.i += tileMap.getTexturesWidth()) {
-				if (!validCoordinate(current)) {
-					continue;
-				}
-				
-				tileMap.getTileTexture(i, j).draw(current.i, current.j);
-			}
-		}
+		throw NotImplementedException();
 	}
 	
-	void Viewport::widthChanged(int prevWidth) {
-		count.i = getWidth() / tileMap.getTexturesWidth();
-	}
-	
-	void Viewport::heightChanged(int prevHeight) {
-		count.j = getHeight() / tileMap.getHeight();
-	}
-	
-	void Viewport::setTileMap(TileMap tileMap) {
-		this->tileMap = tileMap;
-		
-		widthChanged(0);
-		heightChanged(0);
+	void Viewport::loadTileMap(const TileMap& tileMap) {
+		bricks = tileMap.bricks();
+		destrutibleBricks = tileMap.destructibleBricks();
 	}
 	
 	Coordinate& Viewport::origin() {
 		return _origin;
-	}
-	
-	bool Viewport::validCoordinate(Coordinate coordinate) {
-		return (0 <= coordinate.i) && (coordinate.i < getWidth()) && (0 <= coordinate.j) && (coordinate.j < getHeight());
 	}
 }

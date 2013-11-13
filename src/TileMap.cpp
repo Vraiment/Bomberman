@@ -15,36 +15,8 @@
 using namespace std;
 
 namespace Bomberman {
-	TileMap::TileMap() : width(0), height(0) {
+	TileMap::TileMap(string fileName) : width(0), height(0) {
 		
-	}
-	
-	void TileMap::createFrom(TileMapBuilder builder, shared_ptr<SDL_Renderer> renderer) {
-		width = builder.getMapWidth();
-		height = builder.getMapHeight();
-		
-		texturesWidth = builder.getTexturesWidth();
-		texturesHeight = builder.getTexturesHeight();
-		
-		tileTextures = Matrix<Texture>(width, height);
-		map<string, Texture> textures;
-		
-		for (int i = 0; i < width; ++i) {
-			for (int j = 0; j < height; ++j) {
-				string textureName = builder.getTextureName(i, j);
-				auto textureInMap = textures.find(textureName);
-				
-				Texture texture;
-				if (textureInMap != textures.end()) {
-					texture = textureInMap->second;
-				} else {
-					texture = Texture(textureName, renderer);
-					textures[textureName] = texture;
-				}
-				
-				tileTextures.set(i, j, texture);
-			}
-		}
 	}
 	
 	int TileMap::getWidth() const {
@@ -55,15 +27,15 @@ namespace Bomberman {
 		return height;
 	}
 	
-	int TileMap::getTexturesWidth() const {
-		return texturesWidth;
+	vector<Coordinate> TileMap::spawnPoints() const {
+		return _spawnPoints;
 	}
 	
-	int TileMap::getTexturesHeight() const {
-		return texturesHeight;
+	vector<Coordinate> TileMap::bricks() const {
+		return _bricks;
 	}
 	
-	Texture TileMap::getTileTexture(int i, int j) const {
-		return tileTextures.get(i, j);
+	vector<Coordinate> TileMap::destructibleBricks() const {
+		return _destructibleBricks;
 	}
 }

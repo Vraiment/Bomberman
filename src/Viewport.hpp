@@ -10,30 +10,26 @@
 #define __Viewport__hpp__
 
 #include "Screen.hpp"
-#include "TileMap.hpp"
 #include "Coordinate.hpp"
+#include <vector>
 
 namespace Bomberman {
+	class TileMap;
+	
 	class Viewport : public Screen {
 	public:
 		Viewport(int width, int height, std::string name);
 		
 		void draw();
 		
-		void setTileMap(TileMap tileMap);
+		void loadTileMap(const TileMap& tileMap);
 		
 		Coordinate& origin();
 		
-	protected:
-		void widthChanged(int prevWidth);
-		void heightChanged(int prevHeight);
-		
 	private:
-		bool validCoordinate(Coordinate coordinate);
-		
-		Coordinate count;
 		Coordinate _origin;
-		TileMap tileMap;
+		std::vector<Coordinate> bricks;
+		std::vector<Coordinate> destrutibleBricks;
 	};
 }
 

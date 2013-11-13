@@ -9,28 +9,27 @@
 #ifndef __TileMap__hpp__
 #define __TileMap__hpp__
 
-#include "Matrix.hpp"
-#include "TileMapBuilder.hpp"
+#include "Coordinate.hpp"
 #include "Texture.hpp"
+#include <vector>
 
 namespace Bomberman {
 	class TileMap {
 	public:
-		TileMap();
-		
-		void createFrom(TileMapBuilder tileMapBuilder, std::shared_ptr<SDL_Renderer> renderer);
+		TileMap(std::string fileName);
 		
 		int getWidth() const;
 		int getHeight() const;
 		
-		int getTexturesWidth() const;
-		int getTexturesHeight() const;
-		Texture getTileTexture(int i, int j) const;
+		std::vector<Coordinate> spawnPoints() const;
+		std::vector<Coordinate> bricks() const;
+		std::vector<Coordinate> destructibleBricks() const;
 		
 	private:
-		int texturesWidth, texturesHeight;
+		std::vector<Coordinate> _spawnPoints;
+		std::vector<Coordinate> _bricks;
+		std::vector<Coordinate> _destructibleBricks;
 		int width, height;
-		Matrix<Texture> tileTextures;
 	};
 }
 
