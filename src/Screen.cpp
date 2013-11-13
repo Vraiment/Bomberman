@@ -8,7 +8,7 @@
 
 #include "Screen.hpp"
 
-#include "Logger.hpp"
+#include "Log.hpp"
 
 using namespace std;
 
@@ -21,7 +21,7 @@ namespace Bomberman {
 		SDL_Window *w = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN);
 		
 		if (w == nullptr) {
-			Logger::log("Could not initialize window: \"" + name + "\": " + SDL_GetError() + ".", LogLevel::fatal);
+			Log::get() << "Could not initialize window: \"" << name << "\": " << SDL_GetError() << "." << LogLevel::fatal;
 		}
 		
 		window.reset(w, [](SDL_Window *w) {
@@ -31,7 +31,7 @@ namespace Bomberman {
 		SDL_Renderer *r = SDL_CreateRenderer(w, -1, SDL_RENDERER_ACCELERATED);
 		
 		if (r == nullptr) {
-			Logger::log("Could not initialize renderer for window: \"" + name + "\": " + SDL_GetError() + ".", LogLevel::fatal);
+			Log::get() << "Could not initialize renderer for window: \"" << name << "\": " << SDL_GetError() << "." << LogLevel::fatal;
 		}
 		
 		_renderer.reset(r, [](SDL_Renderer *r) {

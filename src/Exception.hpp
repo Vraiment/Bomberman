@@ -20,7 +20,7 @@ namespace Bomberman {
 	class NotImplementedException : public Exception {
 	public:
 		virtual const char* what() const noexcept {
-			return "action not implemented.";
+			return "action not implemented";
 		}
 	};
 	
@@ -28,6 +28,13 @@ namespace Bomberman {
 	public:
 		virtual const char* what() const noexcept {
 			return "fatal error";
+		}
+	};
+	
+	class InvalidOperationException : public Exception {
+	public:
+		virtual const char* what() const noexcept {
+			return "invalid operation";
 		}
 	};
 }

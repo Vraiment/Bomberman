@@ -15,7 +15,7 @@
 #include "MainLoop.hpp"
 #include "Viewport.hpp"
 #include "EmptyScreen.hpp"
-#include "Logger.hpp"
+#include "Log.hpp"
 
 using namespace Bomberman;
 using namespace std;
@@ -24,7 +24,7 @@ void setLoggers(Configuration configuration) {
 	vector<string> loggers = configuration.loggers();
 	
 	for (int n = 0; n < loggers.size(); ++n) {
-		Logger::log("Unkown logger \"" + loggers[n] + "\" found in configuration file.", LogLevel::warning);
+		Log::get() << "Unkown logger \"" << loggers[n] << "\" found in configuration file." << LogLevel::warning;
 	}
 }
 

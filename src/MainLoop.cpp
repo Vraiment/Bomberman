@@ -11,7 +11,7 @@
 #include <SDL2/SDL.h>
 
 #include "Screen.hpp"
-#include "Logger.hpp"
+#include "Log.hpp"
 #include "EventListener.hpp"
 
 using namespace std;
@@ -19,7 +19,7 @@ using namespace std;
 namespace Bomberman {
 	void MainLoop::run() {
 		if (screens.empty()) {
-			Logger::log("Main loop is empty.", LogLevel::error);
+			Log::get() << "Main loop is empty." << LogLevel::error;
 			return;
 		}
 		
@@ -47,31 +47,31 @@ namespace Bomberman {
 	
 	void MainLoop::addScreen(shared_ptr<Screen> screen) {
 		if (hasScreen(screen)) {
-			Logger::log("Trying to insert existing screen.", LogLevel::error);
+			Log::get() << "Trying to insert existing screen." << LogLevel::error;
 			return;
 		}
 		
-		Logger::log("Inserting screen.", LogLevel::info);
+		Log::get() << "Inserting screen." << LogLevel::info;
 		screens.push_back(screen);
 	}
 	
 	void MainLoop::removeScreen(shared_ptr<Screen> screen) {
 		if (!hasScreen(screen)) {
-			Logger::log("Trying unexisting screen.", LogLevel::error);
+			Log::get() << "Trying unexisting screen." << LogLevel::error;
 			return;
 		}
 		
-		Logger::log("Removing screen.", LogLevel::info);
+		Log::get() << "Removing screen." << LogLevel::info;
 		screens.remove(screen);
 	}
 	
 	void MainLoop::addEventListener(shared_ptr<EventListener> eventListener) {
 		if (hasEventListener(eventListener)) {
-			Logger::log("Trying to insert existing event listener.", LogLevel::error);
+			Log::get() << "Trying to insert existing event listener." << LogLevel::error;
 			return;
 		}
 		
-		Logger::log("Inserting event listener.", LogLevel::info);
+		Log::get() << "Inserting event listener." << LogLevel::info;
 		eventListeners.push_back(eventListener);
 	}
 	

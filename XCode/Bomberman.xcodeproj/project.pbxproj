@@ -24,6 +24,7 @@
 		5B4A120418331CB500C8A950 /* background.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B4A11FE18331CAB00C8A950 /* background.png */; };
 		5B4A120518331CB600C8A950 /* brick.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B4A11FF18331CAB00C8A950 /* brick.png */; };
 		5B4A120618331CB600C8A950 /* destructibleBrick.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B4A120018331CAB00C8A950 /* destructibleBrick.png */; };
+		5B4A120B1833256800C8A950 /* OperatingSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B4A120A1833256800C8A950 /* OperatingSystem.cpp */; };
 		5B6E81F5182AFE870031B1FE /* EmptyScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E81F3182AFE870031B1FE /* EmptyScreen.cpp */; };
 		5B755C771822E81300DADA25 /* Configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B755C751822E81300DADA25 /* Configuration.cpp */; };
 		5B7732B5182AFB2F003A2747 /* SDL2_image.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B1BF7511822E48B009DCA31 /* SDL2_image.framework */; };
@@ -33,6 +34,8 @@
 		5BD6AD171823A36B00E661DA /* tinyxml2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BD6AD161823A36B00E661DA /* tinyxml2.cpp */; };
 		5BDBF7E71821780000BE71CC /* Viewport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BDBF7E51821780000BE71CC /* Viewport.cpp */; };
 		5BDC7DA5182AA18C0093391D /* Coordinate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BDC7DA3182AA18C0093391D /* Coordinate.cpp */; };
+		5BF5549B1833F67D00DAC339 /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BF554991833F67D00DAC339 /* Log.cpp */; };
+		5BF5549E1833F70400DAC339 /* LogLevel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BF5549C1833F70400DAC339 /* LogLevel.cpp */; };
 		5BF63CA6182187CF001315AD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF63CA5182187CF001315AD /* CoreFoundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +106,7 @@
 		5B4A120018331CAB00C8A950 /* destructibleBrick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = destructibleBrick.png; sourceTree = "<group>"; };
 		5B4A1207183321E600C8A950 /* Exception.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Exception.hpp; sourceTree = "<group>"; };
 		5B4A1209183323A900C8A950 /* OperatingSystem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OperatingSystem.hpp; sourceTree = "<group>"; };
+		5B4A120A1833256800C8A950 /* OperatingSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OperatingSystem.cpp; sourceTree = "<group>"; };
 		5B6E81F3182AFE870031B1FE /* EmptyScreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EmptyScreen.cpp; sourceTree = "<group>"; };
 		5B6E81F4182AFE870031B1FE /* EmptyScreen.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EmptyScreen.hpp; sourceTree = "<group>"; };
 		5B755C751822E81300DADA25 /* Configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Configuration.cpp; sourceTree = "<group>"; };
@@ -124,6 +128,10 @@
 		5BDBF7E61821780000BE71CC /* Viewport.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Viewport.hpp; sourceTree = "<group>"; };
 		5BDC7DA3182AA18C0093391D /* Coordinate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Coordinate.cpp; sourceTree = "<group>"; };
 		5BDC7DA4182AA18C0093391D /* Coordinate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Coordinate.hpp; sourceTree = "<group>"; };
+		5BF554991833F67D00DAC339 /* Log.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Log.cpp; sourceTree = "<group>"; };
+		5BF5549A1833F67D00DAC339 /* Log.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Log.hpp; sourceTree = "<group>"; };
+		5BF5549C1833F70400DAC339 /* LogLevel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LogLevel.cpp; sourceTree = "<group>"; };
+		5BF5549D1833F70400DAC339 /* LogLevel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LogLevel.hpp; sourceTree = "<group>"; };
 		5BF63CA5182187CF001315AD /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		5BF63CA818218A41001315AD /* map1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map1.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -184,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				5B0EEC2C1820E10A0084C40C /* main.cpp */,
+				5B4A1207183321E600C8A950 /* Exception.hpp */,
 				5BD37B00182228B900BB1C28 /* Matrix.hpp */,
 				5BBB9E531820EB3F00726BC5 /* Engine.hpp */,
 				5BBB9E521820EB3F00726BC5 /* Engine.cpp */,
@@ -195,6 +204,10 @@
 				5B3795CC1820FBAA0050381F /* Texture.cpp */,
 				5BDBF7E61821780000BE71CC /* Viewport.hpp */,
 				5BDBF7E51821780000BE71CC /* Viewport.cpp */,
+				5BF5549D1833F70400DAC339 /* LogLevel.hpp */,
+				5BF5549C1833F70400DAC339 /* LogLevel.cpp */,
+				5BF5549A1833F67D00DAC339 /* Log.hpp */,
+				5BF554991833F67D00DAC339 /* Log.cpp */,
 				5BD6AD0218237BBA00E661DA /* Logger.hpp */,
 				5BD6AD0318237CE000E661DA /* Logger.cpp */,
 				5B0496401825CF7E00C1FBCB /* Screen.hpp */,
@@ -206,8 +219,8 @@
 				5BDC7DA3182AA18C0093391D /* Coordinate.cpp */,
 				5B6E81F4182AFE870031B1FE /* EmptyScreen.hpp */,
 				5B6E81F3182AFE870031B1FE /* EmptyScreen.cpp */,
-				5B4A1207183321E600C8A950 /* Exception.hpp */,
 				5B4A1209183323A900C8A950 /* OperatingSystem.hpp */,
+				5B4A120A1833256800C8A950 /* OperatingSystem.cpp */,
 			);
 			name = Source;
 			path = ../src;
@@ -360,8 +373,11 @@
 				5BD6AD171823A36B00E661DA /* tinyxml2.cpp in Sources */,
 				5BDBF7E71821780000BE71CC /* Viewport.cpp in Sources */,
 				5BD6AD0518237F2D00E661DA /* Logger.cpp in Sources */,
+				5BF5549B1833F67D00DAC339 /* Log.cpp in Sources */,
 				5B0EEC2D1820E10A0084C40C /* main.cpp in Sources */,
 				5B0496431825D01600C1FBCB /* MainLoop.cpp in Sources */,
+				5B4A120B1833256800C8A950 /* OperatingSystem.cpp in Sources */,
+				5BF5549E1833F70400DAC339 /* LogLevel.cpp in Sources */,
 				5B755C771822E81300DADA25 /* Configuration.cpp in Sources */,
 				5B3795CE1820FBAA0050381F /* Texture.cpp in Sources */,
 				5BDC7DA5182AA18C0093391D /* Coordinate.cpp in Sources */,

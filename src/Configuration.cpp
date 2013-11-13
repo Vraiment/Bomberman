@@ -10,7 +10,7 @@
 
 #include <tinyxml2/tinyxml2.h>
 
-#include "Logger.hpp"
+#include "Log.hpp"
 
 using namespace std;
 using namespace tinyxml2;
@@ -29,7 +29,7 @@ namespace Bomberman {
 		bool result = false;
 		
 		if (_loaded) {
-			Logger::log("Overwritting configuration file \"" + _fileName + "\".", LogLevel::warning);
+			Log::get() << "Overwritting configuration file \"" << _fileName << "\"." << LogLevel::warning;
 		}
 		
 		if (file.LoadFile(fileName.c_str()) == XML_NO_ERROR) {
@@ -38,13 +38,13 @@ namespace Bomberman {
 			loadViewport(root->FirstChildElement("viewport"));
 			loadLoggers(root->FirstChildElement("loggers"));
 			
-			Logger::log("Using configuration file \"" + fileName + "\".", LogLevel::info);
+			Log::get() << "Using configuration file \"" << fileName << "\"." << LogLevel::info;
 			
 			result = true;
 			
 			_fileName = fileName;
 		} else {
-			Logger::log("Configuration file \"" + fileName + "\" not found, using defaults.", LogLevel::warning);
+			Log::get() << "Configuration file \"" << fileName << "\" not found, using defaults." << LogLevel::warning;
 			
 			defaults();
 		}
@@ -60,7 +60,7 @@ namespace Bomberman {
 	
 	string Configuration::viewportTitle() const {
 		if (!loaded()) {
-			Logger::log("Using unloaded configuration!", LogLevel::fatal);
+			Log::get() << "Using unloaded configuration!" << LogLevel::fatal;
 		}
 		
 		return _viewportTitle;
@@ -68,7 +68,7 @@ namespace Bomberman {
 	
 	int Configuration::viewportWidth() const {
 		if (!loaded()) {
-			Logger::log("Using unloaded configuration!", LogLevel::fatal);
+			Log::get() << "Using unloaded configuration!" << LogLevel::fatal;
 		}
 		
 		return _viewportWidth;
@@ -76,7 +76,7 @@ namespace Bomberman {
 	
 	int Configuration::viewportHeight() const {
 		if (!loaded()) {
-			Logger::log("Using unloaded configuration!", LogLevel::fatal);
+			Log::get() << "Using unloaded configuration!" << LogLevel::fatal;
 		}
 		
 		return _viewportHeight;
@@ -84,7 +84,7 @@ namespace Bomberman {
 	
 	std::vector<std::string> Configuration::loggers() const {
 		if (!loaded()) {
-			Logger::log("Using unloaded configuration!", LogLevel::fatal);
+			Log::get() << "Using unloaded configuration!" << LogLevel::fatal;
 		}
 		
 		return _loggers;
@@ -105,7 +105,7 @@ namespace Bomberman {
 			if (viewportTitle != nullptr) {
 				_viewportTitle = viewportTitle->GetText();
 			} else {
-				Logger::log("No title for viewport in configuration file.", LogLevel::info);
+				Log::get() << "No title for viewport in configuration file." << LogLevel::info;
 			}
 			
 			XMLElement *viewportWidth = node->FirstChildElement("width");
@@ -118,7 +118,7 @@ namespace Bomberman {
 					_viewportWidth = 0;
 				}
 			} else {
-				Logger::log("No width for viewport in configuration file, using default.", LogLevel::info);
+				Log::get() << "No width for viewport in configuration file, using default." << LogLevel::info;
 			}
 			
 			XMLElement *viewportHeight = node->FirstChildElement("height");
@@ -131,7 +131,7 @@ namespace Bomberman {
 					_viewportHeight = 0;
 				}
 			} else {
-				Logger::log("No height for viewport in configuration file, using default.", LogLevel::info);
+				Log::get() << "No height for viewport in configuration file, using default." << LogLevel::info;
 			}
 		} else {
 			_viewportWidth = 600;
@@ -141,13 +141,13 @@ namespace Bomberman {
 		}
 		
 		if (_viewportWidth < 1) {
-			Logger::log("Invalid value for viewport width in configuration file, using default.", LogLevel::warning);
+			Log::get() << "Invalid value for viewport width in configuration file, using default." << LogLevel::warning;
 			
 			_viewportWidth = 600;
 		}
 		
 		if (_viewportHeight < 1) {
-			Logger::log("Invalid value for viewport height in configuration file, using default.", LogLevel::warning);
+			Log::get() << "Invalid value for viewport height in configuration file, using default." << LogLevel::warning;
 			
 			_viewportWidth = 460;
 		}

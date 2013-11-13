@@ -12,7 +12,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 
-#include "Logger.hpp"
+#include "Log.hpp"
 #include "OperatingSystem.hpp"
 
 using namespace std;
@@ -37,7 +37,7 @@ namespace Bomberman {
 			texture.reset(t, DestroyTexture);
 			_loaded = true;
 		} else {
-			Logger::log("Could not load texture \"" + fileName + "\".", LogLevel::warning);
+			Log::get() << "Could not load texture \"" << fileName << "\"." << LogLevel::warning;
 		}
 	}
 	
@@ -47,7 +47,7 @@ namespace Bomberman {
 	
 	void Texture::draw(int i, int j) {
 		if (!_loaded) {
-			Logger::log("Trying to draw not loaded texture \"" + name + "\".", LogLevel::warning);
+			Log::get() << "Trying to draw not loaded texture \"" << name << "\"." << LogLevel::warning;
 			
 			return;
 		}

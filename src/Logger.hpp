@@ -10,31 +10,21 @@
 #define __Logger__hpp__
 
 #include <string>
+#include <sstream>
 
 namespace Bomberman {
-	enum LogLevel {
-		info,
-		warning,
-		error,
-		fatal
-	};
+	class LogLevel;
 	
 	class Logger {
+	friend class Log;
 	public:
 		virtual ~Logger();
 		
-		static void log(std::string text, LogLevel level);
-		
-		static void addLogger(std::shared_ptr<Logger> logger);
-		
 	protected:
-		static std::string levelToString(LogLevel level);
-		
-		virtual void recieveLog(std::string text, LogLevel level) = 0;
-		std::shared_ptr<Logger> next;
+		virtual void recieveLog(std::string text, LogLevel& level) = 0;
 		
 	private:
-		static std::shared_ptr<Logger> singleton;
+		std::shared_ptr<Logger> next;
 	};
 }
 
