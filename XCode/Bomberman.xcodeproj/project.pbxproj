@@ -18,6 +18,12 @@
 		5B3D1311182C717A0070A335 /* tile1.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BD37AF5182219F300BB1C28 /* tile1.png */; };
 		5B3D1312182C717A0070A335 /* tile2.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BD37AF6182219F300BB1C28 /* tile2.png */; };
 		5B3D1314182C71A90070A335 /* map1.xml in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BF63CA818218A41001315AD /* map1.xml */; };
+		5B4A120118331CAB00C8A950 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4A11FE18331CAB00C8A950 /* background.png */; };
+		5B4A120218331CAB00C8A950 /* brick.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4A11FF18331CAB00C8A950 /* brick.png */; };
+		5B4A120318331CAB00C8A950 /* destructibleBrick.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4A120018331CAB00C8A950 /* destructibleBrick.png */; };
+		5B4A120418331CB500C8A950 /* background.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B4A11FE18331CAB00C8A950 /* background.png */; };
+		5B4A120518331CB600C8A950 /* brick.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B4A11FF18331CAB00C8A950 /* brick.png */; };
+		5B4A120618331CB600C8A950 /* destructibleBrick.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B4A120018331CAB00C8A950 /* destructibleBrick.png */; };
 		5B6E81F5182AFE870031B1FE /* EmptyScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E81F3182AFE870031B1FE /* EmptyScreen.cpp */; };
 		5B755C771822E81300DADA25 /* Configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B755C751822E81300DADA25 /* Configuration.cpp */; };
 		5B7732B5182AFB2F003A2747 /* SDL2_image.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B1BF7511822E48B009DCA31 /* SDL2_image.framework */; };
@@ -59,6 +65,9 @@
 			dstPath = textures;
 			dstSubfolderSpec = 7;
 			files = (
+				5B4A120418331CB500C8A950 /* background.png in CopyFiles */,
+				5B4A120518331CB600C8A950 /* brick.png in CopyFiles */,
+				5B4A120618331CB600C8A950 /* destructibleBrick.png in CopyFiles */,
 				5B3D1310182C717A0070A335 /* tile0.png in CopyFiles */,
 				5B3D1311182C717A0070A335 /* tile1.png in CopyFiles */,
 				5B3D1312182C717A0070A335 /* tile2.png in CopyFiles */,
@@ -92,6 +101,9 @@
 		5B3795CB1820F7B80050381F /* TileMapBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TileMapBuilder.hpp; sourceTree = "<group>"; };
 		5B3795CC1820FBAA0050381F /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		5B3795CD1820FBAA0050381F /* Texture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Texture.hpp; sourceTree = "<group>"; };
+		5B4A11FE18331CAB00C8A950 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		5B4A11FF18331CAB00C8A950 /* brick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brick.png; sourceTree = "<group>"; };
+		5B4A120018331CAB00C8A950 /* destructibleBrick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = destructibleBrick.png; sourceTree = "<group>"; };
 		5B6E81F3182AFE870031B1FE /* EmptyScreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EmptyScreen.cpp; sourceTree = "<group>"; };
 		5B6E81F4182AFE870031B1FE /* EmptyScreen.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EmptyScreen.hpp; sourceTree = "<group>"; };
 		5B755C751822E81300DADA25 /* Configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Configuration.cpp; sourceTree = "<group>"; };
@@ -218,6 +230,9 @@
 		5BD37AF21822145500BB1C28 /* Textures */ = {
 			isa = PBXGroup;
 			children = (
+				5B4A11FE18331CAB00C8A950 /* background.png */,
+				5B4A11FF18331CAB00C8A950 /* brick.png */,
+				5B4A120018331CAB00C8A950 /* destructibleBrick.png */,
 				5BD37AF31822199200BB1C28 /* tile0.png */,
 				5BD37AF5182219F300BB1C28 /* tile1.png */,
 				5BD37AF6182219F300BB1C28 /* tile2.png */,
@@ -331,6 +346,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B4A120118331CAB00C8A950 /* background.png in Resources */,
+				5B4A120218331CAB00C8A950 /* brick.png in Resources */,
+				5B4A120318331CAB00C8A950 /* destructibleBrick.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
