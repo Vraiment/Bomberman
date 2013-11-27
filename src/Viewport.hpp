@@ -11,7 +11,11 @@
 
 #include "Screen.hpp"
 #include "Coordinate.hpp"
+#include "TileMap.hpp"
+#include "Brick.hpp"
+#include "Texture.hpp"
 #include <vector>
+#include <memory>
 
 namespace Bomberman {
 	class TileMap;
@@ -19,17 +23,22 @@ namespace Bomberman {
 	class Viewport : public Screen {
 	public:
 		Viewport(int width, int height, std::string name);
+		~Viewport();
 		
 		void draw();
 		
-		void loadTileMap(const TileMap& tileMap);
+		void loadTileMap(std::shared_ptr<TileMap> tileMap);
 		
 		Coordinate& origin();
 		
 	private:
+		bool shouldDraw();
+		void drawBorder();
+		
+		Texture brick;
+		Texture destructibleBrick;
+		std::shared_ptr<TileMap> tileMap;
 		Coordinate _origin;
-		std::vector<Coordinate> bricks;
-		std::vector<Coordinate> destrutibleBricks;
 	};
 }
 

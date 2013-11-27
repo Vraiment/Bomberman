@@ -14,7 +14,7 @@
 namespace Bomberman {
 	class Exception : public std::exception {
 	public:
-		virtual const char* what() const noexcept = 0;
+		
 	};
 	
 	class NotImplementedException : public Exception {
@@ -35,6 +35,13 @@ namespace Bomberman {
 	public:
 		virtual const char* what() const noexcept {
 			return "invalid operation";
+		}
+	};
+	
+	class OpeningFileErrorException : public Exception {
+	public:
+		virtual const char* what() const noexcept {
+			return "error opening a file";
 		}
 	};
 }

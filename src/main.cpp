@@ -81,7 +81,7 @@ int main(int argc, char* argv[]) {
 	//test();
 	
 	Configuration config("config.xml");
-	TileMap tileMap("map1.xml");
+	shared_ptr<TileMap> tileMap(new TileMap("map1.xml"));
 	
 	shared_ptr<Viewport> viewport(new Viewport(config.viewportWidth(), config.viewportHeight(), config.viewportTitle()));
 	

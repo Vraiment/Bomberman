@@ -2,12 +2,6 @@
 <map width="3" height="2">
 	<name>map 1</name>
 	
-	<players>
-		<player id="0">
-			<spawn column="0" row="0" />
-		</player>
-	</players>
-	
 	<bricks>
 		<brick column="1" row="0" />
 		<brick column="1" row="1" destructible="false" />

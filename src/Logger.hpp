@@ -21,7 +21,7 @@ namespace Bomberman {
 		virtual ~Logger();
 		
 	protected:
-		virtual void recieveLog(std::string text, LogLevel& level) = 0;
+		virtual void recieveLog(std::string text, LogLevel level) = 0;
 		
 	private:
 		std::shared_ptr<Logger> next;

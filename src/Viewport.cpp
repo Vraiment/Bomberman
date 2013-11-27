@@ -15,19 +15,37 @@ using namespace std;
 
 namespace Bomberman {
 	Viewport::Viewport(int width, int height, string name) : Screen(width, height, name), _origin() {
+	}
+	
+	Viewport::~Viewport() {
 		
 	}
 	
 	void Viewport::draw() {
-		throw NotImplementedException();
+		if (!shouldDraw()) {
+			return;
+		}
+		
+		drawBorder();
 	}
 	
-	void Viewport::loadTileMap(const TileMap& tileMap) {
-		bricks = tileMap.bricks();
-		destrutibleBricks = tileMap.destructibleBricks();
+	void Viewport::loadTileMap(shared_ptr<TileMap> tileMap) {
+		this->tileMap = tileMap;
 	}
 	
 	Coordinate& Viewport::origin() {
 		return _origin;
+	}
+	
+	bool Viewport::shouldDraw() {
+		return
+			tileMap &&
+			tileMap->getWidth() > 1 &&
+			tileMap->getHeight() > 1
+		;
+	}
+	
+	void Viewport::drawBorder() {
+		throw NotImplementedException();
 	}
 }

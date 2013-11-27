@@ -34,6 +34,7 @@
 		5BD6AD171823A36B00E661DA /* tinyxml2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BD6AD161823A36B00E661DA /* tinyxml2.cpp */; };
 		5BDBF7E71821780000BE71CC /* Viewport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BDBF7E51821780000BE71CC /* Viewport.cpp */; };
 		5BDC7DA5182AA18C0093391D /* Coordinate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BDC7DA3182AA18C0093391D /* Coordinate.cpp */; };
+		5BE4A21818358FFF00EE49AF /* Brick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BE4A21618358FFF00EE49AF /* Brick.cpp */; };
 		5BF5549B1833F67D00DAC339 /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BF554991833F67D00DAC339 /* Log.cpp */; };
 		5BF5549E1833F70400DAC339 /* LogLevel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BF5549C1833F70400DAC339 /* LogLevel.cpp */; };
 		5BF63CA6182187CF001315AD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF63CA5182187CF001315AD /* CoreFoundation.framework */; };
@@ -96,6 +97,7 @@
 		5B0EEC281820E0BD0084C40C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		5B0EEC2A1820E0D20084C40C /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2.framework; sourceTree = "<group>"; };
 		5B0EEC2C1820E10A0084C40C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		5B15D56918466CB50039FD7B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = SOURCE_ROOT; };
 		5B1BF7511822E48B009DCA31 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2_image.framework; sourceTree = "<group>"; };
 		5B3795C81820F6E60050381F /* TileMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TileMap.cpp; sourceTree = "<group>"; };
 		5B3795C91820F6E60050381F /* TileMap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TileMap.hpp; sourceTree = "<group>"; };
@@ -128,6 +130,8 @@
 		5BDBF7E61821780000BE71CC /* Viewport.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Viewport.hpp; sourceTree = "<group>"; };
 		5BDC7DA3182AA18C0093391D /* Coordinate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Coordinate.cpp; sourceTree = "<group>"; };
 		5BDC7DA4182AA18C0093391D /* Coordinate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Coordinate.hpp; sourceTree = "<group>"; };
+		5BE4A21618358FFF00EE49AF /* Brick.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Brick.cpp; sourceTree = "<group>"; };
+		5BE4A21718358FFF00EE49AF /* Brick.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Brick.hpp; sourceTree = "<group>"; };
 		5BF554991833F67D00DAC339 /* Log.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Log.cpp; sourceTree = "<group>"; };
 		5BF5549A1833F67D00DAC339 /* Log.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Log.hpp; sourceTree = "<group>"; };
 		5BF5549C1833F70400DAC339 /* LogLevel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LogLevel.cpp; sourceTree = "<group>"; };
@@ -160,6 +164,7 @@
 		5B76EC591820DD1B00D499EE = {
 			isa = PBXGroup;
 			children = (
+				5B15D56918466CB50039FD7B /* README.md */,
 				5B0EEC281820E0BD0084C40C /* Info.plist */,
 				5B76EC6B1820DD1B00D499EE /* Source */,
 				5BD6AD141823A30A00E661DA /* Libraries */,
@@ -221,6 +226,8 @@
 				5B6E81F3182AFE870031B1FE /* EmptyScreen.cpp */,
 				5B4A1209183323A900C8A950 /* OperatingSystem.hpp */,
 				5B4A120A1833256800C8A950 /* OperatingSystem.cpp */,
+				5BE4A21718358FFF00EE49AF /* Brick.hpp */,
+				5BE4A21618358FFF00EE49AF /* Brick.cpp */,
 			);
 			name = Source;
 			path = ../src;
@@ -369,6 +376,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BE4A21818358FFF00EE49AF /* Brick.cpp in Sources */,
 				5B0C65DF182ADDF8003E3BD4 /* Screen.cpp in Sources */,
 				5BD6AD171823A36B00E661DA /* tinyxml2.cpp in Sources */,
 				5BDBF7E71821780000BE71CC /* Viewport.cpp in Sources */,

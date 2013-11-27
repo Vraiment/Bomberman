@@ -11,6 +11,7 @@
 
 #include "LogLevel.hpp"
 
+#include "Exception.hpp"
 #include <string>
 #include <sstream>
 
@@ -21,14 +22,17 @@ namespace Bomberman {
 	public:
 		static Log& get();
 		
-		Log& operator<<(const char* value);
+		Log& operator<<(const char *value);
 		Log& operator<<(std::string value);
 		void operator<<(LogLevel level);
+		void operator<<(std::exception exception);
 		
 		void addLogger(std::shared_ptr<Logger> logger);
 		
 	private:
 		Log(std::shared_ptr<Logger> logger);
+		
+		void flush(LogLevel level);
 		
 		std::stringstream message;
 		std::shared_ptr<Logger> logger;

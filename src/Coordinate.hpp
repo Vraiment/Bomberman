@@ -9,6 +9,8 @@
 #ifndef __Coordinate__hpp__
 #define __Coordinate__hpp__
 
+#include <string>
+
 namespace Bomberman {
 	struct Coordinate {
 		Coordinate();
@@ -16,6 +18,11 @@ namespace Bomberman {
 		Coordinate(int i, int j);
 		
 		int i, j;
+		
+		bool operator==(const Coordinate& other) const;
+		bool operator!=(const Coordinate& other) const;
+		
+		std::string toString() const;
 	};
 }
 

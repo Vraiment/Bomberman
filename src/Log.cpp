@@ -17,7 +17,7 @@ using namespace std;
 namespace Bomberman {
 	class StdOutLogger : public Logger {
 	protected:
-		void recieveLog(string text, LogLevel& level) {
+		void recieveLog(string text, LogLevel level) {
 			cout << "[" << level.toString() << "]: " << text << endl;
 		}
 	};
@@ -32,7 +32,7 @@ namespace Bomberman {
 		return singleton;
 	}
 	
-	Log& Log::operator<<(const char* value) {
+	Log& Log::operator<<(const char *value) {
 		message << value;
 		
 		return singleton;
@@ -45,16 +45,17 @@ namespace Bomberman {
 	}
 	
 	void Log::operator<<(LogLevel level) {
-		for (auto current = logger; current; current = current->next) {
-			current->recieveLog(message.str(), level);
-		}
-		
-		message.str(string());
-		message.clear();
+		flush(level);
 		
 		if (level == LogLevel::fatal) {
 			throw FatalException();
 		}
+	}
+	
+	void Log::operator<<(exception exception) {
+		flush(LogLevel::fatal);
+		
+		throw exception;
 	}
 	
 	void Log::addLogger(shared_ptr<Logger> logger) {
@@ -70,5 +71,14 @@ namespace Bomberman {
 		}
 		
 		current->next = logger;
+	}
+	
+	void Log::flush(LogLevel level) {
+		for (auto current = logger; current; current = current->next) {
+			current->recieveLog(message.str(), level);
+		}
+		
+		message.str(string());
+		message.clear();
 	}
 }
