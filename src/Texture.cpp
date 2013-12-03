@@ -22,11 +22,11 @@ namespace Bomberman {
 		SDL_DestroyTexture(texture);
 	}
 	
-	Texture::Texture() : texture(nullptr), renderer(nullptr), _loaded(false) {
+	Texture::Texture() : texture(nullptr), renderer(nullptr), _loaded(false), _rectangle() {
 		
 	}
 	
-	Texture::Texture(string fileName, std::shared_ptr<SDL_Renderer> renderer) : texture(nullptr), renderer(renderer), _loaded(false), name(fileName) {
+	Texture::Texture(string fileName, std::shared_ptr<SDL_Renderer> renderer) : texture(nullptr), renderer(renderer), _loaded(false), _name(fileName) {
 		string fullName = "textures";
 		fullName += dirSeparator;
 		fullName += fileName;
@@ -35,34 +35,40 @@ namespace Bomberman {
 		
 		if (t != nullptr) {
 			texture.reset(t, DestroyTexture);
+			resetSize();
+			
 			_loaded = true;
 		} else {
 			Log::get() << "Could not load texture \"" << fileName << "\"." << LogLevel::warning;
 		}
 	}
 	
-	bool Texture::loaded() const {
-		return _loaded;
-	}
-	
-	void Texture::draw(int i, int j) {
+	void Texture::draw() {
 		if (!_loaded) {
-			Log::get() << "Trying to draw not loaded texture \"" << name << "\"." << LogLevel::warning;
+			Log::get() << "Trying to draw not loaded texture \"" << _name << "\"." << LogLevel::warning;
 			
 			return;
 		}
 		
 		SDL_Rect dst;
 		
-		dst.x = i;
-		dst.y = j;
-		
-		SDL_QueryTexture(texture.get(), nullptr, nullptr, &dst.w, &dst.h);
+		dst.x = _rectangle.i;
+		dst.y = _rectangle.j;
+		dst.w = _rectangle.width;
+		dst.h = _rectangle.height;
 		
 		SDL_RenderCopy(renderer.get(), texture.get(), nullptr, &dst);
 	}
 	
-	string Texture::getName() const {
-		return name;
+	string Texture::name() const {
+		return _name;
+	}
+	
+	Rectangle& Texture::rectangle() {
+		return _rectangle;
+	}
+	
+	void Texture::resetSize() {
+		SDL_QueryTexture(texture.get(), nullptr, nullptr, &_rectangle.width, &_rectangle.height);
 	}
 }

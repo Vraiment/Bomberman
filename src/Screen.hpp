@@ -13,6 +13,8 @@
 #include <string>
 #include <SDL2/SDL.h>
 
+#include "Rectangle.hpp"
+
 namespace Bomberman {
 	class Screen {
 	public:
@@ -21,28 +23,29 @@ namespace Bomberman {
 		
 		virtual void draw() = 0;
 		
-		std::string getName() const;
-		int getWidth() const;
-		int getHeight() const;
+		std::string name() const;
+		int width() const;
+		int height() const;
+		Rectangle rectangle() const;
 		
 		void setName(std::string name);
 		void setWidth(int width);
 		void setHeight(int height);
+		void setSize(int width, int height);
 		
 		std::shared_ptr<SDL_Renderer> renderer() const;
 		
 	protected:
 		virtual void nameChanged(std::string prevName);
-		virtual void widthChanged(int prevWidth);
-		virtual void heightChanged(int prevHeight);
+		virtual void sizeChanged(Rectangle previousSize);
 		
 	private:
-		void initialize();
+		void refereshSize(Rectangle previousSize);
 		
-		std::string name;
+		std::string _name;
 		std::shared_ptr<SDL_Window> window;
 		std::shared_ptr<SDL_Renderer> _renderer;
-		int width, height;
+		Rectangle _rectangle;
 	};
 }
 

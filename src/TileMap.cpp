@@ -22,10 +22,10 @@ using namespace std;
 using namespace tinyxml2;
 
 namespace Bomberman {
-	TileMap::TileMap(string fileName) : width(0), height(0) {
+	TileMap::TileMap(string fileName) : _width(0), _height(0) {
 		throw NotImplementedException();
 		
-		file = getPath({ "maps", file });
+		file = getPath({ "maps", fileName });
 		XMLDocument document;
 		
 		bool error = false;
@@ -43,7 +43,7 @@ namespace Bomberman {
 		if (error) {
 			Log::get() << "Error loading map " << file << "." << OpeningFileErrorException();
 		} else {
-			Log::get() << "Loaded map " << file << " with name " << name << "." << LogLevel::info;
+			Log::get() << "Loaded map " << file << " with name " << _name << "." << LogLevel::info;
 		}
 	}
 	
@@ -51,20 +51,20 @@ namespace Bomberman {
 		
 	}
 	
-	int TileMap::getWidth() const {
-		return width;
+	int TileMap::width() const {
+		return _width;
 	}
 	
-	int TileMap::getHeight() const {
-		return height;
+	int TileMap::height() const {
+		return _height;
 	}
 	
-	string TileMap::getName() const {
-		return name;
+	string TileMap::name() const {
+		return _name;
 	}
 	
-	vector<Brick> TileMap::getBricks() const {
-		return bricks;
+	vector<Brick> TileMap::bricks() const {
+		return _bricks;
 	}
 	
 	bool TileMap::loadDimension(void *e) {
@@ -72,12 +72,12 @@ namespace Bomberman {
 		
 		bool error = false;
 		
-		if (root->QueryIntAttribute("width", &width) != XML_NO_ERROR) {
+		if (root->QueryIntAttribute("width", &_width) != XML_NO_ERROR) {
 			error = true;
 			Log::get() << "Invalid width in map file " << file << "." << LogLevel::error;
 		}
 		
-		if (root->QueryIntAttribute("height", &height) != XML_NO_ERROR) {
+		if (root->QueryIntAttribute("height", &_height) != XML_NO_ERROR) {
 			error = true;
 			Log::get() << "Invalid height in map file " << file << "." << LogLevel::error;
 		}
@@ -93,7 +93,7 @@ namespace Bomberman {
 		
 		auto name = (XMLElement *) e;
 		
-		this->name = name->GetText();
+		this->_name = name->GetText();
 		
 		return true;
 	}
@@ -134,17 +134,17 @@ namespace Bomberman {
 	void TileMap::addBrick(Brick b) {
 		bool found = false;
 		
-		for (int i = 0; i < bricks.size(); ++i) {
-			if (bricks[i].position() == b.position()) {
+		for (int i = 0; i < _bricks.size(); ++i) {
+			if (_bricks[i].position() == b.position()) {
 				Log::get() << "Overwritting brick with position " << b.position().toString() << " in map file " << file << "." << LogLevel::warning;
 				
 				found = true;
-				bricks[i] = b;
+				_bricks[i] = b;
 			}
 		}
 		
 		if (!found) {
-			bricks.push_back(b);
+			_bricks.push_back(b);
 		}
 	}
 }

@@ -40,8 +40,8 @@ namespace Bomberman {
 	bool Viewport::shouldDraw() {
 		return
 			tileMap &&
-			tileMap->getWidth() > 1 &&
-			tileMap->getHeight() > 1
+			tileMap->width() > 1 &&
+			tileMap->height() > 1
 		;
 	}
 	

@@ -12,6 +12,8 @@
 #include <memory>
 #include <string>
 
+#include "Rectangle.hpp"
+
 struct SDL_Renderer;
 struct SDL_Texture;
 
@@ -21,19 +23,18 @@ namespace Bomberman {
 		Texture();
 		Texture(std::string fileName, std::shared_ptr<SDL_Renderer> renderer);
 		
-		bool loaded() const;
+		void draw();
 		
-		void draw(int i, int j);
-		
-		std::string getName() const;
-		void getTileTextureWidth() const;
-		void getTileTextureHeight() const;
+		std::string name() const;
+		Rectangle& rectangle();
+		void resetSize();
 		
 	private:
 		bool _loaded;
 		std::shared_ptr<SDL_Renderer> renderer;
 		std::shared_ptr<SDL_Texture> texture;
-		std::string name;
+		std::string _name;
+		Rectangle _rectangle;
 	};
 }
 

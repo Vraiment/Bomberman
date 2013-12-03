@@ -20,11 +20,11 @@ namespace Bomberman {
 		TileMap(std::string fileName);
 		~TileMap();
 		
-		int getWidth() const;
-		int getHeight() const;
+		int width() const;
+		int height() const;
 		
-		std::string getName() const;
-		std::vector<Brick> getBricks() const;
+		std::string name() const;
+		std::vector<Brick> bricks() const;
 		
 	private:
 		bool loadDimension(void *);
@@ -33,9 +33,9 @@ namespace Bomberman {
 		
 		void addBrick(Brick);
 		
-		int width, height;
-		std::string name, file;
-		std::vector<Brick> bricks;
+		int _width, _height;
+		std::string _name, file;
+		std::vector<Brick> _bricks;
 	};
 }
 
