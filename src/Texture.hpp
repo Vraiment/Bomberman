@@ -26,6 +26,7 @@ namespace Bomberman {
 		void draw();
 		
 		std::string name() const;
+		Coordinate& position();
 		Rectangle& rectangle();
 		void resetSize();
 		

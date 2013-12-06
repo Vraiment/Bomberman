@@ -64,6 +64,10 @@ namespace Bomberman {
 		return _name;
 	}
 	
+	Coordinate& Texture::position() {
+		return _rectangle;
+	}
+	
 	Rectangle& Texture::rectangle() {
 		return _rectangle;
 	}

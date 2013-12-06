@@ -23,9 +23,7 @@ using namespace tinyxml2;
 
 namespace Bomberman {
 	TileMap::TileMap(string fileName) : _width(0), _height(0) {
-		throw NotImplementedException();
-		
-		file = getPath({ "maps", fileName });
+		file = getPath({ "maps" }, fileName);
 		XMLDocument document;
 		
 		bool error = false;
@@ -33,8 +31,8 @@ namespace Bomberman {
 		if (document.LoadFile(file.c_str()) == XML_NO_ERROR) {
 			auto root = document.RootElement();
 			
-			error |= loadDimension(root);
-			error |= loadName(root->FirstChildElement("name"));
+			error |= !loadDimension(root);
+			error |= !loadName(root->FirstChildElement("name"));
 			loadBricks(root->FirstChildElement("bricks"));
 		} else {
 			error = true;
@@ -70,19 +68,19 @@ namespace Bomberman {
 	bool TileMap::loadDimension(void *e) {
 		auto root = (XMLElement *) e;
 		
-		bool error = false;
+		bool valid = true;
 		
 		if (root->QueryIntAttribute("width", &_width) != XML_NO_ERROR) {
-			error = true;
+			valid = false;
 			Log::get() << "Invalid width in map file " << file << "." << LogLevel::error;
 		}
 		
 		if (root->QueryIntAttribute("height", &_height) != XML_NO_ERROR) {
-			error = true;
+			valid = false;
 			Log::get() << "Invalid height in map file " << file << "." << LogLevel::error;
 		}
 		
-		return error;
+		return valid;
 	}
 	
 	bool TileMap::loadName(void *e) {

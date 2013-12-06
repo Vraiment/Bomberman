@@ -22,6 +22,6 @@ namespace Bomberman {
 	}
 	
 	string getPath(vector<string> dirs, string file) {
-		return getPath(dirs) + dirSeparator + file;
+		return getPath(dirs) + file;
 	}
 }

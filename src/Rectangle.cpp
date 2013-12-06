@@ -8,7 +8,9 @@
 
 #include "Rectangle.hpp"
 
-#include "Exception.hpp"
+#include <sstream>
+
+using namespace std;
 
 namespace Bomberman {
 	Rectangle::Rectangle() : Coordinate(), width(0), height(0) {
@@ -59,14 +61,31 @@ namespace Bomberman {
 		return contains(coordinate.i, coordinate.j);
 	}
 	
-	bool Rectangle::operator==(const Rectangle& other) const {
+	bool Rectangle::operator==(Rectangle other) const {
 		return
 			static_cast<Coordinate>(*this) == static_cast<Coordinate>(other) &&
 			width == other.width &&
 			height == other.height;
 	}
 	
-	bool Rectangle::operator!=(const Rectangle& other) const {
+	bool Rectangle::operator!=(Rectangle other) const {
 		return !(*this == other);
+	}
+	
+	Rectangle& Rectangle::operator=(Coordinate other) {
+		i = other.i;
+		j = other.j;
+		
+		return *this;
+	}
+	
+	string Rectangle::toString() const {
+		stringstream s;
+		
+		s << static_cast<Coordinate>(*this).toString();
+		s << " width: " << width;
+		s << " height: " << height;
+		
+		return s.str();
 	}
 }

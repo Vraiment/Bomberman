@@ -9,12 +9,17 @@
 #include "Viewport.hpp"
 
 #include "Exception.hpp"
+#include "Log.hpp"
 #include "TileMap.hpp"
 
 using namespace std;
 
 namespace Bomberman {
+	const Coordinate Viewport::tileSize = Coordinate(40, 40);
+	
 	Viewport::Viewport(int width, int height, string name) : Screen(width, height, name), _origin() {
+		background = Texture("background.png", renderer());
+		brick = Texture("brick.png", renderer());
 	}
 	
 	Viewport::~Viewport() {
@@ -26,11 +31,15 @@ namespace Bomberman {
 			return;
 		}
 		
+		drawBackground();
 		drawBorder();
 	}
 	
 	void Viewport::loadTileMap(shared_ptr<TileMap> tileMap) {
 		this->tileMap = tileMap;
+		
+		background.rectangle().width = tileSize.i * tileMap->width();
+		background.rectangle().height = tileSize.j * tileMap->height();
 	}
 	
 	Coordinate& Viewport::origin() {
@@ -45,7 +54,47 @@ namespace Bomberman {
 		;
 	}
 	
+	void Viewport::drawBackground() {
+		background.position() = origin();
+		
+		if (!rectangle().intersects(background.rectangle())) {
+			return;
+		}
+		
+		background.draw();
+	}
+	
 	void Viewport::drawBorder() {
-		throw NotImplementedException();
+		int columns = tileMap->width() + 2;
+		int rows = tileMap->height() + 1;
+		int a, b;
+		
+		a = _origin.j - tileSize.j;
+		b = _origin.j + (tileMap->height() * tileSize.j);
+		
+		brick.rectangle().i = _origin.i - (tileSize.i * 2);
+		for (int n = 0; n < columns; ++n) {
+			brick.position().i += tileSize.i;
+			
+			brick.position().j = a;
+			brick.draw();
+			
+			brick.position().j = b;
+			brick.draw();
+		}
+		
+		a = _origin.i - tileSize.i;
+		b = _origin.i + (tileMap->width() * tileSize.i);
+		
+		brick.rectangle().j = _origin.j - tileSize.j;
+		for (int n = 0; n < rows; ++n) {
+			brick.position().j += tileSize.j;
+			
+			brick.position().i = a;
+			brick.draw();
+			
+			brick.position().i = b;
+			brick.draw();
+		}
 	}
 }

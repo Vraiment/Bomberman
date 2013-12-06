@@ -17,6 +17,8 @@
 #include <vector>
 #include <memory>
 
+struct SDL_Renderer;
+
 namespace Bomberman {
 	class TileMap;
 	
@@ -32,9 +34,16 @@ namespace Bomberman {
 		Coordinate& origin();
 		
 	private:
+		Coordinate transform(int x, int y);
+		Coordinate transform(Coordinate coordinate);
+		
 		bool shouldDraw();
+		void drawBackground();
 		void drawBorder();
 		
+		static const Coordinate tileSize;
+		
+		Texture background;
 		Texture brick;
 		Texture destructibleBrick;
 		std::shared_ptr<TileMap> tileMap;

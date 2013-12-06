@@ -25,19 +25,45 @@ namespace Bomberman {
 		
 	}
 	
-	bool Coordinate::operator==(const Coordinate& other) const {
+	bool Coordinate::operator==(Coordinate other) const {
 		return i == other.i && j == other.j;
 	}
 	
-	bool Coordinate::operator!=(const Coordinate& other) const {
+	bool Coordinate::operator!=(Coordinate other) const {
 		return !(*this == other);
+	}
+	
+	Coordinate& Coordinate::operator+=(Coordinate other) {
+		i += other.i;
+		j += other.j;
+		
+		return *this;
+	}
+	
+	Coordinate& Coordinate::operator-=(Coordinate other) {
+		i -= other.i;
+		j -= other.j;
+		
+		return *this;
 	}
 	
 	string Coordinate::toString() const {
 		stringstream s;
 		
-		s << "(" << i << ", " << j << ")";
+		s << "[" << i << ", " << j << "]";
 		
 		return s.str();
+	}
+	
+	Coordinate operator+(Coordinate left, Coordinate right) {
+		left += right;
+		
+		return left;
+	}
+	
+	Coordinate operator-(Coordinate left, Coordinate right) {
+		left -= right;
+		
+		return left;
 	}
 }

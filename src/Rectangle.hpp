@@ -28,8 +28,12 @@ namespace Bomberman {
 		bool contains(int i, int j) const;
 		bool contains(Coordinate coordinate) const;
 		
-		bool operator==(const Rectangle& other) const;
-		bool operator!=(const Rectangle& other) const;
+		bool operator==(Rectangle other) const;
+		bool operator!=(Rectangle other) const;
+		
+		Rectangle& operator=(Coordinate other);
+		
+		std::string toString() const;
 	};
 }
 
