@@ -40,6 +40,7 @@ namespace Bomberman {
 		bool shouldDraw();
 		void drawBackground();
 		void drawBorder();
+		void drawBricks();
 		
 		static const Coordinate tileSize;
 		

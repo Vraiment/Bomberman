@@ -24,12 +24,14 @@ namespace Bomberman {
 		
 		Coordinate& operator+=(Coordinate other);
 		Coordinate& operator-=(Coordinate other);
+		Coordinate& operator*=(Coordinate other);
 		
 		std::string toString() const;
 	};
 	
 	Coordinate operator+(Coordinate left, Coordinate right);
 	Coordinate operator-(Coordinate left, Coordinate right);
+	Coordinate operator*(Coordinate left, Coordinate right);
 }
 
 #endif //__Coordinate__hpp__

@@ -3,8 +3,8 @@
 	<name>map 1</name>
 	
 	<bricks>
-		<brick column="1" row="0" />
-		<brick column="1" row="1" destructible="false" />
-		<brick column="1" row="2" destructible="true" />
+		<brick column="1" row="0" destructible="true" />
+		<brick column="1" row="1" destructible="true" />
+		<brick column="1" row="2" destructible="false" />
 	</bricks>
 </map>

@@ -12,6 +12,8 @@
 #include "Log.hpp"
 #include "TileMap.hpp"
 
+#include "Brick.hpp"
+
 using namespace std;
 
 namespace Bomberman {
@@ -20,6 +22,7 @@ namespace Bomberman {
 	Viewport::Viewport(int width, int height, string name) : Screen(width, height, name), _origin() {
 		background = Texture("background.png", renderer());
 		brick = Texture("brick.png", renderer());
+		destructibleBrick = Texture("destructibleBrick.png", renderer());
 	}
 	
 	Viewport::~Viewport() {
@@ -33,6 +36,7 @@ namespace Bomberman {
 		
 		drawBackground();
 		drawBorder();
+		drawBricks();
 	}
 	
 	void Viewport::loadTileMap(shared_ptr<TileMap> tileMap) {
@@ -95,6 +99,17 @@ namespace Bomberman {
 			
 			brick.position().i = b;
 			brick.draw();
+		}
+	}
+	void Viewport::drawBricks() {
+		auto bricks = tileMap->bricks();
+		
+		for (auto brick = bricks.begin(); brick != bricks.end(); ++brick) {
+			Texture t = (brick->destructible()) ? this->destructibleBrick : this->brick;
+			
+			t.position() = _origin + (brick->position() * tileSize);
+			
+			t.draw();
 		}
 	}
 }
