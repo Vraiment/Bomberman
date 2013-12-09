@@ -23,6 +23,7 @@ namespace Bomberman {
 		background = Texture("background.png", renderer());
 		brick = Texture("brick.png", renderer());
 		destructibleBrick = Texture("destructibleBrick.png", renderer());
+		player = Texture("bomberman.png", renderer());
 	}
 	
 	Viewport::~Viewport() {
@@ -37,6 +38,7 @@ namespace Bomberman {
 		drawBackground();
 		drawBorder();
 		drawBricks();
+		drawPlayer();
 	}
 	
 	void Viewport::loadTileMap(shared_ptr<TileMap> tileMap) {
@@ -48,6 +50,14 @@ namespace Bomberman {
 	
 	Coordinate& Viewport::origin() {
 		return _origin;
+	}
+	
+	Coordinate Viewport::transform(int i, int j) const {
+		return Coordinate(_origin.i + i, _origin.j + j);
+	}
+	
+	Coordinate Viewport::transform(Coordinate c) const {
+		return transform(c.i, c.j);
 	}
 	
 	bool Viewport::shouldDraw() {
@@ -111,5 +121,11 @@ namespace Bomberman {
 			
 			t.draw();
 		}
+	}
+	
+	void Viewport::drawPlayer() {
+		player.position() = transform(tileMap->player().position());
+		
+		player.draw();
 	}
 }

@@ -12,6 +12,9 @@
 #include <string>
 #include <vector>
 
+#include "Player.hpp"
+#include "Rectangle.hpp"
+
 namespace Bomberman {
 	class Brick;
 	
@@ -25,15 +28,18 @@ namespace Bomberman {
 		
 		std::string name() const;
 		std::vector<Brick> bricks() const;
+		Player player() const;
 		
 	private:
 		bool loadDimension(void *);
 		bool loadName(void *);
+		bool loadPlayer(void *);
 		void loadBricks(void *);
 		
 		void addBrick(Brick);
 		
-		int _width, _height;
+		Player _player;
+		Rectangle rectangle;
 		std::string _name, file;
 		std::vector<Brick> _bricks;
 	};

@@ -34,19 +34,21 @@ namespace Bomberman {
 		Coordinate& origin();
 		
 	private:
-		Coordinate transform(int x, int y);
-		Coordinate transform(Coordinate coordinate);
+		Coordinate transform(int i, int j) const;
+		Coordinate transform(Coordinate c) const;
 		
 		bool shouldDraw();
 		void drawBackground();
 		void drawBorder();
 		void drawBricks();
+		void drawPlayer();
 		
 		static const Coordinate tileSize;
 		
 		Texture background;
 		Texture brick;
 		Texture destructibleBrick;
+		Texture player;
 		std::shared_ptr<TileMap> tileMap;
 		Coordinate _origin;
 	};

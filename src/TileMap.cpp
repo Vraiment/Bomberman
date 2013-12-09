@@ -22,7 +22,7 @@ using namespace std;
 using namespace tinyxml2;
 
 namespace Bomberman {
-	TileMap::TileMap(string fileName) : _width(0), _height(0) {
+	TileMap::TileMap(string fileName) : rectangle() {
 		file = getPath({ "maps" }, fileName);
 		XMLDocument document;
 		
@@ -33,6 +33,7 @@ namespace Bomberman {
 			
 			error |= !loadDimension(root);
 			error |= !loadName(root->FirstChildElement("name"));
+			error |= !loadPlayer(root->FirstChildElement("player"));
 			loadBricks(root->FirstChildElement("bricks"));
 		} else {
 			error = true;
@@ -50,11 +51,11 @@ namespace Bomberman {
 	}
 	
 	int TileMap::width() const {
-		return _width;
+		return rectangle.width;
 	}
 	
 	int TileMap::height() const {
-		return _height;
+		return rectangle.height;
 	}
 	
 	string TileMap::name() const {
@@ -65,17 +66,21 @@ namespace Bomberman {
 		return _bricks;
 	}
 	
+	Player TileMap::player() const {
+		return _player;
+	}
+	
 	bool TileMap::loadDimension(void *e) {
 		auto root = (XMLElement *) e;
 		
 		bool valid = true;
 		
-		if (root->QueryIntAttribute("width", &_width) != XML_NO_ERROR) {
+		if (root->QueryIntAttribute("width", &rectangle.width) != XML_NO_ERROR) {
 			valid = false;
 			Log::get() << "Invalid width in map file " << file << "." << LogLevel::error;
 		}
 		
-		if (root->QueryIntAttribute("height", &_height) != XML_NO_ERROR) {
+		if (root->QueryIntAttribute("height", &rectangle.height) != XML_NO_ERROR) {
 			valid = false;
 			Log::get() << "Invalid height in map file " << file << "." << LogLevel::error;
 		}
@@ -96,6 +101,34 @@ namespace Bomberman {
 		return true;
 	}
 	
+	bool TileMap::loadPlayer(void *e) {
+		if (e == nullptr) {
+			Log::get() << "No information for player in map file " << file << "." << LogLevel::error;
+			return false;
+		}
+		
+		bool valid = true;
+		
+		auto player = (XMLElement *) e;
+		auto position = player->FirstChildElement("position");
+		
+		if (position == nullptr) {
+			Log::get() << "No position for player in map file " << file << "." << LogLevel::error;
+		}
+		
+		if (position->QueryIntAttribute("column", &_player.position().i) != XML_NO_ERROR) {
+			Log::get() << "Invalid column for player in map file " << file << "." << LogLevel::error;
+			valid = false;
+		}
+		
+		if (position->QueryIntAttribute("row", &_player.position().j) != XML_NO_ERROR) {
+			Log::get() << "Invalid row for player in map file " << file << "." << LogLevel::error;
+			valid = false;
+		}
+		
+		return valid;
+	}
+	
 	void TileMap::loadBricks(void *e) {
 		if (e == nullptr) {
 			Log::get() << "No bricks node in map file " << file << "." << LogLevel::warning;
@@ -108,7 +141,7 @@ namespace Bomberman {
 			Coordinate c;
 			
 			if (brick->QueryIntAttribute("column", &c.i) != XML_NO_ERROR) {
-				Log::get() << "Invalid brick position in map file " << file << "." << LogLevel::error;
+				Log::get() << "Invalid brick column in map file " << file << "." << LogLevel::error;
 				continue;
 			}
 			
@@ -131,6 +164,11 @@ namespace Bomberman {
 	
 	void TileMap::addBrick(Brick b) {
 		bool found = false;
+		
+		if (!rectangle.contains(b.position())) {
+			Log::get() << "Brick out of range in position " << b.position().toString() << " in map file " << file << "." << LogLevel::error;
+			return;
+		}
 		
 		for (int i = 0; i < _bricks.size(); ++i) {
 			if (_bricks[i].position() == b.position()) {

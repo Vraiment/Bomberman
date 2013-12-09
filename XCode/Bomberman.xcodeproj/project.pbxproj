@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5B0496431825D01600C1FBCB /* MainLoop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B0496411825D01600C1FBCB /* MainLoop.cpp */; };
 		5B0C65DF182ADDF8003E3BD4 /* Screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C65DE182ADDF8003E3BD4 /* Screen.cpp */; };
+		5B0C86831852553F0005CADD /* bomberman.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B0C86821852550C0005CADD /* bomberman.png */; };
+		5B0C86861852612C0005CADD /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C86851852612C0005CADD /* Player.cpp */; };
 		5B0EEC2B1820E0D20084C40C /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B0EEC2A1820E0D20084C40C /* SDL2.framework */; };
 		5B0EEC2D1820E10A0084C40C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B0EEC2C1820E10A0084C40C /* main.cpp */; };
 		5B1BF7521822E48B009DCA31 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1BF7511822E48B009DCA31 /* SDL2_image.framework */; };
@@ -70,6 +72,7 @@
 			dstPath = textures;
 			dstSubfolderSpec = 7;
 			files = (
+				5B0C86831852553F0005CADD /* bomberman.png in CopyFiles */,
 				5B4A120418331CB500C8A950 /* background.png in CopyFiles */,
 				5B4A120518331CB600C8A950 /* brick.png in CopyFiles */,
 				5B4A120618331CB600C8A950 /* destructibleBrick.png in CopyFiles */,
@@ -106,6 +109,9 @@
 		5B0496411825D01600C1FBCB /* MainLoop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainLoop.cpp; sourceTree = "<group>"; };
 		5B0496421825D01600C1FBCB /* MainLoop.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MainLoop.hpp; sourceTree = "<group>"; };
 		5B0C65DE182ADDF8003E3BD4 /* Screen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Screen.cpp; sourceTree = "<group>"; };
+		5B0C86821852550C0005CADD /* bomberman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bomberman.png; sourceTree = "<group>"; };
+		5B0C86841852607A0005CADD /* Player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Player.hpp; sourceTree = "<group>"; };
+		5B0C86851852612C0005CADD /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 		5B0EEC281820E0BD0084C40C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		5B0EEC2A1820E0D20084C40C /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2.framework; sourceTree = "<group>"; };
 		5B0EEC2C1820E10A0084C40C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -244,6 +250,8 @@
 				5BE4A21618358FFF00EE49AF /* Brick.cpp */,
 				5B87384B184E580E0014D94B /* Rectangle.hpp */,
 				5B87384C184E582B0014D94B /* Rectangle.cpp */,
+				5B0C86841852607A0005CADD /* Player.hpp */,
+				5B0C86851852612C0005CADD /* Player.cpp */,
 			);
 			name = Source;
 			path = ../src;
@@ -263,6 +271,7 @@
 		5BD37AF21822145500BB1C28 /* Textures */ = {
 			isa = PBXGroup;
 			children = (
+				5B0C86821852550C0005CADD /* bomberman.png */,
 				5B4A11FE18331CAB00C8A950 /* background.png */,
 				5B4A11FF18331CAB00C8A950 /* brick.png */,
 				5B4A120018331CAB00C8A950 /* destructibleBrick.png */,
@@ -395,6 +404,7 @@
 			files = (
 				5BE4A21818358FFF00EE49AF /* Brick.cpp in Sources */,
 				5B0C65DF182ADDF8003E3BD4 /* Screen.cpp in Sources */,
+				5B0C86861852612C0005CADD /* Player.cpp in Sources */,
 				5BD6AD171823A36B00E661DA /* tinyxml2.cpp in Sources */,
 				5BDBF7E71821780000BE71CC /* Viewport.cpp in Sources */,
 				5BD6AD0518237F2D00E661DA /* Logger.cpp in Sources */,
