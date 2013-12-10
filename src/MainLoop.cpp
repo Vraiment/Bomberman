@@ -10,6 +10,7 @@
 
 #include <SDL2/SDL.h>
 
+#include "CommandQueue.hpp"
 #include "EventListener.hpp"
 #include "Log/Log.hpp"
 #include "Log/LogLevel.hpp"
@@ -18,6 +19,14 @@
 using namespace std;
 
 namespace Bomberman {
+	MainLoop::MainLoop() : _commandQueue(new CommandQueue()) {
+		
+	}
+	
+	MainLoop::~MainLoop() {
+		
+	}
+	
 	void MainLoop::run() {
 		if (screens.empty()) {
 			Log::get() << "Main loop is empty." << LogLevel::error;
@@ -43,6 +52,8 @@ namespace Bomberman {
 				(*it)->draw();
 				SDL_RenderPresent((*it)->renderer().get());
 			}
+			
+			_commandQueue->update();
 		}
 	}
 	

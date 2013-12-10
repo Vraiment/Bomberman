@@ -27,6 +27,7 @@
 		5B4A120518331CB600C8A950 /* brick.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B4A11FF18331CAB00C8A950 /* brick.png */; };
 		5B4A120618331CB600C8A950 /* destructibleBrick.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B4A120018331CAB00C8A950 /* destructibleBrick.png */; };
 		5B4A120B1833256800C8A950 /* OperatingSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B4A120A1833256800C8A950 /* OperatingSystem.cpp */; };
+		5B5BB1C41856CEDA0019CAD1 /* CommandQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BB1C21856CEDA0019CAD1 /* CommandQueue.cpp */; };
 		5B6E81F5182AFE870031B1FE /* EmptyScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E81F3182AFE870031B1FE /* EmptyScreen.cpp */; };
 		5B755C771822E81300DADA25 /* Configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B755C751822E81300DADA25 /* Configuration.cpp */; };
 		5B7732B5182AFB2F003A2747 /* SDL2_image.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B1BF7511822E48B009DCA31 /* SDL2_image.framework */; };
@@ -127,6 +128,9 @@
 		5B4A1207183321E600C8A950 /* Exception.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Exception.hpp; sourceTree = "<group>"; };
 		5B4A1209183323A900C8A950 /* OperatingSystem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OperatingSystem.hpp; sourceTree = "<group>"; };
 		5B4A120A1833256800C8A950 /* OperatingSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OperatingSystem.cpp; sourceTree = "<group>"; };
+		5B5BB1C01856CE990019CAD1 /* Command.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Command.hpp; sourceTree = "<group>"; };
+		5B5BB1C21856CEDA0019CAD1 /* CommandQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommandQueue.cpp; sourceTree = "<group>"; };
+		5B5BB1C31856CEDA0019CAD1 /* CommandQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CommandQueue.hpp; sourceTree = "<group>"; };
 		5B6E81F3182AFE870031B1FE /* EmptyScreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EmptyScreen.cpp; sourceTree = "<group>"; };
 		5B6E81F4182AFE870031B1FE /* EmptyScreen.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EmptyScreen.hpp; sourceTree = "<group>"; };
 		5B755C751822E81300DADA25 /* Configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Configuration.cpp; sourceTree = "<group>"; };
@@ -273,6 +277,9 @@
 		5B76EC6B1820DD1B00D499EE /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				5B5BB1C01856CE990019CAD1 /* Command.hpp */,
+				5B5BB1C21856CEDA0019CAD1 /* CommandQueue.cpp */,
+				5B5BB1C31856CEDA0019CAD1 /* CommandQueue.hpp */,
 				5B755C751822E81300DADA25 /* Configuration.cpp */,
 				5B755C761822E81300DADA25 /* Configuration.hpp */,
 				5B5BB1B61856ADA70019CAD1 /* Elements */,
@@ -447,6 +454,7 @@
 				5B0C86861852612C0005CADD /* Player.cpp in Sources */,
 				5BD6AD171823A36B00E661DA /* tinyxml2.cpp in Sources */,
 				5BDBF7E71821780000BE71CC /* Viewport.cpp in Sources */,
+				5B5BB1C41856CEDA0019CAD1 /* CommandQueue.cpp in Sources */,
 				5BD6AD0518237F2D00E661DA /* Logger.cpp in Sources */,
 				5BF5549B1833F67D00DAC339 /* Log.cpp in Sources */,
 				5B0EEC2D1820E10A0084C40C /* main.cpp in Sources */,
