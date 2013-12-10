@@ -19,6 +19,8 @@
 		5B3B82D11857A82700CECE27 /* PlayerEvents.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B82CF1857A82700CECE27 /* PlayerEvents.cpp */; };
 		5B3B82D51857AB7800CECE27 /* PlayerCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B82D31857AB7800CECE27 /* PlayerCommand.cpp */; };
 		5B3B82DA1857ACB700CECE27 /* Command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B82D91857ACB700CECE27 /* Command.cpp */; };
+		5B3B82DE1857CDC100CECE27 /* LexicalAnalyzer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B82DC1857CDC100CECE27 /* LexicalAnalyzer.cpp */; };
+		5B3B82E11857CE3D00CECE27 /* Token.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B82DF1857CE3D00CECE27 /* Token.cpp */; };
 		5B3D1310182C717A0070A335 /* tile0.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BD37AF31822199200BB1C28 /* tile0.png */; };
 		5B3D1311182C717A0070A335 /* tile1.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BD37AF5182219F300BB1C28 /* tile1.png */; };
 		5B3D1312182C717A0070A335 /* tile2.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BD37AF6182219F300BB1C28 /* tile2.png */; };
@@ -131,6 +133,10 @@
 		5B3B82D31857AB7800CECE27 /* PlayerCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerCommand.cpp; sourceTree = "<group>"; };
 		5B3B82D41857AB7800CECE27 /* PlayerCommand.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlayerCommand.hpp; sourceTree = "<group>"; };
 		5B3B82D91857ACB700CECE27 /* Command.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Command.cpp; sourceTree = "<group>"; };
+		5B3B82DC1857CDC100CECE27 /* LexicalAnalyzer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LexicalAnalyzer.cpp; sourceTree = "<group>"; };
+		5B3B82DD1857CDC100CECE27 /* LexicalAnalyzer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LexicalAnalyzer.hpp; sourceTree = "<group>"; };
+		5B3B82DF1857CE3D00CECE27 /* Token.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Token.cpp; sourceTree = "<group>"; };
+		5B3B82E01857CE3D00CECE27 /* Token.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Token.hpp; sourceTree = "<group>"; };
 		5B4A11FE18331CAB00C8A950 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		5B4A11FF18331CAB00C8A950 /* brick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brick.png; sourceTree = "<group>"; };
 		5B4A120018331CAB00C8A950 /* destructibleBrick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = destructibleBrick.png; sourceTree = "<group>"; };
@@ -212,6 +218,17 @@
 				5B3B82D41857AB7800CECE27 /* PlayerCommand.hpp */,
 			);
 			path = Commands;
+			sourceTree = "<group>";
+		};
+		5B3B82DB1857CD6A00CECE27 /* Console */ = {
+			isa = PBXGroup;
+			children = (
+				5B3B82DC1857CDC100CECE27 /* LexicalAnalyzer.cpp */,
+				5B3B82DD1857CDC100CECE27 /* LexicalAnalyzer.hpp */,
+				5B3B82DF1857CE3D00CECE27 /* Token.cpp */,
+				5B3B82E01857CE3D00CECE27 /* Token.hpp */,
+			);
+			path = Console;
 			sourceTree = "<group>";
 		};
 		5B5BB1B61856ADA70019CAD1 /* Elements */ = {
@@ -313,6 +330,7 @@
 				5B3B82D21857AB5900CECE27 /* Commands */,
 				5B755C751822E81300DADA25 /* Configuration.cpp */,
 				5B755C761822E81300DADA25 /* Configuration.hpp */,
+				5B3B82DB1857CD6A00CECE27 /* Console */,
 				5B5BB1B61856ADA70019CAD1 /* Elements */,
 				5BBB9E521820EB3F00726BC5 /* Engine.cpp */,
 				5BBB9E531820EB3F00726BC5 /* Engine.hpp */,
@@ -487,6 +505,7 @@
 				5B5BB1C71856D5370019CAD1 /* TileMapLoader.cpp in Sources */,
 				5B0C65DF182ADDF8003E3BD4 /* Screen.cpp in Sources */,
 				5B0C86861852612C0005CADD /* Player.cpp in Sources */,
+				5B3B82DE1857CDC100CECE27 /* LexicalAnalyzer.cpp in Sources */,
 				5BD6AD171823A36B00E661DA /* tinyxml2.cpp in Sources */,
 				5BDBF7E71821780000BE71CC /* Viewport.cpp in Sources */,
 				5B5BB1C41856CEDA0019CAD1 /* CommandQueue.cpp in Sources */,
@@ -496,6 +515,7 @@
 				5B3B82D11857A82700CECE27 /* PlayerEvents.cpp in Sources */,
 				5B0496431825D01600C1FBCB /* MainLoop.cpp in Sources */,
 				5B4A120B1833256800C8A950 /* OperatingSystem.cpp in Sources */,
+				5B3B82E11857CE3D00CECE27 /* Token.cpp in Sources */,
 				5BF5549E1833F70400DAC339 /* LogLevel.cpp in Sources */,
 				5B3B82D51857AB7800CECE27 /* PlayerCommand.cpp in Sources */,
 				5B755C771822E81300DADA25 /* Configuration.cpp in Sources */,
