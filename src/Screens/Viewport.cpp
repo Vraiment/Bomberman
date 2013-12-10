@@ -39,6 +39,10 @@ namespace Bomberman {
 		drawPlayer();
 	}
 	
+	void Viewport::update() {
+		tileMap->update();
+	}
+	
 	void Viewport::loadTileMap(shared_ptr<TileMap> tileMap) {
 		this->tileMap = tileMap;
 		

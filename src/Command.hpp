@@ -16,7 +16,10 @@ namespace Bomberman {
 		
 		virtual void execute() = 0;
 		
-		virtual bool finished() const = 0;
+		bool finished() const;
+		
+	protected:
+		bool _finished;
 	};
 }
 

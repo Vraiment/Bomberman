@@ -21,6 +21,7 @@ namespace Bomberman {
 		virtual ~Screen();
 		
 		virtual void draw() = 0;
+		virtual void update() = 0;
 		
 		std::string name() const;
 		int width() const;

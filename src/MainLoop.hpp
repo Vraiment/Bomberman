@@ -14,7 +14,6 @@
 namespace Bomberman {
 	class Screen;
 	class EventListener;
-	class CommandQueue;
 	
 	class MainLoop {
 	public:
@@ -31,15 +30,12 @@ namespace Bomberman {
 		
 		void removeEventListener(std::shared_ptr<EventListener> eventListener);
 		
-		std::shared_ptr<CommandQueue> commandQueue();
-		
 	private:
 		bool hasScreen(std::shared_ptr<Screen> screen);
 		bool hasEventListener(std::shared_ptr<EventListener> eventListener);
 		
 		std::list<std::shared_ptr<Screen>> screens;
 		std::list<std::shared_ptr<EventListener>> eventListeners;
-		std::shared_ptr<CommandQueue> _commandQueue;
 	};
 }
 

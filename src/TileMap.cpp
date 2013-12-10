@@ -50,6 +50,10 @@ namespace Bomberman {
 	}
 	
 	void TileMap::execute(string command) {
-		throw NotImplementedException();
+		throw NotImplementedException();		
+	}
+	
+	void TileMap::update() {
+		commandQueue.update();
 	}
 }

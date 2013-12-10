@@ -16,4 +16,8 @@ namespace Bomberman {
 	void EmptyScreen::draw() {
 		
 	}
+	
+	void EmptyScreen::update() {
+		
+	}
 }

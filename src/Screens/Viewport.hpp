@@ -26,6 +26,7 @@ namespace Bomberman {
 		~Viewport();
 		
 		void draw();
+		void update();
 		
 		void loadTileMap(std::shared_ptr<TileMap> tileMap);
 		

@@ -12,6 +12,7 @@
 #include <string>
 #include <vector>
 
+#include "CommandQueue.hpp"
 #include "Elements/Player.hpp"
 #include "Math/Rectangle.hpp"
 
@@ -31,8 +32,10 @@ namespace Bomberman {
 		Player player() const;
 		
 		void execute(std::string command);
+		void update();
 		
 	private:
+		CommandQueue commandQueue;
 		Player _player;
 		int _width, _height;
 		std::string _name;

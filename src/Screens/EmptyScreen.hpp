@@ -17,6 +17,8 @@ namespace Bomberman {
 		EmptyScreen(int width, int height);
 		
 		void draw();
+		
+		void update();
 	};
 }
 
