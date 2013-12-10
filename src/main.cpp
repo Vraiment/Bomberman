@@ -11,6 +11,7 @@
 
 #include "Configuration.hpp"
 #include "Engine.hpp"
+#include "EventListeners/PlayerEvents.hpp"
 #include "MainLoop.hpp"
 #include "Screens/Viewport.hpp"
 #include "TileMap.hpp"
@@ -25,11 +26,13 @@ int main(int argc, char* argv[]) {
 	Configuration config("config.xml");
 	shared_ptr<Viewport> viewport(new Viewport(config.viewportWidth(), config.viewportHeight(), config.viewportTitle()));
 	shared_ptr<TileMap> tileMap = TileMapLoader().load("map1.xml");
+	shared_ptr<PlayerEvents> playerEvents(new PlayerEvents(tileMap));
 	
 	viewport->loadTileMap(tileMap);
 	viewport->origin() = Coordinate(250, 50);
 	
 	MainLoop loop;
+	loop.addEventListener(playerEvents);
 	loop.addScreen(viewport);
 	loop.run();
 	
