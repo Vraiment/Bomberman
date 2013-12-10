@@ -8,12 +8,12 @@
 
 #include "Texture.hpp"
 
-#include <string>
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 
-#include "Log.hpp"
-#include "OperatingSystem.hpp"
+#include "Log/Log.hpp"
+#include "Log/LogLevel.hpp"
+#include "Utils/OperatingSystem.hpp"
 
 using namespace std;
 

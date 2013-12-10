@@ -10,7 +10,6 @@
 #define __Logger__hpp__
 
 #include <string>
-#include <sstream>
 
 namespace Bomberman {
 	class LogLevel;

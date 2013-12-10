@@ -8,11 +8,9 @@
 
 #include "Viewport.hpp"
 
-#include "Exception.hpp"
-#include "Log.hpp"
-#include "TileMap.hpp"
-
-#include "Brick.hpp"
+#include "../Elements/Brick.hpp"
+#include "../TileMap.hpp"
+#include "../Utils/Exception.hpp"
 
 using namespace std;
 

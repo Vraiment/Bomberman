@@ -8,7 +8,7 @@
 
 #include "LogLevel.hpp"
 
-#include "Exception.hpp"
+#include "../Utils/Exception.hpp"
 
 namespace Bomberman {
 	LogLevel::LogLevel(int type) : type(type) {

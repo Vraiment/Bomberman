@@ -181,6 +181,63 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B5BB1B61856ADA70019CAD1 /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				5BE4A21618358FFF00EE49AF /* Brick.cpp */,
+				5BE4A21718358FFF00EE49AF /* Brick.hpp */,
+				5B0C86851852612C0005CADD /* Player.cpp */,
+				5B0C86841852607A0005CADD /* Player.hpp */,
+			);
+			path = Elements;
+			sourceTree = "<group>";
+		};
+		5B5BB1B71856ADE40019CAD1 /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				5BF554991833F67D00DAC339 /* Log.cpp */,
+				5BF5549A1833F67D00DAC339 /* Log.hpp */,
+				5BD6AD0318237CE000E661DA /* Logger.cpp */,
+				5BD6AD0218237BBA00E661DA /* Logger.hpp */,
+				5BF5549C1833F70400DAC339 /* LogLevel.cpp */,
+				5BF5549D1833F70400DAC339 /* LogLevel.hpp */,
+			);
+			path = Log;
+			sourceTree = "<group>";
+		};
+		5B5BB1B81856AE020019CAD1 /* Math */ = {
+			isa = PBXGroup;
+			children = (
+				5BDC7DA3182AA18C0093391D /* Coordinate.cpp */,
+				5BDC7DA4182AA18C0093391D /* Coordinate.hpp */,
+				5BD37B00182228B900BB1C28 /* Matrix.hpp */,
+				5B87384C184E582B0014D94B /* Rectangle.cpp */,
+				5B87384B184E580E0014D94B /* Rectangle.hpp */,
+			);
+			path = Math;
+			sourceTree = "<group>";
+		};
+		5B5BB1B91856AE110019CAD1 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				5B6E81F3182AFE870031B1FE /* EmptyScreen.cpp */,
+				5B6E81F4182AFE870031B1FE /* EmptyScreen.hpp */,
+				5BDBF7E51821780000BE71CC /* Viewport.cpp */,
+				5BDBF7E61821780000BE71CC /* Viewport.hpp */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		5B5BB1BA1856AE1E0019CAD1 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				5B4A1207183321E600C8A950 /* Exception.hpp */,
+				5B4A120A1833256800C8A950 /* OperatingSystem.cpp */,
+				5B4A1209183323A900C8A950 /* OperatingSystem.hpp */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		5B76EC591820DD1B00D499EE = {
 			isa = PBXGroup;
 			children = (
@@ -216,42 +273,25 @@
 		5B76EC6B1820DD1B00D499EE /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				5B0EEC2C1820E10A0084C40C /* main.cpp */,
-				5B4A1207183321E600C8A950 /* Exception.hpp */,
-				5BD37B00182228B900BB1C28 /* Matrix.hpp */,
-				5BBB9E531820EB3F00726BC5 /* Engine.hpp */,
-				5BBB9E521820EB3F00726BC5 /* Engine.cpp */,
-				5B755C761822E81300DADA25 /* Configuration.hpp */,
 				5B755C751822E81300DADA25 /* Configuration.cpp */,
-				5B3795C91820F6E60050381F /* TileMap.hpp */,
-				5B3795C81820F6E60050381F /* TileMap.cpp */,
-				5B3795CD1820FBAA0050381F /* Texture.hpp */,
-				5B3795CC1820FBAA0050381F /* Texture.cpp */,
-				5BDBF7E61821780000BE71CC /* Viewport.hpp */,
-				5BDBF7E51821780000BE71CC /* Viewport.cpp */,
-				5BF5549D1833F70400DAC339 /* LogLevel.hpp */,
-				5BF5549C1833F70400DAC339 /* LogLevel.cpp */,
-				5BF5549A1833F67D00DAC339 /* Log.hpp */,
-				5BF554991833F67D00DAC339 /* Log.cpp */,
-				5BD6AD0218237BBA00E661DA /* Logger.hpp */,
-				5BD6AD0318237CE000E661DA /* Logger.cpp */,
-				5B0496401825CF7E00C1FBCB /* Screen.hpp */,
-				5B0C65DE182ADDF8003E3BD4 /* Screen.cpp */,
+				5B755C761822E81300DADA25 /* Configuration.hpp */,
+				5B5BB1B61856ADA70019CAD1 /* Elements */,
+				5BBB9E521820EB3F00726BC5 /* Engine.cpp */,
+				5BBB9E531820EB3F00726BC5 /* Engine.hpp */,
 				5BBC81291829C0CF006F448F /* EventListener.hpp */,
-				5B0496421825D01600C1FBCB /* MainLoop.hpp */,
+				5B5BB1B71856ADE40019CAD1 /* Log */,
+				5B0EEC2C1820E10A0084C40C /* main.cpp */,
 				5B0496411825D01600C1FBCB /* MainLoop.cpp */,
-				5BDC7DA4182AA18C0093391D /* Coordinate.hpp */,
-				5BDC7DA3182AA18C0093391D /* Coordinate.cpp */,
-				5B6E81F4182AFE870031B1FE /* EmptyScreen.hpp */,
-				5B6E81F3182AFE870031B1FE /* EmptyScreen.cpp */,
-				5B4A1209183323A900C8A950 /* OperatingSystem.hpp */,
-				5B4A120A1833256800C8A950 /* OperatingSystem.cpp */,
-				5BE4A21718358FFF00EE49AF /* Brick.hpp */,
-				5BE4A21618358FFF00EE49AF /* Brick.cpp */,
-				5B87384B184E580E0014D94B /* Rectangle.hpp */,
-				5B87384C184E582B0014D94B /* Rectangle.cpp */,
-				5B0C86841852607A0005CADD /* Player.hpp */,
-				5B0C86851852612C0005CADD /* Player.cpp */,
+				5B0496421825D01600C1FBCB /* MainLoop.hpp */,
+				5B5BB1B81856AE020019CAD1 /* Math */,
+				5B0C65DE182ADDF8003E3BD4 /* Screen.cpp */,
+				5B0496401825CF7E00C1FBCB /* Screen.hpp */,
+				5B5BB1B91856AE110019CAD1 /* Screens */,
+				5B3795CC1820FBAA0050381F /* Texture.cpp */,
+				5B3795CD1820FBAA0050381F /* Texture.hpp */,
+				5B3795C81820F6E60050381F /* TileMap.cpp */,
+				5B3795C91820F6E60050381F /* TileMap.hpp */,
+				5B5BB1BA1856AE1E0019CAD1 /* Utils */,
 			);
 			name = Source;
 			path = ../src;

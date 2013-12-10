@@ -8,7 +8,8 @@
 
 #include "Screen.hpp"
 
-#include "Log.hpp"
+#include "Log/Log.hpp"
+#include "Log/LogLevel.hpp"
 
 using namespace std;
 

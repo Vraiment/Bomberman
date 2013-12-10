@@ -8,7 +8,6 @@
 
 #include "Logger.hpp"
 
-#include "Exception.hpp"
 #include <iostream>
 
 using namespace std;

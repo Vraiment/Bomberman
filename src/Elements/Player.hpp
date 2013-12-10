@@ -9,7 +9,7 @@
 #ifndef __Player__hpp__
 #define __Player__hpp__
 
-#include "Coordinate.hpp"
+#include "../Math/Coordinate.hpp"
 
 namespace Bomberman {
 	class Player {

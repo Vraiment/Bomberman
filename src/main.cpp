@@ -9,13 +9,11 @@
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 
-#include "Engine.hpp"
 #include "Configuration.hpp"
-#include "TileMap.hpp"
+#include "Engine.hpp"
 #include "MainLoop.hpp"
-#include "Viewport.hpp"
-#include "EmptyScreen.hpp"
-#include "Log.hpp"
+#include "Screens/Viewport.hpp"
+#include "TileMap.hpp"
 
 using namespace Bomberman;
 using namespace std;

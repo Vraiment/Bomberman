@@ -10,7 +10,8 @@
 
 #include <tinyxml2/tinyxml2.h>
 
-#include "Log.hpp"
+#include "Log/Log.hpp"
+#include "Log/LogLevel.hpp"
 
 using namespace std;
 using namespace tinyxml2;

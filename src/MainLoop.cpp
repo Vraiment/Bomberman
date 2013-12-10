@@ -10,9 +10,10 @@
 
 #include <SDL2/SDL.h>
 
-#include "Screen.hpp"
-#include "Log.hpp"
 #include "EventListener.hpp"
+#include "Log/Log.hpp"
+#include "Log/LogLevel.hpp"
+#include "Screen.hpp"
 
 using namespace std;
 

@@ -9,13 +9,11 @@
 #ifndef __Viewport__hpp__
 #define __Viewport__hpp__
 
-#include "Screen.hpp"
-#include "Coordinate.hpp"
-#include "TileMap.hpp"
-#include "Brick.hpp"
-#include "Texture.hpp"
-#include <vector>
-#include <memory>
+#include "../Screen.hpp"
+
+#include <string>
+
+#include "../Texture.hpp"
 
 struct SDL_Renderer;
 

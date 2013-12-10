@@ -9,7 +9,7 @@
 #ifndef __Brick__hpp__
 #define __Brick__hpp__
 
-#include "Coordinate.hpp"
+#include "../Math/Coordinate.hpp"
 
 namespace Bomberman {
 	class Brick {

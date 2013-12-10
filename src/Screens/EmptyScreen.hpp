@@ -9,7 +9,7 @@
 #ifndef __EmptyScreen__hpp__
 #define __EmptyScreen__hpp__
 
-#include "Screen.hpp"
+#include "../Screen.hpp"
 
 namespace Bomberman {
 	class EmptyScreen : public Screen {

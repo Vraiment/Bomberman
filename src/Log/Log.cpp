@@ -8,9 +8,11 @@
 
 #include "Log.hpp"
 
-#include "Logger.hpp"
-#include "Exception.hpp"
 #include <iostream>
+
+#include "../Utils/Exception.hpp"
+#include "Logger.hpp"
+#include "LogLevel.hpp"
 
 using namespace std;
 

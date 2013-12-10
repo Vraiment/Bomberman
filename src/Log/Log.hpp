@@ -9,14 +9,12 @@
 #ifndef __Log__hpp__
 #define __Log__hpp__
 
-#include "LogLevel.hpp"
-
-#include "Exception.hpp"
-#include <string>
+#include <exception>
 #include <sstream>
 
 namespace Bomberman {
 	class Logger;
+	class LogLevel;
 	
 	class Log {
 	public:

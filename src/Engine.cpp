@@ -8,16 +8,10 @@
 
 #include "Engine.hpp"
 
-#include "Screen.hpp"
-
-#include <SDL2/SDL.h>
-#include <sstream>
-
 #ifdef __APPLE__
 #include <CoreFoundation/CoreFoundation.h>
 #endif //__APPLE__
-
-using namespace std;
+#include <SDL2/SDL.h>
 
 namespace Bomberman {
 	Engine::Engine() {
