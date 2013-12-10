@@ -19,28 +19,23 @@ namespace Bomberman {
 	class Brick;
 	
 	class TileMap {
+	friend class TileMapLoader;
 	public:
-		TileMap(std::string fileName);
+		TileMap();
 		~TileMap();
 		
 		int width() const;
 		int height() const;
-		
 		std::string name() const;
 		std::vector<Brick> bricks() const;
 		Player player() const;
 		
+		void execute(std::string command);
+		
 	private:
-		bool loadDimension(void *);
-		bool loadName(void *);
-		bool loadPlayer(void *);
-		void loadBricks(void *);
-		
-		void addBrick(Brick);
-		
 		Player _player;
-		Rectangle rectangle;
-		std::string _name, file;
+		int _width, _height;
+		std::string _name;
 		std::vector<Brick> _bricks;
 	};
 }

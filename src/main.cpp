@@ -14,6 +14,7 @@
 #include "MainLoop.hpp"
 #include "Screens/Viewport.hpp"
 #include "TileMap.hpp"
+#include "TileMapLoader.hpp"
 
 using namespace Bomberman;
 using namespace std;
@@ -23,7 +24,7 @@ int main(int argc, char* argv[]) {
 	
 	Configuration config("config.xml");
 	shared_ptr<Viewport> viewport(new Viewport(config.viewportWidth(), config.viewportHeight(), config.viewportTitle()));
-	shared_ptr<TileMap> tileMap(new TileMap("map1.xml"));
+	shared_ptr<TileMap> tileMap = TileMapLoader().load("map1.xml");
 	
 	viewport->loadTileMap(tileMap);
 	viewport->origin() = Coordinate(250, 50);

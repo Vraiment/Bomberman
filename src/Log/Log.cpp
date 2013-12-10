@@ -34,6 +34,12 @@ namespace Bomberman {
 		return singleton;
 	}
 	
+	Log& Log::operator<<(int value) {
+		message << value;
+		
+		return singleton;
+	}
+	
 	Log& Log::operator<<(const char *value) {
 		message << value;
 		

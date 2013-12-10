@@ -20,6 +20,7 @@ namespace Bomberman {
 	public:
 		static Log& get();
 		
+		Log& operator<<(int value);
 		Log& operator<<(const char *value);
 		Log& operator<<(std::string value);
 		void operator<<(LogLevel level);
