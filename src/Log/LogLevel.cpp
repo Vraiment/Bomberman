@@ -8,21 +8,15 @@
 
 #include "LogLevel.hpp"
 
-#include "../Utils/Exception.hpp"
+using namespace std;
 
 namespace Bomberman {
-	LogLevel::LogLevel(int type) : type(type) {
+	LogLevel::LogLevel(int type, string str) : type(type), str(str) {
 		
 	}
 	
-	const char* LogLevel::toString() const {
-		switch (type) {
-			case 0: return "info";
-			case 1: return "warning";
-			case 2: return "error";
-			case 3: return "fatal";
-			default: throw InvalidOperationException();
-		}
+	string LogLevel::toString() const {
+		return str;
 	}
 	
 	bool LogLevel::operator==(const LogLevel& other) const {
@@ -33,8 +27,8 @@ namespace Bomberman {
 		return !(*this == other);
 	}
 	
-	const LogLevel LogLevel::info = LogLevel(0);
-	const LogLevel LogLevel::warning = LogLevel(1);
-	const LogLevel LogLevel::error = LogLevel(2);
-	const LogLevel LogLevel::fatal = LogLevel(3);
+	const LogLevel LogLevel::info = LogLevel(0, "info");
+	const LogLevel LogLevel::warning = LogLevel(1, "warning");
+	const LogLevel LogLevel::error = LogLevel(2, "error");
+	const LogLevel LogLevel::fatal = LogLevel(3, "fatal");
 }

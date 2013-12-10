@@ -9,6 +9,8 @@
 #ifndef __LogLevel__hpp__
 #define __LogLevel__hpp__
 
+#include <string>
+
 namespace Bomberman {
 	class LogLevel {
 	public:
@@ -17,14 +19,15 @@ namespace Bomberman {
 		static const LogLevel error;
 		static const LogLevel fatal;
 		
-		const char* toString() const;
+		std::string toString() const;
 		
 		bool operator==(const LogLevel& other) const;
 		bool operator!=(const LogLevel& other) const;
 		
 	private:
-		LogLevel(int type);
+		LogLevel(int type, std::string str);
 		int type;
+		std::string str;
 	};
 }
 
