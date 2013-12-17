@@ -8,13 +8,13 @@
 
 #include "TileMapLoader.hpp"
 
-#include "Elements/Brick.hpp"
-#include "Elements/Player.hpp"
-#include "Log/Log.hpp"
-#include "Log/LogLevel.hpp"
+#include "../Elements/Brick.hpp"
+#include "../Elements/Player.hpp"
+#include "../Log/Log.hpp"
+#include "../Log/LogLevel.hpp"
+#include "../Utils/Exception.hpp"
+#include "../Utils/OperatingSystem.hpp"
 #include "TileMap.hpp"
-#include "Utils/Exception.hpp"
-#include "Utils/OperatingSystem.hpp"
 
 using namespace std;
 using namespace tinyxml2;

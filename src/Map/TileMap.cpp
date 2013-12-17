@@ -11,11 +11,11 @@
 #include <SDL2/SDL.h>
 #include <tinyxml2/tinyxml2.h>
 
-#include "Elements/Brick.hpp"
-#include "Log/Log.hpp"
-#include "Log/LogLevel.hpp"
-#include "Utils/Exception.hpp"
-#include "Utils/OperatingSystem.hpp"
+#include "../Elements/Brick.hpp"
+#include "../Log/Log.hpp"
+#include "../Log/LogLevel.hpp"
+#include "../Utils/Exception.hpp"
+#include "../Utils/OperatingSystem.hpp"
 
 using namespace std;
 using namespace tinyxml2;

@@ -12,8 +12,8 @@
 #include <string>
 #include <vector>
 
-#include "Elements/Player.hpp"
-#include "Math/Rectangle.hpp"
+#include "../Elements/Player.hpp"
+#include "../Math/Rectangle.hpp"
 
 namespace Bomberman {
 	class Brick;

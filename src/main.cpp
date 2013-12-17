@@ -15,9 +15,9 @@
 #include "Engine.hpp"
 #include "EventListeners/PlayerEvents.hpp"
 #include "MainLoop.hpp"
+#include "Map/TileMap.hpp"
+#include "Map/TileMapLoader.hpp"
 #include "Screens/Viewport.hpp"
-#include "TileMap.hpp"
-#include "TileMapLoader.hpp"
 
 using namespace Bomberman;
 using namespace std;

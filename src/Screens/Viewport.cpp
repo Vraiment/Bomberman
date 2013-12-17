@@ -9,7 +9,7 @@
 #include "Viewport.hpp"
 
 #include "../Elements/Brick.hpp"
-#include "../TileMap.hpp"
+#include "../Map/TileMap.hpp"
 #include "../Utils/Exception.hpp"
 
 using namespace std;

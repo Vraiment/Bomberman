@@ -13,7 +13,7 @@
 #include <tinyxml2/tinyxml2.h>
 #include <vector>
 
-#include "Elements/Player.hpp"
+#include "../Elements/Player.hpp"
 
 namespace Bomberman {
 	class Brick;

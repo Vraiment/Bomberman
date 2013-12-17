@@ -8,11 +8,11 @@
 
 #include "PlayerCommand.hpp"
 
-#include "../TileMap.hpp"
 #include "../Elements/Brick.hpp"
 #include "../Elements/Player.hpp"
 #include "../Log/Log.hpp"
 #include "../Log/LogLevel.hpp"
+#include "../Map/TileMap.hpp"
 #include "../Utils/Exception.hpp"
 
 using namespace std;

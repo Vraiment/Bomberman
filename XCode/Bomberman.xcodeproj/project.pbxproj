@@ -212,6 +212,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B03C1251860E7190011C3DA /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				5B3795C81820F6E60050381F /* TileMap.cpp */,
+				5B3795C91820F6E60050381F /* TileMap.hpp */,
+				5B5BB1C51856D5370019CAD1 /* TileMapLoader.cpp */,
+				5B5BB1C61856D5370019CAD1 /* TileMapLoader.hpp */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		5B3B82CE1857A80D00CECE27 /* EventListeners */ = {
 			isa = PBXGroup;
 			children = (
@@ -357,16 +368,13 @@
 				5B0EEC2C1820E10A0084C40C /* main.cpp */,
 				5B0496411825D01600C1FBCB /* MainLoop.cpp */,
 				5B0496421825D01600C1FBCB /* MainLoop.hpp */,
+				5B03C1251860E7190011C3DA /* Map */,
 				5B5BB1B81856AE020019CAD1 /* Math */,
 				5B0C65DE182ADDF8003E3BD4 /* Screen.cpp */,
 				5B0496401825CF7E00C1FBCB /* Screen.hpp */,
 				5B5BB1B91856AE110019CAD1 /* Screens */,
 				5B3795CC1820FBAA0050381F /* Texture.cpp */,
 				5B3795CD1820FBAA0050381F /* Texture.hpp */,
-				5B3795C81820F6E60050381F /* TileMap.cpp */,
-				5B3795C91820F6E60050381F /* TileMap.hpp */,
-				5B5BB1C51856D5370019CAD1 /* TileMapLoader.cpp */,
-				5B5BB1C61856D5370019CAD1 /* TileMapLoader.hpp */,
 				5B5BB1BA1856AE1E0019CAD1 /* Utils */,
 			);
 			name = Source;
