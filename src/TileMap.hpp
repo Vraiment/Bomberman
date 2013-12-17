@@ -29,14 +29,14 @@ namespace Bomberman {
 		int height() const;
 		std::string name() const;
 		std::vector<Brick> bricks() const;
-		Player player() const;
+		std::shared_ptr<Player> player() const;
 		
 		void execute(std::string command);
 		void update();
 		
 	private:
 		CommandQueue commandQueue;
-		Player _player;
+		std::shared_ptr<Player> _player;
 		int _width, _height;
 		std::string _name;
 		std::vector<Brick> _bricks;

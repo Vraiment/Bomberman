@@ -126,7 +126,7 @@ namespace Bomberman {
 	}
 	
 	void Viewport::drawPlayer() {
-		player.position() = transform(tileMap->player().position());
+		player.position() = transform(tileMap->player()->position());
 		
 		player.draw();
 	}

@@ -16,7 +16,7 @@
 using namespace std;
 
 namespace Bomberman {
-	PlayerCommand::PlayerCommand(Player& player, string command, vector<string> arguments) : player(player), command(command), arguments(arguments) {
+	PlayerCommand::PlayerCommand(shared_ptr<Player> player, string command, vector<string> arguments) : player(player), command(command), arguments(arguments) {
 		
 	}
 	
@@ -37,13 +37,13 @@ namespace Bomberman {
 			string direction = arguments[0];
 			
 			if (direction == "right") {
-				++player.position().i;
+				++player->position().i;
 			} else if (direction == "up") {
-				--player.position().j;
+				--player->position().j;
 			} else if (direction == "left") {
-				--player.position().i;
+				--player->position().i;
 			} else if (direction == "down") {
-				++player.position().j;
+				++player->position().j;
 			} else {
 				error = true;
 			}

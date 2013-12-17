@@ -21,7 +21,7 @@ using namespace std;
 using namespace tinyxml2;
 
 namespace Bomberman {
-	TileMap::TileMap() : _width(0), _height(0) {
+	TileMap::TileMap() : _width(0), _height(0), _player(new Player()) {
 		
 	}
 	
@@ -45,7 +45,7 @@ namespace Bomberman {
 		return _bricks;
 	}
 	
-	Player TileMap::player() const {
+	shared_ptr<Player> TileMap::player() const {
 		return _player;
 	}
 	

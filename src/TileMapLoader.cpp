@@ -92,12 +92,12 @@ namespace Bomberman {
 			return;
 		}
 		
-		if (position->QueryIntAttribute("column", &tileMap->_player.position().i) != XML_NO_ERROR) {
+		if (position->QueryIntAttribute("column", &tileMap->player()->position().i) != XML_NO_ERROR) {
 			Log::get() << "Invalid column for player in map file \"" << fileName << "\"." << LogLevel::error;
 			error = true;
 		}
 		
-		if (position->QueryIntAttribute("row", &tileMap->_player.position().j) != XML_NO_ERROR) {
+		if (position->QueryIntAttribute("row", &tileMap->player()->position().j) != XML_NO_ERROR) {
 			Log::get() << "Invalid row for player in map file \"" << fileName << "\"." << LogLevel::error;
 			error = true;
 		}

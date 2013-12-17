@@ -19,14 +19,14 @@ namespace Bomberman {
 	
 	class PlayerCommand : public Command {
 	public:
-		PlayerCommand(Player& player, std::string command, std::vector<std::string> arguments);
+		PlayerCommand(std::shared_ptr<Player> player, std::string command, std::vector<std::string> arguments);
 		
 		void execute();
 		
 	private:
 		void move();
 		
-		Player& player;
+		std::shared_ptr<Player> player;
 		std::string command;
 		std::vector<std::string> arguments;
 	};

@@ -14,12 +14,24 @@
 
 namespace Bomberman {
 	class Command;
+	class Player;
+	class TileMap;
 	
 	class CommandFactory {
 	public:
+		~CommandFactory();
+		
+		void setPlayer(std::shared_ptr<Player> player);
+		
+		void setTileMap(std::shared_ptr<TileMap> tileMap);
+		
 		std::shared_ptr<Command> call(std::string function, std::vector<std::string> arguments);
 		
 		std::shared_ptr<Command> sendMessage(std::string receiver, std::string message, std::vector<std::string> arguments);
+		
+	private:
+		std::shared_ptr<Player> player;
+		std::shared_ptr<TileMap> tileMap;
 	};
 }
 

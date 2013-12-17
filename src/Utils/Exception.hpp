@@ -48,7 +48,14 @@ namespace Bomberman {
 	class ParsingErrorException : public Exception {
 	public:
 		virtual const char* what() const noexcept {
-			return "invalid value while parsing a string.";
+			return "invalid value while parsing a string";
+		}
+	};
+	
+	class InvalidReceiverException : public Exception {
+	public:
+		virtual const char* what() const noexcept {
+			return "invalid receiver for a message";
 		}
 	};
 }
