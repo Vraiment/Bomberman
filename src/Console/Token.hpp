@@ -13,7 +13,6 @@
 
 namespace Bomberman {
 	class Token {
-	friend class LexicalAnalyzer;
 	public:
 		static const Token error;
 		static const Token eof;
@@ -24,12 +23,20 @@ namespace Bomberman {
 		static const Token identifier;
 		static const Token number;
 		static const Token point;
+		static const Token comma;
+		
+		Token();
+		Token(const Token& other);
 		
 		int value() const;
 		std::string toString() const;
 		
 		bool operator==(const Token& other) const;
 		bool operator!=(const Token& other) const;
+		bool operator<(const Token& other) const;
+		bool operator>(const Token& other) const;
+		bool operator<=(const Token& other) const;
+		bool operator>=(const Token& other) const;
 		
 	private:
 		Token(int value, std::string str);

@@ -11,6 +11,14 @@
 using namespace std;
 
 namespace Bomberman {
+	Token::Token() : _value(eof._value), str(eof.str) {
+		
+	}
+	
+	Token::Token(const Token& other) : _value(other._value), str(other.str) {
+		
+	}
+	
 	Token::Token(int value, string str) : _value(value), str(str) {
 		
 	}
@@ -31,6 +39,22 @@ namespace Bomberman {
 		return !(*this == other);
 	}
 	
+	bool Token::operator<(const Token& other) const {
+		return _value < other._value;
+	}
+	
+	bool Token::operator>(const Token& other) const {
+		return other < *this;
+	}
+	
+	bool Token::operator<=(const Token& other) const {
+		return !(*this > other);
+	}
+	
+	bool Token::operator>=(const Token& other) const {
+		return !(*this < other);
+	}
+	
 	const Token Token::error = Token(-1, "error");
 	const Token Token::eof = Token(0, "eof");
 	const Token Token::eol = Token(1, "eol");
@@ -40,4 +64,5 @@ namespace Bomberman {
 	const Token Token::identifier = Token(5, "identifier");
 	const Token Token::number = Token(6, "number");
 	const Token Token::point = Token(7, "point");
+	const Token Token::comma = Token(8, "comma");
 }
