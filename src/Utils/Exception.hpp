@@ -44,6 +44,13 @@ namespace Bomberman {
 			return "error opening a file";
 		}
 	};
+	
+	class ParsingErrorException : public Exception {
+	public:
+		virtual const char* what() const noexcept {
+			return "invalid value while parsing a string.";
+		}
+	};
 }
 
 #endif //__Exception__hpp__
