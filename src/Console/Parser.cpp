@@ -8,6 +8,7 @@
 
 #include "Parser.hpp"
 
+#include "../CommandFactory.hpp"
 #include "../Log/Log.hpp"
 #include "../Log/LogLevel.hpp"
 #include "../Utils/Exception.hpp"
@@ -19,6 +20,14 @@ using namespace std;
 namespace Bomberman {
 	bool inSet(set<Token> tokenSet, Token token) {
 		return tokenSet.find(token) != tokenSet.end();
+	}
+	
+	Parser::Parser(shared_ptr<CommandFactory> commandFactory) : commandFactory(commandFactory) {
+		
+	}
+	
+	Parser::~Parser() {
+		
 	}
 	
 	queue<shared_ptr<Command>> Parser::parse(string command) {
@@ -58,7 +67,15 @@ namespace Bomberman {
 		end();
 		
 		if (!values.empty()) {
-			throw NotImplementedException();
+			vector<string> arguments;
+			
+			if (objectCall) {
+				arguments = vector<string>(values.begin() + 2, values.end());
+				commandFactory->sendMessage(values[0], values[1], arguments);
+			} else {
+				arguments = vector<string>(values.begin() + 1, values.end());
+				commandFactory->call(values[0], arguments);
+			}
 		}
 	}
 	
