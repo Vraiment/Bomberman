@@ -1,0 +1,26 @@
+Lexical Components
+==================
+The valid patterns for tokens are:
+\(								->		lPar
+\)								->		rPar
+.								->		point
+;								->		stop
+DIGIT+							->		number
+(_|LETTER)(_|LETTER|DIGIT)*		->		identifier
+
+Grammar
+=======
+
+EXPRESSIONS => EXPRESSION+
+EXPRESSION => CALL END
+
+CALL => identifier (OBJECT | FUNCTION) | <EMPTY>
+
+OBJECT => .identifier FUNCTION
+FUNCTION => \(ARGUMENT_LIST\)
+
+ARGUMENT_LIST => CONSTANT (, CONSTANT)* | <EMPTY>
+
+CONSTANT => identifier | number
+
+END => (eof | eol | stop)+
