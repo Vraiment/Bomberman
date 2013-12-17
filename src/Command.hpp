@@ -12,7 +12,7 @@
 namespace Bomberman {
 	class Command {
 	public:
-		virtual ~Command() { }
+		virtual ~Command();
 		
 		virtual void execute() = 0;
 		

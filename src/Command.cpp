@@ -9,6 +9,10 @@
 #include "Command.hpp"
 
 namespace Bomberman {
+	Command::~Command() {
+		
+	}
+	
 	bool Command::finished() const {
 		return _finished;
 	}
