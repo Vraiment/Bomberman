@@ -8,6 +8,8 @@
 
 #include "PlayerCommand.hpp"
 
+#include "../TileMap.hpp"
+#include "../Elements/Brick.hpp"
 #include "../Elements/Player.hpp"
 #include "../Log/Log.hpp"
 #include "../Log/LogLevel.hpp"
@@ -16,7 +18,7 @@
 using namespace std;
 
 namespace Bomberman {
-	PlayerCommand::PlayerCommand(shared_ptr<Player> player, string command, vector<string> arguments) : player(player), command(command), arguments(arguments) {
+	PlayerCommand::PlayerCommand(shared_ptr<Player> player, shared_ptr<TileMap> tileMap, string command, vector<string> arguments) : player(player), tileMap(tileMap), command(command), arguments(arguments) {
 		
 	}
 	
@@ -33,23 +35,36 @@ namespace Bomberman {
 	void PlayerCommand::move() {
 		bool error = false;
 		
+		Coordinate newPosition;
+		
 		if (arguments.size() == 1) {
 			string direction = arguments[0];
 			
+			newPosition = player->position();
+			
 			if (direction == "right") {
-				++player->position().i;
+				++newPosition.i;
 			} else if (direction == "up") {
-				--player->position().j;
+				--newPosition.j;
 			} else if (direction == "left") {
-				--player->position().i;
+				--newPosition.i;
 			} else if (direction == "down") {
-				++player->position().j;
+				++newPosition.j;
 			} else {
 				error = true;
 			}
 		} else if (arguments.size() == 2) {
 			throw NotImplementedException();
 		}
+		
+		auto bricks = tileMap->bricks();
+		for (auto brick = bricks.begin(); brick != bricks.end(); ++brick) {
+			if (newPosition == brick->position()) {
+				return;
+			}
+		}
+		
+		player->position() = newPosition;
 		
 		if (error) {
 			Log::get() << "Invalid arguments for \"player.move()\"" << LogLevel::error;

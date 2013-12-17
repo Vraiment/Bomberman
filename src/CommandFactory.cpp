@@ -37,7 +37,7 @@ namespace Bomberman {
 		shared_ptr<Command> result;
 		
 		if (receiver == "player") {
-			result.reset(new PlayerCommand(player, message, arguments));
+			result.reset(new PlayerCommand(player, tileMap, message, arguments));
 		} else {
 			throw InvalidReceiverException();
 		}

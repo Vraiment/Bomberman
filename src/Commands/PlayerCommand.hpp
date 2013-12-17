@@ -16,16 +16,18 @@
 
 namespace Bomberman {
 	class Player;
+	class TileMap;
 	
 	class PlayerCommand : public Command {
 	public:
-		PlayerCommand(std::shared_ptr<Player> player, std::string command, std::vector<std::string> arguments);
+		PlayerCommand(std::shared_ptr<Player> player, std::shared_ptr<TileMap> tileMap, std::string command, std::vector<std::string> arguments);
 		
 		void execute();
 		
 	private:
 		void move();
 		
+		std::shared_ptr<TileMap> tileMap;
 		std::shared_ptr<Player> player;
 		std::string command;
 		std::vector<std::string> arguments;
