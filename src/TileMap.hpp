@@ -12,7 +12,6 @@
 #include <string>
 #include <vector>
 
-#include "CommandQueue.hpp"
 #include "Elements/Player.hpp"
 #include "Math/Rectangle.hpp"
 
@@ -31,11 +30,9 @@ namespace Bomberman {
 		std::vector<Brick> bricks() const;
 		std::shared_ptr<Player> player() const;
 		
-		void execute(std::string command);
 		void update();
 		
 	private:
-		CommandQueue commandQueue;
 		std::shared_ptr<Player> _player;
 		int _width, _height;
 		std::string _name;

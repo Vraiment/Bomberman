@@ -14,17 +14,19 @@
 #include <memory>
 
 namespace Bomberman {
-	class TileMap;
+	class CommandFactory;
+	class CommandQueue;
 	
 	class PlayerEvents : public EventListener {
 	public:
-		PlayerEvents(std::shared_ptr<TileMap> tileMap);
+		PlayerEvents(std::shared_ptr<CommandFactory> commandFactory, std::shared_ptr<CommandQueue> commandQueue);
 		~PlayerEvents();
 		
 		void listenEvent(SDL_Event event);
 		
 	private:
-		std::shared_ptr<TileMap> tileMap;
+		std::shared_ptr<CommandFactory> commandFactory;
+		std::shared_ptr<CommandQueue> commandQueue;
 	};
 }
 

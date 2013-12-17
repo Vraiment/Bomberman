@@ -49,11 +49,7 @@ namespace Bomberman {
 		return _player;
 	}
 	
-	void TileMap::execute(string command) {
-		throw NotImplementedException();		
-	}
-	
 	void TileMap::update() {
-		commandQueue.update();
+		
 	}
 }

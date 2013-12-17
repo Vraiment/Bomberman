@@ -12,13 +12,16 @@
 #include <list>
 
 namespace Bomberman {
-	class Screen;
+	class CommandQueue;
 	class EventListener;
+	class Screen;
 	
 	class MainLoop {
 	public:
 		MainLoop();
 		~MainLoop();
+		
+		std::shared_ptr<CommandQueue> commandQueue();
 		
 		void run();
 		
@@ -34,6 +37,7 @@ namespace Bomberman {
 		bool hasScreen(std::shared_ptr<Screen> screen);
 		bool hasEventListener(std::shared_ptr<EventListener> eventListener);
 		
+		std::shared_ptr<CommandQueue> _commandQueue;
 		std::list<std::shared_ptr<Screen>> screens;
 		std::list<std::shared_ptr<EventListener>> eventListeners;
 	};

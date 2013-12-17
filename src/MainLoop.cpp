@@ -10,6 +10,7 @@
 
 #include <SDL2/SDL.h>
 
+#include "CommandQueue.hpp"
 #include "EventListener.hpp"
 #include "Log/Log.hpp"
 #include "Log/LogLevel.hpp"
@@ -18,12 +19,16 @@
 using namespace std;
 
 namespace Bomberman {
-	MainLoop::MainLoop() {
+	MainLoop::MainLoop() : _commandQueue(new CommandQueue()) {
 		
 	}
 	
 	MainLoop::~MainLoop() {
 		
+	}
+	
+	shared_ptr<CommandQueue> MainLoop::commandQueue() {
+		return _commandQueue;
 	}
 	
 	void MainLoop::run() {
@@ -45,6 +50,8 @@ namespace Bomberman {
 					(*it)->listenEvent(event);
 				}
 			}
+			
+			_commandQueue->update();
 			
 			for (auto it = screens.begin(); it != screens.end(); ++it) {
 				SDL_RenderClear((*it)->renderer().get());

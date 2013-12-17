@@ -10,12 +10,13 @@
 
 #include <SDL2/SDL.h>
 
-#include "../TileMap.hpp"
+#include "../CommandFactory.hpp"
+#include "../CommandQueue.hpp"
 
 using namespace std;
 
 namespace Bomberman {
-	PlayerEvents::PlayerEvents(shared_ptr<TileMap> tileMap) : tileMap(tileMap) {
+	PlayerEvents::PlayerEvents(shared_ptr<CommandFactory> commandFactory, shared_ptr<CommandQueue> commandQueue) : commandFactory(commandFactory), commandQueue(commandQueue) {
 		
 	}
 	
@@ -24,27 +25,33 @@ namespace Bomberman {
 	}
 	
 	void PlayerEvents::listenEvent(SDL_Event event) {
+		shared_ptr<Command> command;
+		
 		if (event.type == SDL_KEYDOWN) {
 			switch (event.key.keysym.sym) {
 				case SDLK_RIGHT:
-					tileMap->execute("player.move(right)");
+					command = commandFactory->sendMessage("player", "move", { "right" });
 					break;
 					
 				case SDLK_UP:
-					tileMap->execute("player.move(up)");
+					command = commandFactory->sendMessage("player", "move", { "up" });
 					break;
 					
 				case SDLK_LEFT:
-					tileMap->execute("player.move(left)");
+					command = commandFactory->sendMessage("player", "move", { "left" });
 					break;
 					
 				case SDLK_DOWN:
-					tileMap->execute("player.move(down)");
+					command = commandFactory->sendMessage("player", "move", { "down" });
 					break;
 					
 				default:
 					break;
 			}
+		}
+		
+		if (command) {
+			commandQueue->addCommand(command);
 		}
 	}
 }
