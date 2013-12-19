@@ -75,6 +75,10 @@ namespace Bomberman {
 		
 	}
 	
+	Rectangle TileMap::area() const {
+		return _area;
+	}
+	
 	int TileMap::width() const {
 		return _area.width;
 	}

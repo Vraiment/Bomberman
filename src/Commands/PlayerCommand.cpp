@@ -56,6 +56,9 @@ namespace Bomberman {
 		} else if (arguments.size() == 2) {
 			throw NotImplementedException();
 		}
+		if (!tileMap->area().contains(newPosition)) {
+			return;
+		}
 		
 		auto bricks = tileMap->bricks();
 		for (auto brick = bricks.begin(); brick != bricks.end(); ++brick) {
