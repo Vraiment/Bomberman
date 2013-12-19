@@ -58,6 +58,27 @@ namespace Bomberman {
 			return "invalid receiver for a message";
 		}
 	};
+	
+	class OutOfRangeException : public Exception {
+	public:
+		virtual const char* what() const noexcept {
+			return "value out of range";
+		}
+	};
+	
+	class NullArgumentException : public Exception {
+	public:
+		virtual const char* what() const noexcept {
+			return "argument is null";
+		}
+	};
+	
+	class InvalidArgumentException : public Exception {
+	public:
+		virtual const char* what() const noexcept {
+			return "argument is invalid";
+		}
+	};
 }
 
 #endif //__Exception__hpp__

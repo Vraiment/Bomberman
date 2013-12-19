@@ -8,6 +8,7 @@
 
 #include "Viewport.hpp"
 
+#include "../Elements/Player.hpp"
 #include "../Elements/Brick.hpp"
 #include "../Map/TileMap.hpp"
 #include "../Utils/Exception.hpp"

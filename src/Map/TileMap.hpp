@@ -12,18 +12,19 @@
 #include <string>
 #include <vector>
 
-#include "../Elements/Player.hpp"
 #include "../Math/Rectangle.hpp"
 
 namespace Bomberman {
 	class Brick;
+	class Player;
+	class TileMapBuilder;
 	
 	class TileMap {
-	friend class TileMapLoader;
 	public:
-		TileMap();
+		TileMap(std::shared_ptr<TileMapBuilder> builder);
 		~TileMap();
 		
+		Rectangle area() const;
 		int width() const;
 		int height() const;
 		std::string name() const;
@@ -33,9 +34,9 @@ namespace Bomberman {
 		void update();
 		
 	private:
-		std::shared_ptr<Player> _player;
-		int _width, _height;
+		Rectangle _area;
 		std::string _name;
+		std::shared_ptr<Player> _player;
 		std::vector<Brick> _bricks;
 	};
 }

@@ -115,6 +115,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5B03C1271860F0450011C3DA /* TileMapBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TileMapBuilder.hpp; sourceTree = "<group>"; };
 		5B0496401825CF7E00C1FBCB /* Screen.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Screen.hpp; sourceTree = "<group>"; };
 		5B0496411825D01600C1FBCB /* MainLoop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainLoop.cpp; sourceTree = "<group>"; };
 		5B0496421825D01600C1FBCB /* MainLoop.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MainLoop.hpp; sourceTree = "<group>"; };
@@ -217,6 +218,7 @@
 			children = (
 				5B3795C81820F6E60050381F /* TileMap.cpp */,
 				5B3795C91820F6E60050381F /* TileMap.hpp */,
+				5B03C1271860F0450011C3DA /* TileMapBuilder.hpp */,
 				5B5BB1C51856D5370019CAD1 /* TileMapLoader.cpp */,
 				5B5BB1C61856D5370019CAD1 /* TileMapLoader.hpp */,
 			);

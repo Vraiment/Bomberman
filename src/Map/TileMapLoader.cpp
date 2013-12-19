@@ -14,17 +14,45 @@
 #include "../Log/LogLevel.hpp"
 #include "../Utils/Exception.hpp"
 #include "../Utils/OperatingSystem.hpp"
-#include "TileMap.hpp"
+#include "TileMapBuilder.hpp"
 
 using namespace std;
 using namespace tinyxml2;
 
 namespace Bomberman {
+	class Builder : public TileMapBuilder {
+	public:
+		int _width = 0, _height = 0;
+		string _name;
+		vector<Brick> _bricks;
+		shared_ptr<Player> _player;
+		
+		int width() const {
+			return _width;
+		}
+		
+		int height() const {
+			return _height;
+		}
+		
+		string name() const {
+			return _name;
+		}
+		
+		vector<Brick> bricks() const {
+			return _bricks;
+		}
+		
+		shared_ptr<Player> player() const {
+			return _player;
+		}
+	};
+	
 	TileMapLoader::~TileMapLoader() {
 		
 	}
 	
-	shared_ptr<TileMap> TileMapLoader::load(std::string fileName) {
+	std::shared_ptr<TileMapBuilder> TileMapLoader::load(std::string fileName) {
 		reset();
 		
 		this->fileName = fileName;
@@ -33,6 +61,7 @@ namespace Bomberman {
 		if (document.LoadFile(fullPath.c_str()) == XML_NO_ERROR) {
 			if (document.NoChildren()) {
 				Log::get() << "Empty map file \"" << fileName << "\"." << LogLevel::error;
+				_error = true;
 			} else {
 				loadDimension(document.RootElement());
 				loadName(document.RootElement()->FirstChildElement("name"));
@@ -40,67 +69,78 @@ namespace Bomberman {
 				loadBricks(document.RootElement()->FirstChildElement("bricks"));
 			}
 		} else {
-			error = true;
+			_error = true;
 		}
 		
-		if (error) {
+		if (_error) {
 			Log::get() << "Error loading map \"" << fileName << "\"." << OpeningFileErrorException();
+			builder.reset();
 		}
 		
-		return tileMap;
+		return builder;
 	}
 	
 	void TileMapLoader::reset() {
 		fileName.clear();
 		document.Clear();
-		error = false;
-		tileMap.reset(new TileMap());
+		_error = false;
+		builder.reset(new Builder());
 	}
 	
 	void TileMapLoader::loadDimension(tinyxml2::XMLElement *root) {
-		if (root->QueryIntAttribute("width", &tileMap->_width) != XML_NO_ERROR) {
-			error = true;
+		int width = 0;
+		int height = 0;
+		
+		if (root->QueryIntAttribute("width", &width) != XML_NO_ERROR) {
+			_error = true;
 			Log::get() << "Invalid width in map file " << fileName << "." << LogLevel::error;
 		}
 		
-		if (root->QueryIntAttribute("height", &tileMap->_height) != XML_NO_ERROR) {
-			error = true;
+		if (root->QueryIntAttribute("height", &height) != XML_NO_ERROR) {
+			_error = true;
 			Log::get() << "Invalid height in map file " << fileName << "." << LogLevel::error;
 		}
+		
+		dynamic_pointer_cast<Builder>(builder)->_width = width;
+		dynamic_pointer_cast<Builder>(builder)->_height = height;
 	}
 	
-	void TileMapLoader::loadName(XMLElement *name) {
-		if (name == nullptr) {
+	void TileMapLoader::loadName(XMLElement *nameNode) {
+		if (nameNode == nullptr) {
 			Log::get() << "No name in map file \"" << fileName << "\"." << LogLevel::error;
-			error = true;
+			_error = true;
 		}
 		
-		tileMap->_name = name->GetText();
+		dynamic_pointer_cast<Builder>(builder)->_name = nameNode->GetText();
 	}
 	
-	void TileMapLoader::loadPlayer(XMLElement *player) {
-		if (player == nullptr) {
+	void TileMapLoader::loadPlayer(XMLElement *playerNode) {
+		shared_ptr<Player> player(new Player());
+		
+		if (playerNode == nullptr) {
 			Log::get() << "No information for player in map file \"" << fileName << "\"." << LogLevel::error;
-			error = true;
+			_error = true;
 			return;
 		}
 		
-		auto position = player->FirstChildElement("position");
+		auto position = playerNode->FirstChildElement("position");
 		if (position == nullptr) {
 			Log::get() << "No position for player in map file \"" << fileName << "\"." << LogLevel::error;
-			error = true;
+			_error = true;
 			return;
 		}
 		
-		if (position->QueryIntAttribute("column", &tileMap->player()->position().i) != XML_NO_ERROR) {
+		if (position->QueryIntAttribute("column", &player->position().i) != XML_NO_ERROR) {
 			Log::get() << "Invalid column for player in map file \"" << fileName << "\"." << LogLevel::error;
-			error = true;
+			_error = true;
 		}
 		
-		if (position->QueryIntAttribute("row", &tileMap->player()->position().j) != XML_NO_ERROR) {
+		if (position->QueryIntAttribute("row", &player->position().j) != XML_NO_ERROR) {
 			Log::get() << "Invalid row for player in map file \"" << fileName << "\"." << LogLevel::error;
-			error = true;
+			_error = true;
 		}
+		
+		dynamic_pointer_cast<Builder>(builder)->_player = player;
 	}
 	
 	void TileMapLoader::loadBricks(XMLElement *bricks) {
@@ -133,31 +173,13 @@ namespace Bomberman {
 			}
 			
 			if (!error) {
-				addBrick(bricksCount, Brick(c, destructible));
+				dynamic_pointer_cast<Builder>(builder)->_bricks.push_back(Brick(c, destructible));
+			} else {
+				_error |= error;
 			}
 			
 			brick = brick->NextSiblingElement();
 			++bricksCount;
 		}
-	}
-	
-	void TileMapLoader::addBrick(int number, Brick brick) {
-		Rectangle area(0, 0, tileMap->_width, tileMap->_height);
-		
-		if (!area.contains(brick.position())) {
-			Log::get() << "Brick number " << number << " out of map area in map file \"" << fileName << "\"." << LogLevel::error;
-			return;
-		}
-		
-		for (int n = 0; n < tileMap->_bricks.size(); ++n) {
-			if (tileMap->_bricks[n].position() == brick.position()) {
-				Log::get() << "Brick number " << number << " has duplicate position " << brick.position().toString() << " in map file \"" << fileName << "\"." << LogLevel::warning;
-				
-				tileMap->_bricks[n] = brick;
-				return;
-			}
-		}
-		
-		tileMap->_bricks.push_back(brick);
 	}
 }

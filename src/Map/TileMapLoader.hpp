@@ -11,34 +11,28 @@
 
 #include <string>
 #include <tinyxml2/tinyxml2.h>
-#include <vector>
-
-#include "../Elements/Player.hpp"
 
 namespace Bomberman {
-	class Brick;
-	class TileMap;
+	class TileMapBuilder;
 	
 	class TileMapLoader {
 	public:
 		~TileMapLoader();
 		
-		std::shared_ptr<TileMap> load(std::string fileName);
+		std::shared_ptr<TileMapBuilder> load(std::string fileName);
 		
 	private:
 		void reset();
 		
 		void loadDimension(tinyxml2::XMLElement *root);
-		void loadName(tinyxml2::XMLElement *name);
-		void loadPlayer(tinyxml2::XMLElement *player);
-		void loadBricks(tinyxml2::XMLElement *bricks);
-		
-		void addBrick(int number, Brick brick);
+		void loadName(tinyxml2::XMLElement *nameNode);
+		void loadPlayer(tinyxml2::XMLElement *playerNode);
+		void loadBricks(tinyxml2::XMLElement *bricksNode);
 		
 		std::string fileName;
 		tinyxml2::XMLDocument document;
-		bool error;
-		std::shared_ptr<TileMap> tileMap;
+		bool _error;
+		std::shared_ptr<TileMapBuilder> builder;
 	};
 }
 
