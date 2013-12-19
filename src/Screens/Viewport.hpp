@@ -30,15 +30,13 @@ namespace Bomberman {
 		
 		void loadTileMap(std::shared_ptr<TileMap> tileMap);
 		
-		Coordinate& origin();
-		
 	private:
 		Coordinate transform(int i, int j) const;
 		Coordinate transform(Coordinate c) const;
 		
 		bool shouldDraw();
+		void updateOrigin();
 		void drawBackground();
-		void drawBorder();
 		void drawBricks();
 		void drawPlayer();
 		
@@ -49,7 +47,7 @@ namespace Bomberman {
 		Texture destructibleBrick;
 		Texture player;
 		std::shared_ptr<TileMap> tileMap;
-		Coordinate _origin;
+		Coordinate _origin, playerPos;
 	};
 }
 

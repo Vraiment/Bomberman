@@ -34,8 +34,9 @@ namespace Bomberman {
 			return;
 		}
 		
+		updateOrigin();
+		
 		drawBackground();
-		drawBorder();
 		drawBricks();
 		drawPlayer();
 	}
@@ -49,10 +50,6 @@ namespace Bomberman {
 		
 		background.rectangle().width = tileSize.i * tileMap->width();
 		background.rectangle().height = tileSize.j * tileMap->height();
-	}
-	
-	Coordinate& Viewport::origin() {
-		return _origin;
 	}
 	
 	Coordinate Viewport::transform(int i, int j) const {
@@ -71,8 +68,16 @@ namespace Bomberman {
 		;
 	}
 	
+	void Viewport::updateOrigin() {
+		playerPos = transform(tileMap->player()->position() * tileSize);
+		
+		if (!rectangle().contains(playerPos)) {
+			_origin += player.position() - playerPos;
+		}
+	}
+	
 	void Viewport::drawBackground() {
-		background.position() = origin();
+		background.position() = _origin;
 		
 		if (!rectangle().intersects(background.rectangle())) {
 			return;
@@ -81,39 +86,6 @@ namespace Bomberman {
 		background.draw();
 	}
 	
-	void Viewport::drawBorder() {
-		int columns = tileMap->width() + 2;
-		int rows = tileMap->height() + 1;
-		int a, b;
-		
-		a = _origin.j - tileSize.j;
-		b = _origin.j + (tileMap->height() * tileSize.j);
-		
-		brick.rectangle().i = _origin.i - (tileSize.i * 2);
-		for (int n = 0; n < columns; ++n) {
-			brick.position().i += tileSize.i;
-			
-			brick.position().j = a;
-			brick.draw();
-			
-			brick.position().j = b;
-			brick.draw();
-		}
-		
-		a = _origin.i - tileSize.i;
-		b = _origin.i + (tileMap->width() * tileSize.i);
-		
-		brick.rectangle().j = _origin.j - tileSize.j;
-		for (int n = 0; n < rows; ++n) {
-			brick.position().j += tileSize.j;
-			
-			brick.position().i = a;
-			brick.draw();
-			
-			brick.position().i = b;
-			brick.draw();
-		}
-	}
 	void Viewport::drawBricks() {
 		auto bricks = tileMap->bricks();
 		
@@ -127,7 +99,7 @@ namespace Bomberman {
 	}
 	
 	void Viewport::drawPlayer() {
-		player.position() = transform(tileMap->player()->position() * tileSize);
+		player.position() = playerPos;
 		
 		player.draw();
 	}

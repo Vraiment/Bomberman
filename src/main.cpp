@@ -40,7 +40,6 @@ int main(int argc, char* argv[]) {
 	commandFactory->setPlayer(tileMap->player());
 	
 	viewport->loadTileMap(tileMap);
-	viewport->origin() = Coordinate(250, 50);
 	
 	//Game
 	loop.addEventListener(playerEvents);
