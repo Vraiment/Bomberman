@@ -1,5 +1,5 @@
 //
-//  TileMapLoader.hpp
+//  XmlTileMapLoader.hpp
 //  Bomberman
 //
 //  Created on 09/12/13.
@@ -15,9 +15,9 @@
 namespace Bomberman {
 	class TileMapBuilder;
 	
-	class TileMapLoader {
+	class XmlTileMapLoader {
 	public:
-		~TileMapLoader();
+		~XmlTileMapLoader();
 		
 		std::shared_ptr<TileMapBuilder> load(std::string fileName);
 		

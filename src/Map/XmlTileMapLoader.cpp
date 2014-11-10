@@ -1,12 +1,12 @@
 //
-//  TileMapLoader.cpp
+//  XmlTileMapLoader.cpp
 //  Bomberman
 //
 //  Created on 09/12/13.
 //  Copyright (c) 2013 Vraiment. All rights reserved.
 //
 
-#include "TileMapLoader.hpp"
+#include "XmlTileMapLoader.hpp"
 
 #include "../Elements/Brick.hpp"
 #include "../Elements/Player.hpp"
@@ -48,11 +48,11 @@ namespace Bomberman {
 		}
 	};
 	
-	TileMapLoader::~TileMapLoader() {
+	XmlTileMapLoader::~XmlTileMapLoader() {
 		
 	}
 	
-	std::shared_ptr<TileMapBuilder> TileMapLoader::load(std::string fileName) {
+	std::shared_ptr<TileMapBuilder> XmlTileMapLoader::load(std::string fileName) {
 		reset();
 		
 		this->fileName = fileName;
@@ -80,14 +80,14 @@ namespace Bomberman {
 		return builder;
 	}
 	
-	void TileMapLoader::reset() {
+	void XmlTileMapLoader::reset() {
 		fileName.clear();
 		document.Clear();
 		_error = false;
 		builder.reset(new Builder());
 	}
 	
-	void TileMapLoader::loadDimension(tinyxml2::XMLElement *root) {
+	void XmlTileMapLoader::loadDimension(tinyxml2::XMLElement *root) {
 		int width = 0;
 		int height = 0;
 		
@@ -105,7 +105,7 @@ namespace Bomberman {
 		dynamic_pointer_cast<Builder>(builder)->_height = height;
 	}
 	
-	void TileMapLoader::loadName(XMLElement *nameNode) {
+	void XmlTileMapLoader::loadName(XMLElement *nameNode) {
 		if (nameNode == nullptr) {
 			Log::get() << "No name in map file \"" << fileName << "\"." << LogLevel::error;
 			_error = true;
@@ -114,7 +114,7 @@ namespace Bomberman {
 		dynamic_pointer_cast<Builder>(builder)->_name = nameNode->GetText();
 	}
 	
-	void TileMapLoader::loadPlayer(XMLElement *playerNode) {
+	void XmlTileMapLoader::loadPlayer(XMLElement *playerNode) {
 		shared_ptr<Player> player(new Player());
 		
 		if (playerNode == nullptr) {
@@ -143,7 +143,7 @@ namespace Bomberman {
 		dynamic_pointer_cast<Builder>(builder)->_player = player;
 	}
 	
-	void TileMapLoader::loadBricks(XMLElement *bricks) {
+	void XmlTileMapLoader::loadBricks(XMLElement *bricks) {
 		if (bricks == nullptr) {
 			Log::get() << "No bricks node in map file " << fileName << "." << LogLevel::warning;
 			return;

@@ -33,7 +33,7 @@
 		5B4A120618331CB600C8A950 /* destructibleBrick.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B4A120018331CAB00C8A950 /* destructibleBrick.png */; };
 		5B4A120B1833256800C8A950 /* OperatingSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B4A120A1833256800C8A950 /* OperatingSystem.cpp */; };
 		5B5BB1C41856CEDA0019CAD1 /* CommandQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BB1C21856CEDA0019CAD1 /* CommandQueue.cpp */; };
-		5B5BB1C71856D5370019CAD1 /* TileMapLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BB1C51856D5370019CAD1 /* TileMapLoader.cpp */; };
+		5B5BB1C71856D5370019CAD1 /* XmlTileMapLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BB1C51856D5370019CAD1 /* XmlTileMapLoader.cpp */; };
 		5B6E81F5182AFE870031B1FE /* EmptyScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E81F3182AFE870031B1FE /* EmptyScreen.cpp */; };
 		5B755C771822E81300DADA25 /* Configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B755C751822E81300DADA25 /* Configuration.cpp */; };
 		5B7732B5182AFB2F003A2747 /* SDL2_image.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B1BF7511822E48B009DCA31 /* SDL2_image.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -150,8 +150,8 @@
 		5B5BB1C01856CE990019CAD1 /* Command.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Command.hpp; sourceTree = "<group>"; };
 		5B5BB1C21856CEDA0019CAD1 /* CommandQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommandQueue.cpp; sourceTree = "<group>"; };
 		5B5BB1C31856CEDA0019CAD1 /* CommandQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CommandQueue.hpp; sourceTree = "<group>"; };
-		5B5BB1C51856D5370019CAD1 /* TileMapLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TileMapLoader.cpp; sourceTree = "<group>"; };
-		5B5BB1C61856D5370019CAD1 /* TileMapLoader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TileMapLoader.hpp; sourceTree = "<group>"; };
+		5B5BB1C51856D5370019CAD1 /* XmlTileMapLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XmlTileMapLoader.cpp; sourceTree = "<group>"; };
+		5B5BB1C61856D5370019CAD1 /* XmlTileMapLoader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XmlTileMapLoader.hpp; sourceTree = "<group>"; };
 		5B6E81F3182AFE870031B1FE /* EmptyScreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EmptyScreen.cpp; sourceTree = "<group>"; };
 		5B6E81F4182AFE870031B1FE /* EmptyScreen.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EmptyScreen.hpp; sourceTree = "<group>"; };
 		5B755C751822E81300DADA25 /* Configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Configuration.cpp; sourceTree = "<group>"; };
@@ -220,8 +220,8 @@
 				5B3795C81820F6E60050381F /* TileMap.cpp */,
 				5B3795C91820F6E60050381F /* TileMap.hpp */,
 				5B03C1271860F0450011C3DA /* TileMapBuilder.hpp */,
-				5B5BB1C51856D5370019CAD1 /* TileMapLoader.cpp */,
-				5B5BB1C61856D5370019CAD1 /* TileMapLoader.hpp */,
+				5B5BB1C51856D5370019CAD1 /* XmlTileMapLoader.cpp */,
+				5B5BB1C61856D5370019CAD1 /* XmlTileMapLoader.hpp */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -540,7 +540,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BE4A21818358FFF00EE49AF /* Brick.cpp in Sources */,
-				5B5BB1C71856D5370019CAD1 /* TileMapLoader.cpp in Sources */,
+				5B5BB1C71856D5370019CAD1 /* XmlTileMapLoader.cpp in Sources */,
 				5B0C65DF182ADDF8003E3BD4 /* Screen.cpp in Sources */,
 				5B0C86861852612C0005CADD /* Player.cpp in Sources */,
 				5B3B82DE1857CDC100CECE27 /* TokenFactory.cpp in Sources */,

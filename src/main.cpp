@@ -16,7 +16,7 @@
 #include "EventListeners/PlayerEvents.hpp"
 #include "MainLoop.hpp"
 #include "Map/TileMap.hpp"
-#include "Map/TileMapLoader.hpp"
+#include "Map/XmlTileMapLoader.hpp"
 #include "Screens/Viewport.hpp"
 
 using namespace Bomberman;
@@ -27,7 +27,7 @@ int main(int argc, char* argv[]) {
 	Engine engine;
 	Configuration config("config.xml");
 	shared_ptr<CommandFactory> commandFactory(new CommandFactory());
-	TileMapLoader mapLoader;
+	XmlTileMapLoader mapLoader;
 	MainLoop loop;
 	
 	//Dependants objects
