@@ -8,6 +8,7 @@
 
 #include "PlayerCommand.hpp"
 
+#include "../Constants.hpp"
 #include "../Elements/Brick.hpp"
 #include "../Elements/Player.hpp"
 #include "../Log/Log.hpp"
@@ -16,6 +17,7 @@
 #include "../Utils/Exception.hpp"
 
 using namespace std;
+using namespace Bomberman::Constants;
 
 namespace Bomberman {
 	PlayerCommand::PlayerCommand(shared_ptr<Player> player, shared_ptr<TileMap> tileMap, string command, vector<string> arguments) : player(player), tileMap(tileMap), command(command), arguments(arguments) {
@@ -23,7 +25,7 @@ namespace Bomberman {
 	}
 	
 	void PlayerCommand::execute() {
-		if (command == "move") {
+		if (command == MSG_MOVE) {
 			move();
 		} else {
 			Log::get() << "Invalid command \"player." << command << "()\"." << LogLevel::error;
@@ -42,13 +44,13 @@ namespace Bomberman {
 			
 			newPosition = player->position();
 			
-			if (direction == "right") {
+			if (direction == ARG_RIGHT) {
 				++newPosition.i;
-			} else if (direction == "up") {
+			} else if (direction == ARG_UP) {
 				--newPosition.j;
-			} else if (direction == "left") {
+			} else if (direction == ARG_LEFT) {
 				--newPosition.i;
-			} else if (direction == "down") {
+			} else if (direction == ARG_DOWN) {
 				++newPosition.j;
 			} else {
 				error = true;

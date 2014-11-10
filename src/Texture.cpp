@@ -11,11 +11,13 @@
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 
+#include "Constants.hpp"
 #include "Log/Log.hpp"
 #include "Log/LogLevel.hpp"
 #include "Utils/OperatingSystem.hpp"
 
 using namespace std;
+using namespace Bomberman::Constants;
 
 namespace Bomberman {
 	void DestroyTexture(SDL_Texture *texture) {
@@ -27,7 +29,7 @@ namespace Bomberman {
 	}
 	
 	Texture::Texture(string fileName, std::shared_ptr<SDL_Renderer> renderer) : texture(nullptr), renderer(renderer), _loaded(false), _name(fileName) {
-		string fullName = "textures";
+		string fullName = DIR_TEXTURES;
 		fullName += dirSeparator;
 		fullName += fileName;
 		

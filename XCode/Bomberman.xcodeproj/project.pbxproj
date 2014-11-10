@@ -36,14 +36,14 @@
 		5B5BB1C71856D5370019CAD1 /* TileMapLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BB1C51856D5370019CAD1 /* TileMapLoader.cpp */; };
 		5B6E81F5182AFE870031B1FE /* EmptyScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E81F3182AFE870031B1FE /* EmptyScreen.cpp */; };
 		5B755C771822E81300DADA25 /* Configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B755C751822E81300DADA25 /* Configuration.cpp */; };
-		5B7732B5182AFB2F003A2747 /* SDL2_image.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B1BF7511822E48B009DCA31 /* SDL2_image.framework */; };
+		5B7732B5182AFB2F003A2747 /* SDL2_image.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B1BF7511822E48B009DCA31 /* SDL2_image.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5B87384D184E582B0014D94B /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B87384C184E582B0014D94B /* Rectangle.cpp */; };
 		5B87384F184E83AD0014D94B /* config.xml in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BD6AD0018236FC500E661DA /* config.xml */; };
 		5BBB9E541820EB3F00726BC5 /* Engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BBB9E521820EB3F00726BC5 /* Engine.cpp */; };
 		5BBFCCA2185FFD910016F56A /* First.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BBFCC9E185FFD910016F56A /* First.cpp */; };
 		5BBFCCA3185FFD910016F56A /* Parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BBFCCA0185FFD910016F56A /* Parser.cpp */; };
 		5BBFCCA6185FFF710016F56A /* CommandFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BBFCCA4185FFF710016F56A /* CommandFactory.cpp */; };
-		5BD37AFE18221A3D00BB1C28 /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B0EEC2A1820E0D20084C40C /* SDL2.framework */; };
+		5BD37AFE18221A3D00BB1C28 /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B0EEC2A1820E0D20084C40C /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5BD6AD0518237F2D00E661DA /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BD6AD0318237CE000E661DA /* Logger.cpp */; };
 		5BD6AD171823A36B00E661DA /* tinyxml2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BD6AD161823A36B00E661DA /* tinyxml2.cpp */; };
 		5BDBF7E71821780000BE71CC /* Viewport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BDBF7E51821780000BE71CC /* Viewport.cpp */; };
@@ -160,6 +160,7 @@
 		5B76EC831820DD1B00D499EE /* BombermanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BombermanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B87384B184E580E0014D94B /* Rectangle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Rectangle.hpp; sourceTree = "<group>"; };
 		5B87384C184E582B0014D94B /* Rectangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Rectangle.cpp; sourceTree = "<group>"; };
+		5B9228971A107EA7009ADD10 /* Constants.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Constants.hpp; sourceTree = "<group>"; };
 		5BBB9E521820EB3F00726BC5 /* Engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Engine.cpp; sourceTree = "<group>"; };
 		5BBB9E531820EB3F00726BC5 /* Engine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Engine.hpp; sourceTree = "<group>"; };
 		5BBC81291829C0CF006F448F /* EventListener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EventListener.hpp; sourceTree = "<group>"; };
@@ -361,6 +362,7 @@
 				5B755C751822E81300DADA25 /* Configuration.cpp */,
 				5B755C761822E81300DADA25 /* Configuration.hpp */,
 				5B3B82DB1857CD6A00CECE27 /* Console */,
+				5B9228971A107EA7009ADD10 /* Constants.hpp */,
 				5B5BB1B61856ADA70019CAD1 /* Elements */,
 				5BBB9E521820EB3F00726BC5 /* Engine.cpp */,
 				5BBB9E531820EB3F00726BC5 /* Engine.hpp */,
@@ -492,7 +494,7 @@
 		5B76EC5A1820DD1B00D499EE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Vraiment;
 				TargetAttributes = {
 					5B76EC821820DD1B00D499EE = {

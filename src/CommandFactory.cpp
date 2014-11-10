@@ -8,6 +8,7 @@
 
 #include "CommandFactory.hpp"
 
+#include "Constants.hpp"
 #include "Commands/PlayerCommand.hpp"
 #include "Elements/Player.hpp"
 #include "Log/Log.hpp"
@@ -15,6 +16,7 @@
 #include "Utils/Exception.hpp"
 
 using namespace std;
+using namespace Bomberman::Constants;
 
 namespace Bomberman {
 	CommandFactory::~CommandFactory() {
@@ -36,7 +38,7 @@ namespace Bomberman {
 	shared_ptr<Command> CommandFactory::sendMessage(string receiver, string message, vector<string> arguments) {
 		shared_ptr<Command> result;
 		
-		if (receiver == "player") {
+		if (receiver == OBJ_PLAYER) {
 			result.reset(new PlayerCommand(player, tileMap, message, arguments));
 		} else {
 			throw InvalidReceiverException();

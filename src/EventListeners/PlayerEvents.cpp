@@ -10,10 +10,12 @@
 
 #include <SDL2/SDL.h>
 
+#include "../Constants.hpp"
 #include "../CommandFactory.hpp"
 #include "../CommandQueue.hpp"
 
 using namespace std;
+using namespace Bomberman::Constants;
 
 namespace Bomberman {
 	PlayerEvents::PlayerEvents(shared_ptr<CommandFactory> commandFactory, shared_ptr<CommandQueue> commandQueue) : commandFactory(commandFactory), commandQueue(commandQueue) {
@@ -30,19 +32,19 @@ namespace Bomberman {
 		if (event.type == SDL_KEYDOWN) {
 			switch (event.key.keysym.sym) {
 				case SDLK_RIGHT:
-					command = commandFactory->sendMessage("player", "move", { "right" });
+					command = commandFactory->sendMessage(OBJ_PLAYER, MSG_MOVE, { ARG_RIGHT });
 					break;
 					
 				case SDLK_UP:
-					command = commandFactory->sendMessage("player", "move", { "up" });
+					command = commandFactory->sendMessage(OBJ_PLAYER, MSG_MOVE, { ARG_UP });
 					break;
 					
 				case SDLK_LEFT:
-					command = commandFactory->sendMessage("player", "move", { "left" });
+					command = commandFactory->sendMessage(OBJ_PLAYER, MSG_MOVE, { ARG_LEFT });
 					break;
 					
 				case SDLK_DOWN:
-					command = commandFactory->sendMessage("player", "move", { "down" });
+					command = commandFactory->sendMessage(OBJ_PLAYER, MSG_MOVE, { ARG_DOWN });
 					break;
 					
 				default:
