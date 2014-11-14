@@ -22,6 +22,13 @@ namespace Bomberman {
 		const char CFG_LOGGERS[] = "loggers";
 		const char CFG_LOGGER[] = "logger";
 		
+		// Map file
+		const char MAP_CMD_NAME[] = "name";
+		const char MAP_CMD_SIZE[] = "size";
+		const char MAP_CMD_SINGLE[] = "single";
+		const char MAP_OBJ_COMMON_BRICK[] = "common_brick";
+		const char MAP_OBJ_DESTRUCT_BRICK[] = "destruct_brick";
+		
 		// Receivers
 		const char OBJ_PLAYER[] = "player";
 		
