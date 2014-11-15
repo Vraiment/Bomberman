@@ -15,6 +15,7 @@
 #include "../Log/LogLevel.hpp"
 #include "../Utils/Exception.hpp"
 #include "../Utils/StringUtils.hpp"
+#include "../Utils/OperatingSystem.hpp"
 #include "TileMapBuilder.hpp"
 
 #include <fstream>
@@ -90,7 +91,7 @@ namespace Bomberman {
 		
 		void verifyCommand() {
 			if (_command == MAP_CMD_NAME) {
-				_validCommand = _arguments.size() == 1;
+				_validCommand = !_arguments.empty();
 			} else if (_command == MAP_CMD_PLAYER) {
 				_validCommand = _arguments.size() == 2;
 			} else if (_command == MAP_CMD_SIZE) {
@@ -123,7 +124,7 @@ namespace Bomberman {
 	}
 	
 	shared_ptr<TileMapBuilder> TxtTileMapLoader::load(string fileName) {
-		ifstream file(fileName);
+		ifstream file(getPath({"maps"}, fileName));
 		
 		if (file) {
 			Log::get() << "Reading map file: " << fileName << LogLevel::info;
@@ -139,7 +140,7 @@ namespace Bomberman {
 			string command = commandReader.getCommand();
 			vector<string> arguments = commandReader.getArguments();
 			
-			if (!commandReader.validCommand() && !processCommand(command, arguments)) {
+			if (!(commandReader.validCommand() && processCommand(command, arguments))) {
 				printError(line);
 				continue;
 			}
@@ -156,7 +157,7 @@ namespace Bomberman {
 		} else if (command == MAP_CMD_PLAYER) {
 			shared_ptr<Player> player(new Player());
 			
-			if (buildCoordinate(arguments[0], arguments[1], player->position())) {
+			if (!buildCoordinate(arguments[0], arguments[1], player->position())) {
 				return false;
 			}
 			

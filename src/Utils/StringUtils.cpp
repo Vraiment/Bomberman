@@ -28,8 +28,8 @@ namespace Bomberman {
 					buffer << str[n];
 				}
 			}
-			
-			if (separator == *str.end()) {
+
+			if (!str.empty()) {
 				result.push_back(buffer.str());
 			}
 			
