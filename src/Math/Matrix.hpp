@@ -12,34 +12,34 @@
 #include <algorithm>
 
 namespace Bomberman {
-	template <class T, class Allocator = std::allocator<T>>
+	template <class T>
 	class Matrix {
 	public:
-		Matrix() : _columns(0), _rows(0), references(nullptr), values(nullptr) {
-			references = new int;
-			*references = 1;
+		Matrix() : Matrix(0) {
+			
 		}
 		
-		Matrix(int size) : _columns(size), _rows(size), references(nullptr), values(nullptr) {
-			values = new T[_columns];
+		Matrix(int size) : Matrix(size, size) {
 			
-			for (int i = 0; i < _columns; ++i) {
-				values[i] = new T[_rows];
+		}
+		
+		Matrix(int rows, int columns) : _columns(columns), _rows(rows), references(nullptr), values(nullptr) {
+			if (columns < 0 || rows < 0) {
+				throw std::out_of_range("matrix");
 			}
 			
 			references = new int;
 			*references = 1;
-		}
-		
-		Matrix(int columns, int rows) : _columns(columns), _rows(rows), references(nullptr), values(nullptr) {
+			
+			if (columns == 0 || rows == 0) {
+				return;
+			}
+			
 			values = new T*[_columns];
 			
-			for (int i = 0; i < _columns; ++i) {
-				values[i] = new T[_rows];
+			for (int j = 0; j < _columns; ++j) {
+				values[j] = new T[_rows];
 			}
-			
-			references = new int;
-			*references = 1;
 		}
 		
 		Matrix(const Matrix& other) : _columns(other._columns), _rows(other._rows), references(other.references), values(other.values) {
@@ -54,8 +54,8 @@ namespace Bomberman {
 			if (references == nullptr) return;
 			
 			if (--(*references) == 0) {
-				for (int i = 0; i < _columns; ++i) {
-					delete[] values[i];
+				for (int j = 0; j < _columns; ++j) {
+					delete[] values[j];
 				}
 				
 				delete[] values;
@@ -76,7 +76,7 @@ namespace Bomberman {
 			return _rows;
 		}
 		
-		T get(int column, int row) const {
+		T& pos(int row, int column) {
 			if (!validPos(column, row)) {
 				throw std::out_of_range("matrix");
 			}
@@ -84,17 +84,20 @@ namespace Bomberman {
 			return values[column][row];
 		}
 		
-		void set(int column, int row, T value) {
-			if (!validPos(column, row)) {
-				throw std::out_of_range("matrix");
+		void reset(T value) {
+			for (int j = 0; j < _columns; ++j) {
+				for (int i = 0; i < _rows; ++i) {
+					values[j][i] = value;
+				}
 			}
-			
-			values[column][row] = value;
 		}
 		
-		bool validPos(int column, int row) const {
+		bool validPos(int row, int column) const {
 			return (0 <= column) && (column < _columns) && (0 <= row) && (row < _rows) && (_columns != 0) && (_rows != 0);
 		}
+		
+		static void identity(int size);
+		static void multiply(Matrix<T> a, Matrix<T> b, Matrix<T>& c);
 		
 	private:
 		int *references;
@@ -110,6 +113,21 @@ namespace Bomberman {
 			swap(first._rows, second._rows);
 		}
 	};
+	
+	template <class T>
+	void Matrix<T>::multiply(Matrix<T> a, Matrix<T> b, Matrix<T>& c) {
+		if (a.columns() != b.rows()) {
+			throw std::invalid_argument("matrix");
+		}
+		
+		for (int i = 0; i < c.rows(); ++i) {
+			for (int j = 0; j < c.columns(); ++j) {
+				for (int k = 0; k < a.columns(); ++k) {
+					c.pos(i, j) += a.pos(i, k) * b.pos(k, j);
+				}
+			}
+		}
+	}
 }
 
 #endif //__Matrix__hpp__
