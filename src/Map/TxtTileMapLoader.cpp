@@ -14,6 +14,7 @@
 #include "../Log/Log.hpp"
 #include "../Log/LogLevel.hpp"
 #include "../Utils/Exception.hpp"
+#include "../Utils/StringUtils.hpp"
 #include "TileMapBuilder.hpp"
 
 #include <fstream>
@@ -54,8 +55,7 @@ namespace Bomberman {
 	class CommandReader {
 	public:
 		CommandReader(string str) : _validCommand(false) {
-			istringstream iss(str);
-			vector<string> tokens = {istream_iterator<string>{iss}, istream_iterator<string>{}};
+			vector<string> tokens = StringUtils::split(str, ' ');
 			
 			if (tokens.empty()) {
 				_validCommand = false;
@@ -150,7 +150,7 @@ namespace Bomberman {
 		Builder *builder = static_cast<Builder *>(_builder.get());
 		
 		if (command == MAP_CMD_SIZE) {
-			builder->_name = arguments[0];
+			builder->_name = StringUtils::join(arguments, ' ');
 		} else if (command == MAP_CMD_SIZE) {
 			Coordinate coordinate;
 			
