@@ -56,6 +56,12 @@ namespace Bomberman {
 		for (auto brick = bricks.begin(); brick != bricks.end(); ++brick) {
 			bool found = false;
 			
+			if (!_area.contains(brick->position()))
+			{
+				Log::get() << "Brick out of map at position: " << brick->position().toString() << "." << LogLevel::warning;
+				continue;
+			}
+			
 			for (int n = 0; n < _bricks.size(); ++n) {
 				if (brick->position() == _bricks[n].position()) {
 					Log::get() << "Duplicate bricks with the same position: " << brick->position().toString() << "."  << LogLevel::warning;
