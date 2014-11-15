@@ -19,6 +19,12 @@ namespace Bomberman {
 		std::string join(std::vector<std::string> strs, char separator);
 		
 		std::string join(std::vector<std::string> strs, std::string separator);
+		
+		std::string leftTrim(std::string str);
+		
+		std::string rightTrim(std::string str);
+		
+		std::string trim(std::string str);
 	}
 }
 

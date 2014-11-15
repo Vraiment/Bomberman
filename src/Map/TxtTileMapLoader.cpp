@@ -136,6 +136,12 @@ namespace Bomberman {
 		
 		string line;
 		while (getline(file, line)) {
+			line = StringUtils::trim(line);
+			
+			if (line.empty() || line[0] == '#') {
+				continue;
+			}
+			
 			CommandReader commandReader(line);
 			string command = commandReader.getCommand();
 			vector<string> arguments = commandReader.getArguments();

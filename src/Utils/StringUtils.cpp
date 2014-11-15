@@ -53,5 +53,29 @@ namespace Bomberman {
 			
 			return buffer.str();
 		}
+		
+		string leftTrim(string str) {
+			size_t position = str.find_first_not_of(" \t");
+			
+			if (position == string::npos) {
+				return string();
+			}
+			
+			return str.substr(position);
+		}
+		
+		string rightTrim(string str) {
+			size_t position = str.find_last_not_of(" \t");
+			
+			if (position == string::npos) {
+				return string();
+			}
+			
+			return str.substr(0, position + 1);
+		}
+		
+		string trim(string str) {
+			return leftTrim(rightTrim(str));
+		}
 	}
 }
