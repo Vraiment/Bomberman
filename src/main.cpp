@@ -16,6 +16,7 @@
 #include "EventListeners/PlayerEvents.hpp"
 #include "MainLoop.hpp"
 #include "Map/TileMap.hpp"
+#include "Map/TxtTileMapLoader.hpp"
 #include "Map/XmlTileMapLoader.hpp"
 #include "Screens/Viewport.hpp"
 
@@ -27,13 +28,13 @@ int main(int argc, char* argv[]) {
 	Engine engine;
 	Configuration config("config.xml");
 	shared_ptr<CommandFactory> commandFactory(new CommandFactory());
-	XmlTileMapLoader mapLoader;
+	TxtTileMapLoader mapLoader;
 	MainLoop loop;
 	
 	//Dependants objects
 	shared_ptr<Viewport> viewport(new Viewport(config.viewportWidth(), config.viewportHeight(), config.viewportTitle()));
 	shared_ptr<PlayerEvents> playerEvents(new PlayerEvents(commandFactory, loop.commandQueue()));
-	shared_ptr<TileMapBuilder> builder = mapLoader.load("map1.xml");
+	shared_ptr<TileMapBuilder> builder = mapLoader.load("map1.txt");
 	shared_ptr<TileMap> tileMap(new TileMap(builder));
 	
 	commandFactory->setTileMap(tileMap);
