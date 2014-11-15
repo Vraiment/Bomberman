@@ -24,6 +24,7 @@ namespace Bomberman {
 		
 		// Map file
 		const char MAP_CMD_NAME[] = "name";
+		const char MAP_CMD_PLAYER[] = "player";
 		const char MAP_CMD_SIZE[] = "size";
 		const char MAP_CMD_SINGLE[] = "single";
 		const char MAP_OBJ_COMMON_BRICK[] = "common_brick";

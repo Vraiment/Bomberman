@@ -91,6 +91,8 @@ namespace Bomberman {
 		void verifyCommand() {
 			if (_command == MAP_CMD_NAME) {
 				_validCommand = _arguments.size() == 1;
+			} else if (_command == MAP_CMD_PLAYER) {
+				_validCommand = _arguments.size() == 2;
 			} else if (_command == MAP_CMD_SIZE) {
 				_validCommand = _arguments.size() == 2;
 			} else if (_command == MAP_CMD_SINGLE) {
@@ -149,8 +151,16 @@ namespace Bomberman {
 	bool TxtTileMapLoader::processCommand(string command, vector<string> arguments) {
 		Builder *builder = static_cast<Builder *>(_builder.get());
 		
-		if (command == MAP_CMD_SIZE) {
+		if (command == MAP_CMD_NAME) {
 			builder->_name = StringUtils::join(arguments, ' ');
+		} else if (command == MAP_CMD_PLAYER) {
+			shared_ptr<Player> player(new Player());
+			
+			if (buildCoordinate(arguments[0], arguments[1], player->position())) {
+				return false;
+			}
+			
+			builder->_player = player;
 		} else if (command == MAP_CMD_SIZE) {
 			Coordinate coordinate;
 			
