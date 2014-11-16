@@ -97,7 +97,7 @@ namespace Bomberman {
 		}
 		
 		static void identity(int size);
-		static void multiply(Matrix<T> a, Matrix<T> b, Matrix<T>& c);
+		static Matrix<T> multiply(Matrix<T> a, Matrix<T> b);
 		
 	private:
 		int *references;
@@ -115,18 +115,24 @@ namespace Bomberman {
 	};
 	
 	template <class T>
-	void Matrix<T>::multiply(Matrix<T> a, Matrix<T> b, Matrix<T>& c) {
+	Matrix<T> Matrix<T>::multiply(Matrix<T> a, Matrix<T> b) {
 		if (a.columns() != b.rows()) {
 			throw std::invalid_argument("matrix");
 		}
 		
+		Matrix<T> c(a.rows(), b.columns());
+		
 		for (int i = 0; i < c.rows(); ++i) {
 			for (int j = 0; j < c.columns(); ++j) {
+				c.pos(i, j) = {};
+				
 				for (int k = 0; k < a.columns(); ++k) {
 					c.pos(i, j) += a.pos(i, k) * b.pos(k, j);
 				}
 			}
 		}
+		
+		return c;
 	}
 }
 

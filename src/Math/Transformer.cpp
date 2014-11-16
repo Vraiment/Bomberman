@@ -27,14 +27,11 @@ namespace Bomberman {
 	
 	Coordinate Transformer::transform(int i, int j) {
 		Matrix<int> input(3, 1);
-		Matrix<int> transformed(3);
-		
 		input.pos(0, 0) = i;
 		input.pos(1, 0) = j;
 		input.pos(2, 0) = 1;
-		transformed.reset(0);
 		
-		Matrix<int>::multiply(matrix, input, transformed);
+		auto transformed = Matrix<int>::multiply(matrix, input);
 
 		Coordinate result;
 		result.i = transformed.pos(0, 0);
@@ -51,14 +48,11 @@ namespace Bomberman {
 	}
 	
 	void Transformer::translate(int i, int j) {
-		Matrix<int> result(3);
 		Matrix<int> translation = identity(3);
-		
-		result.reset(0);
 		translation.pos(0, 2) = i;
 		translation.pos(1, 2) = j;
 		
-		Matrix<int>::multiply(matrix, translation, result);
+		auto result = Matrix<int>::multiply(matrix, translation);
 		
 		matrix = result;
 	}
