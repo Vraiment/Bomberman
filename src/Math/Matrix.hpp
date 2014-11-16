@@ -77,7 +77,7 @@ namespace Bomberman {
 		}
 		
 		T& pos(int row, int column) {
-			if (!validPos(column, row)) {
+			if (!validPos(row, column)) {
 				throw std::out_of_range("matrix");
 			}
 			
