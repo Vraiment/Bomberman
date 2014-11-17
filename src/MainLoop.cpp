@@ -58,6 +58,10 @@ namespace Bomberman {
 				(*it)->draw();
 				SDL_RenderPresent((*it)->renderer().get());
 			}
+			
+			for (auto it = screens.begin(); it != screens.end(); ++it) {
+				(*it)->update();
+			}
 		}
 	}
 	
