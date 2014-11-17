@@ -54,12 +54,26 @@ namespace Bomberman {
 		return *this;
 	}
 	
+	Coordinate& Coordinate::operator/=(Coordinate other) {
+		i /= other.i;
+		j /= other.j;
+		
+		return *this;
+	}
+	
 	string Coordinate::toString() const {
 		stringstream s;
 		
 		s << "[" << i << ", " << j << "]";
 		
 		return s.str();
+	}
+	
+	Coordinate operator-(Coordinate coordinate) {
+		coordinate.i = -coordinate.i;
+		coordinate.j = -coordinate.j;
+		
+		return coordinate;
 	}
 	
 	Coordinate operator+(Coordinate left, Coordinate right) {
@@ -76,6 +90,12 @@ namespace Bomberman {
 	
 	Coordinate operator*(Coordinate left, Coordinate right) {
 		left *= right;
+		
+		return left;
+	}
+	
+	Coordinate operator/(Coordinate left, Coordinate right) {
+		left /= right;
 		
 		return left;
 	}
