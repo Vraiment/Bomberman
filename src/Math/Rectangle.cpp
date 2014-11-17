@@ -21,6 +21,10 @@ namespace Bomberman {
 		
 	}
 	
+	Coordinate Rectangle::center() const {
+		return Coordinate(i / 2, j /2);
+	}
+	
 	Coordinate Rectangle::leftTop() const {
 		return Coordinate(i, j);
 	}
