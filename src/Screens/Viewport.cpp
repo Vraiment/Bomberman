@@ -86,7 +86,7 @@ namespace Bomberman {
 		}
 		
 		Coordinate delta = player->position() - lastPlayerPos;
-		Rectangle view(offset.i / tileSize.i, offset.j / tileSize.j, width() / tileSize.i, height() / tileSize.j);
+		Rectangle view = buildView();
 		
 		bool onLeft = delta.i < 0 && player->position().i == view.left();			// Player moves left in the left corner
 		bool onRight = delta.i > 0 && player->position().i == view.right();			// Player moves right in the right corner
@@ -108,6 +108,22 @@ namespace Bomberman {
 		
 		background.rectangle().width = tileSize.i * tileMap->width();
 		background.rectangle().height = tileSize.j * tileMap->height();
+		
+		// Set the camera
+		auto player = this->tileMap->player();
+		Rectangle view = buildView();
+		
+		if (player->position().i == view.left()) {
+			offset.i -= tileSize.i;
+		} else if (player->position().i == view.right()) {
+			offset.i += tileSize.i;
+		}
+		
+		if (player->position().j == view.top()) {
+			offset.j -= tileSize.j;
+		} else if (player->position().j == view.right()) {
+			offset.j += tileSize.j;
+		}
 	}
 	
 	bool Viewport::shouldDraw() {
@@ -116,5 +132,9 @@ namespace Bomberman {
 			tileMap->width() > 1 &&
 			tileMap->height() > 1
 		;
+	}
+	
+	Rectangle Viewport::buildView() {
+		return Rectangle(offset.i / tileSize.i, offset.j / tileSize.j, width() / tileSize.i, height() / tileSize.j);
 	}
 }

@@ -36,6 +36,7 @@ namespace Bomberman {
 		
 	private:
 		bool shouldDraw();
+		Rectangle buildView();
 		
 		static const Coordinate tileSize;
 		
