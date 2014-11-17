@@ -22,11 +22,11 @@ namespace Bomberman {
 	}
 	
 	int Rectangle::hCenter() const {
-		return i / 2;
+		return (i + width) / 2;
 	}
 	
 	int Rectangle::vCenter() const {
-		return j / 2;
+		return (j + height) / 2;
 	}
 	
 	int Rectangle::left() const {

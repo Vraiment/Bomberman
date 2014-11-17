@@ -13,6 +13,7 @@
 
 #include <string>
 
+#include "../Math/Transformer.hpp"
 #include "../Texture.hpp"
 
 struct SDL_Renderer;
@@ -30,15 +31,11 @@ namespace Bomberman {
 		
 		void loadTileMap(std::shared_ptr<TileMap> tileMap);
 		
-	private:
-		Coordinate transform(int i, int j) const;
-		Coordinate transform(Coordinate c) const;
+	protected:
+		void sizeChanged(Rectangle previousSize);
 		
+	private:
 		bool shouldDraw();
-		void updateOrigin();
-		void drawBackground();
-		void drawBricks();
-		void drawPlayer();
 		
 		static const Coordinate tileSize;
 		
@@ -47,7 +44,10 @@ namespace Bomberman {
 		Texture destructibleBrick;
 		Texture player;
 		std::shared_ptr<TileMap> tileMap;
-		Coordinate _origin, playerPos;
+		
+		Coordinate offset; // In pixels
+		Coordinate center; // In pixels
+		Coordinate lastPlayerPos; // In tiles
 	};
 }
 
