@@ -19,6 +19,13 @@ namespace Bomberman {
 		
 		int width, height;
 		
+		int hCenter() const;
+		int vCenter() const;
+		int left() const;
+		int right() const;
+		int top() const;
+		int bottom() const;
+		
 		Coordinate center() const;
 		Coordinate leftTop() const;
 		Coordinate rightTop() const;

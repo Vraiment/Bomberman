@@ -21,24 +21,48 @@ namespace Bomberman {
 		
 	}
 	
+	int Rectangle::hCenter() const {
+		return i / 2;
+	}
+	
+	int Rectangle::vCenter() const {
+		return j / 2;
+	}
+	
+	int Rectangle::left() const {
+		return i;
+	}
+	
+	int Rectangle::right() const {
+		return i + width - 1;
+	}
+	
+	int Rectangle::top() const {
+		return j;
+	}
+	
+	int Rectangle::bottom() const {
+		return j + height - 1;
+	}
+	
 	Coordinate Rectangle::center() const {
-		return Coordinate(i / 2, j /2);
+		return Coordinate(hCenter(), vCenter());
 	}
 	
 	Coordinate Rectangle::leftTop() const {
-		return Coordinate(i, j);
+		return Coordinate(left(), top());
 	}
 	
 	Coordinate Rectangle::rightTop() const {
-		return Coordinate(i + width - 1, j);
+		return Coordinate(right(), top());
 	}
 	
 	Coordinate Rectangle::rightBottom() const {
-		return Coordinate(i + width - 1, j + height - 1);
+		return Coordinate(right(), bottom());
 	}
 	
 	Coordinate Rectangle::leftBottom() const {
-		return Coordinate(i, j + height - 1);
+		return Coordinate(left(), bottom());
 	}
 	
 	bool Rectangle::intersects(Rectangle other) const {
