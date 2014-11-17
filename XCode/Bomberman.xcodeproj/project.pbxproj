@@ -133,6 +133,7 @@
 		5B0EEC2C1820E10A0084C40C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		5B15D56918466CB50039FD7B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = SOURCE_ROOT; };
 		5B1BF7511822E48B009DCA31 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2_image.framework; sourceTree = "<group>"; };
+		5B2174211A1A7D3D0033B3AA /* LogSystem.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogSystem.pch; sourceTree = "<group>"; };
 		5B2234731A16ED72005BDA1C /* map1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map1.txt; sourceTree = "<group>"; };
 		5B2234741A16EEB8005BDA1C /* StringUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringUtils.cpp; sourceTree = "<group>"; };
 		5B2234751A16EEB8005BDA1C /* StringUtils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StringUtils.hpp; sourceTree = "<group>"; };
@@ -293,6 +294,7 @@
 				5BD6AD0218237BBA00E661DA /* Logger.hpp */,
 				5BF5549C1833F70400DAC339 /* LogLevel.cpp */,
 				5BF5549D1833F70400DAC339 /* LogLevel.hpp */,
+				5B2174211A1A7D3D0033B3AA /* LogSystem.pch */,
 			);
 			path = Log;
 			sourceTree = "<group>";
@@ -687,6 +689,7 @@
 					"$(inherited)",
 					$SRCROOT,
 				);
+				GCC_PREFIX_HEADER = $SRCROOT/../src/Log/LogSystem.pch;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -708,6 +711,7 @@
 					"$(inherited)",
 					$SRCROOT,
 				);
+				GCC_PREFIX_HEADER = $SRCROOT/../src/Log/LogSystem.pch;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,

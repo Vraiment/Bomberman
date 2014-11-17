@@ -9,11 +9,15 @@
 #include "StringUtils.hpp"
 
 #include <sstream>
+#include <algorithm>
+#include <ctype.h>
 
 using namespace std;
 
 namespace Bomberman {
 	namespace StringUtils {
+		int (*to_upper)(int) = toupper;
+		
 		vector<string> split(string str, char separator) {
 			vector<string> result;
 			stringstream buffer;
@@ -77,5 +81,13 @@ namespace Bomberman {
 		string trim(string str) {
 			return leftTrim(rightTrim(str));
 		}
+	}
+	
+	string StringUtils::toUpper(string str) {
+		string result;
+		
+		transform(str.begin(), str.end(), result.begin(), to_upper);
+		
+		return result;
 	}
 }

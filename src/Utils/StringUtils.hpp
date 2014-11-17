@@ -25,6 +25,8 @@ namespace Bomberman {
 		std::string rightTrim(std::string str);
 		
 		std::string trim(std::string str);
+		
+		std::string toUpper(std::string str);
 	}
 }
 
