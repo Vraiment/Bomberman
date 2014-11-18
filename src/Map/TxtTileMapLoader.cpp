@@ -98,6 +98,8 @@ namespace Bomberman {
 				_validCommand = _arguments.size() == 2;
 			} else if (_command == MAP_CMD_SINGLE) {
 				_validCommand = _arguments.size() == 3;
+			} else if (_command == MAP_CMD_LINE) {
+				_validCommand = _arguments.size() == 5;
 			} else {
 				_validCommand = false;
 			}
@@ -190,6 +192,39 @@ namespace Bomberman {
 				builder->_bricks.push_back(Brick(coordinate, true));
 			} else {
 				return false;
+			}
+		} else if (command == MAP_CMD_LINE) {
+			Coordinate start, end;
+			
+			if (!buildCoordinate(arguments[1], arguments[2], start)) {
+				return false;
+			}
+			if (!buildCoordinate(arguments[3], arguments[5], end)) {
+				return false;
+			}
+			
+			if (start.i > end.i) {
+				swap(start.i, end.i);
+			}
+			
+			if (start.j > end.j) {
+				swap(start.j, end.j);
+			}
+			
+			bool destructible;
+			if (arguments[0] == MAP_OBJ_COMMON_BRICK) {
+				destructible = false;
+			} else if (arguments[0] == MAP_OBJ_DESTRUCT_BRICK) {
+				destructible = true;
+			} else {
+				return false;
+			}
+			
+			Coordinate pos;
+			for (pos.i = start.i; pos.i < end.i; ++pos.i) {
+				for (pos.j = start.j; pos.j < end.j; ++pos.j) {
+					builder->_bricks.push_back(Brick(pos, destructible));
+				}
 			}
 		} else {
 			return false;

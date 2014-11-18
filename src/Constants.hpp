@@ -27,6 +27,7 @@ namespace Bomberman {
 		const char MAP_CMD_PLAYER[] = "player";
 		const char MAP_CMD_SIZE[] = "size";
 		const char MAP_CMD_SINGLE[] = "single";
+		const char MAP_CMD_LINE[] = "line";
 		const char MAP_OBJ_COMMON_BRICK[] = "common_brick";
 		const char MAP_OBJ_DESTRUCT_BRICK[] = "destruct_brick";
 		
