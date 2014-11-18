@@ -26,6 +26,7 @@ namespace Bomberman {
 		
 	private:
 		void move();
+		void setBomb();
 		
 		std::shared_ptr<TileMap> tileMap;
 		std::shared_ptr<Player> player;

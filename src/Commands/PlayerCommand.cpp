@@ -9,6 +9,7 @@
 #include "PlayerCommand.hpp"
 
 #include "../Constants.hpp"
+#include "../Elements/Bomb.hpp"
 #include "../Elements/Brick.hpp"
 #include "../Elements/Player.hpp"
 #include "../Log/Log.hpp"
@@ -27,6 +28,8 @@ namespace Bomberman {
 	void PlayerCommand::execute() {
 		if (command == MSG_MOVE) {
 			move();
+		} else if (command == MSG_SETBOMB) {
+			setBomb();
 		} else {
 			Log::get() << "Invalid command \"player." << command << "()\"." << LogLevel::error;
 		}
@@ -58,21 +61,29 @@ namespace Bomberman {
 		} else if (arguments.size() == 2) {
 			throw NotImplementedException();
 		}
+		
 		if (!tileMap->area().contains(newPosition)) {
 			return;
 		}
 		
-		auto bricks = tileMap->bricks();
-		for (auto brick = bricks.begin(); brick != bricks.end(); ++brick) {
-			if (newPosition == brick->position()) {
-				return;
-			}
+		if (tileMap->tileHasBrick(newPosition) || tileMap->tileHasBomb(newPosition)) {
+			return;
 		}
 		
 		player->position() = newPosition;
 		
 		if (error) {
-			Log::get() << "Invalid arguments for \"player.move()\"" << LogLevel::error;
+			Log::get() << "Invalid arguments for \"" << OBJ_PLAYER << "." << MSG_MOVE << "()\"" << LogLevel::error;
+		}
+	}
+	
+	void PlayerCommand::setBomb() {
+		if (!arguments.empty()) {
+			Log::get() << "Invalid arguments for \"" << OBJ_PLAYER << "." << MSG_SETBOMB << "()\"" << LogLevel::error;
+		}
+		
+		if (!tileMap->tileHasBomb(player->position())) {
+			tileMap->addBomb(Bomb(player->position()));
 		}
 	}
 }

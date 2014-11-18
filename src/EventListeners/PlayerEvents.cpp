@@ -50,6 +50,15 @@ namespace Bomberman {
 				default:
 					break;
 			}
+		} else if (event.type == SDL_KEYUP) {
+			switch (event.key.keysym.sym) {
+				case SDLK_b:
+					command = commandFactory->sendMessage(OBJ_PLAYER, MSG_SETBOMB);
+					break;
+					
+				default:
+					break;
+			}
 		}
 		
 		if (command) {

@@ -11,6 +11,7 @@
 #include <SDL2/SDL.h>
 #include <tinyxml2/tinyxml2.h>
 
+#include "../Elements/Bomb.hpp"
 #include "../Elements/Brick.hpp"
 #include "../Elements/Player.hpp"
 #include "../Log/Log.hpp"
@@ -97,6 +98,10 @@ namespace Bomberman {
 		return _name;
 	}
 	
+	list<Bomb> TileMap::bombs() const {
+		return _bombs;
+	}
+	
 	vector<Brick> TileMap::bricks() const {
 		return _bricks;
 	}
@@ -106,6 +111,34 @@ namespace Bomberman {
 	}
 	
 	void TileMap::update() {
+		for (auto bomb = _bombs.begin(); bomb != _bombs.end(); ++bomb) {
+			bomb->update();
+		}
 		
+		_bombs.remove_if([](Bomb bomb) { return bomb.exploded(); });
+	}
+	
+	void TileMap::addBomb(Bomb bomb) {
+		_bombs.push_back(bomb);
+	}
+	
+	bool TileMap::tileHasBrick(Coordinate tile) const {
+		for (auto brick = _bricks.begin(); brick != _bricks.end(); ++brick) {
+			if (brick->position() == tile) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	bool TileMap::tileHasBomb(Coordinate tile) const {
+		for (auto it = _bombs.begin(); it != _bombs.end(); ++it) {
+			if (it->getPosition() == tile) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 }

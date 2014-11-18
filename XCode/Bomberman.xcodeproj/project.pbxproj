@@ -14,6 +14,8 @@
 		5B0EEC2B1820E0D20084C40C /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B0EEC2A1820E0D20084C40C /* SDL2.framework */; };
 		5B0EEC2D1820E10A0084C40C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B0EEC2C1820E10A0084C40C /* main.cpp */; };
 		5B1BF7521822E48B009DCA31 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1BF7511822E48B009DCA31 /* SDL2_image.framework */; };
+		5B2174241A1AB20D0033B3AA /* Bomb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B2174221A1AB20D0033B3AA /* Bomb.cpp */; };
+		5B2174261A1AC2A70033B3AA /* bomb.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B2174251A1AC2820033B3AA /* bomb.png */; };
 		5B2234761A16EEB8005BDA1C /* StringUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B2234741A16EEB8005BDA1C /* StringUtils.cpp */; };
 		5B2234771A16F57E005BDA1C /* map1.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B2234731A16ED72005BDA1C /* map1.txt */; };
 		5B3795CA1820F6E60050381F /* TileMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3795C81820F6E60050381F /* TileMap.cpp */; };
@@ -87,6 +89,7 @@
 			dstSubfolderSpec = 7;
 			files = (
 				5B0C86831852553F0005CADD /* bomberman.png in CopyFiles */,
+				5B2174261A1AC2A70033B3AA /* bomb.png in CopyFiles */,
 				5B4A120418331CB500C8A950 /* background.png in CopyFiles */,
 				5B4A120518331CB600C8A950 /* brick.png in CopyFiles */,
 				5B4A120618331CB600C8A950 /* destructibleBrick.png in CopyFiles */,
@@ -134,6 +137,9 @@
 		5B15D56918466CB50039FD7B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = SOURCE_ROOT; };
 		5B1BF7511822E48B009DCA31 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2_image.framework; sourceTree = "<group>"; };
 		5B2174211A1A7D3D0033B3AA /* LogSystem.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogSystem.pch; sourceTree = "<group>"; };
+		5B2174221A1AB20D0033B3AA /* Bomb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bomb.cpp; sourceTree = "<group>"; };
+		5B2174231A1AB20D0033B3AA /* Bomb.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Bomb.hpp; sourceTree = "<group>"; };
+		5B2174251A1AC2820033B3AA /* bomb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bomb.png; sourceTree = "<group>"; };
 		5B2234731A16ED72005BDA1C /* map1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map1.txt; sourceTree = "<group>"; };
 		5B2234741A16EEB8005BDA1C /* StringUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringUtils.cpp; sourceTree = "<group>"; };
 		5B2234751A16EEB8005BDA1C /* StringUtils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StringUtils.hpp; sourceTree = "<group>"; };
@@ -277,6 +283,8 @@
 		5B5BB1B61856ADA70019CAD1 /* Elements */ = {
 			isa = PBXGroup;
 			children = (
+				5B2174221A1AB20D0033B3AA /* Bomb.cpp */,
+				5B2174231A1AB20D0033B3AA /* Bomb.hpp */,
 				5BE4A21618358FFF00EE49AF /* Brick.cpp */,
 				5BE4A21718358FFF00EE49AF /* Brick.hpp */,
 				5B0C86851852612C0005CADD /* Player.cpp */,
@@ -428,8 +436,9 @@
 		5BD37AF21822145500BB1C28 /* Textures */ = {
 			isa = PBXGroup;
 			children = (
-				5B0C86821852550C0005CADD /* bomberman.png */,
 				5B4A11FE18331CAB00C8A950 /* background.png */,
+				5B2174251A1AC2820033B3AA /* bomb.png */,
+				5B0C86821852550C0005CADD /* bomberman.png */,
 				5B4A11FF18331CAB00C8A950 /* brick.png */,
 				5B4A120018331CAB00C8A950 /* destructibleBrick.png */,
 				5BD37AF31822199200BB1C28 /* tile0.png */,
@@ -585,6 +594,7 @@
 				5B3795CE1820FBAA0050381F /* Texture.cpp in Sources */,
 				5BDC7DA5182AA18C0093391D /* Coordinate.cpp in Sources */,
 				5B3B82DA1857ACB700CECE27 /* Command.cpp in Sources */,
+				5B2174241A1AB20D0033B3AA /* Bomb.cpp in Sources */,
 				5BBFCCA6185FFF710016F56A /* CommandFactory.cpp in Sources */,
 				5BBFCCA3185FFD910016F56A /* Parser.cpp in Sources */,
 				5B87384D184E582B0014D94B /* Rectangle.cpp in Sources */,

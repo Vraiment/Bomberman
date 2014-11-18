@@ -27,7 +27,7 @@ namespace Bomberman {
 		
 		std::shared_ptr<Command> call(std::string function, std::vector<std::string> arguments);
 		
-		std::shared_ptr<Command> sendMessage(std::string receiver, std::string message, std::vector<std::string> arguments);
+		std::shared_ptr<Command> sendMessage(std::string receiver, std::string message, std::vector<std::string> arguments = { });
 		
 	private:
 		std::shared_ptr<Player> player;

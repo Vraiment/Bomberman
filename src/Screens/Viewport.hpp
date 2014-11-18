@@ -13,7 +13,6 @@
 
 #include <string>
 
-#include "../Math/Transformer.hpp"
 #include "../Texture.hpp"
 
 struct SDL_Renderer;
@@ -41,6 +40,7 @@ namespace Bomberman {
 		static const Coordinate tileSize;
 		
 		Texture background;
+		Texture bomb;
 		Texture brick;
 		Texture destructibleBrick;
 		Texture player;

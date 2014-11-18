@@ -8,8 +8,9 @@
 
 #include "Viewport.hpp"
 
-#include "../Elements/Player.hpp"
+#include "../Elements/Bomb.hpp"
 #include "../Elements/Brick.hpp"
+#include "../Elements/Player.hpp"
 #include "../Map/TileMap.hpp"
 #include "../Utils/Exception.hpp"
 #include "../Log/Log.hpp"
@@ -22,6 +23,7 @@ namespace Bomberman {
 	
 	Viewport::Viewport(int width, int height, string name) : Screen(width, height, name) {
 		background = Texture("background.png", renderer());
+		bomb = Texture("bomb.png", renderer());
 		brick = Texture("brick.png", renderer());
 		destructibleBrick = Texture("destructibleBrick.png", renderer());
 		player = Texture("bomberman.png", renderer());
@@ -71,7 +73,18 @@ namespace Bomberman {
 			texture.draw();
 		}
 		
-		//Draw player
+		// Draw bombs
+		auto bombs = tileMap->bombs();
+		for (auto bomb = bombs.begin(); bomb != bombs.end(); ++bomb) {
+			if (!drawArea.contains(bomb->getPosition())) {
+				continue;
+			}
+			
+			this->bomb.position() = (bomb->getPosition() * tileSize) - offset;
+			this->bomb.draw();
+		}
+		
+		// Draw player
 		player.position() = (tileMap->player()->position() * tileSize) - offset;
 		player.draw();
 	}
