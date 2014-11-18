@@ -31,7 +31,7 @@ namespace Bomberman {
 		} else if (command == MSG_SETBOMB) {
 			setBomb();
 		} else {
-			Log::get() << "Invalid command \"player." << command << "()\"." << LogLevel::error;
+			Log::get() << "Invalid command \"" << OBJ_PLAYER << "" << command << "()\"." << LogLevel::error;
 		}
 		
 		_finished = true;
