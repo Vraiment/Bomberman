@@ -13,6 +13,7 @@
 		5B0C86861852612C0005CADD /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C86851852612C0005CADD /* Player.cpp */; };
 		5B0EEC2B1820E0D20084C40C /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B0EEC2A1820E0D20084C40C /* SDL2.framework */; };
 		5B0EEC2D1820E10A0084C40C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B0EEC2C1820E10A0084C40C /* main.cpp */; };
+		5B1015081A26BEE100CCCC77 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B1015061A26BEE100CCCC77 /* Timer.cpp */; };
 		5B1BF7521822E48B009DCA31 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1BF7511822E48B009DCA31 /* SDL2_image.framework */; };
 		5B2174241A1AB20D0033B3AA /* Bomb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B2174221A1AB20D0033B3AA /* Bomb.cpp */; };
 		5B2174261A1AC2A70033B3AA /* bomb.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B2174251A1AC2820033B3AA /* bomb.png */; };
@@ -134,6 +135,8 @@
 		5B0EEC281820E0BD0084C40C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		5B0EEC2A1820E0D20084C40C /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2.framework; sourceTree = "<group>"; };
 		5B0EEC2C1820E10A0084C40C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		5B1015061A26BEE100CCCC77 /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
+		5B1015071A26BEE100CCCC77 /* Timer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Timer.hpp; sourceTree = "<group>"; };
 		5B15D56918466CB50039FD7B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = SOURCE_ROOT; };
 		5B1BF7511822E48B009DCA31 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2_image.framework; sourceTree = "<group>"; };
 		5B2174211A1A7D3D0033B3AA /* LogSystem.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogSystem.pch; sourceTree = "<group>"; };
@@ -407,6 +410,8 @@
 				5B5BB1B91856AE110019CAD1 /* Screens */,
 				5B3795CC1820FBAA0050381F /* Texture.cpp */,
 				5B3795CD1820FBAA0050381F /* Texture.hpp */,
+				5B1015061A26BEE100CCCC77 /* Timer.cpp */,
+				5B1015071A26BEE100CCCC77 /* Timer.hpp */,
 				5B5BB1BA1856AE1E0019CAD1 /* Utils */,
 			);
 			name = Source;
@@ -600,6 +605,7 @@
 				5B87384D184E582B0014D94B /* Rectangle.cpp in Sources */,
 				5B6E81F5182AFE870031B1FE /* EmptyScreen.cpp in Sources */,
 				5B3795CA1820F6E60050381F /* TileMap.cpp in Sources */,
+				5B1015081A26BEE100CCCC77 /* Timer.cpp in Sources */,
 				5BBB9E541820EB3F00726BC5 /* Engine.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

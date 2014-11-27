@@ -11,9 +11,9 @@
 #include <SDL2/SDL.h>
 
 namespace Bomberman {
-	const int Bomb::TTL = 300000;
+	const int Bomb::TTL = 3000;
 	
-	Bomb::Bomb(Coordinate position) : _position(position), _ttl(TTL), _exploded(false), _counting(false), _startTime(0) {
+	Bomb::Bomb(Coordinate position) : _position(position), _exploded(false) {
 		
 	}
 	
@@ -26,15 +26,12 @@ namespace Bomberman {
 			return;
 		}
 		
-		if (!_counting) {
-			_counting = true;
-			_startTime = SDL_GetTicks();
-			
-			return;
+		if (!timer.isCounting()) {
+			timer.start();
+		} else if (timer.getTime() >= TTL) {
+			_exploded = true;
+			timer.stop();
 		}
-		
-		_ttl -= SDL_GetTicks() - _startTime;
-		_exploded = _ttl <= 0;
 	}
 	
 	bool Bomb::exploded() const {

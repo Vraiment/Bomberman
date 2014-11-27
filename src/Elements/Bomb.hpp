@@ -9,6 +9,7 @@
 #ifndef __Bomb_hpp__
 #define __Bomb_hpp__
 
+#include "../Timer.hpp"
 #include "../Math/Coordinate.hpp"
 
 namespace Bomberman {
@@ -25,9 +26,9 @@ namespace Bomberman {
 	private:
 		static const int TTL;
 		
-		int _startTime, _ttl;
+		Timer timer;
 		Coordinate _position;
-		bool _counting, _exploded;
+		bool _exploded;
 	};
 }
 
