@@ -16,6 +16,7 @@
 #include "../Math/Rectangle.hpp"
 
 namespace Bomberman {
+	class Explosion;
 	class Bomb;
 	class Brick;
 	class Player;
@@ -32,6 +33,7 @@ namespace Bomberman {
 		std::string name() const;
 		std::list<Bomb> bombs() const;
 		std::vector<Brick> bricks() const;
+		std::list<Explosion> explosions() const;
 		std::shared_ptr<Player> player() const;
 		
 		void update();
@@ -47,6 +49,11 @@ namespace Bomberman {
 		std::shared_ptr<Player> _player;
 		std::vector<Brick> _bricks;
 		std::list<Bomb> _bombs;
+		std::list<Explosion> _explosions;
+		
+		std::vector<Coordinate> updateBombs();
+		void updateExplosions(std::vector<Coordinate> newExplosions);
+		void detectExplosions();
 	};
 }
 

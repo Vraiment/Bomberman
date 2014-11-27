@@ -13,6 +13,7 @@
 
 #include "../Elements/Bomb.hpp"
 #include "../Elements/Brick.hpp"
+#include "../Elements/Explosion.hpp"
 #include "../Elements/Player.hpp"
 #include "../Log/Log.hpp"
 #include "../Log/LogLevel.hpp"
@@ -106,16 +107,17 @@ namespace Bomberman {
 		return _bricks;
 	}
 	
+	list<Explosion> TileMap::explosions() const {
+		return _explosions;
+	}
+	
 	shared_ptr<Player> TileMap::player() const {
 		return _player;
 	}
 	
 	void TileMap::update() {
-		for (auto bomb = _bombs.begin(); bomb != _bombs.end(); ++bomb) {
-			bomb->update();
-		}
-		
-		_bombs.remove_if([](Bomb bomb) { return bomb.exploded(); });
+		vector<Coordinate> goneBombs = updateBombs();
+		updateExplosions(goneBombs);
 	}
 	
 	void TileMap::addBomb(Bomb bomb) {
@@ -140,5 +142,34 @@ namespace Bomberman {
 		}
 		
 		return false;
+	}
+	
+	vector<Coordinate> TileMap::updateBombs() {
+		vector<Coordinate> goneBombs;
+		
+		for (auto bomb = _bombs.begin(); bomb != _bombs.end(); ++bomb) {
+			bomb->update();
+			
+			if (bomb->exploded()) {
+				goneBombs.push_back(bomb->getPosition());
+			}
+		}
+		
+		_bombs.remove_if([](Bomb bomb) { return bomb.exploded(); });
+		
+		return goneBombs;
+	}
+	
+	void TileMap::updateExplosions(vector<Coordinate> newExplosions) {
+		for (auto it = newExplosions.begin(); it != newExplosions.end(); ++it) {
+			Explosion e(*it, _player->getExplosionSize());
+			_explosions.push_back(e);
+		}
+		
+		for (auto it = _explosions.begin(); it != _explosions.end(); ++it) {
+			it->update();
+		}
+		
+		_explosions.remove_if([](Explosion explosion) { return explosion.done(); });
 	}
 }

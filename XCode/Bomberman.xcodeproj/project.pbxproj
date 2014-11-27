@@ -14,6 +14,7 @@
 		5B0EEC2B1820E0D20084C40C /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B0EEC2A1820E0D20084C40C /* SDL2.framework */; };
 		5B0EEC2D1820E10A0084C40C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B0EEC2C1820E10A0084C40C /* main.cpp */; };
 		5B1015081A26BEE100CCCC77 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B1015061A26BEE100CCCC77 /* Timer.cpp */; };
+		5B10150A1A26E2EB00CCCC77 /* explosion.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B1015091A26DFD400CCCC77 /* explosion.png */; };
 		5B1BF7521822E48B009DCA31 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1BF7511822E48B009DCA31 /* SDL2_image.framework */; };
 		5B2174241A1AB20D0033B3AA /* Bomb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B2174221A1AB20D0033B3AA /* Bomb.cpp */; };
 		5B2174261A1AC2A70033B3AA /* bomb.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B2174251A1AC2820033B3AA /* bomb.png */; };
@@ -56,6 +57,7 @@
 		5BDC7DA5182AA18C0093391D /* Coordinate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BDC7DA3182AA18C0093391D /* Coordinate.cpp */; };
 		5BE4A21818358FFF00EE49AF /* Brick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BE4A21618358FFF00EE49AF /* Brick.cpp */; };
 		5BEFA54F1A17E809001D1337 /* Transformer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BEFA54D1A17E809001D1337 /* Transformer.cpp */; };
+		5BF149851A1ACEBF003CF6D8 /* Explosion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BF149831A1ACEBF003CF6D8 /* Explosion.cpp */; };
 		5BF5549B1833F67D00DAC339 /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BF554991833F67D00DAC339 /* Log.cpp */; };
 		5BF5549E1833F70400DAC339 /* LogLevel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BF5549C1833F70400DAC339 /* LogLevel.cpp */; };
 		5BF63CA6182187CF001315AD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF63CA5182187CF001315AD /* CoreFoundation.framework */; };
@@ -94,6 +96,7 @@
 				5B4A120418331CB500C8A950 /* background.png in CopyFiles */,
 				5B4A120518331CB600C8A950 /* brick.png in CopyFiles */,
 				5B4A120618331CB600C8A950 /* destructibleBrick.png in CopyFiles */,
+				5B10150A1A26E2EB00CCCC77 /* explosion.png in CopyFiles */,
 				5B3D1310182C717A0070A335 /* tile0.png in CopyFiles */,
 				5B3D1311182C717A0070A335 /* tile1.png in CopyFiles */,
 				5B3D1312182C717A0070A335 /* tile2.png in CopyFiles */,
@@ -137,6 +140,7 @@
 		5B0EEC2C1820E10A0084C40C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		5B1015061A26BEE100CCCC77 /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
 		5B1015071A26BEE100CCCC77 /* Timer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Timer.hpp; sourceTree = "<group>"; };
+		5B1015091A26DFD400CCCC77 /* explosion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = explosion.png; sourceTree = "<group>"; };
 		5B15D56918466CB50039FD7B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = SOURCE_ROOT; };
 		5B1BF7511822E48B009DCA31 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2_image.framework; sourceTree = "<group>"; };
 		5B2174211A1A7D3D0033B3AA /* LogSystem.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogSystem.pch; sourceTree = "<group>"; };
@@ -207,6 +211,8 @@
 		5BE4A21718358FFF00EE49AF /* Brick.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Brick.hpp; sourceTree = "<group>"; };
 		5BEFA54D1A17E809001D1337 /* Transformer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transformer.cpp; sourceTree = "<group>"; };
 		5BEFA54E1A17E809001D1337 /* Transformer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Transformer.hpp; sourceTree = "<group>"; };
+		5BF149831A1ACEBF003CF6D8 /* Explosion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Explosion.cpp; sourceTree = "<group>"; };
+		5BF149841A1ACEBF003CF6D8 /* Explosion.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Explosion.hpp; sourceTree = "<group>"; };
 		5BF554991833F67D00DAC339 /* Log.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Log.cpp; sourceTree = "<group>"; };
 		5BF5549A1833F67D00DAC339 /* Log.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Log.hpp; sourceTree = "<group>"; };
 		5BF5549C1833F70400DAC339 /* LogLevel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LogLevel.cpp; sourceTree = "<group>"; };
@@ -292,6 +298,8 @@
 				5BE4A21718358FFF00EE49AF /* Brick.hpp */,
 				5B0C86851852612C0005CADD /* Player.cpp */,
 				5B0C86841852607A0005CADD /* Player.hpp */,
+				5BF149831A1ACEBF003CF6D8 /* Explosion.cpp */,
+				5BF149841A1ACEBF003CF6D8 /* Explosion.hpp */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -446,6 +454,7 @@
 				5B0C86821852550C0005CADD /* bomberman.png */,
 				5B4A11FF18331CAB00C8A950 /* brick.png */,
 				5B4A120018331CAB00C8A950 /* destructibleBrick.png */,
+				5B1015091A26DFD400CCCC77 /* explosion.png */,
 				5BD37AF31822199200BB1C28 /* tile0.png */,
 				5BD37AF5182219F300BB1C28 /* tile1.png */,
 				5BD37AF6182219F300BB1C28 /* tile2.png */,
@@ -607,6 +616,7 @@
 				5B3795CA1820F6E60050381F /* TileMap.cpp in Sources */,
 				5B1015081A26BEE100CCCC77 /* Timer.cpp in Sources */,
 				5BBB9E541820EB3F00726BC5 /* Engine.cpp in Sources */,
+				5BF149851A1ACEBF003CF6D8 /* Explosion.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

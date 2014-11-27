@@ -10,6 +10,7 @@
 
 #include "../Elements/Bomb.hpp"
 #include "../Elements/Brick.hpp"
+#include "../Elements/Explosion.hpp"
 #include "../Elements/Player.hpp"
 #include "../Map/TileMap.hpp"
 #include "../Utils/Exception.hpp"
@@ -26,6 +27,7 @@ namespace Bomberman {
 		bomb = Texture("bomb.png", renderer());
 		brick = Texture("brick.png", renderer());
 		destructibleBrick = Texture("destructibleBrick.png", renderer());
+		explosion = Texture("explosion.png", renderer());
 		player = Texture("bomberman.png", renderer());
 		
 		sizeChanged(Rectangle());
@@ -87,6 +89,21 @@ namespace Bomberman {
 		// Draw player
 		player.position() = (tileMap->player()->position() * tileSize) - offset;
 		player.draw();
+		
+		// Draw explosions
+		auto explosions = tileMap->explosions();
+		for (auto explosion = explosions.begin(); explosion != explosions.end(); ++explosion) {
+			auto hitArea = explosion->hitArea();
+			
+			for (auto pos = hitArea.begin(); pos != hitArea.end(); ++pos) {
+				if (!tileMap->area().contains(*pos) || tileMap->tileHasBrick(*pos)) {
+					continue;
+				}
+				
+				this->explosion.position() = (*pos * tileSize) - offset;
+				this->explosion.draw();
+			}
+		}
 	}
 	
 	void Viewport::update() {

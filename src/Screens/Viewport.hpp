@@ -43,6 +43,7 @@ namespace Bomberman {
 		Texture bomb;
 		Texture brick;
 		Texture destructibleBrick;
+		Texture explosion;
 		Texture player;
 		std::shared_ptr<TileMap> tileMap;
 		

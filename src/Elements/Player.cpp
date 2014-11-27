@@ -9,7 +9,15 @@
 #include "Player.hpp"
 
 namespace Bomberman {
+	Player::Player() : explosionSize(1) {
+		
+	}
+	
 	Coordinate& Player::position() {
 		return _position;
+	}
+	
+	int Player::getExplosionSize() const {
+		return explosionSize;
 	}
 }

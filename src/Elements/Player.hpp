@@ -14,10 +14,15 @@
 namespace Bomberman {
 	class Player {
 	public:
+		Player();
+		
 		Coordinate& position();
+		
+		int getExplosionSize() const;
 		
 	private:
 		Coordinate _position;
+		int explosionSize;
 	};
 }
 
