@@ -34,6 +34,10 @@ namespace Bomberman {
 		}
 	}
 	
+	void Bomb::forceExplosion() {
+		_exploded = true;
+	}
+	
 	bool Bomb::exploded() const {
 		return _exploded;
 	}

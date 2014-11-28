@@ -51,9 +51,10 @@ namespace Bomberman {
 		std::list<Bomb> _bombs;
 		std::list<Explosion> _explosions;
 		
-		std::vector<Coordinate> updateBombs();
-		void updateExplosions(std::vector<Coordinate> newExplosions);
-		void detectExplosions();
+		void updateBombs();
+		void doDamage(std::vector<Coordinate> area);
+		void updateExplosions();
+		void clearExplosions();
 	};
 }
 

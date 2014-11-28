@@ -20,6 +20,7 @@ namespace Bomberman {
 		Coordinate getPosition() const;
 		
 		void update();
+		void forceExplosion();
 		
 		bool exploded() const;
 		

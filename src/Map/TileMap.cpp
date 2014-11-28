@@ -8,6 +8,7 @@
 
 #include "TileMap.hpp"
 
+#include <stack>
 #include <SDL2/SDL.h>
 #include <tinyxml2/tinyxml2.h>
 
@@ -116,8 +117,33 @@ namespace Bomberman {
 	}
 	
 	void TileMap::update() {
-		vector<Coordinate> goneBombs = updateBombs();
-		updateExplosions(goneBombs);
+		updateBombs();
+		
+		stack<Coordinate> blownBombs;
+		do {
+			_bombs.remove_if([&blownBombs] (Bomb bomb) {
+				if (bomb.exploded()) {
+					blownBombs.push(bomb.getPosition());
+				}
+				
+				return bomb.exploded();
+			});
+			
+			while (!blownBombs.empty()) {
+				auto position = blownBombs.top();
+				blownBombs.pop();
+				
+				Explosion explosion(position, _player->getExplosionSize());
+				_explosions.push_back(explosion);
+			}
+			
+			for (Explosion& explosion : _explosions) {
+				doDamage(explosion.hitArea());
+			}
+		} while(!blownBombs.empty());
+		
+		updateExplosions();
+		clearExplosions();
 	}
 	
 	void TileMap::addBomb(Bomb bomb) {
@@ -144,32 +170,32 @@ namespace Bomberman {
 		return false;
 	}
 	
-	vector<Coordinate> TileMap::updateBombs() {
-		vector<Coordinate> goneBombs;
-		
-		for (auto bomb = _bombs.begin(); bomb != _bombs.end(); ++bomb) {
-			bomb->update();
-			
-			if (bomb->exploded()) {
-				goneBombs.push_back(bomb->getPosition());
-			}
+	void TileMap::updateBombs() {
+		for (Bomb& bomb : _bombs) {
+			bomb.update();
 		}
-		
-		_bombs.remove_if([](Bomb bomb) { return bomb.exploded(); });
-		
-		return goneBombs;
 	}
 	
-	void TileMap::updateExplosions(vector<Coordinate> newExplosions) {
-		for (auto it = newExplosions.begin(); it != newExplosions.end(); ++it) {
-			Explosion e(*it, _player->getExplosionSize());
-			_explosions.push_back(e);
+	void TileMap::doDamage(vector<Coordinate> hitArea) {
+		for (Coordinate position : hitArea) {
+			for (Bomb& bomb : _bombs) {
+				if (position == bomb.getPosition()) {
+					bomb.forceExplosion();
+					break;
+				}
+			}
 		}
-		
-		for (auto it = _explosions.begin(); it != _explosions.end(); ++it) {
-			it->update();
+	}
+	
+	void TileMap::updateExplosions() {
+		for (Explosion& explosion : _explosions) {
+			explosion.update();
 		}
-		
-		_explosions.remove_if([](Explosion explosion) { return explosion.done(); });
+	}
+	
+	void TileMap::clearExplosions() {
+		_explosions.remove_if([] (Explosion explosion) {
+			return explosion.done();
+		});
 	}
 }
