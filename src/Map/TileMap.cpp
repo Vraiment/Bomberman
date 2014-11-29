@@ -19,6 +19,7 @@
 #include "../Log/Log.hpp"
 #include "../Log/LogLevel.hpp"
 #include "../Utils/Exception.hpp"
+#include "../Utils/VectorUtils.hpp"
 #include "TileMapBuilder.hpp"
 
 using namespace std;
@@ -184,6 +185,10 @@ namespace Bomberman {
 					break;
 				}
 			}
+			
+			VectorUtils::removeIf(_bricks, [position] (Brick& brick) {
+				return brick.destructible() && position == brick.position();
+			});
 		}
 	}
 	
