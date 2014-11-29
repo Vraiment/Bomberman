@@ -52,6 +52,15 @@ namespace Bomberman {
 			return;
 		}
 		
+		drawHud();
+		drawGame();
+	}
+	
+	void Viewport::drawHud() {
+		
+	}
+	
+	void Viewport::drawGame() {
 		// Draw background
 		background.position() = -offset;
 		background.draw();

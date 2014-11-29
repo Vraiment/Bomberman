@@ -50,6 +50,9 @@ namespace Bomberman {
 		Coordinate offset; // In pixels
 		Coordinate center; // In pixels
 		Coordinate lastPlayerPos; // In tiles
+		
+		void drawHud();
+		void drawGame();
 	};
 }
 
