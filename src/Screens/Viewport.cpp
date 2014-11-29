@@ -23,6 +23,8 @@ namespace Bomberman {
 	const Coordinate Viewport::tileSize = Coordinate(40, 40);
 	
 	Viewport::Viewport(int width, int height, string name) : Screen(width, height, name) {
+		hud = Texture("hud.png", renderer());
+		
 		background = Texture("background.png", renderer());
 		bomb = Texture("bomb.png", renderer());
 		brick = Texture("brick.png", renderer());
@@ -31,6 +33,9 @@ namespace Bomberman {
 		player = Texture("bomberman.png", renderer());
 		
 		sizeChanged(Rectangle());
+		
+		// HUD height is one tile
+		hud.rectangle().height = tileSize.j;
 	}
 	
 	Viewport::~Viewport() {
@@ -40,6 +45,8 @@ namespace Bomberman {
 	void Viewport::sizeChanged(Rectangle previousSize) {
 		if (previousSize.width != width()) {
 			center.i = width() / 2;
+			
+			hud.rectangle().width = width();
 		}
 		
 		if (previousSize.height != height()) {
@@ -52,12 +59,12 @@ namespace Bomberman {
 			return;
 		}
 		
-		drawHud();
 		drawGame();
+		drawHud();
 	}
 	
 	void Viewport::drawHud() {
-		
+		hud.draw();
 	}
 	
 	void Viewport::drawGame() {
@@ -80,8 +87,7 @@ namespace Bomberman {
 			
 			auto texture = (it->destructible()) ? destructibleBrick : brick;
 			
-			texture.position() = (it->position() * tileSize) - offset;
-			texture.draw();
+			drawTile(texture, it->position());
 		}
 		
 		// Draw bombs
@@ -91,13 +97,11 @@ namespace Bomberman {
 				continue;
 			}
 			
-			this->bomb.position() = (bomb->getPosition() * tileSize) - offset;
-			this->bomb.draw();
+			drawTile(this->bomb, bomb->getPosition());
 		}
 		
 		// Draw player
-		player.position() = (tileMap->player()->position() * tileSize) - offset;
-		player.draw();
+		drawTile(player, tileMap->player()->position());
 		
 		// Draw explosions
 		auto explosions = tileMap->explosions();
@@ -109,10 +113,14 @@ namespace Bomberman {
 					continue;
 				}
 				
-				this->explosion.position() = (*pos * tileSize) - offset;
-				this->explosion.draw();
+				drawTile(this->explosion, *pos);
 			}
 		}
+	}
+	
+	void Viewport::drawTile(Texture texture, Coordinate position) {
+		texture.position() = (position * tileSize) - offset;
+		texture.draw();
 	}
 	
 	void Viewport::update() {

@@ -39,12 +39,17 @@ namespace Bomberman {
 		
 		static const Coordinate tileSize;
 		
+		// Hud Textures
+		Texture hud;
+		
+		// Game Textures
 		Texture background;
 		Texture bomb;
 		Texture brick;
 		Texture destructibleBrick;
 		Texture explosion;
 		Texture player;
+		
 		std::shared_ptr<TileMap> tileMap;
 		
 		Coordinate offset; // In pixels
@@ -53,6 +58,7 @@ namespace Bomberman {
 		
 		void drawHud();
 		void drawGame();
+		void drawTile(Texture texture, Coordinate position);
 	};
 }
 
