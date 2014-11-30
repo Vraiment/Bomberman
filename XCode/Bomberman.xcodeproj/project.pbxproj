@@ -300,10 +300,10 @@
 				5B2174231A1AB20D0033B3AA /* Bomb.hpp */,
 				5BE4A21618358FFF00EE49AF /* Brick.cpp */,
 				5BE4A21718358FFF00EE49AF /* Brick.hpp */,
-				5B0C86851852612C0005CADD /* Player.cpp */,
-				5B0C86841852607A0005CADD /* Player.hpp */,
 				5BF149831A1ACEBF003CF6D8 /* Explosion.cpp */,
 				5BF149841A1ACEBF003CF6D8 /* Explosion.hpp */,
+				5B0C86851852612C0005CADD /* Player.cpp */,
+				5B0C86841852607A0005CADD /* Player.hpp */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
