@@ -51,13 +51,13 @@ namespace Bomberman {
 				}
 			}
 			
-			_commandQueue->update();
-			
 			for (auto it = screens.begin(); it != screens.end(); ++it) {
 				SDL_RenderClear((*it)->renderer().get());
 				(*it)->draw();
 				SDL_RenderPresent((*it)->renderer().get());
 			}
+			
+			_commandQueue->update();
 			
 			for (auto it = screens.begin(); it != screens.end(); ++it) {
 				(*it)->update();
