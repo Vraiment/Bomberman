@@ -177,6 +177,10 @@ namespace Bomberman {
 		}
 	}
 	
+	int TileMap::bombCount() const {
+		return (int)_bombs.size();
+	}
+	
 	void TileMap::doDamage(vector<Coordinate> hitArea) {
 		for (Coordinate position : hitArea) {
 			for (Bomb& bomb : _bombs) {

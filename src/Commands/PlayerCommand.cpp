@@ -82,7 +82,7 @@ namespace Bomberman {
 			Log::get() << "Invalid arguments for \"" << OBJ_PLAYER << "." << MSG_SETBOMB << "()\"" << LogLevel::error;
 		}
 		
-		if (!tileMap->tileHasBomb(player->position())) {
+		if (tileMap->bombCount() < player->maxBombs() && !tileMap->tileHasBomb(player->position())) {
 			tileMap->addBomb(Bomb(player->position()));
 		}
 	}

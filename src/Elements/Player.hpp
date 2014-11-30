@@ -19,10 +19,12 @@ namespace Bomberman {
 		Coordinate& position();
 		
 		int getExplosionSize() const;
+		int maxBombs() const;
 		
 	private:
 		Coordinate _position;
 		int explosionSize;
+		int _maxBombs;
 	};
 }
 
