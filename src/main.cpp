@@ -34,9 +34,9 @@ int main(int argc, char* argv[]) {
 	
 		//Dependants objects
 		shared_ptr<Viewport> viewport(new Viewport(config.viewportWidth(), config.viewportHeight(), config.viewportTitle()));
-		shared_ptr<PlayerEvents> playerEvents(new PlayerEvents(commandFactory, loop.commandQueue()));
 		shared_ptr<TileMapBuilder> builder = mapLoader.load("map1.txt");
 		shared_ptr<TileMap> tileMap(new TileMap(builder));
+		shared_ptr<PlayerEvents> playerEvents(new PlayerEvents(commandFactory, loop.commandQueue(), tileMap->player()));
 	
 		commandFactory->setTileMap(tileMap);
 		commandFactory->setPlayer(tileMap->player());

@@ -13,12 +13,13 @@
 #include "../Constants.hpp"
 #include "../CommandFactory.hpp"
 #include "../CommandQueue.hpp"
+#include "../Elements/Player.hpp"
 
 using namespace std;
 using namespace Bomberman::Constants;
 
 namespace Bomberman {
-	PlayerEvents::PlayerEvents(shared_ptr<CommandFactory> commandFactory, shared_ptr<CommandQueue> commandQueue) : commandFactory(commandFactory), commandQueue(commandQueue) {
+	PlayerEvents::PlayerEvents(shared_ptr<CommandFactory> commandFactory, shared_ptr<CommandQueue> commandQueue, shared_ptr<Player> player) : commandFactory(commandFactory), commandQueue(commandQueue), player(player) {
 		
 	}
 	
@@ -28,6 +29,10 @@ namespace Bomberman {
 	
 	void PlayerEvents::listenEvent(SDL_Event event) {
 		shared_ptr<Command> command;
+		
+		if (player->isDead()) {
+			return;
+		}
 		
 		if (event.type == SDL_KEYDOWN) {
 			switch (event.key.keysym.sym) {

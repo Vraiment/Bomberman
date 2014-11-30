@@ -13,6 +13,7 @@
 #include <string>
 #include <vector>
 
+#include "../Timer.hpp"
 #include "../Math/Rectangle.hpp"
 
 namespace Bomberman {
@@ -45,12 +46,15 @@ namespace Bomberman {
 		bool tileHasBomb(Coordinate tile) const;
 		
 	private:
+		static const int playerRespawnTime;
+		
 		Rectangle _area;
 		std::string _name;
 		std::shared_ptr<Player> _player;
 		std::vector<Brick> _bricks;
 		std::list<Bomb> _bombs;
 		std::list<Explosion> _explosions;
+		Timer playerRespawn;
 		
 		void updateBombs();
 		void doDamage(std::vector<Coordinate> area);

@@ -101,7 +101,9 @@ namespace Bomberman {
 		}
 		
 		// Draw player
-		drawTile(player, tileMap->player()->position());
+		if (!tileMap->player()->isDead()) {
+			drawTile(player, tileMap->player()->position());
+		}
 		
 		// Draw explosions
 		auto explosions = tileMap->explosions();

@@ -26,6 +26,8 @@ using namespace std;
 using namespace tinyxml2;
 
 namespace Bomberman {
+	const int TileMap::playerRespawnTime = 2000;
+	
 	TileMap::TileMap(shared_ptr<TileMapBuilder> builder) {
 		if (!builder) {
 			Log::get() << "Invalid information to create map." << NullArgumentException();
@@ -145,6 +147,11 @@ namespace Bomberman {
 		
 		updateExplosions();
 		clearExplosions();
+		
+		if (_player->isDead() && playerRespawn.getTime() >= playerRespawnTime) {
+			_player->respawn();
+			playerRespawn.stop();
+		}
 	}
 	
 	void TileMap::addBomb(Bomb bomb) {
@@ -193,6 +200,11 @@ namespace Bomberman {
 			VectorUtils::removeIf(_bricks, [position] (Brick& brick) {
 				return brick.destructible() && position == brick.position();
 			});
+			
+			if (_player->position() == position) {
+				_player->die();
+				playerRespawn.start();
+			}
 		}
 	}
 	

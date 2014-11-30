@@ -21,10 +21,15 @@ namespace Bomberman {
 		int getExplosionSize() const;
 		int maxBombs() const;
 		
+		bool isDead() const;
+		void die();
+		void respawn();
+		
 	private:
 		Coordinate _position;
 		int explosionSize;
 		int _maxBombs;
+		bool dead;
 	};
 }
 
