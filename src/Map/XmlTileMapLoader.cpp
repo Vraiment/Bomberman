@@ -14,40 +14,12 @@
 #include "../Log/LogLevel.hpp"
 #include "../Utils/Exception.hpp"
 #include "../Utils/OperatingSystem.hpp"
-#include "TileMapBuilder.hpp"
+#include "DummyTileMapBuilder.hpp"
 
 using namespace std;
 using namespace tinyxml2;
 
 namespace Bomberman {
-	class Builder : public TileMapBuilder {
-	public:
-		int _width = 0, _height = 0;
-		string _name;
-		vector<Brick> _bricks;
-		shared_ptr<Player> _player;
-		
-		int width() const {
-			return _width;
-		}
-		
-		int height() const {
-			return _height;
-		}
-		
-		string name() const {
-			return _name;
-		}
-		
-		vector<Brick> bricks() const {
-			return _bricks;
-		}
-		
-		shared_ptr<Player> player() const {
-			return _player;
-		}
-	};
-	
 	XmlTileMapLoader::~XmlTileMapLoader() {
 		
 	}
@@ -84,7 +56,7 @@ namespace Bomberman {
 		fileName.clear();
 		document.Clear();
 		_error = false;
-		builder.reset(new Builder());
+		builder.reset(new DummyTileMapBuilder());
 	}
 	
 	void XmlTileMapLoader::loadDimension(tinyxml2::XMLElement *root) {
@@ -101,8 +73,8 @@ namespace Bomberman {
 			Log::get() << "Invalid height in map file " << fileName << "." << LogLevel::error;
 		}
 		
-		dynamic_pointer_cast<Builder>(builder)->_width = width;
-		dynamic_pointer_cast<Builder>(builder)->_height = height;
+		dynamic_pointer_cast<DummyTileMapBuilder>(builder)->_width = width;
+		dynamic_pointer_cast<DummyTileMapBuilder>(builder)->_height = height;
 	}
 	
 	void XmlTileMapLoader::loadName(XMLElement *nameNode) {
@@ -111,7 +83,7 @@ namespace Bomberman {
 			_error = true;
 		}
 		
-		dynamic_pointer_cast<Builder>(builder)->_name = nameNode->GetText();
+		dynamic_pointer_cast<DummyTileMapBuilder>(builder)->_name = nameNode->GetText();
 	}
 	
 	void XmlTileMapLoader::loadPlayer(XMLElement *playerNode) {
@@ -140,7 +112,7 @@ namespace Bomberman {
 			_error = true;
 		}
 		
-		dynamic_pointer_cast<Builder>(builder)->_player = player;
+		dynamic_pointer_cast<DummyTileMapBuilder>(builder)->_player = player;
 	}
 	
 	void XmlTileMapLoader::loadBricks(XMLElement *bricks) {
@@ -173,7 +145,7 @@ namespace Bomberman {
 			}
 			
 			if (!error) {
-				dynamic_pointer_cast<Builder>(builder)->_bricks.push_back(Brick(c, destructible));
+				dynamic_pointer_cast<DummyTileMapBuilder>(builder)->_bricks.push_back(Brick(c, destructible));
 			} else {
 				_error |= error;
 			}

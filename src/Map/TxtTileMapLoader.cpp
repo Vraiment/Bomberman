@@ -16,7 +16,7 @@
 #include "../Utils/Exception.hpp"
 #include "../Utils/StringUtils.hpp"
 #include "../Utils/OperatingSystem.hpp"
-#include "TileMapBuilder.hpp"
+#include "DummyTileMapBuilder.hpp"
 
 #include <fstream>
 #include <sstream>
@@ -25,34 +25,6 @@ using namespace std;
 using namespace Bomberman::Constants;
 
 namespace Bomberman {
-	class Builder : public TileMapBuilder {
-	public:
-		int _width = 0, _height = 0;
-		string _name;
-		vector<Brick> _bricks;
-		shared_ptr<Player> _player;
-		
-		int width() const {
-			return _width;
-		}
-		
-		int height() const {
-			return _height;
-		}
-		
-		string name() const {
-			return _name;
-		}
-		
-		vector<Brick> bricks() const {
-			return _bricks;
-		}
-		
-		shared_ptr<Player> player() const {
-			return _player;
-		}
-	};
-	
 	class CommandReader {
 	public:
 		CommandReader(string str) : _validCommand(false) {
@@ -134,7 +106,7 @@ namespace Bomberman {
 			Log::get() << "Could not open file: " << fileName << OpeningFileErrorException();
 		}
 		
-		_builder.reset(new Builder());
+		_builder.reset(new DummyTileMapBuilder());
 		
 		string line;
 		while (getline(file, line)) {
@@ -158,7 +130,7 @@ namespace Bomberman {
 	}
 	
 	bool TxtTileMapLoader::processCommand(string command, vector<string> arguments) {
-		Builder *builder = static_cast<Builder *>(_builder.get());
+		DummyTileMapBuilder *builder = static_cast<DummyTileMapBuilder *>(_builder.get());
 		
 		if (command == MAP_CMD_NAME) {
 			builder->_name = StringUtils::join(arguments, ' ');

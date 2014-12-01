@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B00227A1A2BEB8A008805D9 /* DummyTileMapBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B0022781A2BEB8A008805D9 /* DummyTileMapBuilder.cpp */; };
 		5B0496431825D01600C1FBCB /* MainLoop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B0496411825D01600C1FBCB /* MainLoop.cpp */; };
 		5B0C65DF182ADDF8003E3BD4 /* Screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C65DE182ADDF8003E3BD4 /* Screen.cpp */; };
 		5B0C86831852553F0005CADD /* bomberman.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B0C86821852550C0005CADD /* bomberman.png */; };
@@ -129,6 +130,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5B0022781A2BEB8A008805D9 /* DummyTileMapBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DummyTileMapBuilder.cpp; sourceTree = "<group>"; };
+		5B0022791A2BEB8A008805D9 /* DummyTileMapBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DummyTileMapBuilder.hpp; sourceTree = "<group>"; };
 		5B03C1271860F0450011C3DA /* TileMapBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TileMapBuilder.hpp; sourceTree = "<group>"; };
 		5B0496401825CF7E00C1FBCB /* Screen.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Screen.hpp; sourceTree = "<group>"; };
 		5B0496411825D01600C1FBCB /* MainLoop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainLoop.cpp; sourceTree = "<group>"; };
@@ -249,13 +252,15 @@
 		5B03C1251860E7190011C3DA /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				5B0022781A2BEB8A008805D9 /* DummyTileMapBuilder.cpp */,
+				5B0022791A2BEB8A008805D9 /* DummyTileMapBuilder.hpp */,
 				5B3795C81820F6E60050381F /* TileMap.cpp */,
 				5B3795C91820F6E60050381F /* TileMap.hpp */,
 				5B03C1271860F0450011C3DA /* TileMapBuilder.hpp */,
-				5B5BB1C51856D5370019CAD1 /* XmlTileMapLoader.cpp */,
-				5B5BB1C61856D5370019CAD1 /* XmlTileMapLoader.hpp */,
 				5B92289A1A10898E009ADD10 /* TxtTileMapLoader.cpp */,
 				5B92289B1A10898E009ADD10 /* TxtTileMapLoader.hpp */,
+				5B5BB1C51856D5370019CAD1 /* XmlTileMapLoader.cpp */,
+				5B5BB1C61856D5370019CAD1 /* XmlTileMapLoader.hpp */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -611,6 +616,7 @@
 				5BF5549E1833F70400DAC339 /* LogLevel.cpp in Sources */,
 				5B3B82D51857AB7800CECE27 /* PlayerCommand.cpp in Sources */,
 				5B755C771822E81300DADA25 /* Configuration.cpp in Sources */,
+				5B00227A1A2BEB8A008805D9 /* DummyTileMapBuilder.cpp in Sources */,
 				5B3795CE1820FBAA0050381F /* Texture.cpp in Sources */,
 				5BDC7DA5182AA18C0093391D /* Coordinate.cpp in Sources */,
 				5B3B82DA1857ACB700CECE27 /* Command.cpp in Sources */,
