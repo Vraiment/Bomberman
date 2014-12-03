@@ -2,6 +2,10 @@ name Map  1
 player 0 0
 size 20 25
 
+enemy 11 2 3
+enemy 0 8 5
+enemy 13 12 6
+
 # Common bricks
 single common_brick 1 10
 single common_brick 1 13

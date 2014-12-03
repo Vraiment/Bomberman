@@ -14,6 +14,7 @@
 
 #include "../Elements/Bomb.hpp"
 #include "../Elements/Brick.hpp"
+#include "../Elements/Enemy.hpp"
 #include "../Elements/Explosion.hpp"
 #include "../Elements/Player.hpp"
 #include "../Log/Log.hpp"
@@ -81,6 +82,21 @@ namespace Bomberman {
 				_bricks.push_back(*brick);
 			}
 		}
+		
+		vector<Enemy> enemies = builder->enemies();
+		for (auto enemy : enemies) {
+			if (!_area.contains(enemy.getPosition())) {
+				Log::get() << "Enemy out of map at position: " << enemy.getPosition().toString() << "." << LogLevel::warning;
+				continue;
+			}
+			
+			if (tileHasBrick(enemy.getPosition())) {
+				Log::get() << "Enemy overlapping a brick at position: " << enemy.getPosition().toString() << "." << LogLevel::warning;
+				continue;
+			}
+			
+			_enemies.push_back(enemy);
+		}
 	}
 	
 	TileMap::~TileMap() {
@@ -109,6 +125,10 @@ namespace Bomberman {
 	
 	vector<Brick> TileMap::bricks() const {
 		return _bricks;
+	}
+	
+	list<Enemy> TileMap::enemies() const {
+		return _enemies;
 	}
 	
 	list<Explosion> TileMap::explosions() const {

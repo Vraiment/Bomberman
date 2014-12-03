@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B0022711A2BE5A7008805D9 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B00226F1A2BE5A7008805D9 /* Enemy.cpp */; };
 		5B00227A1A2BEB8A008805D9 /* DummyTileMapBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B0022781A2BEB8A008805D9 /* DummyTileMapBuilder.cpp */; };
+		5B00227C1A2C05A8008805D9 /* enemy1.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B00227B1A2C0593008805D9 /* enemy1.png */; };
+		5B00227F1A2C0B86008805D9 /* enemy2.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B00227D1A2C0A4C008805D9 /* enemy2.png */; };
+		5B0022801A2C0B86008805D9 /* enemy3.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B00227E1A2C0A4C008805D9 /* enemy3.png */; };
 		5B0496431825D01600C1FBCB /* MainLoop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B0496411825D01600C1FBCB /* MainLoop.cpp */; };
 		5B0C65DF182ADDF8003E3BD4 /* Screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C65DE182ADDF8003E3BD4 /* Screen.cpp */; };
 		5B0C86831852553F0005CADD /* bomberman.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B0C86821852550C0005CADD /* bomberman.png */; };
@@ -98,6 +102,9 @@
 				5B4A120418331CB500C8A950 /* background.png in CopyFiles */,
 				5B4A120518331CB600C8A950 /* brick.png in CopyFiles */,
 				5B4A120618331CB600C8A950 /* destructibleBrick.png in CopyFiles */,
+				5B00227C1A2C05A8008805D9 /* enemy1.png in CopyFiles */,
+				5B00227F1A2C0B86008805D9 /* enemy2.png in CopyFiles */,
+				5B0022801A2C0B86008805D9 /* enemy3.png in CopyFiles */,
 				5B10150A1A26E2EB00CCCC77 /* explosion.png in CopyFiles */,
 				5B31D6761A299A66004ECEBD /* hud.png in CopyFiles */,
 				5B3D1310182C717A0070A335 /* tile0.png in CopyFiles */,
@@ -130,8 +137,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5B00226F1A2BE5A7008805D9 /* Enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
+		5B0022701A2BE5A7008805D9 /* Enemy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Enemy.hpp; sourceTree = "<group>"; };
 		5B0022781A2BEB8A008805D9 /* DummyTileMapBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DummyTileMapBuilder.cpp; sourceTree = "<group>"; };
 		5B0022791A2BEB8A008805D9 /* DummyTileMapBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DummyTileMapBuilder.hpp; sourceTree = "<group>"; };
+		5B00227B1A2C0593008805D9 /* enemy1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy1.png; sourceTree = "<group>"; };
+		5B00227D1A2C0A4C008805D9 /* enemy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy2.png; sourceTree = "<group>"; };
+		5B00227E1A2C0A4C008805D9 /* enemy3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy3.png; sourceTree = "<group>"; };
 		5B03C1271860F0450011C3DA /* TileMapBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TileMapBuilder.hpp; sourceTree = "<group>"; };
 		5B0496401825CF7E00C1FBCB /* Screen.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Screen.hpp; sourceTree = "<group>"; };
 		5B0496411825D01600C1FBCB /* MainLoop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainLoop.cpp; sourceTree = "<group>"; };
@@ -305,6 +317,8 @@
 				5B2174231A1AB20D0033B3AA /* Bomb.hpp */,
 				5BE4A21618358FFF00EE49AF /* Brick.cpp */,
 				5BE4A21718358FFF00EE49AF /* Brick.hpp */,
+				5B00226F1A2BE5A7008805D9 /* Enemy.cpp */,
+				5B0022701A2BE5A7008805D9 /* Enemy.hpp */,
 				5BF149831A1ACEBF003CF6D8 /* Explosion.cpp */,
 				5BF149841A1ACEBF003CF6D8 /* Explosion.hpp */,
 				5B0C86851852612C0005CADD /* Player.cpp */,
@@ -464,6 +478,9 @@
 				5B0C86821852550C0005CADD /* bomberman.png */,
 				5B4A11FF18331CAB00C8A950 /* brick.png */,
 				5B4A120018331CAB00C8A950 /* destructibleBrick.png */,
+				5B00227B1A2C0593008805D9 /* enemy1.png */,
+				5B00227D1A2C0A4C008805D9 /* enemy2.png */,
+				5B00227E1A2C0A4C008805D9 /* enemy3.png */,
 				5B1015091A26DFD400CCCC77 /* explosion.png */,
 				5B31D6751A299A53004ECEBD /* hud.png */,
 				5BD37AF31822199200BB1C28 /* tile0.png */,
@@ -596,6 +613,7 @@
 			files = (
 				5BEFA54F1A17E809001D1337 /* Transformer.cpp in Sources */,
 				5B2234761A16EEB8005BDA1C /* StringUtils.cpp in Sources */,
+				5B0022711A2BE5A7008805D9 /* Enemy.cpp in Sources */,
 				5BE4A21818358FFF00EE49AF /* Brick.cpp in Sources */,
 				5B5BB1C71856D5370019CAD1 /* XmlTileMapLoader.cpp in Sources */,
 				5B0C65DF182ADDF8003E3BD4 /* Screen.cpp in Sources */,

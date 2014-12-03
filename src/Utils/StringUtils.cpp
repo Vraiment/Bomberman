@@ -90,4 +90,14 @@ namespace Bomberman {
 		
 		return result;
 	}
+	
+	bool StringUtils::tryParseInt(string str, int& result) {
+		try {
+			result = atoi(str.c_str());
+		} catch (logic_error& exception) {
+			return false;
+		}
+		
+		return true;
+	}
 }

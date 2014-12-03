@@ -9,6 +9,7 @@
 #include "DummyTileMapBuilder.hpp"
 
 #include "../Elements/Brick.hpp"
+#include "../Elements/Enemy.hpp"
 #include "../Elements/Player.hpp"
 
 using namespace std;
@@ -28,6 +29,10 @@ namespace Bomberman {
 	
 	vector<Brick> DummyTileMapBuilder::bricks() const {
 		return _bricks;
+	}
+	
+	vector<Enemy> DummyTileMapBuilder::enemies() const {
+		return _enemies;
 	}
 	
 	shared_ptr<Player> DummyTileMapBuilder::player() const {

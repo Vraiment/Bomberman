@@ -10,6 +10,7 @@
 
 #include "../Constants.hpp"
 #include "../Elements/Brick.hpp"
+#include "../Elements/Enemy.hpp"
 #include "../Elements/Player.hpp"
 #include "../Log/Log.hpp"
 #include "../Log/LogLevel.hpp"
@@ -64,6 +65,8 @@ namespace Bomberman {
 		void verifyCommand() {
 			if (_command == MAP_CMD_NAME) {
 				_validCommand = !_arguments.empty();
+			} else if (_command == MAP_CMD_ENEMY) {
+				_validCommand = _arguments.size() == 3;
 			} else if (_command == MAP_CMD_PLAYER) {
 				_validCommand = _arguments.size() == 2;
 			} else if (_command == MAP_CMD_SIZE) {
@@ -134,6 +137,21 @@ namespace Bomberman {
 		
 		if (command == MAP_CMD_NAME) {
 			builder->_name = StringUtils::join(arguments, ' ');
+		} else if (command == MAP_CMD_ENEMY) {
+			Coordinate position;
+			if (!buildCoordinate(arguments[0], arguments[1], position)) {
+				return false;
+			}
+			
+			int range;
+			if (!StringUtils::tryParseInt(arguments[2], range)) {
+				return false;
+			}
+			
+			Enemy enemy(range);
+			enemy.setPosition(position);
+			
+			builder->_enemies.push_back(enemy);
 		} else if (command == MAP_CMD_PLAYER) {
 			shared_ptr<Player> player(new Player());
 			

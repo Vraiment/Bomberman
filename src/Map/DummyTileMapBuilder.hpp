@@ -17,6 +17,7 @@ namespace Bomberman {
 		int _width = 0, _height = 0;
 		std::string _name;
 		std::vector<Brick> _bricks;
+		std::vector<Enemy> _enemies;
 		std::shared_ptr<Player> _player;
 		
 		int width() const;
@@ -26,6 +27,8 @@ namespace Bomberman {
 		std::string name() const;
 		
 		std::vector<Brick> bricks() const;
+		
+		std::vector<Enemy> enemies() const;
 		
 		std::shared_ptr<Player> player() const;
 	};

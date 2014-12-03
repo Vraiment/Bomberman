@@ -9,6 +9,7 @@
 #include "XmlTileMapLoader.hpp"
 
 #include "../Elements/Brick.hpp"
+#include "../Elements/Enemy.hpp"
 #include "../Elements/Player.hpp"
 #include "../Log/Log.hpp"
 #include "../Log/LogLevel.hpp"

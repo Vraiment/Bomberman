@@ -27,6 +27,8 @@ namespace Bomberman {
 		std::string trim(std::string str);
 		
 		std::string toUpper(std::string str);
+		
+		bool tryParseInt(std::string str, int& result);
 	}
 }
 

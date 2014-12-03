@@ -10,6 +10,7 @@
 
 #include "../Elements/Bomb.hpp"
 #include "../Elements/Brick.hpp"
+#include "../Elements/Enemy.hpp"
 #include "../Elements/Explosion.hpp"
 #include "../Elements/Player.hpp"
 #include "../Map/TileMap.hpp"
@@ -31,6 +32,15 @@ namespace Bomberman {
 		destructibleBrick = Texture("destructibleBrick.png", renderer());
 		explosion = Texture("explosion.png", renderer());
 		player = Texture("bomberman.png", renderer());
+		
+		Texture enemy;
+		
+		enemy = Texture("enemy1.png", renderer());
+		enemies.push_back(enemy);
+		enemy = Texture("enemy2.png", renderer());
+		enemies.push_back(enemy);
+		enemy = Texture("enemy3.png", renderer());
+		enemies.push_back(enemy);
 		
 		sizeChanged(Rectangle());
 		
@@ -103,6 +113,23 @@ namespace Bomberman {
 		// Draw player
 		if (!tileMap->player()->isDead()) {
 			drawTile(player, tileMap->player()->position());
+		}
+		
+		// Draw enemies
+		list<Enemy> enemies = tileMap->enemies();
+		for (auto& enemy : enemies) {
+			int textureNumber = -1;
+			if (enemy.getRange() == 3) {
+				textureNumber = 0;
+			} else if (enemy.getRange() == 5) {
+				textureNumber = 1;
+			} else if (enemy.getRange() == 6) {
+				textureNumber = 2;
+			} else {
+				Log::get() << "Invalid enemy range: " << enemy.getRange() << "." << LogLevel::warning;
+			}
+			
+			drawTile(this->enemies[textureNumber], enemy.getPosition());
 		}
 		
 		// Draw explosions

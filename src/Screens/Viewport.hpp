@@ -12,6 +12,7 @@
 #include "../Screen.hpp"
 
 #include <string>
+#include <vector>
 
 #include "../Texture.hpp"
 
@@ -47,6 +48,7 @@ namespace Bomberman {
 		Texture bomb;
 		Texture brick;
 		Texture destructibleBrick;
+		std::vector<Texture> enemies;
 		Texture explosion;
 		Texture player;
 		
