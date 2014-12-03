@@ -12,6 +12,7 @@
 		5B00227C1A2C05A8008805D9 /* enemy1.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B00227B1A2C0593008805D9 /* enemy1.png */; };
 		5B00227F1A2C0B86008805D9 /* enemy2.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B00227D1A2C0A4C008805D9 /* enemy2.png */; };
 		5B0022801A2C0B86008805D9 /* enemy3.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B00227E1A2C0A4C008805D9 /* enemy3.png */; };
+		5B0022831A2C1206008805D9 /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B0022811A2C1206008805D9 /* Random.cpp */; };
 		5B0496431825D01600C1FBCB /* MainLoop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B0496411825D01600C1FBCB /* MainLoop.cpp */; };
 		5B0C65DF182ADDF8003E3BD4 /* Screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C65DE182ADDF8003E3BD4 /* Screen.cpp */; };
 		5B0C86831852553F0005CADD /* bomberman.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B0C86821852550C0005CADD /* bomberman.png */; };
@@ -144,6 +145,8 @@
 		5B00227B1A2C0593008805D9 /* enemy1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy1.png; sourceTree = "<group>"; };
 		5B00227D1A2C0A4C008805D9 /* enemy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy2.png; sourceTree = "<group>"; };
 		5B00227E1A2C0A4C008805D9 /* enemy3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy3.png; sourceTree = "<group>"; };
+		5B0022811A2C1206008805D9 /* Random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Random.cpp; sourceTree = "<group>"; };
+		5B0022821A2C1206008805D9 /* Random.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Random.hpp; sourceTree = "<group>"; };
 		5B03C1271860F0450011C3DA /* TileMapBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TileMapBuilder.hpp; sourceTree = "<group>"; };
 		5B0496401825CF7E00C1FBCB /* Screen.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Screen.hpp; sourceTree = "<group>"; };
 		5B0496411825D01600C1FBCB /* MainLoop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainLoop.cpp; sourceTree = "<group>"; };
@@ -347,6 +350,8 @@
 				5BDC7DA3182AA18C0093391D /* Coordinate.cpp */,
 				5BDC7DA4182AA18C0093391D /* Coordinate.hpp */,
 				5BD37B00182228B900BB1C28 /* Matrix.hpp */,
+				5B0022811A2C1206008805D9 /* Random.cpp */,
+				5B0022821A2C1206008805D9 /* Random.hpp */,
 				5B87384C184E582B0014D94B /* Rectangle.cpp */,
 				5B87384B184E580E0014D94B /* Rectangle.hpp */,
 				5BEFA54D1A17E809001D1337 /* Transformer.cpp */,
@@ -627,6 +632,7 @@
 				5BF5549B1833F67D00DAC339 /* Log.cpp in Sources */,
 				5B0EEC2D1820E10A0084C40C /* main.cpp in Sources */,
 				5B3B82D11857A82700CECE27 /* PlayerEvents.cpp in Sources */,
+				5B0022831A2C1206008805D9 /* Random.cpp in Sources */,
 				5B0496431825D01600C1FBCB /* MainLoop.cpp in Sources */,
 				5B92289C1A10898E009ADD10 /* TxtTileMapLoader.cpp in Sources */,
 				5B4A120B1833256800C8A950 /* OperatingSystem.cpp in Sources */,

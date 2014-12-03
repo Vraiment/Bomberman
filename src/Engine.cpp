@@ -12,12 +12,16 @@
 #include <CoreFoundation/CoreFoundation.h>
 #endif //__APPLE__
 #include <SDL2/SDL.h>
+#include <cstdlib>
+#include <ctime>
 
 namespace Bomberman {
 	Engine::Engine() {
 		SDL_Init(SDL_INIT_EVERYTHING);
 		
 		setPath();
+		
+		srand(static_cast<unsigned>(time(0)));
 	}
 	
 	Engine::~Engine() {
