@@ -12,6 +12,7 @@
 #include <SDL2/SDL.h>
 #include <tinyxml2/tinyxml2.h>
 
+#include "../Constants.hpp"
 #include "../Elements/Bomb.hpp"
 #include "../Elements/Brick.hpp"
 #include "../Elements/Enemy.hpp"
@@ -25,6 +26,7 @@
 
 using namespace std;
 using namespace tinyxml2;
+using namespace Bomberman::Constants;
 
 namespace Bomberman {
 	const int TileMap::playerRespawnTime = 2000;
@@ -97,6 +99,10 @@ namespace Bomberman {
 			
 			_enemies.push_back(enemy);
 		}
+		
+		enemiesRange.easy = builder->enemyRange(ENEMY_EASY);
+		enemiesRange.medium = builder->enemyRange(ENEMY_MEDIUM);
+		enemiesRange.hard = builder->enemyRange(ENEMY_HARD);
 	}
 	
 	TileMap::~TileMap() {

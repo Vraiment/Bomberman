@@ -8,6 +8,7 @@
 
 #include "Viewport.hpp"
 
+#include "../Constants.hpp"
 #include "../Elements/Bomb.hpp"
 #include "../Elements/Brick.hpp"
 #include "../Elements/Enemy.hpp"
@@ -19,6 +20,7 @@
 #include "../Log/LogLevel.hpp"
 
 using namespace std;
+using namespace Bomberman::Constants;
 
 namespace Bomberman {
 	const Coordinate Viewport::tileSize = Coordinate(40, 40);
@@ -119,14 +121,14 @@ namespace Bomberman {
 		list<Enemy> enemies = tileMap->enemies();
 		for (auto& enemy : enemies) {
 			int textureNumber = -1;
-			if (enemy.getRange() == 3) {
+			if (ENEMY_EASY == enemy.getType()) {
 				textureNumber = 0;
-			} else if (enemy.getRange() == 5) {
+			} else if (ENEMY_MEDIUM == enemy.getType()) {
 				textureNumber = 1;
-			} else if (enemy.getRange() == 6) {
+			} else if (ENEMY_HARD == enemy.getType()) {
 				textureNumber = 2;
 			} else {
-				Log::get() << "Invalid enemy range: " << enemy.getRange() << "." << LogLevel::warning;
+				Log::get() << "Invalid enemy type: " << enemy.getType() << "." << LogLevel::warning;
 			}
 			
 			drawTile(this->enemies[textureNumber], enemy.getPosition());

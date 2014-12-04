@@ -2,9 +2,13 @@ name Map  1
 player 0 0
 size 20 25
 
-enemy 11 2 3
-enemy 0 8 5
-enemy 13 12 6
+enemy_range hard 10
+enemy_range medium 7
+enemy_range easy 4
+
+enemy easy 11 2
+enemy medium 0 8
+enemy hard 13 12
 
 # Common bricks
 single common_brick 1 10

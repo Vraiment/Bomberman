@@ -16,16 +16,16 @@
 namespace Bomberman {
 	class Enemy {
 	public:
-		Enemy(int range);
+		Enemy(std::string type, Coordinate position = Coordinate());
 		
-		int getRange() const;
+		std::string getType() const;
 		Coordinate getPosition() const;
 		
 		void setPosition(Coordinate position);
 		
 	private:
 		Coordinate position;
-		int range;
+		std::string type;
 	};
 }
 

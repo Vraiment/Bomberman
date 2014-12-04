@@ -65,6 +65,8 @@ namespace Bomberman {
 		void verifyCommand() {
 			if (_command == MAP_CMD_NAME) {
 				_validCommand = !_arguments.empty();
+			} else if (_command == MAP_CMD_ENEMY_RANGE) {
+				_validCommand = _arguments.size() == 2;
 			} else if (_command == MAP_CMD_ENEMY) {
 				_validCommand = _arguments.size() == 3;
 			} else if (_command == MAP_CMD_PLAYER) {
@@ -137,19 +139,33 @@ namespace Bomberman {
 		
 		if (command == MAP_CMD_NAME) {
 			builder->_name = StringUtils::join(arguments, ' ');
-		} else if (command == MAP_CMD_ENEMY) {
-			Coordinate position;
-			if (!buildCoordinate(arguments[0], arguments[1], position)) {
-				return false;
-			}
-			
+		} else if (command == MAP_CMD_ENEMY_RANGE) {
 			int range;
-			if (!StringUtils::tryParseInt(arguments[2], range)) {
+			
+			if (!StringUtils::tryParseInt(arguments[1], range)) {
 				return false;
 			}
 			
-			Enemy enemy(range);
-			enemy.setPosition(position);
+			if (arguments[0] == ENEMY_EASY) {
+				builder->enemiesRange.easy = range;
+			} else if (arguments[0] == ENEMY_MEDIUM) {
+				builder->enemiesRange.medium = range;
+			} else if (arguments[0] == ENEMY_HARD) {
+				builder->enemiesRange.hard = range;
+			} else {
+				return false;
+			}
+		} else if (command == MAP_CMD_ENEMY) {
+			if (arguments[0] != ENEMY_EASY && arguments[0] != ENEMY_MEDIUM && arguments[0] != ENEMY_HARD) {
+				return false;
+			}
+			
+			Coordinate position;
+			if (!buildCoordinate(arguments[1], arguments[2], position)) {
+				return false;
+			}
+			
+			Enemy enemy(arguments[0], position);
 			
 			builder->_enemies.push_back(enemy);
 		} else if (command == MAP_CMD_PLAYER) {

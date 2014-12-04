@@ -15,6 +15,11 @@ namespace Bomberman {
 	class DummyTileMapBuilder : public TileMapBuilder {
 	public:
 		int _width = 0, _height = 0;
+		struct {
+			int easy = 3;
+			int medium = 5;
+			int hard = 6;
+		} enemiesRange;
 		std::string _name;
 		std::vector<Brick> _bricks;
 		std::vector<Enemy> _enemies;
@@ -23,6 +28,8 @@ namespace Bomberman {
 		int width() const;
 		
 		int height() const;
+		
+		int enemyRange(std::string enemyType) const;
 		
 		std::string name() const;
 		

@@ -23,6 +23,7 @@ namespace Bomberman {
 		
 		virtual int width() const = 0;
 		virtual int height() const = 0;
+		virtual int enemyRange(std::string enemyType) const = 0;
 		virtual std::string name() const = 0;
 		virtual std::vector<Brick> bricks() const = 0;
 		virtual std::vector<Enemy> enemies() const = 0;

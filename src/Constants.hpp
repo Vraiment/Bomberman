@@ -25,6 +25,7 @@ namespace Bomberman {
 		// Map file
 		const char MAP_CMD_NAME[] = "name";
 		const char MAP_CMD_ENEMY[] = "enemy";
+		const char MAP_CMD_ENEMY_RANGE[] = "enemy_range";
 		const char MAP_CMD_PLAYER[] = "player";
 		const char MAP_CMD_SIZE[] = "size";
 		const char MAP_CMD_SINGLE[] = "single";
@@ -47,6 +48,11 @@ namespace Bomberman {
 		
 		// Dirs & files
 		const char DIR_TEXTURES[] = "textures";
+		
+		// Enemy types
+		const char ENEMY_EASY[] = "easy";
+		const char ENEMY_MEDIUM[] = "medium";
+		const char ENEMY_HARD[] = "hard";
 	};
 }
 

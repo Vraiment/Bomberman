@@ -58,6 +58,11 @@ namespace Bomberman {
 		std::list<Enemy> _enemies;
 		std::list<Explosion> _explosions;
 		Timer playerRespawn;
+		struct {
+			int easy;
+			int medium;
+			int hard;
+		} enemiesRange;
 		
 		void updateBombs();
 		void doDamage(std::vector<Coordinate> area);

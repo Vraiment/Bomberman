@@ -15,12 +15,12 @@
 using namespace std;
 
 namespace Bomberman {
-	Enemy::Enemy(int range) : range(range) {
+	Enemy::Enemy(string type, Coordinate position) : type(type), position(position) {
 		
 	}
 	
-	int Enemy::getRange() const {
-		return range;
+	string Enemy::getType() const {
+		return type;
 	}
 	
 	Coordinate Enemy::getPosition() const {

@@ -8,11 +8,14 @@
 
 #include "DummyTileMapBuilder.hpp"
 
+#include "../Constants.hpp"
 #include "../Elements/Brick.hpp"
 #include "../Elements/Enemy.hpp"
 #include "../Elements/Player.hpp"
+#include "../Utils/Exception.hpp"
 
 using namespace std;
+using namespace Bomberman::Constants;
 
 namespace Bomberman {
 	int DummyTileMapBuilder::width() const {
@@ -21,6 +24,20 @@ namespace Bomberman {
 	
 	int DummyTileMapBuilder::height() const {
 		return _height;
+	}
+	
+	int DummyTileMapBuilder::enemyRange(string enemyType) const {
+		if (ENEMY_EASY == enemyType) {
+			return enemiesRange.easy;
+		} else if (ENEMY_MEDIUM == enemyType) {
+			return enemiesRange.medium;
+		} else if (ENEMY_HARD == enemyType) {
+			return enemiesRange.hard;
+		}
+		
+		Log::get() << "Invalid enemy type: \"" << enemyType << "\"." << InvalidArgumentException();
+		
+		return -1;
 	}
 	
 	string DummyTileMapBuilder::name() const {
