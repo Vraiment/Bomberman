@@ -14,6 +14,7 @@
 #include "../Utils/VectorUtils.hpp"
 
 #include <array>
+#include <climits>
 
 using namespace std;
 
@@ -22,7 +23,7 @@ namespace Bomberman {
 		return tileMap->area().contains(position) && !tileMap->tileHasBomb(position) && !tileMap->tileHasBrick(position);
 	}
 	
-	Enemy::Enemy(string type, Coordinate position) : type(type), position(position) {
+	Enemy::Enemy(string type, Coordinate position) : type(type), position(position), speed(INT_MAX) {
 		timer.start();
 	}
 	
