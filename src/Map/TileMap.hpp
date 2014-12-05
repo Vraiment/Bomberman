@@ -24,7 +24,7 @@ namespace Bomberman {
 	class Player;
 	class TileMapBuilder;
 	
-	class TileMap {
+	class TileMap : public std::enable_shared_from_this<TileMap> {
 	public:
 		TileMap(std::shared_ptr<TileMapBuilder> builder);
 		~TileMap();
@@ -64,6 +64,7 @@ namespace Bomberman {
 			int hard;
 		} enemiesRange;
 		
+		void updateEnemies();
 		void updateBombs();
 		void doDamage(std::vector<Coordinate> area);
 		void updateExplosions();

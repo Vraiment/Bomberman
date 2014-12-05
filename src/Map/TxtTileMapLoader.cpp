@@ -67,6 +67,8 @@ namespace Bomberman {
 				_validCommand = !_arguments.empty();
 			} else if (_command == MAP_CMD_ENEMY_RANGE) {
 				_validCommand = _arguments.size() == 2;
+			} else if (_command == MAP_CMD_ENEMY_SPEED) {
+				_validCommand = _arguments.size() == 2;
 			} else if (_command == MAP_CMD_ENEMY) {
 				_validCommand = _arguments.size() == 3;
 			} else if (_command == MAP_CMD_PLAYER) {
@@ -152,6 +154,22 @@ namespace Bomberman {
 				builder->enemiesRange.medium = range;
 			} else if (arguments[0] == ENEMY_HARD) {
 				builder->enemiesRange.hard = range;
+			} else {
+				return false;
+			}
+		} else if (command == MAP_CMD_ENEMY_SPEED) {
+			int speed;
+			
+			if (!StringUtils::tryParseInt(arguments[1], speed)) {
+				return false;
+			}
+			
+			if (arguments[0] == ENEMY_EASY) {
+				builder->enemiesSpeed.easy = speed;
+			} else if (arguments[0] == ENEMY_MEDIUM) {
+				builder->enemiesSpeed.medium = speed;
+			} else if (arguments[0] == ENEMY_HARD) {
+				builder->enemiesSpeed.hard = speed;
 			} else {
 				return false;
 			}

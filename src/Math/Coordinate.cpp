@@ -8,6 +8,7 @@
 
 #include "Coordinate.hpp"
 
+#include <cmath>
 #include <sstream>
 
 using namespace std;
@@ -23,6 +24,49 @@ namespace Bomberman {
 	
 	Coordinate::Coordinate(int i, int j) : i(i), j(j) {
 		
+	}
+	
+	Coordinate Coordinate::absolute() const {
+		return Coordinate(abs(i), abs(j));
+	}
+	
+	Coordinate Coordinate::left() const {
+		return Coordinate(i - 1, j);
+	}
+	
+	Coordinate Coordinate::right() const {
+		return Coordinate(i + 1, j);
+	}
+	
+	Coordinate Coordinate::up() const {
+		return Coordinate(i, j - 1);
+	}
+	
+	Coordinate Coordinate::down() const {
+		return Coordinate(i, j + 1);
+	}
+	
+	Coordinate Coordinate::leftUp() const {
+		return Coordinate(i - 1, j - 1);
+	}
+	
+	Coordinate Coordinate::rightUp() const {
+		return Coordinate(i + 1, j - 1);
+	}
+	
+	Coordinate Coordinate::leftDown() const {
+		return Coordinate(i - 1, j + 1);
+	}
+	
+	Coordinate Coordinate::rightDown() const {
+		return Coordinate(i + 1, j + 1);
+	}
+	
+	vector<Coordinate> Coordinate::adjacents() const {
+		return {
+			left(), right(), up(), down(),
+			leftUp(), rightUp(), leftDown(), rightDown()
+		};
 	}
 	
 	bool Coordinate::operator==(Coordinate other) const {

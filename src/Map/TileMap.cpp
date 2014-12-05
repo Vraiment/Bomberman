@@ -97,6 +97,8 @@ namespace Bomberman {
 				continue;
 			}
 			
+			enemy.setSpeed(builder->enemySpeed(enemy.getType()));
+			
 			_enemies.push_back(enemy);
 		}
 		
@@ -146,6 +148,7 @@ namespace Bomberman {
 	}
 	
 	void TileMap::update() {
+		updateEnemies();
 		updateBombs();
 		
 		stack<Coordinate> blownBombs;
@@ -202,6 +205,14 @@ namespace Bomberman {
 		}
 		
 		return false;
+	}
+	
+	void TileMap::updateEnemies() {
+		shared_ptr<TileMap> ptr = shared_from_this();
+		
+		for (auto& enemy : _enemies) {
+			enemy.update(ptr);
+		}
 	}
 	
 	void TileMap::updateBombs() {

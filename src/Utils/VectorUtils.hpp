@@ -9,6 +9,8 @@
 #ifndef __VectorUtils_hpp__
 #define __VectorUtils_hpp__
 
+#include "../Math/Random.hpp"
+
 #include <vector>
 
 namespace Bomberman {
@@ -20,6 +22,11 @@ namespace Bomberman {
 					vector.erase(vector.begin() + n--);
 				}
 			}
+		}
+		
+		template <typename T>
+		T& randomElement(std::vector<T>& vector) {
+			return vector[Random::randomInt(static_cast<int>(vector.size()))];
 		}
 	}
 }

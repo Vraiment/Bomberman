@@ -10,6 +10,7 @@
 #define __Coordinate__hpp__
 
 #include <string>
+#include <vector>
 
 namespace Bomberman {
 	struct Coordinate {
@@ -18,6 +19,20 @@ namespace Bomberman {
 		Coordinate(int i, int j);
 		
 		int i, j;
+		
+		Coordinate absolute() const;
+		
+		Coordinate left() const;
+		Coordinate right() const;
+		Coordinate up() const;
+		Coordinate down() const;
+		
+		Coordinate leftUp() const;
+		Coordinate rightUp() const;
+		Coordinate leftDown() const;
+		Coordinate rightDown() const;
+		
+		std::vector<Coordinate> adjacents() const;
 		
 		bool operator==(Coordinate other) const;
 		bool operator!=(Coordinate other) const;

@@ -6,6 +6,10 @@ enemy_range hard 10
 enemy_range medium 7
 enemy_range easy 4
 
+enemy_speed hard 500
+enemy_speed medium 750
+enemy_speed easy 1250
+
 enemy easy 11 2
 enemy medium 0 8
 enemy hard 13 12

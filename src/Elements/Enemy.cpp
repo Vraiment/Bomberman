@@ -11,12 +11,28 @@
 #include "Player.hpp"
 #include "../Map/TileMap.hpp"
 #include "../Math/Random.hpp"
+#include "../Utils/VectorUtils.hpp"
+
+#include <array>
 
 using namespace std;
 
 namespace Bomberman {
+	bool validNewPosition(shared_ptr<TileMap> tileMap, Coordinate position) {
+		return tileMap->area().contains(position) && !tileMap->tileHasBomb(position) && !tileMap->tileHasBrick(position);
+	}
+	
 	Enemy::Enemy(string type, Coordinate position) : type(type), position(position) {
-		
+		timer.start();
+	}
+	
+	void Enemy::update(std::shared_ptr<TileMap> tileMap) {
+		if (timer.getTime() >= speed) {
+			randomMove(tileMap);
+			
+			timer.clear();
+			timer.start();
+		}
 	}
 	
 	string Enemy::getType() const {
@@ -29,5 +45,26 @@ namespace Bomberman {
 	
 	void Enemy::setPosition(Coordinate position) {
 		this->position = position;
+	}
+	
+	void Enemy::setSpeed(int speed) {
+		this->speed = speed;
+	}
+	
+	void Enemy::randomMove(shared_ptr<TileMap> tileMap) {
+		vector<Coordinate> availablePositions;
+		
+		array<Coordinate, 4> adjacents = { position.up(), position.down(), position.left(), position.right() };
+		for (Coordinate adjacent : adjacents) {
+			if (validNewPosition(tileMap, adjacent)) {
+				availablePositions.push_back(adjacent);
+			}
+		}
+		
+		if (availablePositions.empty()) {
+			return;
+		}
+		
+		position = VectorUtils::randomElement(availablePositions);
 	}
 }

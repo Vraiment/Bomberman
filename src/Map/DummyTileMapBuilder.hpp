@@ -20,6 +20,11 @@ namespace Bomberman {
 			int medium = 5;
 			int hard = 6;
 		} enemiesRange;
+		struct {
+			int easy = 1500;
+			int medium = 1000;
+			int hard = 750;
+		} enemiesSpeed;
 		std::string _name;
 		std::vector<Brick> _bricks;
 		std::vector<Enemy> _enemies;
@@ -30,6 +35,8 @@ namespace Bomberman {
 		int height() const;
 		
 		int enemyRange(std::string enemyType) const;
+		
+		int enemySpeed(std::string enemyType) const;
 		
 		std::string name() const;
 		
