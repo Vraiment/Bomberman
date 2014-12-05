@@ -17,6 +17,14 @@ namespace Bomberman {
 		return static_cast<float>(rand());
 	}
 	
+	int Random::randomInt(int max) {
+		return randomInt(0, max);
+	}
+	
+	int Random::randomInt(int min, int max) {
+		return min + (rand() / (RAND_MAX / (max - min)));
+	}
+	
 	float Random::randomFloat(float max) {
 		return randomFloat(0, max);
 	}
