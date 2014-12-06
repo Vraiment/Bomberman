@@ -55,7 +55,7 @@ namespace Bomberman {
 	void Enemy::randomMove(shared_ptr<TileMap> tileMap) {
 		vector<Coordinate> availablePositions;
 		
-		array<Coordinate, 4> adjacents = { position.up(), position.down(), position.left(), position.right() };
+		array<Coordinate, 4> adjacents = position.cross();
 		for (Coordinate adjacent : adjacents) {
 			if (validNewPosition(tileMap, adjacent)) {
 				availablePositions.push_back(adjacent);

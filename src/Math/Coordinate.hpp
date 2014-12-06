@@ -9,8 +9,8 @@
 #ifndef __Coordinate__hpp__
 #define __Coordinate__hpp__
 
+#include <array>
 #include <string>
-#include <vector>
 
 namespace Bomberman {
 	struct Coordinate {
@@ -32,7 +32,8 @@ namespace Bomberman {
 		Coordinate leftDown() const;
 		Coordinate rightDown() const;
 		
-		std::vector<Coordinate> adjacents() const;
+		std::array<Coordinate, 4> cross() const;
+		std::array<Coordinate, 8> adjacents() const;
 		
 		bool operator==(Coordinate other) const;
 		bool operator!=(Coordinate other) const;

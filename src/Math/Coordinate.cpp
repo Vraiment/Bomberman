@@ -62,7 +62,13 @@ namespace Bomberman {
 		return Coordinate(i + 1, j + 1);
 	}
 	
-	vector<Coordinate> Coordinate::adjacents() const {
+	array<Coordinate, 4> Coordinate::cross() const {
+		return {
+			left(), right(), up(), down()
+		};
+	}
+	
+	array<Coordinate, 8> Coordinate::adjacents() const {
 		return {
 			left(), right(), up(), down(),
 			leftUp(), rightUp(), leftDown(), rightDown()
