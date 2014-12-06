@@ -231,6 +231,10 @@ namespace Bomberman {
 				}
 			}
 			
+			_enemies.remove_if([position] (Enemy enemy) {
+				return position == enemy.getPosition();
+			});
+			
 			VectorUtils::removeIf(_bricks, [position] (Brick& brick) {
 				return brick.destructible() && position == brick.position();
 			});
