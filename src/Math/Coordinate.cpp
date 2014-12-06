@@ -62,6 +62,10 @@ namespace Bomberman {
 		return Coordinate(i + 1, j + 1);
 	}
 	
+	Coordinate Coordinate::normalize() const {
+		return Coordinate(i / abs(i), j / abs(j));
+	}
+	
 	array<Coordinate, 4> Coordinate::cross() const {
 		return {
 			left(), right(), up(), down()

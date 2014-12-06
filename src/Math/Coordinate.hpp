@@ -32,6 +32,8 @@ namespace Bomberman {
 		Coordinate leftDown() const;
 		Coordinate rightDown() const;
 		
+		Coordinate normalize() const;
+		
 		std::array<Coordinate, 4> cross() const;
 		std::array<Coordinate, 8> adjacents() const;
 		
