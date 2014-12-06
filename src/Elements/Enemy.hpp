@@ -15,6 +15,7 @@
 #include <memory>
 
 namespace Bomberman {
+	class Player;
 	class TileMap;
 	
 	class Enemy {
@@ -27,14 +28,18 @@ namespace Bomberman {
 		Coordinate getPosition() const;
 		
 		void setPosition(Coordinate position);
+		void setRange(int range);
 		void setSpeed(int speed);
 		
 	private:
 		Timer timer;
 		Coordinate position;
+		int range;
 		int speed;
 		std::string type;
 		
+		bool playerInsideRange(std::shared_ptr<Player> player) const;
+		void followPlayer(std::shared_ptr<TileMap> tileMap);
 		void randomMove(std::shared_ptr<TileMap> tileMap);
 	};
 }

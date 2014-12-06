@@ -98,13 +98,10 @@ namespace Bomberman {
 			}
 			
 			enemy.setSpeed(builder->enemySpeed(enemy.getType()));
+			enemy.setRange(builder->enemyRange(enemy.getType()));
 			
 			_enemies.push_back(enemy);
 		}
-		
-		enemiesRange.easy = builder->enemyRange(ENEMY_EASY);
-		enemiesRange.medium = builder->enemyRange(ENEMY_MEDIUM);
-		enemiesRange.hard = builder->enemyRange(ENEMY_HARD);
 	}
 	
 	TileMap::~TileMap() {
