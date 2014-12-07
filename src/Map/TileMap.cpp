@@ -145,6 +145,7 @@ namespace Bomberman {
 	}
 	
 	void TileMap::update() {
+		_player->update();
 		updateEnemies();
 		updateBombs();
 		
@@ -173,6 +174,7 @@ namespace Bomberman {
 		
 		updateExplosions();
 		clearExplosions();
+		enemiesAttack();
 		
 		if (_player->isDead() && playerRespawn.getTime() >= playerRespawnTime) {
 			_player->respawn();
@@ -239,7 +241,7 @@ namespace Bomberman {
 				return brick.destructible() && position == brick.position();
 			});
 			
-			if (_player->position() == position) {
+			if (_player->position() == position && !_player->isDead() && !_player->isInvencible()) {
 				_player->die();
 				playerRespawn.start();
 			}
@@ -256,5 +258,18 @@ namespace Bomberman {
 		_explosions.remove_if([] (Explosion explosion) {
 			return explosion.done();
 		});
+	}
+	
+	void TileMap::enemiesAttack() {
+		if (_player->isDead() || _player->isInvencible()) {
+			return;
+		}
+		
+		for (auto enemy : _enemies) {
+			if (_player->position() == enemy.getPosition()) {
+				_player->die();
+				playerRespawn.start();
+			}
+		}
 	}
 }

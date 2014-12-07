@@ -64,6 +64,7 @@ namespace Bomberman {
 		void doDamage(std::vector<Coordinate> area);
 		void updateExplosions();
 		void clearExplosions();
+		void enemiesAttack();
 	};
 }
 

@@ -29,7 +29,7 @@ namespace Bomberman {
 	
 	void Enemy::update(std::shared_ptr<TileMap> tileMap) {
 		if (timer.getTime() >= speed) {
-			if (playerInsideRange(tileMap->player())) {
+			if (playerInsideRange(tileMap->player()) && !tileMap->player()->isDead()) {
 				followPlayer(tileMap);
 			} else {
 				randomMove(tileMap);
