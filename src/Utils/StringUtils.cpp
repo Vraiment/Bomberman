@@ -16,8 +16,6 @@ using namespace std;
 
 namespace Bomberman {
 	namespace StringUtils {
-		int (*to_upper)(int) = toupper;
-		
 		vector<string> split(string str, char separator) {
 			vector<string> result;
 			stringstream buffer;
@@ -81,23 +79,25 @@ namespace Bomberman {
 		string trim(string str) {
 			return leftTrim(rightTrim(str));
 		}
-	}
-	
-	string StringUtils::toUpper(string str) {
-		string result;
 		
-		transform(str.begin(), str.end(), result.begin(), to_upper);
-		
-		return result;
-	}
-	
-	bool StringUtils::tryParseInt(string str, int& result) {
-		try {
-			result = atoi(str.c_str());
-		} catch (logic_error& exception) {
-			return false;
+		string toUpper(string str) {
+			string result;
+			
+			for (char c : str) {
+				result += toupper(c);
+			}
+			
+			return result;
 		}
 		
-		return true;
+		bool tryParseInt(string str, int& result) {
+			try {
+				result = atoi(str.c_str());
+			} catch (logic_error& exception) {
+				return false;
+			}
+			
+			return true;
+		}
 	}
 }
