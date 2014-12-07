@@ -26,6 +26,7 @@
 		5B2174261A1AC2A70033B3AA /* bomb.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B2174251A1AC2820033B3AA /* bomb.png */; };
 		5B2234761A16EEB8005BDA1C /* StringUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B2234741A16EEB8005BDA1C /* StringUtils.cpp */; };
 		5B2234771A16F57E005BDA1C /* map1.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B2234731A16ED72005BDA1C /* map1.txt */; };
+		5B25FA311A33D2040068AFC1 /* LoggerFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B25FA2F1A33D2040068AFC1 /* LoggerFactory.cpp */; };
 		5B31D6761A299A66004ECEBD /* hud.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B31D6751A299A53004ECEBD /* hud.png */; };
 		5B3795CA1820F6E60050381F /* TileMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3795C81820F6E60050381F /* TileMap.cpp */; };
 		5B3795CE1820FBAA0050381F /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3795CC1820FBAA0050381F /* Texture.cpp */; };
@@ -170,6 +171,8 @@
 		5B2234731A16ED72005BDA1C /* map1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map1.txt; sourceTree = "<group>"; };
 		5B2234741A16EEB8005BDA1C /* StringUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringUtils.cpp; sourceTree = "<group>"; };
 		5B2234751A16EEB8005BDA1C /* StringUtils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StringUtils.hpp; sourceTree = "<group>"; };
+		5B25FA2F1A33D2040068AFC1 /* LoggerFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoggerFactory.cpp; sourceTree = "<group>"; };
+		5B25FA301A33D2040068AFC1 /* LoggerFactory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LoggerFactory.hpp; sourceTree = "<group>"; };
 		5B31D6731A298524004ECEBD /* VectorUtils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = VectorUtils.hpp; sourceTree = "<group>"; };
 		5B31D6751A299A53004ECEBD /* hud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hud.png; sourceTree = "<group>"; };
 		5B3795C81820F6E60050381F /* TileMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TileMap.cpp; sourceTree = "<group>"; };
@@ -337,6 +340,8 @@
 				5BF5549A1833F67D00DAC339 /* Log.hpp */,
 				5BD6AD0318237CE000E661DA /* Logger.cpp */,
 				5BD6AD0218237BBA00E661DA /* Logger.hpp */,
+				5B25FA2F1A33D2040068AFC1 /* LoggerFactory.cpp */,
+				5B25FA301A33D2040068AFC1 /* LoggerFactory.hpp */,
 				5BF5549C1833F70400DAC339 /* LogLevel.cpp */,
 				5BF5549D1833F70400DAC339 /* LogLevel.hpp */,
 				5B2174211A1A7D3D0033B3AA /* LogSystem.pch */,
@@ -650,6 +655,7 @@
 				5B87384D184E582B0014D94B /* Rectangle.cpp in Sources */,
 				5B6E81F5182AFE870031B1FE /* EmptyScreen.cpp in Sources */,
 				5B3795CA1820F6E60050381F /* TileMap.cpp in Sources */,
+				5B25FA311A33D2040068AFC1 /* LoggerFactory.cpp in Sources */,
 				5B1015081A26BEE100CCCC77 /* Timer.cpp in Sources */,
 				5BBB9E541820EB3F00726BC5 /* Engine.cpp in Sources */,
 				5BF149851A1ACEBF003CF6D8 /* Explosion.cpp in Sources */,

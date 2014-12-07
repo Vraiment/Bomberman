@@ -12,6 +12,7 @@
 
 #include "Constants.hpp"
 #include "Log/Log.hpp"
+#include "Log/LoggerFactory.hpp"
 #include "Log/LogLevel.hpp"
 
 using namespace std;
@@ -85,14 +86,6 @@ namespace Bomberman {
 		return _viewportHeight;
 	}
 	
-	std::vector<std::string> Configuration::loggers() const {
-		if (!loaded()) {
-			Log::get() << "Using unloaded configuration!" << LogLevel::fatal;
-		}
-		
-		return _loggers;
-	}
-	
 	void Configuration::defaults() {
 		_fileName = CFG_NULLFILE;
 		
@@ -161,8 +154,9 @@ namespace Bomberman {
 		
 		if (node == nullptr) return;
 		
-		for (XMLElement *logger = node->FirstChildElement(CFG_LOGGER); logger != nullptr; logger = logger->FirstChildElement(CFG_LOGGER)) {
-			_loggers.push_back(logger->GetText());
+		for (XMLElement *loggerName = node->FirstChildElement(CFG_LOGGER); loggerName != nullptr; loggerName = loggerName->FirstChildElement(CFG_LOGGER)) {
+			auto logger = LoggerFactory::get().getLogger(loggerName->GetText());
+			Log::get().addLogger(logger);
 		}
 	}
 }

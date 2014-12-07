@@ -50,6 +50,9 @@ namespace Bomberman {
 		// Dirs & files
 		const char DIR_TEXTURES[] = "textures";
 		
+		// Logger types
+		const char LOGGER_STD_OUT[] = "STDOUT";
+		
 		// Enemy types
 		const char ENEMY_EASY[] = "easy";
 		const char ENEMY_MEDIUM[] = "medium";

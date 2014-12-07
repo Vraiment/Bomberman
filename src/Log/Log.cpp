@@ -17,16 +17,9 @@
 using namespace std;
 
 namespace Bomberman {
-	class StdOutLogger : public Logger {
-	protected:
-		void recieveLog(string text, LogLevel level) {
-			cout << "[" << level.toString() << "]: " << text << endl;
-		}
-	};
+	Log Log::singleton = Log();
 	
-	Log Log::singleton = Log(shared_ptr<Logger>(new StdOutLogger()));
-	
-	Log::Log(shared_ptr<Logger> logger) : logger(logger) {
+	Log::Log() {
 		
 	}
 	
@@ -35,19 +28,19 @@ namespace Bomberman {
 	}
 	
 	Log& Log::operator<<(int value) {
-		message << value;
+		buffer << value;
 		
 		return singleton;
 	}
 	
 	Log& Log::operator<<(const char *value) {
-		message << value;
+		buffer << value;
 		
 		return singleton;
 	}
 	
 	Log& Log::operator<<(string value) {
-		message << value;
+		buffer << value;
 		
 		return singleton;
 	}
@@ -72,21 +65,34 @@ namespace Bomberman {
 			return;
 		}
 		
-		shared_ptr<Logger> current = logger;
-		
-		while (current->next) {
-			current = current->next;
+		if (this->logger) {
+			for (auto current = this->logger; true; current = current->next) {
+				if (current == logger) {
+					get() << "Adding duplicate logger." << LogLevel::warning;
+					return;
+				} else if (!current->next) {
+					current->next = logger;
+					break;
+				}
+			}
+		} else {
+			this->logger = logger;
 		}
 		
-		current->next = logger;
+		for (auto message : messages) {
+			logger->recieveLog(message.first, message.second);
+		}
 	}
 	
 	void Log::flush(LogLevel level) {
+		string message = buffer.str();
+		
+		messages.push_back({ message, level });
 		for (auto current = logger; current; current = current->next) {
-			current->recieveLog(message.str(), level);
+			current->recieveLog(message, level);
 		}
 		
-		message.str(string());
-		message.clear();
+		buffer.str(string());
+		buffer.clear();
 	}
 }

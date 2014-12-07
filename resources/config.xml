@@ -6,5 +6,7 @@
 		<height>600</height>
 	</viewport>
 	
-	<loggers />
+	<loggers>
+		<logger>stdout</logger>
+	</loggers>
 </configuration>

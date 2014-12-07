@@ -10,10 +10,12 @@
 #define __Log__hpp__
 
 #include <sstream>
+#include <vector>
+
+#include "LogLevel.hpp"
 
 namespace Bomberman {
 	class Logger;
-	class LogLevel;
 	
 	class Log {
 	public:
@@ -28,11 +30,12 @@ namespace Bomberman {
 		void addLogger(std::shared_ptr<Logger> logger);
 		
 	private:
-		Log(std::shared_ptr<Logger> logger);
+		Log();
 		
 		void flush(LogLevel level);
 		
-		std::stringstream message;
+		std::stringstream buffer;
+		std::vector<std::pair<std::string, LogLevel>> messages;
 		std::shared_ptr<Logger> logger;
 		
 		static Log singleton;
