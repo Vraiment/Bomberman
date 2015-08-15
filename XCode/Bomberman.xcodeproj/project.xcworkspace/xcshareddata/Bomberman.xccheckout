@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E0754123-B112-4D6B-B087-644F6C17FDDE</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Bomberman</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>393B806CCEDF020BBDECC7A64121F9B676FF245A</key>
+		<string>https://github.com/Vraiment/Bomberman.git</string>
+		<key>78DF22222A1CA83EEB067D3FD219D4C1BD05FC9E</key>
+		<string>https://github.com/leethomason/tinyxml2.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>XCode/Bomberman.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>393B806CCEDF020BBDECC7A64121F9B676FF245A</key>
+		<string>../../..</string>
+		<key>78DF22222A1CA83EEB067D3FD219D4C1BD05FC9E</key>
+		<string>../../..libs/tinyxml2</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Vraiment/Bomberman.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>393B806CCEDF020BBDECC7A64121F9B676FF245A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>393B806CCEDF020BBDECC7A64121F9B676FF245A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Bomberman%20XCode</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>78DF22222A1CA83EEB067D3FD219D4C1BD05FC9E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>tinyxml2</string>
+		</dict>
+	</array>
+</dict>
+</plist>
