@@ -13,6 +13,10 @@
 
 namespace Bomberman {
 	namespace Constants {
+		// Tile size
+		const int TILE_HEIGHT = 40;
+		const int TILE_WIDTH = 40;
+		
 		// Config file
 		const char CFG_NULLFILE[] = "/dev/null";
 		const char CFG_VIEWPORT[] = "viewport";

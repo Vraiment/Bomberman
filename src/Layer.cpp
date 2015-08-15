@@ -8,6 +8,8 @@
 
 #include "Layer.hpp"
 
+#include "Math/Rectangle.hpp"
+
 namespace Bomberman {
 	Layer::~Layer() {
 		
@@ -15,5 +17,9 @@ namespace Bomberman {
 	
 	bool Layer::isZombie() const {
 		return _isZombie;
+	}
+	
+	void Layer::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {
+		
 	}
 }

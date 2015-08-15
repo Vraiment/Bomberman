@@ -43,7 +43,7 @@ namespace Bomberman {
 	
 	void Screen::draw() {
 		for (auto layer : layers) {
-			layer->update();
+			layer->draw();
 		}
 	}
 	
@@ -116,6 +116,7 @@ namespace Bomberman {
 	
 	void Screen::addLayer(shared_ptr<Layer> layer) {
 		layers.push_back(layer);
+		layer->screenSizeChanged(Rectangle(), rectangle());
 	}
 	
 	void Screen::removeZombieLayers() {
@@ -133,7 +134,9 @@ namespace Bomberman {
 	}
 	
 	void Screen::sizeChanged(Rectangle previousSize) {
-		
+		for (auto layer : layers) {
+			layer->screenSizeChanged(previousSize, rectangle());
+		}
 	}
 	
 	void Screen::refereshSize(Rectangle previousSize) {

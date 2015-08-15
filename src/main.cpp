@@ -14,11 +14,13 @@
 #include "Configuration.hpp"
 #include "Engine.hpp"
 #include "EventListeners/PlayerEvents.hpp"
+#include "Layers/GameLayer.hpp"
+#include "Layers/HudLayer.hpp"
 #include "MainLoop.hpp"
 #include "Map/TileMap.hpp"
 #include "Map/TxtTileMapLoader.hpp"
 #include "Map/XmlTileMapLoader.hpp"
-#include "Screens/Viewport.hpp"
+#include "Screen.hpp"
 
 using namespace Bomberman;
 using namespace std;
@@ -29,11 +31,13 @@ int main(int argc, char* argv[]) {
 		Engine engine;
 		Configuration config("config.xml");
 		shared_ptr<CommandFactory> commandFactory(new CommandFactory());
+		shared_ptr<GameLayer> gameLayer(new GameLayer());
+		shared_ptr<HudLayer> hudLayer(new HudLayer());
 		TxtTileMapLoader mapLoader;
 		MainLoop loop;
 	
 		//Dependants objects
-		shared_ptr<Viewport> viewport(new Viewport(config.viewportWidth(), config.viewportHeight(), config.viewportTitle()));
+		shared_ptr<Screen> screen(new Screen(config.viewportWidth(), config.viewportHeight(), config.viewportTitle()));
 		shared_ptr<TileMapBuilder> builder = mapLoader.load("map1.txt");
 		shared_ptr<TileMap> tileMap(new TileMap(builder));
 		shared_ptr<PlayerEvents> playerEvents(new PlayerEvents(commandFactory, loop.commandQueue(), tileMap->player()));
@@ -41,11 +45,15 @@ int main(int argc, char* argv[]) {
 		commandFactory->setTileMap(tileMap);
 		commandFactory->setPlayer(tileMap->player());
 	
-		viewport->loadTileMap(tileMap);
+		hudLayer->loadGraphics(screen->renderer());
+		gameLayer->loadGraphics(screen->renderer());
+		
+		screen->addLayer(gameLayer);
+		screen->addLayer(hudLayer);
 	
 		//Game
 		loop.addEventListener(playerEvents);
-		loop.addScreen(viewport);
+		loop.addScreen(screen);
 		loop.run();
 	} catch (exception& e) {
 #ifdef DEBUG
