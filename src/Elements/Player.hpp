@@ -13,6 +13,8 @@
 #include "../Math/Coordinate.hpp"
 
 namespace Bomberman {
+	class Item;
+	
 	class Player {
 	public:
 		Player();
@@ -20,6 +22,8 @@ namespace Bomberman {
 		Coordinate& position();
 		
 		void update();
+		
+		void addItem(Item item);
 		
 		int getExplosionSize() const;
 		int maxBombs() const;

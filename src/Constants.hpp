@@ -40,6 +40,8 @@ namespace Bomberman {
 		// Messages
 		const char MSG_MOVE[] = "move";
 		const char MSG_SETBOMB[] = "setbomb";
+		const char MSG_EXTRA_BOMB[] = "extra_bomb";
+		const char MSG_INCREASE_RANGE[] = "increase_range";
 		
 		// Arguments
 		const char ARG_RIGHT[] = "right";

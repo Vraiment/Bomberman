@@ -11,6 +11,7 @@
 #include "../Constants.hpp"
 #include "../Elements/Bomb.hpp"
 #include "../Elements/Brick.hpp"
+#include "../Elements/Item.hpp"
 #include "../Elements/Player.hpp"
 #include "../Log/Log.hpp"
 #include "../Log/LogLevel.hpp"
@@ -30,6 +31,10 @@ namespace Bomberman {
 			move();
 		} else if (command == MSG_SETBOMB) {
 			setBomb();
+		} else if (command == MSG_EXTRA_BOMB) {
+			player->addItem(Item::EXTRA_BOMB);
+		} else if (command == MSG_INCREASE_RANGE) {
+			player->addItem(Item::INCREASE_RANGE);
 		} else {
 			Log::get() << "Invalid command \"" << OBJ_PLAYER << "." << command << "()\"." << LogLevel::error;
 		}

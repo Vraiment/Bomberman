@@ -8,6 +8,8 @@
 
 #include "Player.hpp"
 
+#include "Item.hpp"
+
 namespace Bomberman {
 	const int Player::invencibleTime = 750;
 	
@@ -22,6 +24,16 @@ namespace Bomberman {
 	void Player::update() {
 		if (invencible.isCounting() && invencible.getTime() >= invencibleTime) {
 			invencible.stop();
+		}
+	}
+	
+	void Player::addItem(Item item) {
+		if (item == Item::EXTRA_BOMB) {
+			++_maxBombs;
+		} else if (item == Item::INCREASE_RANGE) {
+			++explosionSize;
+		} else {
+			Log::get() << "Player tried to process invalid item with id: " << item.id() << LogLevel::error;
 		}
 	}
 	
