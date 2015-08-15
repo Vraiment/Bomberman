@@ -48,6 +48,8 @@ int main(int argc, char* argv[]) {
 		hudLayer->loadGraphics(screen->renderer());
 		gameLayer->loadGraphics(screen->renderer());
 		
+		gameLayer->setTileMap(tileMap);
+		
 		screen->addLayer(gameLayer);
 		screen->addLayer(hudLayer);
 	

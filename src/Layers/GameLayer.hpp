@@ -28,8 +28,25 @@ namespace Bomberman {
 		
 		void loadGraphics(std::shared_ptr<SDL_Renderer> renderer);
 		
-	private:
+		void setTileMap(std::shared_ptr<TileMap> tileMap);
 		
+		void screenSizeChanged(Rectangle previousSize, Rectangle newSize);
+		
+	private:
+		Texture background;
+		Texture bomb;
+		Texture brick;
+		Texture destructibleBrick;
+		std::vector<Texture> enemies;
+		Texture explosion;
+		Texture player;
+		
+		std::shared_ptr<TileMap> tileMap;
+		
+		Rectangle camera;
+		
+		void drawTile(Texture texture, Coordinate position);
+		bool getEnemyTexture(std::string enemyType, Texture& texture);
 	};
 }
 
