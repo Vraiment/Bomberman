@@ -55,6 +55,8 @@
 		5B87384F184E83AD0014D94B /* config.xml in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BD6AD0018236FC500E661DA /* config.xml */; };
 		5B92289C1A10898E009ADD10 /* TxtTileMapLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B92289A1A10898E009ADD10 /* TxtTileMapLoader.cpp */; };
 		5BB4D82C1B7FB2920066077D /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BB4D82A1B7FB2920066077D /* Item.cpp */; };
+		5BB4D82F1B7FCE380066077D /* ConsoleEvents.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BB4D82D1B7FCE380066077D /* ConsoleEvents.cpp */; };
+		5BB4D8321B7FD2F10066077D /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BB4D8301B7FD2F10066077D /* Console.cpp */; };
 		5BBB9E541820EB3F00726BC5 /* Engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BBB9E521820EB3F00726BC5 /* Engine.cpp */; };
 		5BBFCCA2185FFD910016F56A /* First.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BBFCC9E185FFD910016F56A /* First.cpp */; };
 		5BBFCCA3185FFD910016F56A /* Parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BBFCCA0185FFD910016F56A /* Parser.cpp */; };
@@ -213,6 +215,10 @@
 		5B92289B1A10898E009ADD10 /* TxtTileMapLoader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TxtTileMapLoader.hpp; sourceTree = "<group>"; };
 		5BB4D82A1B7FB2920066077D /* Item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Item.cpp; sourceTree = "<group>"; };
 		5BB4D82B1B7FB2920066077D /* Item.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Item.hpp; sourceTree = "<group>"; };
+		5BB4D82D1B7FCE380066077D /* ConsoleEvents.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsoleEvents.cpp; sourceTree = "<group>"; };
+		5BB4D82E1B7FCE380066077D /* ConsoleEvents.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ConsoleEvents.hpp; sourceTree = "<group>"; };
+		5BB4D8301B7FD2F10066077D /* Console.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Console.cpp; sourceTree = "<group>"; };
+		5BB4D8311B7FD2F10066077D /* Console.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Console.hpp; sourceTree = "<group>"; };
 		5BBB9E521820EB3F00726BC5 /* Engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Engine.cpp; sourceTree = "<group>"; };
 		5BBB9E531820EB3F00726BC5 /* Engine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Engine.hpp; sourceTree = "<group>"; };
 		5BBC81291829C0CF006F448F /* EventListener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EventListener.hpp; sourceTree = "<group>"; };
@@ -289,6 +295,8 @@
 		5B3B82CE1857A80D00CECE27 /* EventListeners */ = {
 			isa = PBXGroup;
 			children = (
+				5BB4D82D1B7FCE380066077D /* ConsoleEvents.cpp */,
+				5BB4D82E1B7FCE380066077D /* ConsoleEvents.hpp */,
 				5B3B82CF1857A82700CECE27 /* PlayerEvents.cpp */,
 				5B3B82D01857A82700CECE27 /* PlayerEvents.hpp */,
 			);
@@ -440,6 +448,8 @@
 				5B755C751822E81300DADA25 /* Configuration.cpp */,
 				5B755C761822E81300DADA25 /* Configuration.hpp */,
 				5B3B82DB1857CD6A00CECE27 /* Console */,
+				5BB4D8301B7FD2F10066077D /* Console.cpp */,
+				5BB4D8311B7FD2F10066077D /* Console.hpp */,
 				5B9228971A107EA7009ADD10 /* Constants.hpp */,
 				5B5BB1B61856ADA70019CAD1 /* Elements */,
 				5BBB9E521820EB3F00726BC5 /* Engine.cpp */,
@@ -636,6 +646,7 @@
 				5B3B82DE1857CDC100CECE27 /* TokenFactory.cpp in Sources */,
 				5BD6AD171823A36B00E661DA /* tinyxml2.cpp in Sources */,
 				5BBFCCA2185FFD910016F56A /* First.cpp in Sources */,
+				5BB4D82F1B7FCE380066077D /* ConsoleEvents.cpp in Sources */,
 				5BDBF7E71821780000BE71CC /* Viewport.cpp in Sources */,
 				5B5BB1C41856CEDA0019CAD1 /* CommandQueue.cpp in Sources */,
 				5BD6AD0518237F2D00E661DA /* Logger.cpp in Sources */,
@@ -663,6 +674,7 @@
 				5B3795CA1820F6E60050381F /* TileMap.cpp in Sources */,
 				5B25FA311A33D2040068AFC1 /* LoggerFactory.cpp in Sources */,
 				5B1015081A26BEE100CCCC77 /* Timer.cpp in Sources */,
+				5BB4D8321B7FD2F10066077D /* Console.cpp in Sources */,
 				5BBB9E541820EB3F00726BC5 /* Engine.cpp in Sources */,
 				5BF149851A1ACEBF003CF6D8 /* Explosion.cpp in Sources */,
 			);

@@ -12,7 +12,9 @@
 #include "CommandFactory.hpp"
 #include "CommandQueue.hpp"
 #include "Configuration.hpp"
+#include "Console.hpp"
 #include "Engine.hpp"
+#include "EventListeners/ConsoleEvents.hpp"
 #include "EventListeners/PlayerEvents.hpp"
 #include "MainLoop.hpp"
 #include "Map/TileMap.hpp"
@@ -37,14 +39,17 @@ int main(int argc, char* argv[]) {
 		shared_ptr<TileMapBuilder> builder = mapLoader.load("map1.txt");
 		shared_ptr<TileMap> tileMap(new TileMap(builder));
 		shared_ptr<PlayerEvents> playerEvents(new PlayerEvents(commandFactory, loop.commandQueue(), tileMap->player()));
+		shared_ptr<Console> console(new Console(commandFactory, loop.commandQueue()));
+		shared_ptr<ConsoleEvents> consoleEvents(new ConsoleEvents(console));
 	
 		commandFactory->setTileMap(tileMap);
 		commandFactory->setPlayer(tileMap->player());
-	
+		
 		viewport->loadTileMap(tileMap);
-	
+		
 		//Game
 		loop.addEventListener(playerEvents);
+		loop.addEventListener(consoleEvents);
 		loop.addScreen(viewport);
 		loop.run();
 	} catch (exception& e) {
