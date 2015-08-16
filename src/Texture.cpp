@@ -54,6 +54,10 @@ namespace Bomberman {
 		SDL_RenderCopy(renderer.get(), texture.get(), nullptr, &dst);
 	}
 	
+	bool Texture::isLoaded() const {
+		return _loaded;
+	}
+	
 	string Texture::name() const {
 		return _name;
 	}
