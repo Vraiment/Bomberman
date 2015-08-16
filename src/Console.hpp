@@ -37,6 +37,8 @@ namespace Bomberman {
 		void commitBuffer();
 		
 	private:
+		static const int BUFFER_SIZE;
+		
 		std::string buffer;
 		std::shared_ptr<CommandQueue> commandQueue;
 		std::shared_ptr<EventListener> playerEvents;

@@ -18,6 +18,8 @@
 using namespace std;
 
 namespace Bomberman {
+	const int Console::BUFFER_SIZE = 80;
+	
 	Console::Console(shared_ptr<CommandFactory> commandFactory, shared_ptr<CommandQueue> commandQueue, shared_ptr<ConsoleLayer> consoleLayer, shared_ptr<Layer> gameLayer, shared_ptr<EventListener> playerEvents) : parser(commandFactory), commandQueue(commandQueue), consoleLayer(consoleLayer), gameLayer(gameLayer), playerEvents(playerEvents) {
 		
 	}
@@ -49,9 +51,11 @@ namespace Bomberman {
 	}
 	
 	void Console::addToBuffer(string str) {
-		buffer += str;
+		if (buffer.size() < BUFFER_SIZE) {
+			buffer += str;
 		
-		consoleLayer->setInput(buffer);
+			consoleLayer->setInput(buffer);
+		}
 	}
 	
 	void Console::removeLastFromBuffer() {
