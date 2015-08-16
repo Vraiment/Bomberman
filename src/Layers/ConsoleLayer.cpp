@@ -50,6 +50,15 @@ namespace Bomberman {
 		}
 		
 		prompt.draw();
+		
+		if (inputLine.isLoaded()) {
+			inputLine.draw();
+			
+			cursor.rectangle().i = inputLine.rectangle().right();
+		} else {
+			cursor.rectangle().i = prompt.rectangle().right();
+		}
+		
 		if (drawCursor) {
 			cursor.draw();
 		}
@@ -82,9 +91,14 @@ namespace Bomberman {
 	}
 	
 	void ConsoleLayer::setInput(string input) {
+		inputLine = font.write(input, Color::WHITE);
+		
+		inputLine.rectangle().i = prompt.rectangle().right();
+		inputLine.rectangle().j = prompt.rectangle().j;
 	}
 	
 	void ConsoleLayer::clearInput() {
+		inputLine.clear();
 	}
 	
 	void ConsoleLayer::recieveLog(string text, LogLevel level) {
