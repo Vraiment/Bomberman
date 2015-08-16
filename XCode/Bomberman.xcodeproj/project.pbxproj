@@ -47,6 +47,8 @@
 		5B4A120618331CB600C8A950 /* destructibleBrick.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B4A120018331CAB00C8A950 /* destructibleBrick.png */; };
 		5B4A120B1833256800C8A950 /* OperatingSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B4A120A1833256800C8A950 /* OperatingSystem.cpp */; };
 		5B4C02BC1B80527D003FCB02 /* GameLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BDBF7E51821780000BE71CC /* GameLayer.cpp */; };
+		5B4C02C41B805739003FCB02 /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B4C02C31B805739003FCB02 /* SDL2_ttf.framework */; };
+		5B4C02C51B805743003FCB02 /* SDL2_ttf.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B4C02C31B805739003FCB02 /* SDL2_ttf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5B5BB1C41856CEDA0019CAD1 /* CommandQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BB1C21856CEDA0019CAD1 /* CommandQueue.cpp */; };
 		5B5BB1C71856D5370019CAD1 /* XmlTileMapLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BB1C51856D5370019CAD1 /* XmlTileMapLoader.cpp */; };
 		5B755C771822E81300DADA25 /* Configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B755C751822E81300DADA25 /* Configuration.cpp */; };
@@ -92,6 +94,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				5B4C02C51B805743003FCB02 /* SDL2_ttf.framework in CopyFiles */,
 				5B7732B5182AFB2F003A2747 /* SDL2_image.framework in CopyFiles */,
 				5BD37AFE18221A3D00BB1C28 /* SDL2.framework in CopyFiles */,
 			);
@@ -198,6 +201,7 @@
 		5B4A1207183321E600C8A950 /* Exception.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Exception.hpp; sourceTree = "<group>"; };
 		5B4A1209183323A900C8A950 /* OperatingSystem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OperatingSystem.hpp; sourceTree = "<group>"; };
 		5B4A120A1833256800C8A950 /* OperatingSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OperatingSystem.cpp; sourceTree = "<group>"; };
+		5B4C02C31B805739003FCB02 /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2_ttf.framework; sourceTree = "<group>"; };
 		5B5BB1C01856CE990019CAD1 /* Command.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Command.hpp; sourceTree = "<group>"; };
 		5B5BB1C21856CEDA0019CAD1 /* CommandQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommandQueue.cpp; sourceTree = "<group>"; };
 		5B5BB1C31856CEDA0019CAD1 /* CommandQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CommandQueue.hpp; sourceTree = "<group>"; };
@@ -263,6 +267,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B4C02C41B805739003FCB02 /* SDL2_ttf.framework in Frameworks */,
 				5BF63CA6182187CF001315AD /* CoreFoundation.framework in Frameworks */,
 				5B0EEC2B1820E0D20084C40C /* SDL2.framework in Frameworks */,
 				5B1BF7521822E48B009DCA31 /* SDL2_image.framework in Frameworks */,
@@ -431,9 +436,10 @@
 		5B76EC641820DD1B00D499EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5B4C02C31B805739003FCB02 /* SDL2_ttf.framework */,
 				5BF63CA5182187CF001315AD /* CoreFoundation.framework */,
-				5B0EEC2A1820E0D20084C40C /* SDL2.framework */,
 				5B1BF7511822E48B009DCA31 /* SDL2_image.framework */,
+				5B0EEC2A1820E0D20084C40C /* SDL2.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -780,6 +786,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					$SRCROOT,
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREFIX_HEADER = $SRCROOT/../src/Log/LogSystem.pch;
 				HEADER_SEARCH_PATHS = (
@@ -802,6 +809,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					$SRCROOT,
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREFIX_HEADER = $SRCROOT/../src/Log/LogSystem.pch;
 				HEADER_SEARCH_PATHS = (
