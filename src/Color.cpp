@@ -9,6 +9,9 @@
 #include "Color.hpp"
 
 #include <SDL2/SDL.h>
+#include <sstream>
+
+using namespace std;
 
 namespace Bomberman {
 	Color::Color(uint8_t value) : Color(value, value, value) {
@@ -60,6 +63,14 @@ namespace Bomberman {
 		color.a = a;
 		
 		return color;
+	}
+	
+	string Color::toString() const {
+		stringstream string;
+		
+		string << "[" << (int)r << "," << (int)g << "," << (int)b << "," << (int)a << "]";
+		
+		return string.str();
 	}
 	
 	const uint8_t Color::OPAQUE = 0xFF;

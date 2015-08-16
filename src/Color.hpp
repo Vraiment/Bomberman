@@ -10,6 +10,7 @@
 #define __Color__hpp__
 
 #include <cinttypes>
+#include <string>
 
 struct SDL_Color;
 
@@ -30,6 +31,8 @@ namespace Bomberman {
 		void setAlpha(uint8_t a);
 		
 		SDL_Color sdlColor() const;
+		
+		std::string toString() const;
 		
 		static const uint8_t OPAQUE;
 		static const uint8_t TRANSPARENT;
