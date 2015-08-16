@@ -62,8 +62,22 @@ namespace Bomberman {
 		return Coordinate(i + 1, j + 1);
 	}
 	
-	Coordinate Coordinate::normalize() const {
-		return Coordinate(i / abs(i), j / abs(j));
+	Coordinate Coordinate::canonize() const {
+		Coordinate canonicalVector;
+		
+		if (i > 0) {
+			canonicalVector.i = 1;
+		} else if (i < 0) {
+			canonicalVector.i = -1;
+		}
+		
+		if (j > 0) {
+			canonicalVector.j = 1;
+		} else if (j < 0) {
+			canonicalVector.j = -1;
+		}
+		
+		return canonicalVector;
 	}
 	
 	array<Coordinate, 4> Coordinate::cross() const {
@@ -153,4 +167,13 @@ namespace Bomberman {
 		
 		return left;
 	}
+	
+	const Coordinate Coordinate::ZERO = Coordinate(0, 0);
+	const Coordinate Coordinate::ONE = Coordinate(1, 1);
+	
+	const Coordinate Coordinate::RIGHT = Coordinate(1, 0);
+	const Coordinate Coordinate::LEFT = Coordinate(-1, 0);
+	
+	const Coordinate Coordinate::UP = Coordinate(0, 1);
+	const Coordinate Coordinate::DOWN = Coordinate(0, -1);
 }

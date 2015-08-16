@@ -21,12 +21,12 @@ namespace Bomberman {
 		
 	}
 	
-	int Rectangle::hCenter() const {
-		return (i + width) / 2;
+	int Rectangle::widthCenter() const {
+		return i + (width / 2);
 	}
 	
-	int Rectangle::vCenter() const {
-		return (j + height) / 2;
+	int Rectangle::heightCenter() const {
+		return j + (height / 2);
 	}
 	
 	int Rectangle::left() const {
@@ -46,7 +46,7 @@ namespace Bomberman {
 	}
 	
 	Coordinate Rectangle::center() const {
-		return Coordinate(hCenter(), vCenter());
+		return Coordinate(widthCenter(), heightCenter());
 	}
 	
 	Coordinate Rectangle::leftTop() const {

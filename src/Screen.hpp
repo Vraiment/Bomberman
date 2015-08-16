@@ -11,17 +11,20 @@
 
 #include <SDL2/SDL.h>
 #include <string>
+#include <list>
 
 #include "Math/Rectangle.hpp"
 
 namespace Bomberman {
+	class Layer;
+	
 	class Screen {
 	public:
 		Screen(int width, int height, std::string name);
-		virtual ~Screen();
+		~Screen();
 		
-		virtual void draw() = 0;
-		virtual void update() = 0;
+		void draw();
+		void update();
 		
 		std::string name() const;
 		int width() const;
@@ -35,6 +38,10 @@ namespace Bomberman {
 		
 		std::shared_ptr<SDL_Renderer> renderer() const;
 		
+		void addLayer(std::shared_ptr<Layer> layer);
+		void removeZombieLayers();
+		void clearLayers();
+		
 	protected:
 		virtual void nameChanged(std::string prevName);
 		virtual void sizeChanged(Rectangle previousSize);
@@ -46,6 +53,7 @@ namespace Bomberman {
 		std::shared_ptr<SDL_Window> window;
 		std::shared_ptr<SDL_Renderer> _renderer;
 		Rectangle _rectangle;
+		std::list<std::shared_ptr<Layer>> layers;
 	};
 }
 

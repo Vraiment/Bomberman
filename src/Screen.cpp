@@ -8,8 +8,7 @@
 
 #include "Screen.hpp"
 
-#include "Log/Log.hpp"
-#include "Log/LogLevel.hpp"
+#include "Layer.hpp"
 
 using namespace std;
 
@@ -40,6 +39,18 @@ namespace Bomberman {
 	
 	Screen::~Screen() {
 		
+	}
+	
+	void Screen::draw() {
+		for (auto layer : layers) {
+			layer->draw();
+		}
+	}
+	
+	void Screen::update() {
+		for (auto layer : layers) {
+			layer->update();
+		}
 	}
 	
 	string Screen::name() const {
@@ -103,12 +114,29 @@ namespace Bomberman {
 		return _renderer;
 	}
 	
+	void Screen::addLayer(shared_ptr<Layer> layer) {
+		layers.push_back(layer);
+		layer->screenSizeChanged(Rectangle(), rectangle());
+	}
+	
+	void Screen::removeZombieLayers() {
+		layers.remove_if([] (shared_ptr<Layer> layer) {
+			return layer->isZombie();
+		});
+	}
+	
+	void Screen::clearLayers() {
+		layers.clear();
+	}
+	
 	void Screen::nameChanged(string prevName) {
 		
 	}
 	
 	void Screen::sizeChanged(Rectangle previousSize) {
-		
+		for (auto layer : layers) {
+			layer->screenSizeChanged(previousSize, rectangle());
+		}
 	}
 	
 	void Screen::refereshSize(Rectangle previousSize) {

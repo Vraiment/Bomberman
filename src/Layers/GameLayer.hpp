@@ -1,5 +1,5 @@
 //
-//  Viewport.hpp
+//  GameLayer.hpp
 //  Bomberman
 //
 //  Created on 30/10/13.
@@ -9,41 +9,34 @@
 #ifndef __Viewport__hpp__
 #define __Viewport__hpp__
 
-#include "../Screen.hpp"
+#include "../Layer.hpp"
 
 #include <string>
 #include <vector>
 
 #include "../Texture.hpp"
 
-struct SDL_Renderer;
-
 namespace Bomberman {
 	class TileMap;
 	
-	class Viewport : public Screen {
+	class GameLayer : public Layer {
 	public:
-		Viewport(int width, int height, std::string name);
-		~Viewport();
+		GameLayer();
+		
+		~GameLayer();
 		
 		void draw();
 		void update();
 		
-		void loadTileMap(std::shared_ptr<TileMap> tileMap);
+		void loadGraphics(std::shared_ptr<SDL_Renderer> renderer);
 		
-	protected:
-		void sizeChanged(Rectangle previousSize);
+		void setTileMap(std::shared_ptr<TileMap> tileMap);
+		
+		void screenSizeChanged(Rectangle previousSize, Rectangle newSize);
 		
 	private:
-		bool shouldDraw();
-		Rectangle buildView();
+		class Camera;
 		
-		static const Coordinate tileSize;
-		
-		// Hud Textures
-		Texture hud;
-		
-		// Game Textures
 		Texture background;
 		Texture bomb;
 		Texture brick;
@@ -54,13 +47,11 @@ namespace Bomberman {
 		
 		std::shared_ptr<TileMap> tileMap;
 		
-		Coordinate offset; // In pixels
-		Coordinate center; // In pixels
-		Coordinate lastPlayerPos; // In tiles
+		std::shared_ptr<Camera> camera;
 		
-		void drawHud();
-		void drawGame();
+		void drawBackground();
 		void drawTile(Texture texture, Coordinate position);
+		bool getEnemyTexture(std::string enemyType, Texture& texture);
 	};
 }
 

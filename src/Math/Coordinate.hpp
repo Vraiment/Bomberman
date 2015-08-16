@@ -32,7 +32,7 @@ namespace Bomberman {
 		Coordinate leftDown() const;
 		Coordinate rightDown() const;
 		
-		Coordinate normalize() const;
+		Coordinate canonize() const;
 		
 		std::array<Coordinate, 4> cross() const;
 		std::array<Coordinate, 8> adjacents() const;
@@ -46,6 +46,15 @@ namespace Bomberman {
 		Coordinate& operator/=(Coordinate other);
 		
 		std::string toString() const;
+		
+		static const Coordinate ZERO;
+		static const Coordinate ONE;
+		
+		static const Coordinate RIGHT;
+		static const Coordinate LEFT;
+		
+		static const Coordinate UP;
+		static const Coordinate DOWN;
 	};
 	
 	Coordinate operator-(Coordinate coordinate);
