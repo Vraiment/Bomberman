@@ -47,7 +47,9 @@ namespace Bomberman {
 				}
 				
 				for (auto it = eventListeners.begin(); it != eventListeners.end(); ++it) {
-					(*it)->listenEvent(event);
+					if ((*it)->enabled()) {
+						(*it)->listenEvent(event);
+					}
 				}
 			}
 			

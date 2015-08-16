@@ -14,9 +14,18 @@ union SDL_Event;
 namespace Bomberman {
 	class EventListener {
 	public:
+		EventListener();
 		virtual ~EventListener() { }
 		
 		virtual void listenEvent(SDL_Event event) = 0;
+		
+		bool enabled() const;
+		
+		void enable();
+		void disable();
+		
+	private:
+		bool _enabled;
 	};
 }
 

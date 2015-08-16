@@ -55,6 +55,7 @@
 		5B5BB1C41856CEDA0019CAD1 /* CommandQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BB1C21856CEDA0019CAD1 /* CommandQueue.cpp */; };
 		5B5BB1C71856D5370019CAD1 /* XmlTileMapLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BB1C51856D5370019CAD1 /* XmlTileMapLoader.cpp */; };
 		5B5C97B11B80DFFE00C9D6C1 /* PressStart2P.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B5C97B01B80DFF400C9D6C1 /* PressStart2P.ttf */; };
+		5B5C97B31B80EC4600C9D6C1 /* EventListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B5C97B21B80EC4600C9D6C1 /* EventListener.cpp */; };
 		5B755C771822E81300DADA25 /* Configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B755C751822E81300DADA25 /* Configuration.cpp */; };
 		5B7732B5182AFB2F003A2747 /* SDL2_image.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B1BF7511822E48B009DCA31 /* SDL2_image.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5B87384D184E582B0014D94B /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B87384C184E582B0014D94B /* Rectangle.cpp */; };
@@ -228,6 +229,7 @@
 		5B5BB1C51856D5370019CAD1 /* XmlTileMapLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XmlTileMapLoader.cpp; sourceTree = "<group>"; };
 		5B5BB1C61856D5370019CAD1 /* XmlTileMapLoader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XmlTileMapLoader.hpp; sourceTree = "<group>"; };
 		5B5C97B01B80DFF400C9D6C1 /* PressStart2P.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PressStart2P.ttf; sourceTree = "<group>"; };
+		5B5C97B21B80EC4600C9D6C1 /* EventListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventListener.cpp; sourceTree = "<group>"; };
 		5B755C751822E81300DADA25 /* Configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Configuration.cpp; sourceTree = "<group>"; };
 		5B755C761822E81300DADA25 /* Configuration.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Configuration.hpp; sourceTree = "<group>"; };
 		5B76EC621820DD1B00D499EE /* Bomberman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bomberman.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -497,6 +499,7 @@
 				5B5BB1B61856ADA70019CAD1 /* Elements */,
 				5BBB9E521820EB3F00726BC5 /* Engine.cpp */,
 				5BBB9E531820EB3F00726BC5 /* Engine.hpp */,
+				5B5C97B21B80EC4600C9D6C1 /* EventListener.cpp */,
 				5BBC81291829C0CF006F448F /* EventListener.hpp */,
 				5B3B82CE1857A80D00CECE27 /* EventListeners */,
 				5B4C02C91B805980003FCB02 /* Font.cpp */,
@@ -687,6 +690,7 @@
 			files = (
 				5BEFA54F1A17E809001D1337 /* Transformer.cpp in Sources */,
 				5B2234761A16EEB8005BDA1C /* StringUtils.cpp in Sources */,
+				5B5C97B31B80EC4600C9D6C1 /* EventListener.cpp in Sources */,
 				5B0022711A2BE5A7008805D9 /* Enemy.cpp in Sources */,
 				5BB4D8381B7FE6680066077D /* HudLayer.cpp in Sources */,
 				5BE4A21818358FFF00EE49AF /* Brick.cpp in Sources */,
