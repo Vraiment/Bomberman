@@ -43,13 +43,17 @@ namespace Bomberman {
 	
 	void Screen::draw() {
 		for (auto layer : layers) {
-			layer->draw();
+			if (layer->shouldDraw()) {
+				layer->draw();
+			}
 		}
 	}
 	
 	void Screen::update() {
 		for (auto layer : layers) {
-			layer->update();
+			if (layer->shouldUpdate()) {
+				layer->update();
+			}
 		}
 	}
 	

@@ -22,4 +22,20 @@ namespace Bomberman {
 	void Layer::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {
 		
 	}
+	
+	bool Layer::shouldDraw() const {
+		return _shouldDraw;
+	}
+	
+	void Layer::shouldDraw(bool should) {
+		_shouldDraw = should;
+	}
+	
+	bool Layer::shouldUpdate() const {
+		return _shouldUpdate;
+	}
+	
+	void Layer::shouldUpdate(bool should) {
+		_shouldUpdate = should;
+	}
 }
