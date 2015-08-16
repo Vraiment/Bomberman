@@ -11,10 +11,13 @@
 
 #include "../Font.hpp"
 #include "../Layer.hpp"
+#include "../Texture.hpp"
 
 namespace Bomberman {
 	class ConsoleLayer : public Layer {
 	public:
+		ConsoleLayer();
+		
 		void update();
 		void draw();
 		
@@ -24,6 +27,8 @@ namespace Bomberman {
 		
 	private:
 		Font fontSmall;
+		Texture background;
+		std::shared_ptr<SDL_Renderer> renderer;
 	};
 }
 

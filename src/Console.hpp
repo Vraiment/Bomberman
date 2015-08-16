@@ -17,10 +17,12 @@
 namespace Bomberman {
 	class CommandFactory;
 	class CommandQueue;
+	class EventListener;
+	class Layer;
 	
 	class Console {
 	public:
-		Console(std::shared_ptr<CommandFactory> commandFactory, std::shared_ptr<CommandQueue> commandQueue);
+		Console(std::shared_ptr<CommandFactory> commandFactory, std::shared_ptr<CommandQueue> commandQueue, std::shared_ptr<Layer> consoleLayer, std::shared_ptr<Layer> gameLayer, std::shared_ptr<EventListener> playerEvents);
 		
 		bool visible() const;
 		
@@ -35,8 +37,10 @@ namespace Bomberman {
 	private:
 		std::stringstream buffer;
 		std::shared_ptr<CommandQueue> commandQueue;
+		std::shared_ptr<EventListener> playerEvents;
+		std::shared_ptr<Layer> consoleLayer;
+		std::shared_ptr<Layer> gameLayer;
 		
-		bool isVisible;
 		Parser parser;
 	};
 }

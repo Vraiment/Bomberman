@@ -9,24 +9,30 @@
 #include "Console.hpp"
 
 #include "CommandQueue.hpp"
+#include "EventListener.hpp"
+#include "Layer.hpp"
 
 using namespace std;
 
 namespace Bomberman {
-	Console::Console(shared_ptr<CommandFactory> commandFactory, shared_ptr<CommandQueue> commandQueue) : parser(commandFactory), commandQueue(commandQueue) {
+	Console::Console(shared_ptr<CommandFactory> commandFactory, shared_ptr<CommandQueue> commandQueue, shared_ptr<Layer> consoleLayer, shared_ptr<Layer> gameLayer, shared_ptr<EventListener> playerEvents) : parser(commandFactory), commandQueue(commandQueue), consoleLayer(consoleLayer), gameLayer(gameLayer), playerEvents(playerEvents) {
 		
 	}
 	
 	bool Console::visible() const {
-		return isVisible;
+		return consoleLayer->shouldDraw();
 	}
 	
 	void Console::hide() {
-		isVisible = false;
+		consoleLayer->shouldDraw(false);
+		gameLayer->shouldUpdate(true);
+		playerEvents->enable();
 	}
 	
 	void Console::show() {
-		isVisible = true;
+		consoleLayer->shouldDraw(true);
+		gameLayer->shouldUpdate(false);
+		playerEvents->disable();
 	}
 	
 	void Console::addToBuffer(char character) {

@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
 		shared_ptr<TileMapBuilder> builder = mapLoader.load("map1.txt");
 		shared_ptr<TileMap> tileMap(new TileMap(builder));
 		shared_ptr<PlayerEvents> playerEvents(new PlayerEvents(commandFactory, loop.commandQueue(), tileMap->player()));
-		shared_ptr<Console> console(new Console(commandFactory, loop.commandQueue()));
+		shared_ptr<Console> console(new Console(commandFactory, loop.commandQueue(), consoleLayer, gameLayer, playerEvents));
 		shared_ptr<ConsoleEvents> consoleEvents(new ConsoleEvents(console));
 	
 		commandFactory->setTileMap(tileMap);
