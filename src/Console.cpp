@@ -8,14 +8,17 @@
 
 #include "Console.hpp"
 
+#include <SDL2/SDL.h>
+
 #include "CommandQueue.hpp"
 #include "EventListener.hpp"
 #include "Layer.hpp"
+#include "Layers/ConsoleLayer.hpp"
 
 using namespace std;
 
 namespace Bomberman {
-	Console::Console(shared_ptr<CommandFactory> commandFactory, shared_ptr<CommandQueue> commandQueue, shared_ptr<Layer> consoleLayer, shared_ptr<Layer> gameLayer, shared_ptr<EventListener> playerEvents) : parser(commandFactory), commandQueue(commandQueue), consoleLayer(consoleLayer), gameLayer(gameLayer), playerEvents(playerEvents) {
+	Console::Console(shared_ptr<CommandFactory> commandFactory, shared_ptr<CommandQueue> commandQueue, shared_ptr<ConsoleLayer> consoleLayer, shared_ptr<Layer> gameLayer, shared_ptr<EventListener> playerEvents) : parser(commandFactory), commandQueue(commandQueue), consoleLayer(consoleLayer), gameLayer(gameLayer), playerEvents(playerEvents) {
 		
 	}
 	
@@ -27,38 +30,58 @@ namespace Bomberman {
 		consoleLayer->shouldDraw(false);
 		gameLayer->shouldUpdate(true);
 		playerEvents->enable();
+		
+		SDL_StopTextInput();
 	}
 	
 	void Console::show() {
 		consoleLayer->shouldDraw(true);
 		gameLayer->shouldUpdate(false);
 		playerEvents->disable();
+		
+		SDL_StartTextInput();
 	}
 	
 	void Console::addToBuffer(char character) {
-		buffer << character;
+		buffer += character;
+		
+		consoleLayer->setInput(buffer);
+	}
+	
+	void Console::addToBuffer(string str) {
+		buffer += str;
+		
+		consoleLayer->setInput(buffer);
 	}
 	
 	void Console::removeLastFromBuffer() {
-		buffer.ignore();
+		if (!buffer.empty()) {
+			buffer.pop_back();
+			
+			if (!buffer.empty()) {
+				consoleLayer->setInput(buffer);
+			} else {
+				consoleLayer->clearInput();
+			}
+		}
 	}
 	
 	void Console::clearBuffer() {
-		buffer.str(string());
 		buffer.clear();
+		
+		consoleLayer->clearInput();
 	}
 	
 	void Console::commitBuffer() {
-		string fullBuffer = buffer.str();
-		clearBuffer();
-		
-		Log::get() << fullBuffer << LogLevel::info;
-		auto cmds = parser.parse(buffer.str());
+		Log::get() << buffer << LogLevel::info;
+		auto cmds = parser.parse(buffer);
 		
 		while (!cmds.empty()) {
 			auto cmd = cmds.front();
 			commandQueue->addCommand(cmd);
 			cmds.pop();
 		}
+		
+		clearBuffer();
 	}
 }

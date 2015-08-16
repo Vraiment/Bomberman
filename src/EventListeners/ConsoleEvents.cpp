@@ -26,26 +26,26 @@ namespace Bomberman {
 	
 	void ConsoleEvents::listenEvent(SDL_Event event) {
 		if (console->visible()) {
-			//capture keys
-		} else {
-			switchConsole(event);
-		}
-	}
-
-	void ConsoleEvents::switchConsole(SDL_Event event) {
-		if (event.type == SDL_KEYUP) {
-			switch (event.key.keysym.sym) {
-				case SDLK_BACKSPACE:
-					console->show();
-					break;
-					
-				case SDLK_ESCAPE:
+			if (SDL_KEYUP == event.type) {
+				auto keySym = event.key.keysym.sym;
+				
+				if (SDLK_ESCAPE == keySym) {
 					console->hide();
-					break;
-					
-				default:
-					break;
+				} else if (SDLK_RETURN == keySym) {
+					console->commitBuffer();
+				}
+			} else if (SDL_KEYDOWN == event.type) {
+				auto keySym = event.key.keysym.sym;
+				
+				if (SDLK_BACKSPACE == keySym) {
+					console->removeLastFromBuffer();
+				}
+			} else if (SDL_TEXTINPUT == event.type) {
+				string inputText = event.text.text;
+				console->addToBuffer(inputText);
 			}
+		} else if (event.type == SDL_KEYUP && SDLK_BACKSPACE == event.key.keysym.sym) {
+			console->show();
 		}
 	}
 }

@@ -25,6 +25,9 @@ namespace Bomberman {
 		
 		void screenSizeChanged(Rectangle previousSize, Rectangle newSize);
 		
+		void setInput(std::string input);
+		void clearInput();
+		
 	private:
 		Font fontSmall;
 		Texture background;

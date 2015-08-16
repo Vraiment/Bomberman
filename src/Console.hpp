@@ -10,19 +10,20 @@
 #define __Console__hpp__
 
 #include <memory>
-#include <sstream>
+#include <string>
 
 #include "Console/Parser.hpp"
 
 namespace Bomberman {
 	class CommandFactory;
 	class CommandQueue;
+	class ConsoleLayer;
 	class EventListener;
 	class Layer;
 	
 	class Console {
 	public:
-		Console(std::shared_ptr<CommandFactory> commandFactory, std::shared_ptr<CommandQueue> commandQueue, std::shared_ptr<Layer> consoleLayer, std::shared_ptr<Layer> gameLayer, std::shared_ptr<EventListener> playerEvents);
+		Console(std::shared_ptr<CommandFactory> commandFactory, std::shared_ptr<CommandQueue> commandQueue, std::shared_ptr<ConsoleLayer> consoleLayer, std::shared_ptr<Layer> gameLayer, std::shared_ptr<EventListener> playerEvents);
 		
 		bool visible() const;
 		
@@ -30,15 +31,16 @@ namespace Bomberman {
 		void show();
 		
 		void addToBuffer(char character);
+		void addToBuffer(std::string string);
 		void removeLastFromBuffer();
 		void clearBuffer();
 		void commitBuffer();
 		
 	private:
-		std::stringstream buffer;
+		std::string buffer;
 		std::shared_ptr<CommandQueue> commandQueue;
 		std::shared_ptr<EventListener> playerEvents;
-		std::shared_ptr<Layer> consoleLayer;
+		std::shared_ptr<ConsoleLayer> consoleLayer;
 		std::shared_ptr<Layer> gameLayer;
 		
 		Parser parser;

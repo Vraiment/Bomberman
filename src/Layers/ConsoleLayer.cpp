@@ -33,4 +33,10 @@ namespace Bomberman {
 	void ConsoleLayer::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {
 		background = Texture::createRectangle(newSize.width, newSize.height * .2, Color(0x55, 0x55, 0x55), renderer);
 	}
+	
+	void ConsoleLayer::setInput(string input) {
+	}
+	
+	void ConsoleLayer::clearInput() {
+	}
 }

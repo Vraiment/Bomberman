@@ -26,8 +26,6 @@ namespace Bomberman {
 		
 	private:
 		std::shared_ptr<Console> console;
-		
-		void switchConsole(SDL_Event event);
 	};
 }
 
