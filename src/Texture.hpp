@@ -27,6 +27,8 @@ namespace Bomberman {
 		
 		void draw();
 		
+		void clear();
+		
 		bool isLoaded() const;
 		std::string name() const;
 		Coordinate& position();

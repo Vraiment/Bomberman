@@ -37,6 +37,14 @@ namespace Bomberman {
 		loadTexture(t);
 	}
 	
+	void Texture::clear() {
+		texture.reset();
+		renderer.reset();
+		_loaded = false;
+		_rectangle = Rectangle();
+		_name.clear();
+	}
+	
 	void Texture::draw() {
 		if (!_loaded) {
 			Log::get() << "Trying to draw not loaded texture \"" << _name << "\"." << LogLevel::warning;
