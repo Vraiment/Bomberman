@@ -42,10 +42,10 @@ namespace Bomberman {
 		Texture texture;
 		
 		if (_loaded) {
-			SDL_Surface *surface = TTF_RenderText_Blended(font.get(), string.c_str(), color.sdlColor());
+			shared_ptr<SDL_Surface> surface(TTF_RenderText_Blended(font.get(), string.c_str(), color.sdlColor()), SDL_FreeSurface);
 
-			if (surface != nullptr) {
-				SDL_Texture *t = SDL_CreateTextureFromSurface(renderer.get(), surface);
+			if (surface) {
+				SDL_Texture *t = SDL_CreateTextureFromSurface(renderer.get(), surface.get());
 			
 				texture = Texture(t, textureName(string), renderer);
 			} else {
