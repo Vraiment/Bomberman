@@ -7,7 +7,7 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>E0754123-B112-4D6B-B087-644F6C17FDDE</string>
 	<key>IDESourceControlProjectName</key>
-	<string>Bomberman</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>393B806CCEDF020BBDECC7A64121F9B676FF245A</key>
@@ -16,7 +16,7 @@
 		<string>https://github.com/leethomason/tinyxml2.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>XCode/Bomberman.xcodeproj</string>
+	<string>XCode/Bomberman.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>393B806CCEDF020BBDECC7A64121F9B676FF245A</key>
