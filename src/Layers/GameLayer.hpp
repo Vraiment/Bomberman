@@ -21,6 +21,8 @@ namespace Bomberman {
 	
 	class GameLayer : public Layer {
 	public:
+		GameLayer();
+		
 		~GameLayer();
 		
 		void draw();
@@ -33,6 +35,8 @@ namespace Bomberman {
 		void screenSizeChanged(Rectangle previousSize, Rectangle newSize);
 		
 	private:
+		class Camera;
+		
 		Texture background;
 		Texture bomb;
 		Texture brick;
@@ -43,8 +47,9 @@ namespace Bomberman {
 		
 		std::shared_ptr<TileMap> tileMap;
 		
-		Rectangle camera;
+		std::shared_ptr<Camera> camera;
 		
+		void drawBackground();
 		void drawTile(Texture texture, Coordinate position);
 		bool getEnemyTexture(std::string enemyType, Texture& texture);
 	};

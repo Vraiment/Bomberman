@@ -25,7 +25,106 @@ using namespace std;
 using namespace Bomberman::Constants;
 
 namespace Bomberman {
-	void getEnemyTexture(const char *enemyType) {
+	class GameLayer::Camera {
+	public:
+		void setScreenSize(Rectangle size) {
+			// Camera size in tiles
+			cameraWidth = size.width / TILE_WIDTH;
+			cameraHeight = size.height / TILE_HEIGHT;
+		}
+		
+		// Input position is in tile coordinates
+		// Output position is in screen coordinates
+		Coordinate getScreenPosition(Coordinate position) const {
+			position -= static_cast<Coordinate>(tileMapOffset);
+			
+			position.i *= TILE_WIDTH;
+			position.j *= TILE_HEIGHT;
+			
+			return position;
+		}
+		
+		// Position is in tile coordinates
+		bool insideCamera(Coordinate position) const {
+			//return rectangle.contains(position + rectangle);
+			return true;
+		}
+		
+		void update(Coordinate newPlayerPos, Rectangle tileMapArea) {
+			if (firstUpdate) {
+				// Center the player in the camera, taking into account the borders
+				tileMapOffset = Rectangle::ZERO;
+				Rectangle cameraArea = this->cameraArea();
+				
+				tileMapOffset.i = newPlayerPos.i - cameraArea.widthCenter();
+				if (tileMapOffset.i < (tileMapArea.left() - LEFT_BORDER)) {
+					tileMapOffset.i = -LEFT_BORDER;
+				} else if (tileMapOffset.i > (tileMapArea.right() - cameraArea.width + RIGHT_BORDER)) {
+					tileMapOffset.i = tileMapArea.width - cameraArea.width + RIGHT_BORDER;
+				}
+				
+				tileMapOffset.j = newPlayerPos.j - cameraArea.heightCenter();
+				if (tileMapOffset.j < (tileMapArea.top() - TOP_BORDER)) {
+					tileMapOffset.j = -TOP_BORDER;
+				} else if (tileMapOffset.j > (tileMapArea.bottom() - cameraArea.height + BOTTOM_BORDER)) {
+					tileMapOffset.j = tileMapArea.height - cameraArea.height + BOTTOM_BORDER;
+				}
+				
+				previousPlayerPos = newPlayerPos;
+				firstUpdate = false;
+			} else if (previousPlayerPos != newPlayerPos) {
+				Rectangle cameraArea = this->cameraArea();
+				Coordinate direction = (newPlayerPos - previousPlayerPos).canonize();
+				
+				if (cameraArea.widthCenter() == previousPlayerPos.i) {
+					// The player was in the horizontal center.
+					// Move the offset if its moving horizontally and if
+					// there is still space to move
+					if (direction.i > 0 && tileMapOffset.i < (tileMapArea.width - cameraWidth + RIGHT_BORDER)) {
+						++tileMapOffset.i;
+					} else if (direction.i < 0 && tileMapOffset.i > (tileMapArea.i - LEFT_BORDER)) {
+						--tileMapOffset.i;
+					}
+				}
+				
+				if (cameraArea.heightCenter() == previousPlayerPos.j) {
+					// The player was in the vertical center
+					// Move the offset if its moving vertically
+					if (direction.j > 0 && tileMapOffset.j < (tileMapArea.height - cameraHeight + BOTTOM_BORDER)) {
+						++tileMapOffset.j;
+					} else if (direction.j < 0 && tileMapOffset.j > (tileMapArea.j - TOP_BORDER)) {
+						--tileMapOffset.j;
+					}
+				}
+				
+				previousPlayerPos = newPlayerPos;
+			}
+		}
+		
+	private:
+		const int RIGHT_BORDER = 1;
+		const int LEFT_BORDER = 1;
+		const int TOP_BORDER = 2;
+		const int BOTTOM_BORDER = 1;
+		
+		bool firstUpdate = true;
+		
+		// The position of the player since last update.
+		Coordinate previousPlayerPos;
+		
+		// Offset from tile map's [0,0] in tiles.
+		Coordinate tileMapOffset;
+		
+		// Size of the camera in tiles.
+		int cameraWidth, cameraHeight;
+		
+		// The rectangle of the camera
+		Rectangle cameraArea() const {
+			return Rectangle(tileMapOffset.i, tileMapOffset.j, cameraWidth, cameraHeight);
+		}
+	};
+	
+	GameLayer::GameLayer() : camera(new Camera()) {
 		
 	}
 	
@@ -36,7 +135,7 @@ namespace Bomberman {
 	void GameLayer::draw() {
 		Texture texture;
 		
-		background.rectangle() = camera;
+		background.rectangle() = camera->getScreenPosition(Coordinate::ZERO);
 		background.draw();
 		
 		// Draw bricks
@@ -83,6 +182,7 @@ namespace Bomberman {
 	
 	void GameLayer::update() {
 		tileMap->update();
+		camera->update(tileMap->player()->position(), tileMap->area());
 	}
 	
 	void GameLayer::loadGraphics(shared_ptr<SDL_Renderer> renderer) {
@@ -105,19 +205,19 @@ namespace Bomberman {
 	
 	void GameLayer::setTileMap(shared_ptr<TileMap> tileMap) {
 		this->tileMap = tileMap;
+		background.rectangle().width = tileMap->area().width * TILE_WIDTH;
+		background.rectangle().height = tileMap->area().height * TILE_HEIGHT;
 	}
 	
 	void GameLayer::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {
-		camera.width = newSize.width;
-		camera.height = newSize.height;
+		camera->setScreenSize(newSize);
 	}
 	
 	void GameLayer::drawTile(Texture texture, Coordinate position) {
-		position.i *= TILE_WIDTH;
-		position.j *= TILE_HEIGHT;
-		
-		texture.position() = position;
-		texture.draw();
+		if (camera->insideCamera(position)) {
+			texture.position() = camera->getScreenPosition(position);
+			texture.draw();
+		}
 	}
 	
 	bool GameLayer::getEnemyTexture(string enemyType, Texture& texture) {
