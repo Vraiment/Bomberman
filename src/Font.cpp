@@ -76,11 +76,11 @@ namespace Bomberman {
 	}
 	
 	string Font::textureName(string str) const {
-		string name = fontId();
+		stringstream name;
 		hash<string> hash_fn;
 		
-		name += hash_fn(str);
+		name << fontId() << "#" << hash_fn(str);
 		
-		return name;
+		return name.str();
 	}
 }
