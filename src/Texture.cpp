@@ -11,6 +11,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 
+#include "Color.hpp"
 #include "Constants.hpp"
 #include "Log/Log.hpp"
 #include "Log/LogLevel.hpp"
@@ -78,5 +79,27 @@ namespace Bomberman {
 		} else {
 			Log::get() << "Could not load texture \"" << _name << "\"." << LogLevel::warning;
 		}
+	}
+	
+	Texture Texture::createRectangle(int width, int height, Color color, shared_ptr<SDL_Renderer> renderer) {
+		Texture rectangle;
+		stringstream name;
+		
+		name << "|" << width << "x" << height << color.toString() << "|";
+		
+		shared_ptr<SDL_Surface> surface(SDL_CreateRGBSurface(0, width, height, 32, 0, 0, 0, 0), SDL_FreeSurface);
+		if (surface) {
+			if (SDL_FillRect(surface.get(), nullptr, SDL_MapRGBA(surface->format, color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha())) == 0) {
+				SDL_Texture *t = SDL_CreateTextureFromSurface(renderer.get(), surface.get());
+				rectangle = Texture(t, name.str(), renderer);
+			} else {
+				Log::get() << "Could not fill rectangle for texture: \"" << name.str() << "\"." << LogLevel::warning;
+				Log::get() << SDL_GetError() << LogLevel::error;
+			}
+		} else {
+			Log::get() << "Could not create surface \"" << name.str() << "\"." << LogLevel::warning;
+		}
+		
+		return rectangle;
 	}
 }

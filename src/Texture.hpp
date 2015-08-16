@@ -17,6 +17,8 @@ struct SDL_Renderer;
 struct SDL_Texture;
 
 namespace Bomberman {
+	class Color;
+	
 	class Texture {
 	friend class Font;
 	public:
@@ -29,6 +31,8 @@ namespace Bomberman {
 		Coordinate& position();
 		Rectangle& rectangle();
 		void resetSize();
+		
+		static Texture createRectangle(int width, int height, Color color, std::shared_ptr<SDL_Renderer> renderer);
 		
 	private:
 		bool _loaded;
