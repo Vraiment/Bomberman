@@ -29,8 +29,18 @@ namespace Bomberman {
 		
 		virtual void screenSizeChanged(Rectangle previousSize, Rectangle newSize);
 		
+		bool shouldDraw() const;
+		void shouldDraw(bool should);
+		
+		bool shouldUpdate() const;
+		void shouldUpdate(bool should);
+		
 	protected:
 		bool _isZombie;
+		
+	private:
+		bool _shouldDraw = true;
+		bool _shouldUpdate = true;
 	};
 }
 
