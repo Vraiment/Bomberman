@@ -9,12 +9,15 @@
 #ifndef __ConsoleLayer__hpp__
 #define __ConsoleLayer__hpp__
 
+#include <queue>
+
 #include "../Font.hpp"
 #include "../Layer.hpp"
+#include "../Log/Logger.hpp"
 #include "../Texture.hpp"
 
 namespace Bomberman {
-	class ConsoleLayer : public Layer {
+	class ConsoleLayer : public Layer, public Logger {
 	public:
 		ConsoleLayer();
 		
@@ -27,11 +30,17 @@ namespace Bomberman {
 		
 		void setInput(std::string input);
 		void clearInput();
+	
+	protected:
+		void recieveLog(std::string text, LogLevel level);
 		
 	private:
+		static const int QUEUE_SIZE;
+		
 		Font fontSmall;
 		Texture background;
 		std::shared_ptr<SDL_Renderer> renderer;
+		std::queue<Texture> lines;
 	};
 }
 

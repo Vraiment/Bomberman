@@ -13,6 +13,8 @@
 using namespace std;
 
 namespace Bomberman {
+	const int ConsoleLayer::QUEUE_SIZE = 15;
+	
 	ConsoleLayer::ConsoleLayer() {
 		shouldDraw(false);
 	}
@@ -38,5 +40,14 @@ namespace Bomberman {
 	}
 	
 	void ConsoleLayer::clearInput() {
+	}
+	
+	void ConsoleLayer::recieveLog(string text, LogLevel level) {
+		if (lines.size() > QUEUE_SIZE) {
+			lines.pop();
+		}
+		
+		Texture line = fontSmall.write(text);
+		lines.push(line);
 	}
 }

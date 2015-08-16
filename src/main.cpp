@@ -39,7 +39,7 @@ int main(int argc, char* argv[]) {
 		shared_ptr<ConsoleLayer> consoleLayer(new ConsoleLayer());
 		TxtTileMapLoader mapLoader;
 		MainLoop loop;
-	
+		
 		//Dependants objects
 		shared_ptr<Screen> screen(new Screen(config.viewportWidth(), config.viewportHeight(), config.viewportTitle()));
 		shared_ptr<TileMapBuilder> builder = mapLoader.load("map1.txt");
@@ -60,6 +60,8 @@ int main(int argc, char* argv[]) {
 		screen->addLayer(gameLayer);
 		screen->addLayer(hudLayer);
 		screen->addLayer(consoleLayer);
+		
+		Log::get().addLogger(consoleLayer);
 		
 		//Game
 		loop.addEventListener(playerEvents);
