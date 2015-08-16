@@ -18,6 +18,7 @@ struct SDL_Texture;
 
 namespace Bomberman {
 	class Texture {
+	friend class Font;
 	public:
 		Texture();
 		Texture(std::string fileName, std::shared_ptr<SDL_Renderer> renderer);
@@ -35,6 +36,9 @@ namespace Bomberman {
 		std::shared_ptr<SDL_Texture> texture;
 		std::string _name;
 		Rectangle _rectangle;
+		
+		Texture(SDL_Texture *t, std::string name, std::shared_ptr<SDL_Renderer> renderer);
+		void loadTexture(SDL_Texture *t);
 	};
 }
 

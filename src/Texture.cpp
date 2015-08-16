@@ -20,29 +20,20 @@ using namespace std;
 using namespace Bomberman::Constants;
 
 namespace Bomberman {
-	void DestroyTexture(SDL_Texture *texture) {
-		SDL_DestroyTexture(texture);
-	}
-	
 	Texture::Texture() : texture(nullptr), renderer(nullptr), _loaded(false), _rectangle() {
 		
 	}
 	
 	Texture::Texture(string fileName, std::shared_ptr<SDL_Renderer> renderer) : texture(nullptr), renderer(renderer), _loaded(false), _name(fileName) {
-		string fullName = DIR_TEXTURES;
-		fullName += dirSeparator;
-		fullName += fileName;
+		string fullName = getPath({ DIR_TEXTURES }, _name);
 		
 		SDL_Texture *t = IMG_LoadTexture(renderer.get(), fullName.c_str());
 		
-		if (t != nullptr) {
-			texture.reset(t, DestroyTexture);
-			resetSize();
-			
-			_loaded = true;
-		} else {
-			Log::get() << "Could not load texture \"" << fileName << "\"." << LogLevel::warning;
-		}
+		loadTexture(t);
+	}
+	
+	Texture::Texture(SDL_Texture *t, string name, shared_ptr<SDL_Renderer> renderer) : texture(nullptr), renderer(renderer), _loaded(false), _name(name) {
+		loadTexture(t);
 	}
 	
 	void Texture::draw() {
@@ -76,5 +67,16 @@ namespace Bomberman {
 	
 	void Texture::resetSize() {
 		SDL_QueryTexture(texture.get(), nullptr, nullptr, &_rectangle.width, &_rectangle.height);
+	}
+	
+	void Texture::loadTexture(SDL_Texture *t) {
+		if (t != nullptr) {
+			texture.reset(t, SDL_DestroyTexture);
+			resetSize();
+			
+			_loaded = true;
+		} else {
+			Log::get() << "Could not load texture \"" << _name << "\"." << LogLevel::warning;
+		}
 	}
 }

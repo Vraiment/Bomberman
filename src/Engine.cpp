@@ -12,12 +12,15 @@
 #include <CoreFoundation/CoreFoundation.h>
 #endif //__APPLE__
 #include <SDL2/SDL.h>
+#include <SDL2_ttf/SDL_ttf.h>
 #include <cstdlib>
 #include <ctime>
 
 namespace Bomberman {
 	Engine::Engine() {
 		SDL_Init(SDL_INIT_EVERYTHING);
+		
+		TTF_Init();
 		
 		setPath();
 		
