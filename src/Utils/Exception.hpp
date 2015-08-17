@@ -79,6 +79,13 @@ namespace Bomberman {
 			return "argument is invalid";
 		}
 	};
+	
+	class InvalidFunctionException : public Exception {
+	public:
+		virtual const char* what() const noexcept {
+			return "invalid function";
+		}
+	};
 }
 
 #endif //__Exception__hpp__

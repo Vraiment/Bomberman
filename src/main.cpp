@@ -50,6 +50,7 @@ int main(int argc, char* argv[]) {
 	
 		commandFactory->setTileMap(tileMap);
 		commandFactory->setPlayer(tileMap->player());
+		commandFactory->setLoopQuiter(loop.quiter());
 		
 		hudLayer->loadGraphics(screen->renderer());
 		gameLayer->loadGraphics(screen->renderer());

@@ -14,12 +14,13 @@
 #include "EventListener.hpp"
 #include "Log/Log.hpp"
 #include "Log/LogLevel.hpp"
+#include "LoopQuiter.hpp"
 #include "Screen.hpp"
 
 using namespace std;
 
 namespace Bomberman {
-	MainLoop::MainLoop() : _commandQueue(new CommandQueue()) {
+	MainLoop::MainLoop() : _commandQueue(new CommandQueue()), _quiter(new LoopQuiter()) {
 		
 	}
 	
@@ -31,6 +32,10 @@ namespace Bomberman {
 		return _commandQueue;
 	}
 	
+	shared_ptr<LoopQuiter> MainLoop::quiter() {
+		return _quiter;
+	}
+	
 	void MainLoop::run() {
 		if (screens.empty()) {
 			Log::get() << "Main loop is empty." << LogLevel::error;
@@ -38,12 +43,11 @@ namespace Bomberman {
 		}
 		
 		SDL_Event event;
-		bool quit = false;
 		
-		while (!quit) {
+		while (!_quiter->shouldQuit()) {
 			while (SDL_PollEvent(&event)) {
 				if (event.type == SDL_QUIT) {
-					quit = true;
+					_quiter->quitLoop();
 				}
 				
 				for (auto it = eventListeners.begin(); it != eventListeners.end(); ++it) {

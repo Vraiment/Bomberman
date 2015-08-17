@@ -14,6 +14,7 @@
 namespace Bomberman {
 	class CommandQueue;
 	class EventListener;
+	class LoopQuiter;
 	class Screen;
 	
 	class MainLoop {
@@ -22,6 +23,7 @@ namespace Bomberman {
 		~MainLoop();
 		
 		std::shared_ptr<CommandQueue> commandQueue();
+		std::shared_ptr<LoopQuiter> quiter();
 		
 		void run();
 		
@@ -40,6 +42,7 @@ namespace Bomberman {
 		std::shared_ptr<CommandQueue> _commandQueue;
 		std::list<std::shared_ptr<Screen>> screens;
 		std::list<std::shared_ptr<EventListener>> eventListeners;
+		std::shared_ptr<LoopQuiter> _quiter;
 	};
 }
 

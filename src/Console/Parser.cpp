@@ -81,9 +81,14 @@ namespace Bomberman {
 				}
 			} else {
 				arguments = vector<string>(values.begin() + 1, values.end());
-				auto command = commandFactory->call(values[0], arguments);
 				
-				commands.push(command);
+				try {
+					auto command = commandFactory->call(values[0], arguments);
+				
+					commands.push(command);
+				} catch (InvalidFunctionException& exception) {
+					Log::get() << "Unkown function \"" << values[0] << "\"." << LogLevel::error;
+				}
 			}
 		}
 	}

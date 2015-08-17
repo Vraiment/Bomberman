@@ -14,6 +14,7 @@
 
 namespace Bomberman {
 	class Command;
+	class LoopQuiter;
 	class Player;
 	class TileMap;
 	
@@ -25,6 +26,8 @@ namespace Bomberman {
 		
 		void setTileMap(std::shared_ptr<TileMap> tileMap);
 		
+		void setLoopQuiter(std::shared_ptr<LoopQuiter> loopQuiter);
+		
 		std::shared_ptr<Command> call(std::string function, std::vector<std::string> arguments);
 		
 		std::shared_ptr<Command> sendMessage(std::string receiver, std::string message, std::vector<std::string> arguments = { });
@@ -32,6 +35,7 @@ namespace Bomberman {
 	private:
 		std::shared_ptr<Player> player;
 		std::shared_ptr<TileMap> tileMap;
+		std::shared_ptr<LoopQuiter> loopQuiter;
 	};
 }
 

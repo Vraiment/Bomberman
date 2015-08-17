@@ -61,6 +61,8 @@
 		5B87384D184E582B0014D94B /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B87384C184E582B0014D94B /* Rectangle.cpp */; };
 		5B87384F184E83AD0014D94B /* config.xml in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BD6AD0018236FC500E661DA /* config.xml */; };
 		5B92289C1A10898E009ADD10 /* TxtTileMapLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B92289A1A10898E009ADD10 /* TxtTileMapLoader.cpp */; };
+		5B9382161B81A37B00C42269 /* QuitCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B9382141B81A37B00C42269 /* QuitCommand.cpp */; };
+		5B9382191B81A75700C42269 /* LoopQuiter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B9382171B81A75700C42269 /* LoopQuiter.cpp */; };
 		5BB4D82C1B7FB2920066077D /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BB4D82A1B7FB2920066077D /* Item.cpp */; };
 		5BB4D82F1B7FCE380066077D /* ConsoleEvents.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BB4D82D1B7FCE380066077D /* ConsoleEvents.cpp */; };
 		5BB4D8321B7FD2F10066077D /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BB4D8301B7FD2F10066077D /* Console.cpp */; };
@@ -239,6 +241,10 @@
 		5B9228971A107EA7009ADD10 /* Constants.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Constants.hpp; sourceTree = "<group>"; };
 		5B92289A1A10898E009ADD10 /* TxtTileMapLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TxtTileMapLoader.cpp; sourceTree = "<group>"; };
 		5B92289B1A10898E009ADD10 /* TxtTileMapLoader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TxtTileMapLoader.hpp; sourceTree = "<group>"; };
+		5B9382141B81A37B00C42269 /* QuitCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuitCommand.cpp; sourceTree = "<group>"; };
+		5B9382151B81A37B00C42269 /* QuitCommand.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = QuitCommand.hpp; sourceTree = "<group>"; };
+		5B9382171B81A75700C42269 /* LoopQuiter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoopQuiter.cpp; sourceTree = "<group>"; };
+		5B9382181B81A75700C42269 /* LoopQuiter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LoopQuiter.hpp; sourceTree = "<group>"; };
 		5BB4D82A1B7FB2920066077D /* Item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Item.cpp; sourceTree = "<group>"; };
 		5BB4D82B1B7FB2920066077D /* Item.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Item.hpp; sourceTree = "<group>"; };
 		5BB4D82D1B7FCE380066077D /* ConsoleEvents.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsoleEvents.cpp; sourceTree = "<group>"; };
@@ -339,6 +345,8 @@
 			children = (
 				5B3B82D31857AB7800CECE27 /* PlayerCommand.cpp */,
 				5B3B82D41857AB7800CECE27 /* PlayerCommand.hpp */,
+				5B9382141B81A37B00C42269 /* QuitCommand.cpp */,
+				5B9382151B81A37B00C42269 /* QuitCommand.hpp */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -508,6 +516,8 @@
 				5BB4D8341B7FDC750066077D /* Layer.hpp */,
 				5B5BB1B91856AE110019CAD1 /* Layers */,
 				5B5BB1B71856ADE40019CAD1 /* Log */,
+				5B9382171B81A75700C42269 /* LoopQuiter.cpp */,
+				5B9382181B81A75700C42269 /* LoopQuiter.hpp */,
 				5B0EEC2C1820E10A0084C40C /* main.cpp */,
 				5B0496411825D01600C1FBCB /* MainLoop.cpp */,
 				5B0496421825D01600C1FBCB /* MainLoop.hpp */,
@@ -707,10 +717,12 @@
 				5B5BB1C41856CEDA0019CAD1 /* CommandQueue.cpp in Sources */,
 				5BD6AD0518237F2D00E661DA /* Logger.cpp in Sources */,
 				5BF5549B1833F67D00DAC339 /* Log.cpp in Sources */,
+				5B9382191B81A75700C42269 /* LoopQuiter.cpp in Sources */,
 				5B0EEC2D1820E10A0084C40C /* main.cpp in Sources */,
 				5B3B82D11857A82700CECE27 /* PlayerEvents.cpp in Sources */,
 				5B0022831A2C1206008805D9 /* Random.cpp in Sources */,
 				5B0496431825D01600C1FBCB /* MainLoop.cpp in Sources */,
+				5B9382161B81A37B00C42269 /* QuitCommand.cpp in Sources */,
 				5B92289C1A10898E009ADD10 /* TxtTileMapLoader.cpp in Sources */,
 				5B4A120B1833256800C8A950 /* OperatingSystem.cpp in Sources */,
 				5B3B82E11857CE3D00CECE27 /* Token.cpp in Sources */,

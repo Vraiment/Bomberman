@@ -38,6 +38,9 @@ namespace Bomberman {
 		const char MAP_OBJ_COMMON_BRICK[] = "common_brick";
 		const char MAP_OBJ_DESTRUCT_BRICK[] = "destruct_brick";
 		
+		// Functions
+		const char FUNC_EXIT[] = "exit";
+		
 		// Receivers
 		const char OBJ_PLAYER[] = "player";
 		

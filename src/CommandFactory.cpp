@@ -10,6 +10,7 @@
 
 #include "Constants.hpp"
 #include "Commands/PlayerCommand.hpp"
+#include "Commands/QuitCommand.hpp"
 #include "Elements/Player.hpp"
 #include "Log/Log.hpp"
 #include "Log/LogLevel.hpp"
@@ -32,8 +33,25 @@ namespace Bomberman {
 		this->tileMap = tileMap;
 	}
 	
+	void CommandFactory::setLoopQuiter(shared_ptr<LoopQuiter> loopQuiter) {
+		this->loopQuiter = loopQuiter;
+	}
+	
 	shared_ptr<Command> CommandFactory::call(string function, vector<string> arguments) {
-		throw NotImplementedException();
+		shared_ptr<Command> result;
+		
+		function = StringUtils::toLower(function);
+		for (int n = 0; n < arguments.size(); ++n) {
+			arguments[n] = StringUtils::toLower(arguments[n]);
+		}
+		
+		if (FUNC_EXIT == function) {
+			result.reset(new QuitCommand(loopQuiter));
+		} else {
+			throw InvalidFunctionException();
+		}
+		
+		return result;
 	}
 	
 	shared_ptr<Command> CommandFactory::sendMessage(string receiver, string message, vector<string> arguments) {
