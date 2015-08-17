@@ -159,7 +159,7 @@ namespace Bomberman {
 	}
 	
 	void Parser::end() {
-		while (inSet(First::end(), tokenFactory.currentToken())) {
+		while (inSet(First::end(), tokenFactory.currentToken()) && !tokenFactory.empty()) {
 			tokenFactory.popToken();
 		}
 	}
