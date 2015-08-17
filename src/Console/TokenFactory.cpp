@@ -29,6 +29,7 @@ namespace Bomberman {
 		buffer += StringUtils::toUpper(str);
 		
 		if (wasEmpty && cToken == Token::eof) {
+			processToken();
 			popToken();
 		}
 	}
