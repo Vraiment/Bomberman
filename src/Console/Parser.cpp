@@ -73,13 +73,17 @@ namespace Bomberman {
 				arguments = vector<string>(values.begin() + 2, values.end());
 				
 				try {
-					commandFactory->sendMessage(values[0], values[1], arguments);
+					auto command = commandFactory->sendMessage(values[0], values[1], arguments);
+					
+					commands.push(command);
 				} catch (InvalidReceiverException& exception) {
 					Log::get() << "Unknown object \"" << values[0] << "\"." << LogLevel::error;
 				}
 			} else {
 				arguments = vector<string>(values.begin() + 1, values.end());
-				commandFactory->call(values[0], arguments);
+				auto command = commandFactory->call(values[0], arguments);
+				
+				commands.push(command);
 			}
 		}
 	}
