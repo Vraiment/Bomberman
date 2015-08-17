@@ -47,6 +47,11 @@ namespace Bomberman {
 		
 		startTime = pausedTime = stopedTime = 0;
 	}
+    
+    void Timer::restart() {
+        clear();
+        start();
+    }
 	
 	int Timer::getTime() const {
 		if (paused) {

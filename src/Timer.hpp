@@ -18,6 +18,7 @@ namespace Bomberman {
 		void pause();
 		void stop();
 		void clear();
+        void restart();
 		
 		int getTime() const;
 		bool isCounting() const;
