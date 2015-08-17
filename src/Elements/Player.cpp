@@ -11,7 +11,7 @@
 #include "Item.hpp"
 
 namespace Bomberman {
-	const int Player::invencibleTime = 750;
+	const int Player::invincibleTime = 750;
 	
 	Player::Player() : explosionSize(1), _maxBombs(1), dead(false) {
 		
@@ -22,8 +22,8 @@ namespace Bomberman {
 	}
 	
 	void Player::update() {
-		if (invencible.isCounting() && invencible.getTime() >= invencibleTime) {
-			invencible.stop();
+		if (invincible.isCounting() && invincible.getTime() >= invincibleTime) {
+			invincible.stop();
 		}
 	}
 	
@@ -49,8 +49,8 @@ namespace Bomberman {
 		return dead;
 	}
 	
-	bool Player::isInvencible() const {
-		return invencible.isCounting();
+	bool Player::isInvincible() const {
+		return invincible.isCounting();
 	}
 	
 	void Player::die() {
@@ -60,7 +60,6 @@ namespace Bomberman {
 	void Player::respawn() {
 		dead = false;
 		
-		invencible.clear();
-		invencible.start();
+        invincible.restart();
 	}
 }

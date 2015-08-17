@@ -241,7 +241,7 @@ namespace Bomberman {
 				return brick.destructible() && position == brick.position();
 			});
 			
-			if (_player->position() == position && !_player->isDead() && !_player->isInvencible()) {
+			if (_player->position() == position && !_player->isDead() && !_player->isInvincible()) {
 				_player->die();
 				playerRespawn.start();
 			}
@@ -261,7 +261,7 @@ namespace Bomberman {
 	}
 	
 	void TileMap::enemiesAttack() {
-		if (_player->isDead() || _player->isInvencible()) {
+		if (_player->isDead() || _player->isInvincible()) {
 			return;
 		}
 		

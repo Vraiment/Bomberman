@@ -29,15 +29,15 @@ namespace Bomberman {
 		int maxBombs() const;
 		
 		bool isDead() const;
-		bool isInvencible() const;
+		bool isInvincible() const;
 		void die();
 		void respawn();
 		
 	private:
-		static const int invencibleTime;
+		static const int invincibleTime;
 		
 		Coordinate _position;
-		Timer invencible;
+		Timer invincible;
 		int explosionSize;
 		int _maxBombs;
 		bool dead;
