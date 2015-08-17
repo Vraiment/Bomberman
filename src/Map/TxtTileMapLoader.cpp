@@ -223,7 +223,7 @@ namespace Bomberman {
 			if (!buildCoordinate(arguments[1], arguments[2], start)) {
 				return false;
 			}
-			if (!buildCoordinate(arguments[3], arguments[5], end)) {
+			if (!buildCoordinate(arguments[3], arguments[4], end)) {
 				return false;
 			}
 			
@@ -245,8 +245,8 @@ namespace Bomberman {
 			}
 			
 			Coordinate pos;
-			for (pos.i = start.i; pos.i < end.i; ++pos.i) {
-				for (pos.j = start.j; pos.j < end.j; ++pos.j) {
+			for (pos.i = start.i; pos.i <= end.i; ++pos.i) {
+				for (pos.j = start.j; pos.j <= end.j; ++pos.j) {
 					builder->_bricks.push_back(Brick(pos, destructible));
 				}
 			}
