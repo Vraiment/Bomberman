@@ -9,7 +9,6 @@
 #include "TokenFactory.hpp"
 
 #include "../Utils/Exception.hpp"
-#include "../Utils/StringUtils.hpp"
 #include "Token.hpp"
 
 using namespace std;
@@ -26,7 +25,7 @@ namespace Bomberman {
 		
 		bool wasEmpty = buffer.empty();
 		
-		buffer += StringUtils::toUpper(str);
+		buffer += str;
 		
 		if (wasEmpty && cToken == Token::eof) {
 			processToken();

@@ -80,6 +80,16 @@ namespace Bomberman {
 			return leftTrim(rightTrim(str));
 		}
 		
+		string toLower(string str) {
+			string result;
+			
+			for (char c : str) {
+				result += tolower(c);
+			}
+			
+			return result;
+		}
+		
 		string toUpper(string str) {
 			string result;
 			
