@@ -24,6 +24,7 @@ namespace Bomberman {
 		void update();
 		
 		void addItem(Item item);
+        void setInvincibility(bool invincible);
 		
 		int getExplosionSize() const;
 		int maxBombs() const;
@@ -36,6 +37,7 @@ namespace Bomberman {
 	private:
 		static const int invincibleTime;
 		
+        bool _isInvincible;
 		Coordinate _position;
 		Timer invincible;
 		int explosionSize;

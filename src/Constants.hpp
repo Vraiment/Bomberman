@@ -16,6 +16,10 @@ namespace Bomberman {
 		// Tile size
 		const int TILE_HEIGHT = 40;
 		const int TILE_WIDTH = 40;
+        
+        // Boolean values
+        const char BOOL_TRUE[] = "true";
+        const char BOOL_FALSE[] = "false";
 		
 		// Config file
 		const char CFG_NULLFILE[] = "/dev/null";
@@ -49,6 +53,7 @@ namespace Bomberman {
 		const char MSG_SETBOMB[] = "setbomb";
 		const char MSG_EXTRA_BOMB[] = "extra_bomb";
 		const char MSG_INCREASE_RANGE[] = "increase_range";
+        const char MSG_IVINCIBLE[] = "invincible";
 		
 		// Arguments
 		const char ARG_RIGHT[] = "right";

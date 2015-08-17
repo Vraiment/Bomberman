@@ -13,7 +13,7 @@
 namespace Bomberman {
 	const int Player::invincibleTime = 750;
 	
-	Player::Player() : explosionSize(1), _maxBombs(1), dead(false) {
+	Player::Player() : explosionSize(1), _maxBombs(1), dead(false), _isInvincible(false) {
 		
 	}
 	
@@ -37,6 +37,10 @@ namespace Bomberman {
 		}
 	}
 	
+    void Player::setInvincibility(bool invincible) {
+        _isInvincible = invincible;
+    }
+    
 	int Player::getExplosionSize() const {
 		return explosionSize;
 	}
@@ -50,7 +54,7 @@ namespace Bomberman {
 	}
 	
 	bool Player::isInvincible() const {
-		return invincible.isCounting();
+        return _isInvincible || invincible.isCounting();
 	}
 	
 	void Player::die() {

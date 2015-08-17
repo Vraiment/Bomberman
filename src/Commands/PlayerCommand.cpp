@@ -35,6 +35,12 @@ namespace Bomberman {
 			player->addItem(Item::EXTRA_BOMB);
 		} else if (command == MSG_INCREASE_RANGE) {
 			player->addItem(Item::INCREASE_RANGE);
+        } else if (command == MSG_IVINCIBLE) {
+            if (arguments.size() == 1 && (arguments[0] == BOOL_TRUE || arguments[0] == BOOL_FALSE)) {
+                player->setInvincibility(BOOL_TRUE == arguments[0]);
+            } else {
+                Log::get() << "Command \"" << OBJ_PLAYER << "." << MSG_IVINCIBLE << "(bool) requires one boolean argument." << LogLevel::error;
+            }
 		} else {
 			Log::get() << "Invalid command \"" << OBJ_PLAYER << "." << command << "()\"." << LogLevel::error;
 		}
