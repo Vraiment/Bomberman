@@ -15,6 +15,7 @@
 #include <vector>
 
 #include "../Texture.hpp"
+#include "../Timer.hpp"
 
 namespace Bomberman {
 	class TileMap;
@@ -36,7 +37,10 @@ namespace Bomberman {
 		
 	private:
 		class Camera;
+        
+        static const int PLAYER_BLINK_TIME;
 		
+        bool drawBlinkingPlayer;
 		Texture background;
 		Texture bomb;
 		Texture brick;
@@ -44,6 +48,7 @@ namespace Bomberman {
 		std::vector<Texture> enemies;
 		Texture explosion;
 		Texture player;
+        Timer blinkPlayerTimer;
 		
 		std::shared_ptr<TileMap> tileMap;
 		

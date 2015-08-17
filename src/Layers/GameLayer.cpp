@@ -25,6 +25,8 @@ using namespace std;
 using namespace Bomberman::Constants;
 
 namespace Bomberman {
+    const int GameLayer::PLAYER_BLINK_TIME = 125;
+    
 	class GameLayer::Camera {
 	public:
 		void setScreenSize(Rectangle size) {
@@ -124,7 +126,7 @@ namespace Bomberman {
 		}
 	};
 	
-	GameLayer::GameLayer() : camera(new Camera()) {
+	GameLayer::GameLayer() : camera(new Camera()), drawBlinkingPlayer(true) {
 		
 	}
 	
@@ -154,7 +156,7 @@ namespace Bomberman {
 		
 		// Draw player
 		auto player = tileMap->player();
-		if (!player->isDead()) {
+		if (!player->isDead() && drawBlinkingPlayer) {
 			drawTile(this->player, player->position());
 		}
 		
@@ -183,6 +185,16 @@ namespace Bomberman {
 	void GameLayer::update() {
 		tileMap->update();
 		camera->update(tileMap->player()->position(), tileMap->area());
+        
+        // Player blinking stuff
+        if (tileMap->player()->isInvincible()) {
+            if (!blinkPlayerTimer.isCounting()) {
+                blinkPlayerTimer.start();
+            } else if (blinkPlayerTimer.getTime() >= PLAYER_BLINK_TIME) {
+                blinkPlayerTimer.restart();
+                drawBlinkingPlayer = !drawBlinkingPlayer;
+            }
+        }
 	}
 	
 	void GameLayer::loadGraphics(shared_ptr<SDL_Renderer> renderer) {
