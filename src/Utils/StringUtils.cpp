@@ -103,7 +103,7 @@ namespace Bomberman {
 		bool tryParseInt(string str, int& result) {
 			try {
 				result = atoi(str.c_str());
-			} catch (logic_error& exception) {
+			} catch (logic_error) {
 				return false;
 			}
 			

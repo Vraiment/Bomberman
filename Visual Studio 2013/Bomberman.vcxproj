@@ -15,6 +15,8 @@
     <ClCompile Include="..\src\Math\Random.cpp" />
     <ClCompile Include="..\src\Math\Rectangle.cpp" />
     <ClCompile Include="..\src\Math\Transformer.cpp" />
+    <ClCompile Include="..\src\Utils\OperatingSystem.cpp" />
+    <ClCompile Include="..\src\Utils\StringUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Math\Coordinate.hpp" />
@@ -22,6 +24,10 @@
     <ClInclude Include="..\src\Math\Random.hpp" />
     <ClInclude Include="..\src\Math\Rectangle.hpp" />
     <ClInclude Include="..\src\Math\Transformer.hpp" />
+    <ClInclude Include="..\src\Utils\Exception.hpp" />
+    <ClInclude Include="..\src\Utils\OperatingSystem.hpp" />
+    <ClInclude Include="..\src\Utils\StringUtils.hpp" />
+    <ClInclude Include="..\src\Utils\VectorUtils.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0B241670-23DD-4B31-A63F-55D00782DD73}</ProjectGuid>
