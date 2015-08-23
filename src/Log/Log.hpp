@@ -9,6 +9,7 @@
 #ifndef __Log__hpp__
 #define __Log__hpp__
 
+#include <memory>
 #include <sstream>
 #include <vector>
 

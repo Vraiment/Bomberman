@@ -11,6 +11,12 @@
 
 #include <exception>
 
+#if defined(_WIN64)
+// Visual Studio 2013 doesn't have noexcept
+// should use a better macro name...
+#define noexcept
+#endif
+
 namespace Bomberman {
 	class Exception : public std::exception {
 	public:

@@ -9,6 +9,7 @@
 #ifndef __Logger__hpp__
 #define __Logger__hpp__
 
+#include <memory>
 #include <string>
 
 namespace Bomberman {

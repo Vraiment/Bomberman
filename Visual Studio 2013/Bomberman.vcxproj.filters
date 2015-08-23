@@ -18,6 +18,9 @@
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{19683f4c-4184-4297-beb1-89194e53a76e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Log">
+      <UniqueIdentifier>{93a3378a-c0a1-4f14-82d3-c1f794be7ce2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Math\Coordinate.cpp">
@@ -37,6 +40,15 @@
     </ClCompile>
     <ClCompile Include="..\src\Utils\StringUtils.cpp">
       <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Log\Logger.cpp">
+      <Filter>Source Files\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Log\LogLevel.cpp">
+      <Filter>Source Files\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Log\Log.cpp">
+      <Filter>Source Files\Log</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -66,6 +78,15 @@
     </ClInclude>
     <ClInclude Include="..\src\Utils\VectorUtils.hpp">
       <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Log\Logger.hpp">
+      <Filter>Source Files\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Log\LogLevel.hpp">
+      <Filter>Source Files\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Log\Log.hpp">
+      <Filter>Source Files\Log</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
