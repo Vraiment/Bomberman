@@ -10,6 +10,19 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\Math\Coordinate.cpp" />
+    <ClCompile Include="..\src\Math\Random.cpp" />
+    <ClCompile Include="..\src\Math\Rectangle.cpp" />
+    <ClCompile Include="..\src\Math\Transformer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\Math\Coordinate.hpp" />
+    <ClInclude Include="..\src\Math\Matrix.hpp" />
+    <ClInclude Include="..\src\Math\Random.hpp" />
+    <ClInclude Include="..\src\Math\Rectangle.hpp" />
+    <ClInclude Include="..\src\Math\Transformer.hpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0B241670-23DD-4B31-A63F-55D00782DD73}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
