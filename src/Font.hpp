@@ -11,6 +11,7 @@
 
 #include "Color.hpp"
 
+#include <memory>
 #include <string>
 
 struct SDL_Renderer;

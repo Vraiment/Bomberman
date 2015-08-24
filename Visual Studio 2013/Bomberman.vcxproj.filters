@@ -89,6 +89,9 @@
     <ClCompile Include="..\src\Color.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Font.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Math\Coordinate.hpp">
@@ -158,6 +161,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Color.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Font.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -17,6 +17,7 @@
     <ClCompile Include="..\src\CommandQueue.cpp" />
     <ClCompile Include="..\src\Configuration.cpp" />
     <ClCompile Include="..\src\EventListener.cpp" />
+    <ClCompile Include="..\src\Font.cpp" />
     <ClCompile Include="..\src\Layer.cpp" />
     <ClCompile Include="..\src\Log\Log.cpp" />
     <ClCompile Include="..\src\Log\Logger.cpp" />
@@ -39,6 +40,7 @@
     <ClInclude Include="..\src\Configuration.hpp" />
     <ClInclude Include="..\src\Constants.hpp" />
     <ClInclude Include="..\src\EventListener.hpp" />
+    <ClInclude Include="..\src\Font.hpp" />
     <ClInclude Include="..\src\Layer.hpp" />
     <ClInclude Include="..\src\Log\Log.hpp" />
     <ClInclude Include="..\src\Log\Logger.hpp" />
