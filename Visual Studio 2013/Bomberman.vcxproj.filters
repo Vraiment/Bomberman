@@ -33,6 +33,9 @@
     <Filter Include="Source Files\Map">
       <UniqueIdentifier>{a1247f1a-4311-458f-8cfe-f6ff6cf14fb2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Commands">
+      <UniqueIdentifier>{0c5f8023-08ed-4c5f-8b2e-ecaf0370a099}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Math\Coordinate.cpp">
@@ -127,6 +130,12 @@
     </ClCompile>
     <ClCompile Include="..\src\Map\XmlTileMapLoader.cpp">
       <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Commands\PlayerCommand.cpp">
+      <Filter>Source Files\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Commands\QuitCommand.cpp">
+      <Filter>Source Files\Commands</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +243,12 @@
     </ClInclude>
     <ClInclude Include="..\src\Map\XmlTileMapLoader.hpp">
       <Filter>Source Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Commands\PlayerCommand.hpp">
+      <Filter>Source Files\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Commands\QuitCommand.hpp">
+      <Filter>Source Files\Commands</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
