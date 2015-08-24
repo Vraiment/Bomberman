@@ -39,6 +39,9 @@
     <Filter Include="Source Files\Console">
       <UniqueIdentifier>{af120244-74d8-42c7-a3b4-33a58245da37}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Layers">
+      <UniqueIdentifier>{44804ff4-fb42-435b-baa7-1e7181c20f46}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Math\Coordinate.cpp">
@@ -154,6 +157,15 @@
     </ClCompile>
     <ClCompile Include="..\src\Console\TokenFactory.cpp">
       <Filter>Source Files\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Layers\ConsoleLayer.cpp">
+      <Filter>Source Files\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Layers\GameLayer.cpp">
+      <Filter>Source Files\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Layers\HudLayer.cpp">
+      <Filter>Source Files\Layers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -282,6 +294,15 @@
     </ClInclude>
     <ClInclude Include="..\src\Console\TokenFactory.hpp">
       <Filter>Source Files\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Layers\ConsoleLayer.hpp">
+      <Filter>Source Files\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Layers\GameLayer.hpp">
+      <Filter>Source Files\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Layers\HudLayer.hpp">
+      <Filter>Source Files\Layers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

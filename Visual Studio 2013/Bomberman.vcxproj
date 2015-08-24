@@ -32,6 +32,9 @@
     <ClCompile Include="..\src\EventListener.cpp" />
     <ClCompile Include="..\src\Font.cpp" />
     <ClCompile Include="..\src\Layer.cpp" />
+    <ClCompile Include="..\src\Layers\ConsoleLayer.cpp" />
+    <ClCompile Include="..\src\Layers\GameLayer.cpp" />
+    <ClCompile Include="..\src\Layers\HudLayer.cpp" />
     <ClCompile Include="..\src\Log\Log.cpp" />
     <ClCompile Include="..\src\Log\Logger.cpp" />
     <ClCompile Include="..\src\Log\LoggerFactory.cpp" />
@@ -72,6 +75,9 @@
     <ClInclude Include="..\src\EventListener.hpp" />
     <ClInclude Include="..\src\Font.hpp" />
     <ClInclude Include="..\src\Layer.hpp" />
+    <ClInclude Include="..\src\Layers\ConsoleLayer.hpp" />
+    <ClInclude Include="..\src\Layers\GameLayer.hpp" />
+    <ClInclude Include="..\src\Layers\HudLayer.hpp" />
     <ClInclude Include="..\src\Log\Log.hpp" />
     <ClInclude Include="..\src\Log\Logger.hpp" />
     <ClInclude Include="..\src\Log\LoggerFactory.hpp" />
