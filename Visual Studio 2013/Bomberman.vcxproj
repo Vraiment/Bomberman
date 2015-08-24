@@ -31,6 +31,8 @@
     <ClCompile Include="..\src\Elements\Item.cpp" />
     <ClCompile Include="..\src\Elements\Player.cpp" />
     <ClCompile Include="..\src\EventListener.cpp" />
+    <ClCompile Include="..\src\EventListeners\ConsoleEvents.cpp" />
+    <ClCompile Include="..\src\EventListeners\PlayerEvents.cpp" />
     <ClCompile Include="..\src\Font.cpp" />
     <ClCompile Include="..\src\Layer.cpp" />
     <ClCompile Include="..\src\Layers\ConsoleLayer.cpp" />
@@ -75,6 +77,8 @@
     <ClInclude Include="..\src\Elements\Item.hpp" />
     <ClInclude Include="..\src\Elements\Player.hpp" />
     <ClInclude Include="..\src\EventListener.hpp" />
+    <ClInclude Include="..\src\EventListeners\ConsoleEvents.hpp" />
+    <ClInclude Include="..\src\EventListeners\PlayerEvents.hpp" />
     <ClInclude Include="..\src\Font.hpp" />
     <ClInclude Include="..\src\Layer.hpp" />
     <ClInclude Include="..\src\Layers\ConsoleLayer.hpp" />

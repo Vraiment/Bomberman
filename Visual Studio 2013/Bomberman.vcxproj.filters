@@ -42,6 +42,9 @@
     <Filter Include="Source Files\Layers">
       <UniqueIdentifier>{44804ff4-fb42-435b-baa7-1e7181c20f46}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\EventListeners">
+      <UniqueIdentifier>{fd4f7f97-4736-48af-8e3a-47384ca6612b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Math\Coordinate.cpp">
@@ -169,6 +172,12 @@
     </ClCompile>
     <ClCompile Include="..\src\Console.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\EventListeners\ConsoleEvents.cpp">
+      <Filter>Source Files\EventListeners</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\EventListeners\PlayerEvents.cpp">
+      <Filter>Source Files\EventListeners</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -309,6 +318,12 @@
     </ClInclude>
     <ClInclude Include="..\src\Console.hpp">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\EventListeners\ConsoleEvents.hpp">
+      <Filter>Source Files\EventListeners</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\EventListeners\PlayerEvents.hpp">
+      <Filter>Source Files\EventListeners</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
