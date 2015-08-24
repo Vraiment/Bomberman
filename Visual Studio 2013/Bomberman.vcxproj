@@ -16,6 +16,10 @@
     <ClCompile Include="..\src\Command.cpp" />
     <ClCompile Include="..\src\CommandQueue.cpp" />
     <ClCompile Include="..\src\Configuration.cpp" />
+    <ClCompile Include="..\src\Elements\Bomb.cpp" />
+    <ClCompile Include="..\src\Elements\Brick.cpp" />
+    <ClCompile Include="..\src\Elements\Item.cpp" />
+    <ClCompile Include="..\src\Elements\Player.cpp" />
     <ClCompile Include="..\src\EventListener.cpp" />
     <ClCompile Include="..\src\Font.cpp" />
     <ClCompile Include="..\src\Layer.cpp" />
@@ -39,6 +43,10 @@
     <ClInclude Include="..\src\CommandQueue.hpp" />
     <ClInclude Include="..\src\Configuration.hpp" />
     <ClInclude Include="..\src\Constants.hpp" />
+    <ClInclude Include="..\src\Elements\Bomb.hpp" />
+    <ClInclude Include="..\src\Elements\Brick.hpp" />
+    <ClInclude Include="..\src\Elements\Item.hpp" />
+    <ClInclude Include="..\src\Elements\Player.hpp" />
     <ClInclude Include="..\src\EventListener.hpp" />
     <ClInclude Include="..\src\Font.hpp" />
     <ClInclude Include="..\src\Layer.hpp" />

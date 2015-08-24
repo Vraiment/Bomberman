@@ -27,6 +27,9 @@
     <Filter Include="Libraries\TinyXml2">
       <UniqueIdentifier>{e1d54875-d09c-4596-9102-b0595d21b2c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Elements">
+      <UniqueIdentifier>{2459063b-987c-4adf-a505-637503563a49}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Math\Coordinate.cpp">
@@ -91,6 +94,18 @@
     </ClCompile>
     <ClCompile Include="..\src\Font.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Elements\Bomb.cpp">
+      <Filter>Source Files\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Elements\Brick.cpp">
+      <Filter>Source Files\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Elements\Item.cpp">
+      <Filter>Source Files\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Elements\Player.cpp">
+      <Filter>Source Files\Elements</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +180,18 @@
     </ClInclude>
     <ClInclude Include="..\src\Font.hpp">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Elements\Bomb.hpp">
+      <Filter>Source Files\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Elements\Brick.hpp">
+      <Filter>Source Files\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Elements\Item.hpp">
+      <Filter>Source Files\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Elements\Player.hpp">
+      <Filter>Source Files\Elements</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
