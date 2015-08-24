@@ -17,6 +17,7 @@
     <ClCompile Include="..\src\Layer.cpp" />
     <ClCompile Include="..\src\Log\Log.cpp" />
     <ClCompile Include="..\src\Log\Logger.cpp" />
+    <ClCompile Include="..\src\Log\LoggerFactory.cpp" />
     <ClCompile Include="..\src\Log\LogLevel.cpp" />
     <ClCompile Include="..\src\LoopQuiter.cpp" />
     <ClCompile Include="..\src\Math\Coordinate.cpp" />
@@ -34,6 +35,7 @@
     <ClInclude Include="..\src\Layer.hpp" />
     <ClInclude Include="..\src\Log\Log.hpp" />
     <ClInclude Include="..\src\Log\Logger.hpp" />
+    <ClInclude Include="..\src\Log\LoggerFactory.hpp" />
     <ClInclude Include="..\src\Log\LogLevel.hpp" />
     <ClInclude Include="..\src\LoopQuiter.hpp" />
     <ClInclude Include="..\src\Math\Coordinate.hpp" />
@@ -45,6 +47,9 @@
     <ClInclude Include="..\src\Utils\OperatingSystem.hpp" />
     <ClInclude Include="..\src\Utils\StringUtils.hpp" />
     <ClInclude Include="..\src\Utils\VectorUtils.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\src\Log\LogSystem.pch" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0B241670-23DD-4B31-A63F-55D00782DD73}</ProjectGuid>

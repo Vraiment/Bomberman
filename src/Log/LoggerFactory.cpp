@@ -8,7 +8,9 @@
 
 #include "LoggerFactory.hpp"
 
+#include "Log.hpp"
 #include "Logger.hpp"
+#include "LogLevel.hpp"
 #include "../Constants.hpp"
 #include "../Utils/StringUtils.hpp"
 

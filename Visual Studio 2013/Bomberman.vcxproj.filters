@@ -65,6 +65,9 @@
     <ClCompile Include="..\src\LoopQuiter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Log\LoggerFactory.cpp">
+      <Filter>Source Files\Log</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Math\Coordinate.hpp">
@@ -121,5 +124,13 @@
     <ClInclude Include="..\src\LoopQuiter.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Log\LoggerFactory.hpp">
+      <Filter>Source Files\Log</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\src\Log\LogSystem.pch">
+      <Filter>Source Files\Log</Filter>
+    </None>
   </ItemGroup>
 </Project>
