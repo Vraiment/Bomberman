@@ -77,6 +77,9 @@
     <ClCompile Include="..\src\Log\LoggerFactory.cpp">
       <Filter>Source Files\Log</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Configuration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Math\Coordinate.hpp">
@@ -135,6 +138,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Log\LoggerFactory.hpp">
       <Filter>Source Files\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Configuration.hpp">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

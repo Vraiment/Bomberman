@@ -14,6 +14,7 @@
     <ClCompile Include="..\libs\tinyxml2\tinyxml2.cpp" />
     <ClCompile Include="..\src\Command.cpp" />
     <ClCompile Include="..\src\CommandQueue.cpp" />
+    <ClCompile Include="..\src\Configuration.cpp" />
     <ClCompile Include="..\src\EventListener.cpp" />
     <ClCompile Include="..\src\Layer.cpp" />
     <ClCompile Include="..\src\Log\Log.cpp" />
@@ -31,6 +32,7 @@
   <ItemGroup>
     <ClInclude Include="..\src\Command.hpp" />
     <ClInclude Include="..\src\CommandQueue.hpp" />
+    <ClInclude Include="..\src\Configuration.hpp" />
     <ClInclude Include="..\src\Constants.hpp" />
     <ClInclude Include="..\src\EventListener.hpp" />
     <ClInclude Include="..\src\Layer.hpp" />
