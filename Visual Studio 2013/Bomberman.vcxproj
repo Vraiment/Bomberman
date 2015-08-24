@@ -19,6 +19,10 @@
     <ClCompile Include="..\src\Commands\PlayerCommand.cpp" />
     <ClCompile Include="..\src\Commands\QuitCommand.cpp" />
     <ClCompile Include="..\src\Configuration.cpp" />
+    <ClCompile Include="..\src\Console\First.cpp" />
+    <ClCompile Include="..\src\Console\Parser.cpp" />
+    <ClCompile Include="..\src\Console\Token.cpp" />
+    <ClCompile Include="..\src\Console\TokenFactory.cpp" />
     <ClCompile Include="..\src\Elements\Bomb.cpp" />
     <ClCompile Include="..\src\Elements\Brick.cpp" />
     <ClCompile Include="..\src\Elements\Enemy.cpp" />
@@ -54,6 +58,10 @@
     <ClInclude Include="..\src\Commands\PlayerCommand.hpp" />
     <ClInclude Include="..\src\Commands\QuitCommand.hpp" />
     <ClInclude Include="..\src\Configuration.hpp" />
+    <ClInclude Include="..\src\Console\First.hpp" />
+    <ClInclude Include="..\src\Console\Parser.hpp" />
+    <ClInclude Include="..\src\Console\Token.hpp" />
+    <ClInclude Include="..\src\Console\TokenFactory.hpp" />
     <ClInclude Include="..\src\Constants.hpp" />
     <ClInclude Include="..\src\Elements\Bomb.hpp" />
     <ClInclude Include="..\src\Elements\Brick.hpp" />

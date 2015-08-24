@@ -9,6 +9,7 @@
 #ifndef __Parser__hpp__
 #define __Parser__hpp__
 
+#include <memory>
 #include <queue>
 
 #include "../Command.hpp"

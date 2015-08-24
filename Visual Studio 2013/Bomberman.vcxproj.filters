@@ -36,6 +36,9 @@
     <Filter Include="Source Files\Commands">
       <UniqueIdentifier>{0c5f8023-08ed-4c5f-8b2e-ecaf0370a099}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Console">
+      <UniqueIdentifier>{af120244-74d8-42c7-a3b4-33a58245da37}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Math\Coordinate.cpp">
@@ -139,6 +142,18 @@
     </ClCompile>
     <ClCompile Include="..\src\CommandFactory.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Console\First.cpp">
+      <Filter>Source Files\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Console\Parser.cpp">
+      <Filter>Source Files\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Console\Token.cpp">
+      <Filter>Source Files\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Console\TokenFactory.cpp">
+      <Filter>Source Files\Console</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -255,6 +270,18 @@
     </ClInclude>
     <ClInclude Include="..\src\CommandFactory.hpp">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Console\First.hpp">
+      <Filter>Source Files\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Console\Parser.hpp">
+      <Filter>Source Files\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Console\Token.hpp">
+      <Filter>Source Files\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Console\TokenFactory.hpp">
+      <Filter>Source Files\Console</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
