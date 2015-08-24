@@ -179,6 +179,15 @@
     <ClCompile Include="..\src\EventListeners\PlayerEvents.cpp">
       <Filter>Source Files\EventListeners</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MainLoop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Screen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Math\Coordinate.hpp">
@@ -324,6 +333,15 @@
     </ClInclude>
     <ClInclude Include="..\src\EventListeners\PlayerEvents.hpp">
       <Filter>Source Files\EventListeners</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MainLoop.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Screen.hpp">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

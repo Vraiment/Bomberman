@@ -9,6 +9,7 @@
 #ifndef __Screen__hpp__
 #define __Screen__hpp__
 
+#include <memory>
 #include <SDL2/SDL.h>
 #include <string>
 #include <list>

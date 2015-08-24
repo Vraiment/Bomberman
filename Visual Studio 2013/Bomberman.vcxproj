@@ -30,6 +30,7 @@
     <ClCompile Include="..\src\Elements\Explosion.cpp" />
     <ClCompile Include="..\src\Elements\Item.cpp" />
     <ClCompile Include="..\src\Elements\Player.cpp" />
+    <ClCompile Include="..\src\Engine.cpp" />
     <ClCompile Include="..\src\EventListener.cpp" />
     <ClCompile Include="..\src\EventListeners\ConsoleEvents.cpp" />
     <ClCompile Include="..\src\EventListeners\PlayerEvents.cpp" />
@@ -43,6 +44,7 @@
     <ClCompile Include="..\src\Log\LoggerFactory.cpp" />
     <ClCompile Include="..\src\Log\LogLevel.cpp" />
     <ClCompile Include="..\src\LoopQuiter.cpp" />
+    <ClCompile Include="..\src\MainLoop.cpp" />
     <ClCompile Include="..\src\Map\DummyTileMapBuilder.cpp" />
     <ClCompile Include="..\src\Map\TileMap.cpp" />
     <ClCompile Include="..\src\Map\TxtTileMapLoader.cpp" />
@@ -51,6 +53,7 @@
     <ClCompile Include="..\src\Math\Random.cpp" />
     <ClCompile Include="..\src\Math\Rectangle.cpp" />
     <ClCompile Include="..\src\Math\Transformer.cpp" />
+    <ClCompile Include="..\src\Screen.cpp" />
     <ClCompile Include="..\src\Texture.cpp" />
     <ClCompile Include="..\src\Timer.cpp" />
     <ClCompile Include="..\src\Utils\OperatingSystem.cpp" />
@@ -76,6 +79,7 @@
     <ClInclude Include="..\src\Elements\Explosion.hpp" />
     <ClInclude Include="..\src\Elements\Item.hpp" />
     <ClInclude Include="..\src\Elements\Player.hpp" />
+    <ClInclude Include="..\src\Engine.hpp" />
     <ClInclude Include="..\src\EventListener.hpp" />
     <ClInclude Include="..\src\EventListeners\ConsoleEvents.hpp" />
     <ClInclude Include="..\src\EventListeners\PlayerEvents.hpp" />
@@ -89,6 +93,7 @@
     <ClInclude Include="..\src\Log\LoggerFactory.hpp" />
     <ClInclude Include="..\src\Log\LogLevel.hpp" />
     <ClInclude Include="..\src\LoopQuiter.hpp" />
+    <ClInclude Include="..\src\MainLoop.hpp" />
     <ClInclude Include="..\src\Map\DummyTileMapBuilder.hpp" />
     <ClInclude Include="..\src\Map\TileMap.hpp" />
     <ClInclude Include="..\src\Map\TileMapBuilder.hpp" />
@@ -99,6 +104,7 @@
     <ClInclude Include="..\src\Math\Random.hpp" />
     <ClInclude Include="..\src\Math\Rectangle.hpp" />
     <ClInclude Include="..\src\Math\Transformer.hpp" />
+    <ClInclude Include="..\src\Screen.hpp" />
     <ClInclude Include="..\src\Texture.hpp" />
     <ClInclude Include="..\src\Timer.hpp" />
     <ClInclude Include="..\src\Utils\Exception.hpp" />
