@@ -26,6 +26,7 @@
     <ClCompile Include="..\src\Math\Random.cpp" />
     <ClCompile Include="..\src\Math\Rectangle.cpp" />
     <ClCompile Include="..\src\Math\Transformer.cpp" />
+    <ClCompile Include="..\src\Timer.cpp" />
     <ClCompile Include="..\src\Utils\OperatingSystem.cpp" />
     <ClCompile Include="..\src\Utils\StringUtils.cpp" />
   </ItemGroup>
@@ -46,6 +47,7 @@
     <ClInclude Include="..\src\Math\Random.hpp" />
     <ClInclude Include="..\src\Math\Rectangle.hpp" />
     <ClInclude Include="..\src\Math\Transformer.hpp" />
+    <ClInclude Include="..\src\Timer.hpp" />
     <ClInclude Include="..\src\Utils\Exception.hpp" />
     <ClInclude Include="..\src\Utils\OperatingSystem.hpp" />
     <ClInclude Include="..\src\Utils\StringUtils.hpp" />
