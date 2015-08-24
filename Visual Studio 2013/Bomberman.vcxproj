@@ -11,9 +11,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\Command.cpp" />
+    <ClCompile Include="..\src\CommandQueue.cpp" />
+    <ClCompile Include="..\src\EventListener.cpp" />
+    <ClCompile Include="..\src\Layer.cpp" />
     <ClCompile Include="..\src\Log\Log.cpp" />
     <ClCompile Include="..\src\Log\Logger.cpp" />
     <ClCompile Include="..\src\Log\LogLevel.cpp" />
+    <ClCompile Include="..\src\LoopQuiter.cpp" />
     <ClCompile Include="..\src\Math\Coordinate.cpp" />
     <ClCompile Include="..\src\Math\Random.cpp" />
     <ClCompile Include="..\src\Math\Rectangle.cpp" />
@@ -22,9 +27,15 @@
     <ClCompile Include="..\src\Utils\StringUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\Command.hpp" />
+    <ClInclude Include="..\src\CommandQueue.hpp" />
+    <ClInclude Include="..\src\Constants.hpp" />
+    <ClInclude Include="..\src\EventListener.hpp" />
+    <ClInclude Include="..\src\Layer.hpp" />
     <ClInclude Include="..\src\Log\Log.hpp" />
     <ClInclude Include="..\src\Log\Logger.hpp" />
     <ClInclude Include="..\src\Log\LogLevel.hpp" />
+    <ClInclude Include="..\src\LoopQuiter.hpp" />
     <ClInclude Include="..\src\Math\Coordinate.hpp" />
     <ClInclude Include="..\src\Math\Matrix.hpp" />
     <ClInclude Include="..\src\Math\Random.hpp" />
