@@ -9,6 +9,7 @@
 #ifndef __CommandFactory__hpp__
 #define __CommandFactory__hpp__
 
+#include <memory>
 #include <string>
 #include <vector>
 

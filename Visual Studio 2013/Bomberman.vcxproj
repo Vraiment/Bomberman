@@ -14,6 +14,7 @@
     <ClCompile Include="..\libs\tinyxml2\tinyxml2.cpp" />
     <ClCompile Include="..\src\Color.cpp" />
     <ClCompile Include="..\src\Command.cpp" />
+    <ClCompile Include="..\src\CommandFactory.cpp" />
     <ClCompile Include="..\src\CommandQueue.cpp" />
     <ClCompile Include="..\src\Commands\PlayerCommand.cpp" />
     <ClCompile Include="..\src\Commands\QuitCommand.cpp" />
@@ -48,6 +49,7 @@
   <ItemGroup>
     <ClInclude Include="..\src\Color.hpp" />
     <ClInclude Include="..\src\Command.hpp" />
+    <ClInclude Include="..\src\CommandFactory.hpp" />
     <ClInclude Include="..\src\CommandQueue.hpp" />
     <ClInclude Include="..\src\Commands\PlayerCommand.hpp" />
     <ClInclude Include="..\src\Commands\QuitCommand.hpp" />

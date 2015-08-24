@@ -137,6 +137,9 @@
     <ClCompile Include="..\src\Commands\QuitCommand.cpp">
       <Filter>Source Files\Commands</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\CommandFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Math\Coordinate.hpp">
@@ -249,6 +252,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Commands\QuitCommand.hpp">
       <Filter>Source Files\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\CommandFactory.hpp">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
