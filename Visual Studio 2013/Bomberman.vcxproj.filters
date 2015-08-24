@@ -21,6 +21,12 @@
     <Filter Include="Source Files\Log">
       <UniqueIdentifier>{93a3378a-c0a1-4f14-82d3-c1f794be7ce2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Libraries">
+      <UniqueIdentifier>{b2d44808-fa14-4884-a071-45fc9dc4ea23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\TinyXml2">
+      <UniqueIdentifier>{e1d54875-d09c-4596-9102-b0595d21b2c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Math\Coordinate.cpp">
@@ -64,6 +70,9 @@
     </ClCompile>
     <ClCompile Include="..\src\LoopQuiter.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\tinyxml2\tinyxml2.cpp">
+      <Filter>Libraries\TinyXml2</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Log\LoggerFactory.cpp">
       <Filter>Source Files\Log</Filter>
