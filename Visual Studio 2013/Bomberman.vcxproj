@@ -18,6 +18,8 @@
     <ClCompile Include="..\src\Configuration.cpp" />
     <ClCompile Include="..\src\Elements\Bomb.cpp" />
     <ClCompile Include="..\src\Elements\Brick.cpp" />
+    <ClCompile Include="..\src\Elements\Enemy.cpp" />
+    <ClCompile Include="..\src\Elements\Explosion.cpp" />
     <ClCompile Include="..\src\Elements\Item.cpp" />
     <ClCompile Include="..\src\Elements\Player.cpp" />
     <ClCompile Include="..\src\EventListener.cpp" />
@@ -28,6 +30,10 @@
     <ClCompile Include="..\src\Log\LoggerFactory.cpp" />
     <ClCompile Include="..\src\Log\LogLevel.cpp" />
     <ClCompile Include="..\src\LoopQuiter.cpp" />
+    <ClCompile Include="..\src\Map\DummyTileMapBuilder.cpp" />
+    <ClCompile Include="..\src\Map\TileMap.cpp" />
+    <ClCompile Include="..\src\Map\TxtTileMapLoader.cpp" />
+    <ClCompile Include="..\src\Map\XmlTileMapLoader.cpp" />
     <ClCompile Include="..\src\Math\Coordinate.cpp" />
     <ClCompile Include="..\src\Math\Random.cpp" />
     <ClCompile Include="..\src\Math\Rectangle.cpp" />
@@ -45,6 +51,8 @@
     <ClInclude Include="..\src\Constants.hpp" />
     <ClInclude Include="..\src\Elements\Bomb.hpp" />
     <ClInclude Include="..\src\Elements\Brick.hpp" />
+    <ClInclude Include="..\src\Elements\Enemy.hpp" />
+    <ClInclude Include="..\src\Elements\Explosion.hpp" />
     <ClInclude Include="..\src\Elements\Item.hpp" />
     <ClInclude Include="..\src\Elements\Player.hpp" />
     <ClInclude Include="..\src\EventListener.hpp" />
@@ -55,6 +63,11 @@
     <ClInclude Include="..\src\Log\LoggerFactory.hpp" />
     <ClInclude Include="..\src\Log\LogLevel.hpp" />
     <ClInclude Include="..\src\LoopQuiter.hpp" />
+    <ClInclude Include="..\src\Map\DummyTileMapBuilder.hpp" />
+    <ClInclude Include="..\src\Map\TileMap.hpp" />
+    <ClInclude Include="..\src\Map\TileMapBuilder.hpp" />
+    <ClInclude Include="..\src\Map\TxtTileMapLoader.hpp" />
+    <ClInclude Include="..\src\Map\XmlTileMapLoader.hpp" />
     <ClInclude Include="..\src\Math\Coordinate.hpp" />
     <ClInclude Include="..\src\Math\Matrix.hpp" />
     <ClInclude Include="..\src\Math\Random.hpp" />

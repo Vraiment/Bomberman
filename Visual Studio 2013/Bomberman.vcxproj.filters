@@ -30,6 +30,9 @@
     <Filter Include="Source Files\Elements">
       <UniqueIdentifier>{2459063b-987c-4adf-a505-637503563a49}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Map">
+      <UniqueIdentifier>{a1247f1a-4311-458f-8cfe-f6ff6cf14fb2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Math\Coordinate.cpp">
@@ -106,6 +109,24 @@
     </ClCompile>
     <ClCompile Include="..\src\Elements\Player.cpp">
       <Filter>Source Files\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Elements\Enemy.cpp">
+      <Filter>Source Files\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Elements\Explosion.cpp">
+      <Filter>Source Files\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Map\DummyTileMapBuilder.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Map\TileMap.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Map\TxtTileMapLoader.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Map\XmlTileMapLoader.cpp">
+      <Filter>Source Files\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -192,6 +213,27 @@
     </ClInclude>
     <ClInclude Include="..\src\Elements\Player.hpp">
       <Filter>Source Files\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Elements\Enemy.hpp">
+      <Filter>Source Files\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Elements\Explosion.hpp">
+      <Filter>Source Files\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Map\DummyTileMapBuilder.hpp">
+      <Filter>Source Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Map\TileMap.hpp">
+      <Filter>Source Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Map\TileMapBuilder.hpp">
+      <Filter>Source Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Map\TxtTileMapLoader.hpp">
+      <Filter>Source Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Map\XmlTileMapLoader.hpp">
+      <Filter>Source Files\Map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

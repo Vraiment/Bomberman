@@ -93,7 +93,7 @@ namespace Bomberman {
 		try {
 			coordinate.i = stoi(i);
 			coordinate.j = stoi(j);
-		} catch (logic_error& exception) {
+		} catch (logic_error&) {
 			return false;
 		}
 		

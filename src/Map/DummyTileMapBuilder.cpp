@@ -12,6 +12,7 @@
 #include "../Elements/Brick.hpp"
 #include "../Elements/Enemy.hpp"
 #include "../Elements/Player.hpp"
+#include "../Log/LogSystem.pch"
 #include "../Utils/Exception.hpp"
 
 using namespace std;
