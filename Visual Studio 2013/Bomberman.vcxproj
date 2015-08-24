@@ -19,6 +19,7 @@
     <ClCompile Include="..\src\Commands\PlayerCommand.cpp" />
     <ClCompile Include="..\src\Commands\QuitCommand.cpp" />
     <ClCompile Include="..\src\Configuration.cpp" />
+    <ClCompile Include="..\src\Console.cpp" />
     <ClCompile Include="..\src\Console\First.cpp" />
     <ClCompile Include="..\src\Console\Parser.cpp" />
     <ClCompile Include="..\src\Console\Token.cpp" />
@@ -61,6 +62,7 @@
     <ClInclude Include="..\src\Commands\PlayerCommand.hpp" />
     <ClInclude Include="..\src\Commands\QuitCommand.hpp" />
     <ClInclude Include="..\src\Configuration.hpp" />
+    <ClInclude Include="..\src\Console.hpp" />
     <ClInclude Include="..\src\Console\First.hpp" />
     <ClInclude Include="..\src\Console\Parser.hpp" />
     <ClInclude Include="..\src\Console\Token.hpp" />

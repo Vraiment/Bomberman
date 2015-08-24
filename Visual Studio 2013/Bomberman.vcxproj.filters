@@ -167,6 +167,9 @@
     <ClCompile Include="..\src\Layers\HudLayer.cpp">
       <Filter>Source Files\Layers</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Console.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Math\Coordinate.hpp">
@@ -303,6 +306,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Layers\HudLayer.hpp">
       <Filter>Source Files\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Console.hpp">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
