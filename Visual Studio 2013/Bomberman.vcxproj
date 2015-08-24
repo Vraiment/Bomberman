@@ -44,6 +44,7 @@
     <ClCompile Include="..\src\Log\LoggerFactory.cpp" />
     <ClCompile Include="..\src\Log\LogLevel.cpp" />
     <ClCompile Include="..\src\LoopQuiter.cpp" />
+    <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\MainLoop.cpp" />
     <ClCompile Include="..\src\Map\DummyTileMapBuilder.cpp" />
     <ClCompile Include="..\src\Map\TileMap.cpp" />
@@ -158,6 +159,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)..\libs\;$(SolutionDir)..\libs\SDL2\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -178,6 +180,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)..\libs\;$(SolutionDir)..\libs\SDL2\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
