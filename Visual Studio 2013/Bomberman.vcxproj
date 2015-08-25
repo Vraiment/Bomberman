@@ -167,7 +167,7 @@
       <AdditionalDependencies>$(SolutionDir)lib\*.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)lib\*.dll" "$(OutputPath)"</Command>
+      <Command>call post_build.bat "$(OutputPath)" "$(SolutionDir)lib\" "$(SolutionDir)..\resources\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -190,7 +190,7 @@
       <AdditionalDependencies>$(SolutionDir)lib\*.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)lib\*.dll" "$(OutputPath)"</Command>
+      <Command>call post_build.bat "$(OutputPath)" "$(SolutionDir)lib\" "$(SolutionDir)..\resources\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
