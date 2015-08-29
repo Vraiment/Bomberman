@@ -10,6 +10,7 @@
 #define __TileMap__hpp__
 
 #include <list>
+#include <memory>
 #include <string>
 #include <vector>
 

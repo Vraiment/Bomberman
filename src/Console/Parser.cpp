@@ -38,7 +38,7 @@ namespace Bomberman {
 			
 			try {
 				expressions();
-			} catch (ParsingErrorException& exception) {
+			} catch (ParsingErrorException&) {
 				Log::get() << "Unexpected token found: \"" << tokenFactory.currentToken().toString() << "\"." << LogLevel::error;
 				
 				tokenFactory.clear();
@@ -76,7 +76,7 @@ namespace Bomberman {
 					auto command = commandFactory->sendMessage(values[0], values[1], arguments);
 					
 					commands.push(command);
-				} catch (InvalidReceiverException& exception) {
+				} catch (InvalidReceiverException&) {
 					Log::get() << "Unknown object \"" << values[0] << "\"." << LogLevel::error;
 				}
 			} else {
@@ -86,7 +86,7 @@ namespace Bomberman {
 					auto command = commandFactory->call(values[0], arguments);
 				
 					commands.push(command);
-				} catch (InvalidFunctionException& exception) {
+				} catch (InvalidFunctionException&) {
 					Log::get() << "Unkown function \"" << values[0] << "\"." << LogLevel::error;
 				}
 			}

@@ -14,6 +14,7 @@
 #include "EventListener.hpp"
 #include "Layer.hpp"
 #include "Layers/ConsoleLayer.hpp"
+#include "Log/LogSystem.pch"
 
 using namespace std;
 

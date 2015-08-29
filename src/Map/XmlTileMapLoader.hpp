@@ -9,6 +9,7 @@
 #ifndef __TileMapLoader__hpp__
 #define __TileMapLoader__hpp__
 
+#include <memory>
 #include <string>
 #include <tinyxml2/tinyxml2.h>
 

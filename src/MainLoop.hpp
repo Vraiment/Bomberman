@@ -10,6 +10,7 @@
 #define __MainLoop__hpp__
 
 #include <list>
+#include <memory>
 
 namespace Bomberman {
 	class CommandQueue;

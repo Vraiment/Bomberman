@@ -16,6 +16,8 @@ namespace Bomberman {
 	
 #ifdef __APPLE__
 	const char dirSeparator = '/';
+#elif defined(_WIN64)
+	const char dirSeparator = '\\';
 #endif
 	
 	std::string getPath(std::vector<std::string> dirs);

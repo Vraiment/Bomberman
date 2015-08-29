@@ -9,6 +9,7 @@
 #ifndef __Texture__hpp__
 #define __Texture__hpp__
 
+#include <memory>
 #include <string>
 
 #include "Math/Rectangle.hpp"

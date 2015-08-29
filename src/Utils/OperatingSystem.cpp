@@ -14,7 +14,7 @@ namespace Bomberman {
 	string getPath(vector<string> dirs) {
 		string result;
 		
-		for (int i = 0; i < dirs.size(); ++i) {
+		for (size_t i = 0; i < dirs.size(); ++i) {
 			result += dirs[i] + dirSeparator;
 		}
 		

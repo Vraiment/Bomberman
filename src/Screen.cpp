@@ -9,6 +9,7 @@
 #include "Screen.hpp"
 
 #include "Layer.hpp"
+#include "Log/LogSystem.pch"
 
 using namespace std;
 

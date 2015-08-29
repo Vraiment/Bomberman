@@ -9,6 +9,7 @@
 #ifndef __CommandQueue__hpp__
 #define __CommandQueue__hpp__
 
+#include <memory>
 #include <queue>
 
 namespace Bomberman {

@@ -8,6 +8,7 @@
 
 #include "ConsoleLayer.hpp"
 
+#include "../Log/LogSystem.pch"
 #include "../Math/Rectangle.hpp"
 
 using namespace std;
@@ -74,7 +75,7 @@ namespace Bomberman {
 	
 	void ConsoleLayer::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {
 		// Generate the background
-		background = Texture::createRectangle(newSize.width, newSize.height * .2, Color(0x55, 0x55, 0x55), renderer);
+		background = Texture::createRectangle(newSize.width, (int)(newSize.height * .2), Color(0x55, 0x55, 0x55), renderer);
 		
 		// Set prompt position relative to the background
 		prompt.rectangle().i = background.rectangle().i;

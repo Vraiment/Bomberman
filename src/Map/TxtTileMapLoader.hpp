@@ -9,6 +9,7 @@
 #ifndef __TxtTileMapLoader__hpp__
 #define __TxtTileMapLoader__hpp__
 
+#include <memory>
 #include <string>
 #include <vector>
 

@@ -9,6 +9,7 @@
 #ifndef __TileMapBuilder__hpp__
 #define __TileMapBuilder__hpp__
 
+#include <memory>
 #include <string>
 #include <vector>
 

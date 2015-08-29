@@ -19,6 +19,7 @@
 #include "Layers/ConsoleLayer.hpp"
 #include "Layers/GameLayer.hpp"
 #include "Layers/HudLayer.hpp"
+#include "Log/LogSystem.pch"
 #include "MainLoop.hpp"
 #include "Map/TileMap.hpp"
 #include "Map/TxtTileMapLoader.hpp"
@@ -69,11 +70,7 @@ int main(int argc, char* argv[]) {
 		loop.addEventListener(consoleEvents);
 		loop.addScreen(screen);
 		loop.run();
-	} catch (exception& e) {
-#ifdef DEBUG
-		throw e;
-#endif
-		
+	} catch (exception&) {
 		return 1;
 	}
 	
