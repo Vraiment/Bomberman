@@ -10,12 +10,12 @@
 #define __Random_hpp__
 
 namespace Bomberman {
-	namespace Random {
-		int randomInt(int max);
-		int randomInt(int min, int max);
-		float randomFloat(float max);
-		float randomFloat(float min, float max);
-	}
+    namespace Random {
+        int randomInt(int max);
+        int randomInt(int min, int max);
+        float randomFloat(float max);
+        float randomFloat(float min, float max);
+    }
 }
 
 #endif // __Random_hpp__

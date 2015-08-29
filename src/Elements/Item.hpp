@@ -10,22 +10,22 @@
 #define __Item__hpp__
 
 namespace Bomberman {
-	class Item {
-	public:
-		static const Item EXTRA_BOMB;
-		static const Item INCREASE_RANGE;
-		
-		Item(const Item& other);
-		
-		bool operator==(const Item& other) const;
-		bool operator!=(const Item& other) const;
-		
-		int id() const;
-		
-	private:
-		Item(int value);
-		int _value;
-	};
+    class Item {
+    public:
+        static const Item EXTRA_BOMB;
+        static const Item INCREASE_RANGE;
+        
+        Item(const Item& other);
+        
+        bool operator==(const Item& other) const;
+        bool operator!=(const Item& other) const;
+        
+        int id() const;
+        
+    private:
+        Item(int value);
+        int _value;
+    };
 }
 
 #endif //__Item__hpp__

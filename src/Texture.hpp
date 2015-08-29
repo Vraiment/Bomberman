@@ -18,36 +18,36 @@ struct SDL_Renderer;
 struct SDL_Texture;
 
 namespace Bomberman {
-	class Color;
-	
-	class Texture {
-	friend class Font;
-	public:
-		Texture();
-		Texture(std::string fileName, std::shared_ptr<SDL_Renderer> renderer);
-		
-		void draw();
-		
-		void clear();
-		
-		bool isLoaded() const;
-		std::string name() const;
-		Coordinate& position();
-		Rectangle& rectangle();
-		void resetSize();
-		
-		static Texture createRectangle(int width, int height, Color color, std::shared_ptr<SDL_Renderer> renderer);
-		
-	private:
-		bool _loaded;
-		std::shared_ptr<SDL_Renderer> renderer;
-		std::shared_ptr<SDL_Texture> texture;
-		std::string _name;
-		Rectangle _rectangle;
-		
-		Texture(SDL_Texture *t, std::string name, std::shared_ptr<SDL_Renderer> renderer);
-		void loadTexture(SDL_Texture *t);
-	};
+    class Color;
+    
+    class Texture {
+    friend class Font;
+    public:
+        Texture();
+        Texture(std::string fileName, std::shared_ptr<SDL_Renderer> renderer);
+        
+        void draw();
+        
+        void clear();
+        
+        bool isLoaded() const;
+        std::string name() const;
+        Coordinate& position();
+        Rectangle& rectangle();
+        void resetSize();
+        
+        static Texture createRectangle(int width, int height, Color color, std::shared_ptr<SDL_Renderer> renderer);
+        
+    private:
+        bool _loaded;
+        std::shared_ptr<SDL_Renderer> renderer;
+        std::shared_ptr<SDL_Texture> texture;
+        std::string _name;
+        Rectangle _rectangle;
+        
+        Texture(SDL_Texture *t, std::string name, std::shared_ptr<SDL_Renderer> renderer);
+        void loadTexture(SDL_Texture *t);
+    };
 }
 
 #endif //__Texture__hpp__

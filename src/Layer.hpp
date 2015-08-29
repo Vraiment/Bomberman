@@ -14,34 +14,34 @@ struct SDL_Renderer;
 #include <memory>
 
 namespace Bomberman {
-	class Rectangle;
-	
-	class Layer {
-	public:
-		virtual ~Layer();
-		
-		virtual void update() = 0;
-		virtual void draw() = 0;
-		
-		bool isZombie() const;
-		
-		virtual void loadGraphics(std::shared_ptr<SDL_Renderer> render) = 0;
-		
-		virtual void screenSizeChanged(Rectangle previousSize, Rectangle newSize);
-		
-		bool shouldDraw() const;
-		void shouldDraw(bool should);
-		
-		bool shouldUpdate() const;
-		void shouldUpdate(bool should);
-		
-	protected:
-		bool _isZombie;
-		
-	private:
-		bool _shouldDraw = true;
-		bool _shouldUpdate = true;
-	};
+    class Rectangle;
+    
+    class Layer {
+    public:
+        virtual ~Layer();
+        
+        virtual void update() = 0;
+        virtual void draw() = 0;
+        
+        bool isZombie() const;
+        
+        virtual void loadGraphics(std::shared_ptr<SDL_Renderer> render) = 0;
+        
+        virtual void screenSizeChanged(Rectangle previousSize, Rectangle newSize);
+        
+        bool shouldDraw() const;
+        void shouldDraw(bool should);
+        
+        bool shouldUpdate() const;
+        void shouldUpdate(bool should);
+        
+    protected:
+        bool _isZombie;
+        
+    private:
+        bool _shouldDraw = true;
+        bool _shouldUpdate = true;
+    };
 }
 
 #endif //__Layer__hpp__

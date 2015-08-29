@@ -13,12 +13,12 @@
 using namespace std;
 
 namespace Bomberman {
-	QuitCommand::QuitCommand(shared_ptr<LoopQuiter> loopQuiter) : loopQuiter(loopQuiter) {
-		
-	}
-	
-	void QuitCommand::execute() {
-		loopQuiter->quitLoop();
-		_finished = true;
-	}
+    QuitCommand::QuitCommand(shared_ptr<LoopQuiter> loopQuiter) : loopQuiter(loopQuiter) {
+        
+    }
+    
+    void QuitCommand::execute() {
+        loopQuiter->quitLoop();
+        _finished = true;
+    }
 }

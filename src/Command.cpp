@@ -9,14 +9,14 @@
 #include "Command.hpp"
 
 namespace Bomberman {
-	Command::Command() : _finished(false) {
-	}
-	
-	Command::~Command() {
-		
-	}
-	
-	bool Command::finished() const {
-		return _finished;
-	}
+    Command::Command() : _finished(false) {
+    }
+    
+    Command::~Command() {
+        
+    }
+    
+    bool Command::finished() const {
+        return _finished;
+    }
 }

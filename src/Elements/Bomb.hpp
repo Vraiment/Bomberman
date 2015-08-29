@@ -13,24 +13,24 @@
 #include "../Math/Coordinate.hpp"
 
 namespace Bomberman {
-	class Bomb {
-	public:
-		Bomb(Coordinate position);
-		
-		Coordinate getPosition() const;
-		
-		void update();
-		void forceExplosion();
-		
-		bool exploded() const;
-		
-	private:
-		static const int TTL;
-		
-		Timer timer;
-		Coordinate _position;
-		bool _exploded;
-	};
+    class Bomb {
+    public:
+        Bomb(Coordinate position);
+        
+        Coordinate getPosition() const;
+        
+        void update();
+        void forceExplosion();
+        
+        bool exploded() const;
+        
+    private:
+        static const int TTL;
+        
+        Timer timer;
+        Coordinate _position;
+        bool _exploded;
+    };
 }
 
 #endif // __Bomb_hpp__

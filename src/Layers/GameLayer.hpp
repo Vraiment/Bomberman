@@ -18,46 +18,46 @@
 #include "../Timer.hpp"
 
 namespace Bomberman {
-	class TileMap;
-	
-	class GameLayer : public Layer {
-	public:
-		GameLayer();
-		
-		~GameLayer();
-		
-		void draw();
-		void update();
-		
-		void loadGraphics(std::shared_ptr<SDL_Renderer> renderer);
-		
-		void setTileMap(std::shared_ptr<TileMap> tileMap);
-		
-		void screenSizeChanged(Rectangle previousSize, Rectangle newSize);
-		
-	private:
-		class Camera;
+    class TileMap;
+    
+    class GameLayer : public Layer {
+    public:
+        GameLayer();
+        
+        ~GameLayer();
+        
+        void draw();
+        void update();
+        
+        void loadGraphics(std::shared_ptr<SDL_Renderer> renderer);
+        
+        void setTileMap(std::shared_ptr<TileMap> tileMap);
+        
+        void screenSizeChanged(Rectangle previousSize, Rectangle newSize);
+        
+    private:
+        class Camera;
         
         static const int PLAYER_BLINK_TIME;
-		
+        
         bool drawBlinkingPlayer;
-		Texture background;
-		Texture bomb;
-		Texture brick;
-		Texture destructibleBrick;
-		std::vector<Texture> enemies;
-		Texture explosion;
-		Texture player;
+        Texture background;
+        Texture bomb;
+        Texture brick;
+        Texture destructibleBrick;
+        std::vector<Texture> enemies;
+        Texture explosion;
+        Texture player;
         Timer blinkPlayerTimer;
-		
-		std::shared_ptr<TileMap> tileMap;
-		
-		std::shared_ptr<Camera> camera;
-		
-		void drawBackground();
-		void drawTile(Texture texture, Coordinate position);
-		bool getEnemyTexture(std::string enemyType, Texture& texture);
-	};
+        
+        std::shared_ptr<TileMap> tileMap;
+        
+        std::shared_ptr<Camera> camera;
+        
+        void drawBackground();
+        void drawTile(Texture texture, Coordinate position);
+        bool getEnemyTexture(std::string enemyType, Texture& texture);
+    };
 }
 
 #endif //__Viewport__hpp__

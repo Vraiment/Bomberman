@@ -9,15 +9,15 @@
 #include "Brick.hpp"
 
 namespace Bomberman {
-	Brick::Brick(Coordinate position, bool destructible) : _position(position), _destructible(destructible) {
-		
-	}
-	
-	bool Brick::destructible() const {
-		return _destructible;
-	}
-	
-	Coordinate Brick::position() const {
-		return _position;
-	}
+    Brick::Brick(Coordinate position, bool destructible) : _position(position), _destructible(destructible) {
+        
+    }
+    
+    bool Brick::destructible() const {
+        return _destructible;
+    }
+    
+    Coordinate Brick::position() const {
+        return _position;
+    }
 }

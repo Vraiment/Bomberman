@@ -16,31 +16,31 @@
 #include "LogLevel.hpp"
 
 namespace Bomberman {
-	class Logger;
-	
-	class Log {
-	public:
-		static Log& get();
-		
-		Log& operator<<(int value);
-		Log& operator<<(const char *value);
-		Log& operator<<(std::string value);
-		void operator<<(LogLevel level);
-		void operator<<(std::exception exception);
-		
-		void addLogger(std::shared_ptr<Logger> logger);
-		
-	private:
-		Log();
-		
-		void flush(LogLevel level);
-		
-		std::stringstream buffer;
-		std::vector<std::pair<std::string, LogLevel>> messages;
-		std::shared_ptr<Logger> logger;
-		
-		static Log singleton;
-	};
+    class Logger;
+    
+    class Log {
+    public:
+        static Log& get();
+        
+        Log& operator<<(int value);
+        Log& operator<<(const char *value);
+        Log& operator<<(std::string value);
+        void operator<<(LogLevel level);
+        void operator<<(std::exception exception);
+        
+        void addLogger(std::shared_ptr<Logger> logger);
+        
+    private:
+        Log();
+        
+        void flush(LogLevel level);
+        
+        std::stringstream buffer;
+        std::vector<std::pair<std::string, LogLevel>> messages;
+        std::shared_ptr<Logger> logger;
+        
+        static Log singleton;
+    };
 }
 
 #endif //__Log__hpp__

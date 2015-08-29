@@ -13,18 +13,18 @@
 #include "../Texture.hpp"
 
 namespace Bomberman {
-	class HudLayer : public Layer {
-	public:
-		void draw();
-		void update();
-		
-		void loadGraphics(std::shared_ptr<SDL_Renderer> renderer);
-		
-		void screenSizeChanged(Rectangle previousSize, Rectangle newSize);
-		
-	private:
-		Texture hud;
-	};
+    class HudLayer : public Layer {
+    public:
+        void draw();
+        void update();
+        
+        void loadGraphics(std::shared_ptr<SDL_Renderer> renderer);
+        
+        void screenSizeChanged(Rectangle previousSize, Rectangle newSize);
+        
+    private:
+        Texture hud;
+    };
 }
 
 #endif //__HudLayer__hpp__

@@ -9,19 +9,19 @@
 #include "LoopQuiter.hpp"
 
 namespace Bomberman {
-	LoopQuiter::LoopQuiter() : _quitLoop(false) {
-		
-	}
-	
-	LoopQuiter::~LoopQuiter() {
-		
-	}
-	
-	bool LoopQuiter::shouldQuit() const {
-		return _quitLoop;
-	}
-	
-	void LoopQuiter::quitLoop() {
-		_quitLoop = true;
-	}
+    LoopQuiter::LoopQuiter() : _quitLoop(false) {
+        
+    }
+    
+    LoopQuiter::~LoopQuiter() {
+        
+    }
+    
+    bool LoopQuiter::shouldQuit() const {
+        return _quitLoop;
+    }
+    
+    void LoopQuiter::quitLoop() {
+        _quitLoop = true;
+    }
 }

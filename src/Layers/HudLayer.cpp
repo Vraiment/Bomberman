@@ -16,22 +16,22 @@ using namespace Bomberman::Constants;
 using namespace std;
 
 namespace Bomberman {
-	void HudLayer::draw() {
-		hud.draw();
-	}
-	
-	void HudLayer::update() {
-		
-	}
-	
-	void HudLayer::loadGraphics(shared_ptr<SDL_Renderer> renderer) {
-		hud = Texture("hud.png", renderer);
-		
-		// HUD height is one tile
-		hud.rectangle().height = TILE_HEIGHT;
-	}
-	
-	void HudLayer::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {
-		hud.rectangle().width = newSize.width;
-	}
+    void HudLayer::draw() {
+        hud.draw();
+    }
+    
+    void HudLayer::update() {
+        
+    }
+    
+    void HudLayer::loadGraphics(shared_ptr<SDL_Renderer> renderer) {
+        hud = Texture("hud.png", renderer);
+        
+        // HUD height is one tile
+        hud.rectangle().height = TILE_HEIGHT;
+    }
+    
+    void HudLayer::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {
+        hud.rectangle().width = newSize.width;
+    }
 }

@@ -12,17 +12,17 @@
 #include "../Math/Coordinate.hpp"
 
 namespace Bomberman {
-	class Brick {
-	public:
-		Brick(Coordinate position, bool destructible = false);
-		
-		bool destructible() const;
-		Coordinate position() const;
-		
-	private:
-		bool _destructible;
-		Coordinate _position;
-	};
+    class Brick {
+    public:
+        Brick(Coordinate position, bool destructible = false);
+        
+        bool destructible() const;
+        Coordinate position() const;
+        
+    private:
+        bool _destructible;
+        Coordinate _position;
+    };
 }
 
 #endif //__Brick__hpp__

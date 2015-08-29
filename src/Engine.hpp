@@ -10,14 +10,14 @@
 #define __Engine__hpp__
 
 namespace Bomberman {
-	class Engine {
-	public:
-		Engine();
-		~Engine();
-		
-	private:
-		void setPath();
-	};
+    class Engine {
+    public:
+        Engine();
+        ~Engine();
+        
+    private:
+        void setPath();
+    };
 }
 
 #endif //__Engine_hpp__
