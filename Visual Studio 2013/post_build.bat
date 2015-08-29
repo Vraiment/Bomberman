@@ -35,7 +35,7 @@ REM Copy the DLLs
 COPY "%INPUT_DLL_DIR%"*.DLL "%OUTPUT_DIR%"
 
 REM Define resources directories
-SET OUTPUT_RES_DIR=%OUTPUT_DIR%
+SET OUTPUT_RES_DIR=%OUTPUT_DIR%resources\
 
 REM Create the directories if they don't exists
 IF NOT EXIST "%OUTPUT_RES_DIR%" (

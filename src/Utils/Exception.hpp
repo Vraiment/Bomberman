@@ -92,6 +92,13 @@ namespace Bomberman {
 			return "invalid function";
 		}
 	};
+
+	class NativeOperationException : public Exception {
+	public:
+		virtual const char* what() const noexcept{
+			return "error executing native code";
+		}
+	};
 }
 
 #endif //__Exception__hpp__

@@ -62,6 +62,7 @@ namespace Bomberman {
 		const char ARG_DOWN[] = "down";
 		
 		// Dirs & files
+		const char DIR_RESOURCES[] = "resources";
 		const char DIR_FONTS[] = "fonts";
 		const char DIR_TEXTURES[] = "textures";
 		
