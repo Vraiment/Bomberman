@@ -14,7 +14,7 @@
 
 #include "Constants.hpp"
 #include "Texture.hpp"
-#include "Log/LogSystem.pch"
+#include "Log/LogSystem.h"
 #include "Utils/OperatingSystem.hpp"
 
 using namespace Bomberman::Constants;

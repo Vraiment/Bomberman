@@ -8,7 +8,7 @@
 
 #include "ConsoleLayer.hpp"
 
-#include "../Log/LogSystem.pch"
+#include "../Log/LogSystem.h"
 #include "../Math/Rectangle.hpp"
 
 using namespace std;

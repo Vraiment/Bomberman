@@ -22,7 +22,7 @@
 #include <string>
 
 #include "Constants.hpp"
-#include "Log/LogSystem.pch"
+#include "Log/LogSystem.h"
 #include "Utils/Exception.hpp"
 #include "Utils/OperatingSystem.hpp"
 

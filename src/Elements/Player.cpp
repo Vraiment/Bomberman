@@ -9,7 +9,7 @@
 #include "Player.hpp"
 
 #include "Item.hpp"
-#include "../Log/LogSystem.pch"
+#include "../Log/LogSystem.h"
 
 namespace Bomberman {
 	const int Player::invincibleTime = 750;

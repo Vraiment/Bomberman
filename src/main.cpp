@@ -19,7 +19,7 @@
 #include "Layers/ConsoleLayer.hpp"
 #include "Layers/GameLayer.hpp"
 #include "Layers/HudLayer.hpp"
-#include "Log/LogSystem.pch"
+#include "Log/LogSystem.h"
 #include "MainLoop.hpp"
 #include "Map/TileMap.hpp"
 #include "Map/TxtTileMapLoader.hpp"
