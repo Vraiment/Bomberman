@@ -39,8 +39,11 @@ namespace Bomberman {
         const char MAP_CMD_SIZE[] = "size";
         const char MAP_CMD_SINGLE[] = "single";
         const char MAP_CMD_LINE[] = "line";
+        const char MAP_CMD_ITEM[] = "item";
         const char MAP_OBJ_COMMON_BRICK[] = "common_brick";
         const char MAP_OBJ_DESTRUCT_BRICK[] = "destruct_brick";
+        const char MAP_ITEM_EXTRA_BOMB[] = "extra_bomb";
+        const char MAP_ITEM_INCREASE_RANGE[] = "increase_range";
         
         // Functions
         const char FUNC_EXIT[] = "exit";

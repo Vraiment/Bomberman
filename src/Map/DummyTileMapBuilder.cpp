@@ -11,6 +11,7 @@
 #include "../Constants.hpp"
 #include "../Elements/Brick.hpp"
 #include "../Elements/Enemy.hpp"
+#include "../Elements/Item.hpp"
 #include "../Elements/Player.hpp"
 #include "../Log/LogSystem.h"
 #include "../Utils/Exception.hpp"
@@ -65,6 +66,10 @@ namespace Bomberman {
     
     vector<Enemy> DummyTileMapBuilder::enemies() const {
         return _enemies;
+    }
+    
+    vector<Item> DummyTileMapBuilder::items() const {
+        return _items;
     }
     
     shared_ptr<Player> DummyTileMapBuilder::player() const {

@@ -16,6 +16,7 @@
 namespace Bomberman {
     class Brick;
     class Enemy;
+    class Item;
     class Player;
     
     class TileMapBuilder {
@@ -29,6 +30,7 @@ namespace Bomberman {
         virtual std::string name() const = 0;
         virtual std::vector<Brick> bricks() const = 0;
         virtual std::vector<Enemy> enemies() const = 0;
+        virtual std::vector<Item> items() const = 0;
         virtual std::shared_ptr<Player> player() const = 0;
     };
 }

@@ -9,7 +9,11 @@
 #include "Item.hpp"
 
 namespace Bomberman {
-    Item::Item(int value) : _value(value) {
+    Item::Item() : _value(-1) {
+        
+    }
+    
+    Item::Item(int value, Coordinate position) : _value(value), position(position) {
         
     }
     
@@ -29,6 +33,15 @@ namespace Bomberman {
         return _value;
     }
     
+    Coordinate Item::getPosition() const {
+        return position;
+    }
+    
+    Item Item::create(const Item& item, Coordinate position) {
+        return Item(item._value, position);
+    }
+    
+    const Item Item::NONE = Item(-1);
     const Item Item::EXTRA_BOMB = Item(0);
     const Item Item::INCREASE_RANGE = Item(1);
 }

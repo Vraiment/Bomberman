@@ -11,6 +11,7 @@
 #include "../Constants.hpp"
 #include "../Elements/Brick.hpp"
 #include "../Elements/Enemy.hpp"
+#include "../Elements/Item.hpp"
 #include "../Elements/Player.hpp"
 #include "../Log/Log.hpp"
 #include "../Log/LogLevel.hpp"
@@ -79,6 +80,8 @@ namespace Bomberman {
                 _validCommand = _arguments.size() == 3;
             } else if (_command == MAP_CMD_LINE) {
                 _validCommand = _arguments.size() == 5;
+            } else if (_command == MAP_CMD_ITEM) {
+                _validCommand = _arguments.size() == 3;
             } else {
                 _validCommand = false;
             }
@@ -250,6 +253,22 @@ namespace Bomberman {
                     builder->_bricks.push_back(Brick(pos, destructible));
                 }
             }
+        } else if (command == MAP_CMD_ITEM) {
+            Coordinate pos;
+            if (!buildCoordinate(arguments[1], arguments[2], pos)) {
+                return false;
+            }
+            
+            Item item;
+            if (arguments[0] == MAP_ITEM_INCREASE_RANGE) {
+                item = Item::create(Item::INCREASE_RANGE, pos);
+            } else if (arguments[0] == MAP_ITEM_EXTRA_BOMB) {
+                item = Item::create(Item::EXTRA_BOMB, pos);
+            } else {
+                return false;
+            }
+            
+            builder->_items.push_back(item);
         } else {
             return false;
         }
