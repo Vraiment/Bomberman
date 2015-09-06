@@ -17,7 +17,7 @@ namespace Bomberman {
         
     }
     
-    Item::Item(const Item& other) : _value(other._value) {
+    Item::Item(const Item& other) : _value(other._value), position(other.position) {
         
     }
     

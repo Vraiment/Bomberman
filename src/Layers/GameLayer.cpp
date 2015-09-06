@@ -15,6 +15,7 @@
 #include "../Elements/Brick.hpp"
 #include "../Elements/Enemy.hpp"
 #include "../Elements/Explosion.hpp"
+#include "../Elements/Item.hpp"
 #include "../Elements/Player.hpp"
 #include "../Map/TileMap.hpp"
 #include "../Utils/Exception.hpp"
@@ -140,6 +141,21 @@ namespace Bomberman {
         background.rectangle() = camera->getScreenPosition(Coordinate::ZERO);
         background.draw();
         
+        // Draw Items
+        auto items = tileMap->items();
+        for (auto item : items) {
+            if (Item::INCREASE_RANGE == item) {
+                texture = increaseRange;
+            } else if (Item::EXTRA_BOMB == item) {
+                texture = extraBomb;
+            } else {
+                Log::get() << "No valid texture for item with id: " << item.id() << LogLevel::warning;
+                continue;
+            }
+            
+            drawTile(texture, item.getPosition());
+        }
+        
         // Draw bricks
         auto bricks = tileMap->bricks();
         for (auto brick : bricks) {
@@ -204,6 +220,8 @@ namespace Bomberman {
         destructibleBrick = Texture("destructibleBrick.png", renderer);
         explosion = Texture("explosion.png", renderer);
         player = Texture("bomberman.png", renderer);
+        extraBomb = Texture("extraBomb.png", renderer);
+        increaseRange = Texture("increaseRange.png", renderer);
         
         Texture enemy;
         

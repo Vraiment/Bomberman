@@ -48,6 +48,8 @@ namespace Bomberman {
         std::vector<Texture> enemies;
         Texture explosion;
         Texture player;
+        Texture extraBomb;
+        Texture increaseRange;
         Timer blinkPlayerTimer;
         
         std::shared_ptr<TileMap> tileMap;

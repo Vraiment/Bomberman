@@ -17,6 +17,7 @@
 #include "../Elements/Brick.hpp"
 #include "../Elements/Enemy.hpp"
 #include "../Elements/Explosion.hpp"
+#include "../Elements/Item.hpp"
 #include "../Elements/Player.hpp"
 #include "../Log/Log.hpp"
 #include "../Log/LogLevel.hpp"
@@ -102,6 +103,23 @@ namespace Bomberman {
             
             _enemies.push_back(enemy);
         }
+        
+        _items = builder->items();
+        VectorUtils::removeIf(_items, [this](const Item& item) {
+            if (!_area.contains(item.getPosition())) {
+                Log::get() << "Invalid position " << item.getPosition().toString() << " for item with id: " << item.id() << LogLevel::warning;
+                return true;
+            }
+            
+            for (auto brick : _bricks) {
+                if (!brick.destructible() && brick.position() == item.getPosition()) {
+                    Log::get() << "Item with id: " << item.id() << " under indestructible brick at position: " << item.getPosition().toString() << LogLevel::warning;
+                    return true;
+                }
+            }
+            
+            return false;
+        });
     }
     
     TileMap::~TileMap() {
@@ -138,6 +156,10 @@ namespace Bomberman {
     
     list<Explosion> TileMap::explosions() const {
         return _explosions;
+    }
+    
+    vector<Item> TileMap::items() const {
+        return _items;
     }
     
     shared_ptr<Player> TileMap::player() const {

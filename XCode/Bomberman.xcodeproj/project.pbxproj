@@ -72,6 +72,8 @@
 		5BBFCCA2185FFD910016F56A /* First.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BBFCC9E185FFD910016F56A /* First.cpp */; };
 		5BBFCCA3185FFD910016F56A /* Parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BBFCCA0185FFD910016F56A /* Parser.cpp */; };
 		5BBFCCA6185FFF710016F56A /* CommandFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BBFCCA4185FFF710016F56A /* CommandFactory.cpp */; };
+		5BC95BC71B9CF01B005FAA0E /* extraBomb.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BC95BC51B9CF00B005FAA0E /* extraBomb.png */; };
+		5BC95BC81B9CF01B005FAA0E /* increaseRange.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BC95BC61B9CF00B005FAA0E /* increaseRange.png */; };
 		5BD37AFE18221A3D00BB1C28 /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B0EEC2A1820E0D20084C40C /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5BD6AD0518237F2D00E661DA /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BD6AD0318237CE000E661DA /* Logger.cpp */; };
 		5BD6AD171823A36B00E661DA /* tinyxml2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BD6AD161823A36B00E661DA /* tinyxml2.cpp */; };
@@ -126,6 +128,8 @@
 				5B3D1310182C717A0070A335 /* tile0.png in CopyFiles */,
 				5B3D1311182C717A0070A335 /* tile1.png in CopyFiles */,
 				5B3D1312182C717A0070A335 /* tile2.png in CopyFiles */,
+				5BC95BC71B9CF01B005FAA0E /* extraBomb.png in CopyFiles */,
+				5BC95BC81B9CF01B005FAA0E /* increaseRange.png in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +269,8 @@
 		5BBFCCA1185FFD910016F56A /* Parser.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Parser.hpp; sourceTree = "<group>"; };
 		5BBFCCA4185FFF710016F56A /* CommandFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommandFactory.cpp; sourceTree = "<group>"; };
 		5BBFCCA5185FFF710016F56A /* CommandFactory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CommandFactory.hpp; sourceTree = "<group>"; };
+		5BC95BC51B9CF00B005FAA0E /* extraBomb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = extraBomb.png; sourceTree = "<group>"; };
+		5BC95BC61B9CF00B005FAA0E /* increaseRange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = increaseRange.png; sourceTree = "<group>"; };
 		5BD37AF31822199200BB1C28 /* tile0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile0.png; sourceTree = "<group>"; };
 		5BD37AF5182219F300BB1C28 /* tile1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile1.png; sourceTree = "<group>"; };
 		5BD37AF6182219F300BB1C28 /* tile2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile2.png; sourceTree = "<group>"; };
@@ -559,6 +565,8 @@
 		5BD37AF21822145500BB1C28 /* Textures */ = {
 			isa = PBXGroup;
 			children = (
+				5BC95BC51B9CF00B005FAA0E /* extraBomb.png */,
+				5BC95BC61B9CF00B005FAA0E /* increaseRange.png */,
 				5B4A11FE18331CAB00C8A950 /* background.png */,
 				5B2174251A1AC2820033B3AA /* bomb.png */,
 				5B0C86821852550C0005CADD /* bomberman.png */,

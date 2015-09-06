@@ -22,7 +22,7 @@
 		<key>393B806CCEDF020BBDECC7A64121F9B676FF245A</key>
 		<string>../../..</string>
 		<key>78DF22222A1CA83EEB067D3FD219D4C1BD05FC9E</key>
-		<string>../../..libs/tinyxml2</string>
+		<string>../../..libs/tinyxml2/</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/Vraiment/Bomberman.git</string>
