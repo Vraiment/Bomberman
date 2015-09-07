@@ -104,22 +104,26 @@ namespace Bomberman {
             _enemies.push_back(enemy);
         }
         
-        _items = builder->items();
-        VectorUtils::removeIf(_items, [this](const Item& item) {
+        auto items = builder->items();
+        for (auto item : items) {
             if (!_area.contains(item.getPosition())) {
                 Log::get() << "Invalid position " << item.getPosition().toString() << " for item with id: " << item.id() << LogLevel::warning;
-                return true;
+                continue;
             }
             
+            bool invalidBrick = false;
             for (auto brick : _bricks) {
                 if (!brick.destructible() && brick.position() == item.getPosition()) {
                     Log::get() << "Item with id: " << item.id() << " under indestructible brick at position: " << item.getPosition().toString() << LogLevel::warning;
-                    return true;
+                    invalidBrick = true;
+                    break;
                 }
             }
             
-            return false;
-        });
+            if (!invalidBrick) {
+                _items.push_back(item);
+            }
+        };
     }
     
     TileMap::~TileMap() {
@@ -158,7 +162,7 @@ namespace Bomberman {
         return _explosions;
     }
     
-    vector<Item> TileMap::items() const {
+    list<Item> TileMap::items() const {
         return _items;
     }
     
@@ -170,6 +174,15 @@ namespace Bomberman {
         _player->update();
         updateEnemies();
         updateBombs();
+        
+        _items.remove_if([this] (Item item) {
+            if (item.getPosition() == _player->position()) {
+                _player->addItem(item);
+                return true;
+            }
+            
+            return false;
+        });
         
         stack<Coordinate> blownBombs;
         do {
@@ -257,6 +270,10 @@ namespace Bomberman {
             
             _enemies.remove_if([position] (Enemy enemy) {
                 return position == enemy.getPosition();
+            });
+            
+            _items.remove_if([position] (Item item) {
+                return position == item.getPosition();
             });
             
             VectorUtils::removeIf(_bricks, [position] (Brick& brick) {

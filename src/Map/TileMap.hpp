@@ -39,7 +39,7 @@ namespace Bomberman {
         std::vector<Brick> bricks() const;
         std::list<Enemy> enemies() const;
         std::list<Explosion> explosions() const;
-        std::vector<Item> items() const;
+        std::list<Item> items() const;
         std::shared_ptr<Player> player() const;
         
         void update();
@@ -59,7 +59,7 @@ namespace Bomberman {
         std::vector<Brick> _bricks;
         std::list<Bomb> _bombs;
         std::list<Enemy> _enemies;
-        std::vector<Item> _items;
+        std::list<Item> _items;
         std::list<Explosion> _explosions;
         Timer playerRespawn;
         
