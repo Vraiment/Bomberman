@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Vraiment. All rights reserved.
 //
 
-#ifndef __Viewport__hpp__
-#define __Viewport__hpp__
+#ifndef __GameLayer__hpp__
+#define __GameLayer__hpp__
 
 #include "../Layer.hpp"
 
@@ -62,4 +62,4 @@ namespace Bomberman {
     };
 }
 
-#endif //__Viewport__hpp__
+#endif //__GameLayer__hpp__
