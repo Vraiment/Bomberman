@@ -25,7 +25,7 @@ namespace Bomberman {
         
         bool isZombie() const;
         
-        virtual void loadGraphics(std::shared_ptr<SDL_Renderer> render) = 0;
+        virtual void load(std::shared_ptr<SDL_Renderer> render) = 0;
         
         virtual void screenSizeChanged(Rectangle previousSize, Rectangle newSize);
         

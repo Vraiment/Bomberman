@@ -213,7 +213,7 @@ namespace Bomberman {
         }
     }
     
-    void GameLayer::loadGraphics(shared_ptr<SDL_Renderer> renderer) {
+    void GameLayer::load(shared_ptr<SDL_Renderer> renderer) {
         background = Texture("background.png", renderer);
         bomb = Texture("bomb.png", renderer);
         brick = Texture("brick.png", renderer);

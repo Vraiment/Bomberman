@@ -18,7 +18,7 @@ namespace Bomberman {
         void draw();
         void update();
         
-        void loadGraphics(std::shared_ptr<SDL_Renderer> renderer);
+        void load(std::shared_ptr<SDL_Renderer> renderer);
         
         void screenSizeChanged(Rectangle previousSize, Rectangle newSize);
         
