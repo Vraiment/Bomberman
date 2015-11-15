@@ -13,38 +13,38 @@
 #include <memory>
 
 namespace Bomberman {
-	class CommandQueue;
-	class EventListener;
-	class LoopQuiter;
-	class Screen;
-	
-	class MainLoop {
-	public:
-		MainLoop();
-		~MainLoop();
-		
-		std::shared_ptr<CommandQueue> commandQueue();
-		std::shared_ptr<LoopQuiter> quiter();
-		
-		void run();
-		
-		void addScreen(std::shared_ptr<Screen> screen);
-		
-		void removeScreen(std::shared_ptr<Screen> screen);
-		
-		void addEventListener(std::shared_ptr<EventListener> eventListener);
-		
-		void removeEventListener(std::shared_ptr<EventListener> eventListener);
-		
-	private:
-		bool hasScreen(std::shared_ptr<Screen> screen);
-		bool hasEventListener(std::shared_ptr<EventListener> eventListener);
-		
-		std::shared_ptr<CommandQueue> _commandQueue;
-		std::list<std::shared_ptr<Screen>> screens;
-		std::list<std::shared_ptr<EventListener>> eventListeners;
-		std::shared_ptr<LoopQuiter> _quiter;
-	};
+    class CommandQueue;
+    class EventListener;
+    class LoopQuiter;
+    class Screen;
+    
+    class MainLoop {
+    public:
+        MainLoop();
+        ~MainLoop();
+        
+        std::shared_ptr<CommandQueue> commandQueue();
+        std::shared_ptr<LoopQuiter> quiter();
+        
+        void run();
+        
+        void addScreen(std::shared_ptr<Screen> screen);
+        
+        void removeScreen(std::shared_ptr<Screen> screen);
+        
+        void addEventListener(std::shared_ptr<EventListener> eventListener);
+        
+        void removeEventListener(std::shared_ptr<EventListener> eventListener);
+        
+    private:
+        bool hasScreen(std::shared_ptr<Screen> screen);
+        bool hasEventListener(std::shared_ptr<EventListener> eventListener);
+        
+        std::shared_ptr<CommandQueue> _commandQueue;
+        std::list<std::shared_ptr<Screen>> screens;
+        std::list<std::shared_ptr<EventListener>> eventListeners;
+        std::shared_ptr<LoopQuiter> _quiter;
+    };
 }
 
 #endif //__MainLoop__hpp__

@@ -10,18 +10,18 @@
 #define __LoopQuiter__hpp__
 
 namespace Bomberman {
-	class LoopQuiter {
-	public:
-		LoopQuiter();
-		~LoopQuiter();
-		
-		bool shouldQuit() const;
-		
-		void quitLoop();
-		
-	private:
-		bool _quitLoop;
-	};
+    class LoopQuiter {
+    public:
+        LoopQuiter();
+        ~LoopQuiter();
+        
+        bool shouldQuit() const;
+        
+        void quitLoop();
+        
+    private:
+        bool _quitLoop;
+    };
 }
 
 #endif //__LoopQuiter__hpp__

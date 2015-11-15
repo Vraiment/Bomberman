@@ -93,6 +93,7 @@
     <ClInclude Include="..\src\Log\Logger.hpp" />
     <ClInclude Include="..\src\Log\LoggerFactory.hpp" />
     <ClInclude Include="..\src\Log\LogLevel.hpp" />
+    <ClInclude Include="..\src\Log\LogSystem.h" />
     <ClInclude Include="..\src\LoopQuiter.hpp" />
     <ClInclude Include="..\src\MainLoop.hpp" />
     <ClInclude Include="..\src\Map\DummyTileMapBuilder.hpp" />
@@ -112,9 +113,6 @@
     <ClInclude Include="..\src\Utils\OperatingSystem.hpp" />
     <ClInclude Include="..\src\Utils\StringUtils.hpp" />
     <ClInclude Include="..\src\Utils\VectorUtils.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\src\Log\LogSystem.pch" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0B241670-23DD-4B31-A63F-55D00782DD73}</ProjectGuid>

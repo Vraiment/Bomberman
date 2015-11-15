@@ -19,7 +19,7 @@
 #include "Layers/ConsoleLayer.hpp"
 #include "Layers/GameLayer.hpp"
 #include "Layers/HudLayer.hpp"
-#include "Log/LogSystem.pch"
+#include "Log/LogSystem.h"
 #include "MainLoop.hpp"
 #include "Map/TileMap.hpp"
 #include "Map/TxtTileMapLoader.hpp"
@@ -30,49 +30,49 @@ using namespace Bomberman;
 using namespace std;
 
 int main(int argc, char* argv[]) {
-	try {
-		//Standalone objects
-		Engine engine;
-		Configuration config("config.xml");
-		shared_ptr<CommandFactory> commandFactory(new CommandFactory());
-		shared_ptr<GameLayer> gameLayer(new GameLayer());
-		shared_ptr<HudLayer> hudLayer(new HudLayer());
-		shared_ptr<ConsoleLayer> consoleLayer(new ConsoleLayer());
-		TxtTileMapLoader mapLoader;
-		MainLoop loop;
-		
-		//Dependants objects
-		shared_ptr<Screen> screen(new Screen(config.viewportWidth(), config.viewportHeight(), config.viewportTitle()));
-		shared_ptr<TileMapBuilder> builder = mapLoader.load("map1.txt");
-		shared_ptr<TileMap> tileMap(new TileMap(builder));
-		shared_ptr<PlayerEvents> playerEvents(new PlayerEvents(commandFactory, loop.commandQueue(), tileMap->player()));
-		shared_ptr<Console> console(new Console(commandFactory, loop.commandQueue(), consoleLayer, gameLayer, playerEvents));
-		shared_ptr<ConsoleEvents> consoleEvents(new ConsoleEvents(console));
-	
-		commandFactory->setTileMap(tileMap);
-		commandFactory->setPlayer(tileMap->player());
-		commandFactory->setLoopQuiter(loop.quiter());
-		
-		hudLayer->loadGraphics(screen->renderer());
-		gameLayer->loadGraphics(screen->renderer());
-		consoleLayer->loadGraphics(screen->renderer());
-		
-		gameLayer->setTileMap(tileMap);
-		
-		screen->addLayer(gameLayer);
-		screen->addLayer(hudLayer);
-		screen->addLayer(consoleLayer);
-		
-		Log::get().addLogger(consoleLayer);
-		
-		//Game
-		loop.addEventListener(playerEvents);
-		loop.addEventListener(consoleEvents);
-		loop.addScreen(screen);
-		loop.run();
-	} catch (exception&) {
-		return 1;
-	}
-	
-	return 0;
+    try {
+        //Standalone objects
+        Engine engine;
+        Configuration config("config.xml");
+        shared_ptr<CommandFactory> commandFactory(new CommandFactory());
+        shared_ptr<GameLayer> gameLayer(new GameLayer());
+        shared_ptr<HudLayer> hudLayer(new HudLayer());
+        shared_ptr<ConsoleLayer> consoleLayer(new ConsoleLayer());
+        TxtTileMapLoader mapLoader;
+        MainLoop loop;
+        
+        //Dependants objects
+        shared_ptr<Screen> screen(new Screen(config.viewportWidth(), config.viewportHeight(), config.viewportTitle()));
+        shared_ptr<TileMapBuilder> builder = mapLoader.load("map1.txt");
+        shared_ptr<TileMap> tileMap(new TileMap(builder));
+        shared_ptr<PlayerEvents> playerEvents(new PlayerEvents(commandFactory, loop.commandQueue(), tileMap->player()));
+        shared_ptr<Console> console(new Console(commandFactory, loop.commandQueue(), consoleLayer, gameLayer, playerEvents));
+        shared_ptr<ConsoleEvents> consoleEvents(new ConsoleEvents(console));
+    
+        commandFactory->setTileMap(tileMap);
+        commandFactory->setPlayer(tileMap->player());
+        commandFactory->setLoopQuiter(loop.quiter());
+        
+        hudLayer->loadGraphics(screen->renderer());
+        gameLayer->loadGraphics(screen->renderer());
+        consoleLayer->loadGraphics(screen->renderer());
+        
+        gameLayer->setTileMap(tileMap);
+        
+        screen->addLayer(gameLayer);
+        screen->addLayer(hudLayer);
+        screen->addLayer(consoleLayer);
+        
+        Log::get().addLogger(consoleLayer);
+        
+        //Game
+        loop.addEventListener(playerEvents);
+        loop.addEventListener(consoleEvents);
+        loop.addScreen(screen);
+        loop.run();
+    } catch (exception&) {
+        return 1;
+    }
+    
+    return 0;
 }

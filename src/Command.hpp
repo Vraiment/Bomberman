@@ -10,19 +10,19 @@
 #define __Command__hpp__
 
 namespace Bomberman {
-	class Command {
-	public:
-		Command();
-		
-		virtual ~Command();
-		
-		virtual void execute() = 0;
-		
-		bool finished() const;
-		
-	protected:
-		bool _finished;
-	};
+    class Command {
+    public:
+        Command();
+        
+        virtual ~Command();
+        
+        virtual void execute() = 0;
+        
+        bool finished() const;
+        
+    protected:
+        bool _finished;
+    };
 }
 
 #endif //__Command__hpp__

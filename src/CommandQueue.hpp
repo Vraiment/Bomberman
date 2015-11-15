@@ -13,17 +13,17 @@
 #include <queue>
 
 namespace Bomberman {
-	class Command;
-	
-	class CommandQueue {
-	public:
-		void addCommand(std::shared_ptr<Command> command);
-		
-		void update();
-		
-	private:
-		std::queue<std::shared_ptr<Command>> commands;
-	};
+    class Command;
+    
+    class CommandQueue {
+    public:
+        void addCommand(std::shared_ptr<Command> command);
+        
+        void update();
+        
+    private:
+        std::queue<std::shared_ptr<Command>> commands;
+    };
 }
 
 #endif //__CommandQueue__hpp__

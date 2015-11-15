@@ -13,37 +13,37 @@
 #include "../Math/Coordinate.hpp"
 
 namespace Bomberman {
-	class Item;
-	
-	class Player {
-	public:
-		Player();
-		
-		Coordinate& position();
-		
-		void update();
-		
-		void addItem(Item item);
+    class Item;
+    
+    class Player {
+    public:
+        Player();
+        
+        Coordinate& position();
+        
+        void update();
+        
+        void addItem(Item item);
         void setInvincibility(bool invincible);
-		
-		int getExplosionSize() const;
-		int maxBombs() const;
-		
-		bool isDead() const;
-		bool isInvincible() const;
-		void die();
-		void respawn();
-		
-	private:
-		static const int invincibleTime;
-		
+        
+        int getExplosionSize() const;
+        int maxBombs() const;
+        
+        bool isDead() const;
+        bool isInvincible() const;
+        void die();
+        void respawn();
+        
+    private:
+        static const int invincibleTime;
+        
         bool _isInvincible;
-		Coordinate _position;
-		Timer invincible;
-		int explosionSize;
-		int _maxBombs;
-		bool dead;
-	};
+        Coordinate _position;
+        Timer invincible;
+        int explosionSize;
+        int _maxBombs;
+        bool dead;
+    };
 }
 
 #endif //__Player__hpp__

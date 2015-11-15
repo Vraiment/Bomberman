@@ -13,15 +13,15 @@
 #include <vector>
 
 namespace Bomberman {
-	
+    
 #ifdef __APPLE__
-	const char dirSeparator = '/';
+    const char dirSeparator = '/';
 #elif defined(_WIN64)
-	const char dirSeparator = '\\';
+    const char dirSeparator = '\\';
 #endif
-	
-	std::string getPath(std::vector<std::string> dirs);
-	std::string getPath(std::vector<std::string> dirs, std::string file);
+    
+    std::string getPath(std::vector<std::string> dirs);
+    std::string getPath(std::vector<std::string> dirs, std::string file);
 }
 
 #endif //__OperatingSystem__hpp__

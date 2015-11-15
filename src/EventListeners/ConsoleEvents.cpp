@@ -16,36 +16,36 @@
 using namespace std;
 
 namespace Bomberman {
-	ConsoleEvents::ConsoleEvents(shared_ptr<Console> console) : console(console) {
-		
-	}
-	
-	ConsoleEvents::~ConsoleEvents() {
-		
-	}
-	
-	void ConsoleEvents::listenEvent(SDL_Event event) {
-		if (console->visible()) {
-			if (SDL_KEYUP == event.type) {
-				auto keySym = event.key.keysym.sym;
-				
-				if (SDLK_ESCAPE == keySym) {
-					console->hide();
-				} else if (SDLK_RETURN == keySym) {
-					console->commitBuffer();
-				}
-			} else if (SDL_KEYDOWN == event.type) {
-				auto keySym = event.key.keysym.sym;
-				
-				if (SDLK_BACKSPACE == keySym) {
-					console->removeLastFromBuffer();
-				}
-			} else if (SDL_TEXTINPUT == event.type) {
-				string inputText = event.text.text;
-				console->addToBuffer(inputText);
-			}
-		} else if (event.type == SDL_KEYUP && SDLK_BACKSPACE == event.key.keysym.sym) {
-			console->show();
-		}
-	}
+    ConsoleEvents::ConsoleEvents(shared_ptr<Console> console) : console(console) {
+        
+    }
+    
+    ConsoleEvents::~ConsoleEvents() {
+        
+    }
+    
+    void ConsoleEvents::listenEvent(SDL_Event event) {
+        if (console->visible()) {
+            if (SDL_KEYUP == event.type) {
+                auto keySym = event.key.keysym.sym;
+                
+                if (SDLK_ESCAPE == keySym) {
+                    console->hide();
+                } else if (SDLK_RETURN == keySym) {
+                    console->commitBuffer();
+                }
+            } else if (SDL_KEYDOWN == event.type) {
+                auto keySym = event.key.keysym.sym;
+                
+                if (SDLK_BACKSPACE == keySym) {
+                    console->removeLastFromBuffer();
+                }
+            } else if (SDL_TEXTINPUT == event.type) {
+                string inputText = event.text.text;
+                console->addToBuffer(inputText);
+            }
+        } else if (event.type == SDL_KEYUP && SDLK_BACKSPACE == event.key.keysym.sym) {
+            console->show();
+        }
+    }
 }

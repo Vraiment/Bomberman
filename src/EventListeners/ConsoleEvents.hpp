@@ -14,19 +14,19 @@
 #include <memory>
 
 namespace Bomberman {
-	class CommandQueue;
-	class Console;
-	
-	class ConsoleEvents : public EventListener {
-	public:
-		ConsoleEvents(std::shared_ptr<Console> console);
-		~ConsoleEvents();
-		
-		void listenEvent(SDL_Event event);
-		
-	private:
-		std::shared_ptr<Console> console;
-	};
+    class CommandQueue;
+    class Console;
+    
+    class ConsoleEvents : public EventListener {
+    public:
+        ConsoleEvents(std::shared_ptr<Console> console);
+        ~ConsoleEvents();
+        
+        void listenEvent(SDL_Event event);
+        
+    private:
+        std::shared_ptr<Console> console;
+    };
 }
 
 #endif //__ConsoleEvents__hpp__

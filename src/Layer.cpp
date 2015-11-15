@@ -11,31 +11,31 @@
 #include "Math/Rectangle.hpp"
 
 namespace Bomberman {
-	Layer::~Layer() {
-		
-	}
-	
-	bool Layer::isZombie() const {
-		return _isZombie;
-	}
-	
-	void Layer::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {
-		
-	}
-	
-	bool Layer::shouldDraw() const {
-		return _shouldDraw;
-	}
-	
-	void Layer::shouldDraw(bool should) {
-		_shouldDraw = should;
-	}
-	
-	bool Layer::shouldUpdate() const {
-		return _shouldUpdate;
-	}
-	
-	void Layer::shouldUpdate(bool should) {
-		_shouldUpdate = should;
-	}
+    Layer::~Layer() {
+        
+    }
+    
+    bool Layer::isZombie() const {
+        return _isZombie;
+    }
+    
+    void Layer::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {
+        
+    }
+    
+    bool Layer::shouldDraw() const {
+        return _shouldDraw;
+    }
+    
+    void Layer::shouldDraw(bool should) {
+        _shouldDraw = should;
+    }
+    
+    bool Layer::shouldUpdate() const {
+        return _shouldUpdate;
+    }
+    
+    void Layer::shouldUpdate(bool should) {
+        _shouldUpdate = should;
+    }
 }

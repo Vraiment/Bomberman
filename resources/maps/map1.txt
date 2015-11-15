@@ -14,6 +14,10 @@ enemy easy 11 2
 enemy medium 0 8
 enemy hard 13 12
 
+# Items
+item extra_bomb 0 1
+item increase_range 5 2
+
 # Common bricks
 single common_brick 1 10
 line common_brick 1 13 1 15

@@ -14,17 +14,17 @@
 #include <memory>
 
 namespace Bomberman {
-	class LoopQuiter;
-	
-	class QuitCommand : public Command {
-	public:
-		QuitCommand(std::shared_ptr<LoopQuiter> loopQuiter);
-		
-		void execute();
-		
-	private:
-		std::shared_ptr<LoopQuiter> loopQuiter;
-	};
+    class LoopQuiter;
+    
+    class QuitCommand : public Command {
+    public:
+        QuitCommand(std::shared_ptr<LoopQuiter> loopQuiter);
+        
+        void execute();
+        
+    private:
+        std::shared_ptr<LoopQuiter> loopQuiter;
+    };
 }
 
 #endif //__QuitCommand__hpp__
