@@ -346,10 +346,8 @@
     <ClInclude Include="..\src\Screen.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\src\Log\LogSystem.pch">
+    <ClInclude Include="..\src\Log\LogSystem.h">
       <Filter>Source Files\Log</Filter>
-    </None>
+    </ClInclude>
   </ItemGroup>
 </Project>
