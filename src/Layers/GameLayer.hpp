@@ -40,7 +40,7 @@ namespace Bomberman {
         
         static const int PLAYER_BLINK_TIME;
         
-        bool drawBlinkingPlayer;
+        bool drawPlayer;
         Texture background;
         Texture bomb;
         Texture brick;

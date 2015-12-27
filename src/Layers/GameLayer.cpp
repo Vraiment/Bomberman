@@ -127,7 +127,7 @@ namespace Bomberman {
         }
     };
     
-    GameLayer::GameLayer() : camera(new Camera()), drawBlinkingPlayer(true) {
+    GameLayer::GameLayer() : camera(new Camera()), drawPlayer(true) {
         
     }
     
@@ -174,7 +174,7 @@ namespace Bomberman {
         
         // Draw player
         auto player = tileMap->player();
-        if (!player->isDead() && drawBlinkingPlayer) {
+        if (!player->isDead() && drawPlayer) {
             drawTile(this->player, player->position());
         }
         
@@ -210,8 +210,10 @@ namespace Bomberman {
                 blinkPlayerTimer.start();
             } else if (blinkPlayerTimer.getTime() >= PLAYER_BLINK_TIME) {
                 blinkPlayerTimer.restart();
-                drawBlinkingPlayer = !drawBlinkingPlayer;
+                drawPlayer = !drawPlayer;
             }
+        } else {
+            drawPlayer = true;
         }
     }
     
