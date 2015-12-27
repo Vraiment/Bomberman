@@ -65,7 +65,7 @@ namespace Bomberman {
         }
     }
     
-    void ConsoleLayer::loadGraphics(shared_ptr<SDL_Renderer> renderer) {
+    void ConsoleLayer::load(shared_ptr<SDL_Renderer> renderer) {
         this->renderer = renderer;
         font = Font("PressStart2P.ttf", FONT_SIZE, renderer);
         

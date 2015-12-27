@@ -24,7 +24,7 @@ namespace Bomberman {
         
     }
     
-    void HudLayer::loadGraphics(shared_ptr<SDL_Renderer> renderer) {
+    void HudLayer::load(shared_ptr<SDL_Renderer> renderer) {
         hud = Texture("hud.png", renderer);
         
         // HUD height is one tile
