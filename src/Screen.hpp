@@ -48,7 +48,7 @@ namespace Bomberman {
         virtual void sizeChanged(Rectangle previousSize);
         
     private:
-        void refereshSize(Rectangle previousSize);
+        void refreshSize(Rectangle previousSize);
         
         std::string _name;
         std::shared_ptr<SDL_Window> window;

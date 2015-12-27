@@ -92,7 +92,7 @@ namespace Bomberman {
             auto prev = _rectangle;
             _rectangle.width = width;
             
-            refereshSize(prev);
+            refreshSize(prev);
         }
     }
     
@@ -101,7 +101,7 @@ namespace Bomberman {
             auto prev = _rectangle;
             _rectangle.height = height;
             
-            refereshSize(prev);
+            refreshSize(prev);
         }
     }
     
@@ -111,7 +111,7 @@ namespace Bomberman {
             _rectangle.width = width;
             _rectangle.height = height;
             
-            refereshSize(prev);
+            refreshSize(prev);
         }
     }
     
@@ -144,7 +144,7 @@ namespace Bomberman {
         }
     }
     
-    void Screen::refereshSize(Rectangle previousSize) {
+    void Screen::refreshSize(Rectangle previousSize) {
         if (window) {
             SDL_SetWindowSize(window.get(), _rectangle.width, _rectangle.height);
         }
