@@ -30,6 +30,8 @@ namespace Bomberman {
         
         void clear();
         
+        void setColor(Color color);
+        
         bool isLoaded() const;
         std::string name() const;
         Coordinate& position();

@@ -45,6 +45,18 @@ namespace Bomberman {
         _name.clear();
     }
     
+    void Texture::setColor(Color color) {
+        if (!_loaded) {
+            Log::get() << "Trying to set the color of not loaded texture \"" << _name << "\"." << LogLevel::warning;
+            
+            return;
+        }
+        
+        if (SDL_SetTextureColorMod(texture.get(), color.getRed(), color.getGreen(), color.getBlue()) != 0) {
+            Log::get() << "Error setting the color for texture: \"" << _name << "\": " << SDL_GetError() << LogLevel::error;
+        }
+    }
+    
     void Texture::draw() {
         if (!_loaded) {
             Log::get() << "Trying to draw not loaded texture \"" << _name << "\"." << LogLevel::warning;
