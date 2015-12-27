@@ -15,10 +15,12 @@
 #include "Console.hpp"
 #include "Engine.hpp"
 #include "EventListeners/ConsoleEvents.hpp"
+#include "EventListeners/MenuEventListener.hpp"
 #include "EventListeners/PlayerEvents.hpp"
 #include "Layers/ConsoleLayer.hpp"
 #include "Layers/GameLayer.hpp"
 #include "Layers/HudLayer.hpp"
+#include "Layers/MainMenuLayer.hpp"
 #include "Log/LogSystem.h"
 #include "MainLoop.hpp"
 #include "Map/TileMap.hpp"
@@ -34,40 +36,19 @@ int main(int argc, char* argv[]) {
         //Standalone objects
         Engine engine;
         Configuration config("config.xml");
-        shared_ptr<CommandFactory> commandFactory(new CommandFactory());
-        shared_ptr<GameLayer> gameLayer(new GameLayer());
-        shared_ptr<HudLayer> hudLayer(new HudLayer());
-        shared_ptr<ConsoleLayer> consoleLayer(new ConsoleLayer());
-        TxtTileMapLoader mapLoader;
+        shared_ptr<MainMenuLayer> mainMenuLayer(new MainMenuLayer());
         MainLoop loop;
         
         //Dependants objects
         shared_ptr<Screen> screen(new Screen(config.viewportWidth(), config.viewportHeight(), config.viewportTitle()));
-        shared_ptr<TileMapBuilder> builder = mapLoader.load("map1.txt");
-        shared_ptr<TileMap> tileMap(new TileMap(builder));
-        shared_ptr<PlayerEvents> playerEvents(new PlayerEvents(commandFactory, loop.commandQueue(), tileMap->player()));
-        shared_ptr<Console> console(new Console(commandFactory, loop.commandQueue(), consoleLayer, gameLayer, playerEvents));
-        shared_ptr<ConsoleEvents> consoleEvents(new ConsoleEvents(console));
-    
-        commandFactory->setTileMap(tileMap);
-        commandFactory->setPlayer(tileMap->player());
-        commandFactory->setLoopQuiter(loop.quiter());
+        shared_ptr<MenuEventListener> mainMenuEvents(new MenuEventListener(mainMenuLayer));
         
-        hudLayer->load(screen->renderer());
-        gameLayer->load(screen->renderer());
-        consoleLayer->load(screen->renderer());
+        mainMenuLayer->load(screen->renderer());
         
-        gameLayer->setTileMap(tileMap);
-        
-        screen->addLayer(gameLayer);
-        screen->addLayer(hudLayer);
-        screen->addLayer(consoleLayer);
-        
-        Log::get().addLogger(consoleLayer);
+        screen->addLayer(mainMenuLayer);
         
         //Game
-        loop.addEventListener(playerEvents);
-        loop.addEventListener(consoleEvents);
+        loop.addEventListener(mainMenuEvents);
         loop.addScreen(screen);
         loop.run();
     } catch (exception&) {
