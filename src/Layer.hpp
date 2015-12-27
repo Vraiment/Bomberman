@@ -36,7 +36,7 @@ namespace Bomberman {
         void shouldUpdate(bool should);
         
     protected:
-        bool _isZombie;
+        bool _isZombie = false;
         
     private:
         bool _shouldDraw = true;
