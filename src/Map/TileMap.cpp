@@ -195,10 +195,11 @@ namespace Bomberman {
             });
             
             while (!blownBombs.empty()) {
+                auto tileMap = shared_from_this();
                 auto position = blownBombs.top();
                 blownBombs.pop();
                 
-                Explosion explosion(position, _player->getExplosionSize());
+                Explosion explosion(position, _player->getExplosionSize(), shared_from_this());
                 _explosions.push_back(explosion);
             }
             

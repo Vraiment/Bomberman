@@ -15,19 +15,50 @@ using namespace std;
 namespace Bomberman {
     const int Explosion::TTL = 1500;
     
-    Explosion::Explosion(Coordinate position, int size) : position(position), _done(false) {
+    Explosion::Explosion(Coordinate position, int size, shared_ptr<TileMap> tileMap) : position(position), _done(false) {
         Coordinate c;
         
-        for (c.i = position.i - size, c.j = position.j; c.i <= position.i + size; ++c.i) {
-            _hitArea.push_back(Coordinate(c));
+        // The position of the bomb
+        _hitArea.push_back(position);
+        
+        // To the left
+        c = position.left();
+        for (int n = 0; n < size; ++n, --c.i) {
+            _hitArea.push_back(c);
+            
+            if (tileMap->tileHasBomb(c) || tileMap->tileHasBrick(c)) {
+                break;
+            }
         }
         
-        for (c.i = position.i, c.j = position.j - size; c.j <= position.j + size; ++c.j) {
-            if (c == position) {
-                continue;
-            }
+        // To the right
+        c = position.right();
+        for (int n = 0; n < size; ++n, ++c.i) {
+            _hitArea.push_back(c);
             
-            _hitArea.push_back(Coordinate(c));
+            if (tileMap->tileHasBomb(c) || tileMap->tileHasBrick(c)) {
+                break;
+            }
+        }
+        
+        // Up
+        c = position.up();
+        for (int n = 0; n < size; ++n, --c.j) {
+            _hitArea.push_back(c);
+            
+            if (tileMap->tileHasBomb(c) || tileMap->tileHasBrick(c)) {
+                break;
+            }
+        }
+        
+        // Down
+        c = position.down();
+        for (int n = 0; n < size; ++n, ++c.j) {
+            _hitArea.push_back(c);
+            
+            if (tileMap->tileHasBomb(c) || tileMap->tileHasBrick(c)) {
+                break;
+            }
         }
     }
     

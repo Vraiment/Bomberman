@@ -20,7 +20,7 @@ namespace Bomberman {
     
     class Explosion {
     public:
-        Explosion(Coordinate position, int size);
+        Explosion(Coordinate position, int size, std::shared_ptr<TileMap> tileMap);
         ~Explosion();
         
         void update();
