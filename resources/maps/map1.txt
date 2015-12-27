@@ -17,6 +17,7 @@ enemy hard 13 12
 # Items
 item extra_bomb 0 1
 item increase_range 5 2
+item remote 2 0
 
 # Common bricks
 single common_brick 1 10

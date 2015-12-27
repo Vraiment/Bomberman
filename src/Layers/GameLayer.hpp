@@ -50,6 +50,7 @@ namespace Bomberman {
         Texture player;
         Texture extraBomb;
         Texture increaseRange;
+        Texture remote;
         Timer blinkPlayerTimer;
         
         std::shared_ptr<TileMap> tileMap;

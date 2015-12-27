@@ -61,6 +61,10 @@ namespace Bomberman {
                     command = commandFactory->sendMessage(OBJ_PLAYER, MSG_SETBOMB);
                     break;
                     
+                case SDLK_e:
+                    command = commandFactory->sendMessage(OBJ_PLAYER, MSG_IGNITE);
+                    break;
+                    
                 default:
                     break;
             }

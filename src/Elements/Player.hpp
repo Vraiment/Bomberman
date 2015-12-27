@@ -25,12 +25,14 @@ namespace Bomberman {
         
         void addItem(Item item);
         void setInvincibility(bool invincible);
+        void setRemote(bool remote);
         
         int getExplosionSize() const;
         int maxBombs() const;
         
         bool isDead() const;
         bool isInvincible() const;
+        bool hasRemote() const;
         void die();
         void respawn();
         
@@ -38,6 +40,7 @@ namespace Bomberman {
         static const int invincibleTime;
         
         bool _isInvincible;
+        bool _hasRemote;
         Coordinate _position;
         Timer invincible;
         int explosionSize;

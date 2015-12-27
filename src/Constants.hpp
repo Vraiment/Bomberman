@@ -44,6 +44,7 @@ namespace Bomberman {
         const char MAP_OBJ_DESTRUCT_BRICK[] = "destruct_brick";
         const char MAP_ITEM_EXTRA_BOMB[] = "extra_bomb";
         const char MAP_ITEM_INCREASE_RANGE[] = "increase_range";
+        const char MAP_ITEM_REMOTE[] = "remote";
         
         // Functions
         const char FUNC_EXIT[] = "exit";
@@ -54,9 +55,11 @@ namespace Bomberman {
         // Messages
         const char MSG_MOVE[] = "move";
         const char MSG_SETBOMB[] = "setbomb";
+        const char MSG_IGNITE[] = "ignite";
         const char MSG_EXTRA_BOMB[] = "extra_bomb";
         const char MSG_INCREASE_RANGE[] = "increase_range";
         const char MSG_IVINCIBLE[] = "invincible";
+        const char MSG_REMOTE[] = "remote";
         
         // Arguments
         const char ARG_RIGHT[] = "right";

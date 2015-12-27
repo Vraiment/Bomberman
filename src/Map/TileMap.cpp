@@ -32,7 +32,7 @@ using namespace Bomberman::Constants;
 namespace Bomberman {
     const int TileMap::playerRespawnTime = 2000;
     
-    TileMap::TileMap(shared_ptr<TileMapBuilder> builder) {
+    TileMap::TileMap(shared_ptr<TileMapBuilder> builder) : _explodeBomb(false) {
         if (!builder) {
             Log::get() << "Invalid information to create map." << NullArgumentException();
         }
@@ -251,12 +251,17 @@ namespace Bomberman {
     
     void TileMap::updateBombs() {
         for (Bomb& bomb : _bombs) {
-            bomb.update();
+            bomb.update(_player->hasRemote(), _explodeBomb);
+            _explodeBomb = false;
         }
     }
     
     int TileMap::bombCount() const {
         return (int)_bombs.size();
+    }
+    
+    void TileMap::explodeBomb() {
+        _explodeBomb = true;
     }
     
     void TileMap::doDamage(vector<Coordinate> hitArea) {

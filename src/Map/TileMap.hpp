@@ -46,6 +46,7 @@ namespace Bomberman {
         
         void addBomb(Bomb bomb);
         int bombCount() const;
+        void explodeBomb();
         
         bool tileHasBrick(Coordinate tile) const;
         bool tileHasBomb(Coordinate tile) const;
@@ -62,6 +63,7 @@ namespace Bomberman {
         std::list<Item> _items;
         std::list<Explosion> _explosions;
         Timer playerRespawn;
+        bool _explodeBomb;
         
         void updateEnemies();
         void updateBombs();

@@ -44,4 +44,5 @@ namespace Bomberman {
     const Item Item::NONE = Item(-1);
     const Item Item::EXTRA_BOMB = Item(0);
     const Item Item::INCREASE_RANGE = Item(1);
+    const Item Item::REMOTE = Item(2);
 }

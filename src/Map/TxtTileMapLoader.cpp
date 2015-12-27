@@ -264,6 +264,8 @@ namespace Bomberman {
                 item = Item::create(Item::INCREASE_RANGE, pos);
             } else if (arguments[0] == MAP_ITEM_EXTRA_BOMB) {
                 item = Item::create(Item::EXTRA_BOMB, pos);
+            } else if (arguments[0] == MAP_ITEM_REMOTE) {
+                item = Item::create(Item::REMOTE, pos);
             } else {
                 return false;
             }

@@ -29,6 +29,8 @@ namespace Bomberman {
     void PlayerCommand::execute() {
         if (command == MSG_MOVE) {
             move();
+        } else if (command == MSG_IGNITE) {
+            tileMap->explodeBomb();
         } else if (command == MSG_SETBOMB) {
             setBomb();
         } else if (command == MSG_EXTRA_BOMB) {
@@ -40,6 +42,12 @@ namespace Bomberman {
                 player->setInvincibility(BOOL_TRUE == arguments[0]);
             } else {
                 Log::get() << "Command \"" << OBJ_PLAYER << "." << MSG_IVINCIBLE << "(bool) requires one boolean argument." << LogLevel::error;
+            }
+        } else if (command == MSG_REMOTE) {
+            if (arguments.size() == 1 && (arguments[0] == BOOL_TRUE || arguments[0] == BOOL_FALSE)) {
+                player->setRemote(BOOL_TRUE == arguments[0]);
+            } else {
+                Log::get() << "Command \"" << OBJ_PLAYER << "." << MSG_REMOTE << "(bool) requires one boolean argument." << LogLevel::error;
             }
         } else {
             Log::get() << "Invalid command \"" << OBJ_PLAYER << "." << command << "()\"." << LogLevel::error;

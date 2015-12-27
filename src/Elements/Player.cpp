@@ -14,7 +14,7 @@
 namespace Bomberman {
     const int Player::invincibleTime = 750;
     
-    Player::Player() : explosionSize(1), _maxBombs(1), dead(false), _isInvincible(false) {
+    Player::Player() : explosionSize(1), _maxBombs(1), dead(false), _isInvincible(false), _hasRemote(false) {
         
     }
     
@@ -33,6 +33,8 @@ namespace Bomberman {
             ++_maxBombs;
         } else if (item == Item::INCREASE_RANGE) {
             ++explosionSize;
+        } else if (item == Item::REMOTE) {
+            _hasRemote = true;
         } else {
             Log::get() << "Player tried to process invalid item with id: " << item.id() << LogLevel::error;
         }
@@ -40,6 +42,10 @@ namespace Bomberman {
     
     void Player::setInvincibility(bool invincible) {
         _isInvincible = invincible;
+    }
+    
+    void Player::setRemote(bool remote) {
+        _hasRemote = remote;
     }
     
     int Player::getExplosionSize() const {
@@ -56,6 +62,10 @@ namespace Bomberman {
     
     bool Player::isInvincible() const {
         return _isInvincible || invincible.isCounting();
+    }
+    
+    bool Player::hasRemote() const {
+        return _hasRemote;
     }
     
     void Player::die() {

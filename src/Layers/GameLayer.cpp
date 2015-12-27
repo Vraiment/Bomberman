@@ -148,6 +148,8 @@ namespace Bomberman {
                 texture = increaseRange;
             } else if (Item::EXTRA_BOMB == item) {
                 texture = extraBomb;
+            } else if (Item::REMOTE == item) {
+                texture = remote;
             } else {
                 Log::get() << "No valid texture for item with id: " << item.id() << LogLevel::warning;
                 continue;
@@ -222,6 +224,7 @@ namespace Bomberman {
         player = Texture("bomberman.png", renderer);
         extraBomb = Texture("extraBomb.png", renderer);
         increaseRange = Texture("increaseRange.png", renderer);
+        remote = Texture("remote.png", renderer);
         
         Texture enemy;
         

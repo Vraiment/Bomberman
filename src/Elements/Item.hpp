@@ -17,6 +17,7 @@ namespace Bomberman {
         static const Item NONE;
         static const Item EXTRA_BOMB;
         static const Item INCREASE_RANGE;
+        static const Item REMOTE;
         
         Item();
         Item(const Item& other);
