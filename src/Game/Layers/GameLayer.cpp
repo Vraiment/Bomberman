@@ -202,6 +202,10 @@ namespace Bomberman {
                 }
             }
         }
+        
+        if (tileMap->gameOver()) {
+            shouldUpdate(false);
+        }
     }
     
     void GameLayer::update() {

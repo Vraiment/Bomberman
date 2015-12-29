@@ -13,8 +13,13 @@
 
 namespace Bomberman {
     const int Player::invincibleTime = 750;
+    const int Player::defaultLifeCount = 3;
     
-    Player::Player() : explosionSize(1), _maxBombs(1), dead(false), _isInvincible(false), _hasRemote(false) {
+    Player::Player() : Player(defaultLifeCount) {
+        
+    }
+    
+    Player::Player(int lifes) : explosionSize(1), _maxBombs(1), dead(false), _isInvincible(false), _hasRemote(false), lifes(lifes) {
         
     }
     
@@ -68,8 +73,15 @@ namespace Bomberman {
         return _hasRemote;
     }
     
+    int Player::getLifesCount() const {
+        return lifes;
+    }
+    
     void Player::die() {
         dead = true;
+        --lifes;
+        
+        Log::get() << "Player lifes: " << lifes << LogLevel::info;
     }
     
     void Player::respawn() {

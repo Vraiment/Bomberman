@@ -50,6 +50,7 @@ namespace Bomberman {
         
         bool tileHasBrick(Coordinate tile) const;
         bool tileHasBomb(Coordinate tile) const;
+        bool gameOver() const;
         
     private:
         static const int playerRespawnTime;
@@ -64,6 +65,7 @@ namespace Bomberman {
         std::list<Explosion> _explosions;
         Timer playerRespawn;
         bool _explodeBomb;
+        bool _gameOver;
         
         void updateEnemies();
         void updateBombs();

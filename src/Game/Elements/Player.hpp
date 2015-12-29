@@ -18,6 +18,7 @@ namespace Bomberman {
     class Player {
     public:
         Player();
+        Player(int lifes);
         
         Coordinate& position();
         
@@ -33,11 +34,13 @@ namespace Bomberman {
         bool isDead() const;
         bool isInvincible() const;
         bool hasRemote() const;
+        int getLifesCount() const;
         void die();
         void respawn();
         
     private:
         static const int invincibleTime;
+        static const int defaultLifeCount;
         
         bool _isInvincible;
         bool _hasRemote;
@@ -46,6 +49,7 @@ namespace Bomberman {
         int explosionSize;
         int _maxBombs;
         bool dead;
+        int lifes;
     };
 }
 
