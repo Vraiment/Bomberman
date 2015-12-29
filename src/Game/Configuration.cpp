@@ -39,8 +39,8 @@ namespace Bomberman {
         if (file.LoadFile(fileName.c_str()) == XML_NO_ERROR) {
             XMLElement *root = file.RootElement();
             
-            loadViewport(root->FirstChildElement(CFG_VIEWPORT));
-            loadLoggers(root->FirstChildElement(CFG_LOGGERS));
+            loadViewport(root->FirstChildElement(CFG_VIEWPORT.c_str()));
+            loadLoggers(root->FirstChildElement(CFG_LOGGERS.c_str()));
             
             Log::get() << "Using configuration file \"" << fileName << "\"." << LogLevel::info;
             
@@ -97,14 +97,14 @@ namespace Bomberman {
         XMLElement *node = (XMLElement *)ptr;
         
         if (node != nullptr) {
-            XMLElement *viewportTitle = node->FirstChildElement(CFG_TITLE);
+            XMLElement *viewportTitle = node->FirstChildElement(CFG_TITLE.c_str());
             if (viewportTitle != nullptr) {
                 _viewportTitle = viewportTitle->GetText();
             } else {
                 Log::get() << "No title for viewport in configuration file." << LogLevel::info;
             }
             
-            XMLElement *viewportWidth = node->FirstChildElement(CFG_WIDTH);
+            XMLElement *viewportWidth = node->FirstChildElement(CFG_WIDTH.c_str());
             if (viewportWidth != nullptr) {
                 string value = viewportWidth->GetText();
                 
@@ -117,7 +117,7 @@ namespace Bomberman {
                 Log::get() << "No width for viewport in configuration file, using default." << LogLevel::info;
             }
             
-            XMLElement *viewportHeight = node->FirstChildElement(CFG_HEIGHT);
+            XMLElement *viewportHeight = node->FirstChildElement(CFG_HEIGHT.c_str());
             if (viewportHeight != nullptr) {
                 string value = viewportHeight->GetText();
                 
@@ -154,7 +154,7 @@ namespace Bomberman {
         
         if (node == nullptr) return;
         
-        for (XMLElement *loggerName = node->FirstChildElement(CFG_LOGGER); loggerName != nullptr; loggerName = loggerName->FirstChildElement(CFG_LOGGER)) {
+        for (XMLElement *loggerName = node->FirstChildElement(CFG_LOGGER.c_str()); loggerName != nullptr; loggerName = loggerName->FirstChildElement(CFG_LOGGER.c_str())) {
             auto logger = LoggerFactory::get().getLogger(loggerName->GetText());
             Log::get().addLogger(logger);
         }

@@ -18,64 +18,64 @@ namespace Bomberman {
         const int TILE_WIDTH = 40;
         
         // Boolean values
-        const char BOOL_TRUE[] = "true";
-        const char BOOL_FALSE[] = "false";
+        const std::string BOOL_TRUE = "true";
+        const std::string BOOL_FALSE = "false";
         
         // Config file
-        const char CFG_NULLFILE[] = "/dev/null";
-        const char CFG_VIEWPORT[] = "viewport";
-        const char CFG_TITLE[] = "title";
-        const char CFG_WIDTH[] = "width";
-        const char CFG_HEIGHT[] = "height";
-        const char CFG_LOGGERS[] = "loggers";
-        const char CFG_LOGGER[] = "logger";
+        const std::string CFG_NULLFILE = "/dev/null";
+        const std::string CFG_VIEWPORT = "viewport";
+        const std::string CFG_TITLE = "title";
+        const std::string CFG_WIDTH = "width";
+        const std::string CFG_HEIGHT = "height";
+        const std::string CFG_LOGGERS = "loggers";
+        const std::string CFG_LOGGER = "logger";
         
         // Map file
-        const char MAP_CMD_NAME[] = "name";
-        const char MAP_CMD_ENEMY[] = "enemy";
-        const char MAP_CMD_ENEMY_RANGE[] = "enemy_range";
-        const char MAP_CMD_ENEMY_SPEED[] = "enemy_speed";
-        const char MAP_CMD_PLAYER[] = "player";
-        const char MAP_CMD_SIZE[] = "size";
-        const char MAP_CMD_SINGLE[] = "single";
-        const char MAP_CMD_LINE[] = "line";
-        const char MAP_CMD_ITEM[] = "item";
-        const char MAP_OBJ_COMMON_BRICK[] = "common_brick";
-        const char MAP_OBJ_DESTRUCT_BRICK[] = "destruct_brick";
-        const char MAP_ITEM_EXTRA_BOMB[] = "extra_bomb";
-        const char MAP_ITEM_INCREASE_RANGE[] = "increase_range";
-        const char MAP_ITEM_REMOTE[] = "remote";
+        const std::string MAP_CMD_NAME = "name";
+        const std::string MAP_CMD_ENEMY = "enemy";
+        const std::string MAP_CMD_ENEMY_RANGE = "enemy_range";
+        const std::string MAP_CMD_ENEMY_SPEED = "enemy_speed";
+        const std::string MAP_CMD_PLAYER = "player";
+        const std::string MAP_CMD_SIZE = "size";
+        const std::string MAP_CMD_SINGLE = "single";
+        const std::string MAP_CMD_LINE = "line";
+        const std::string MAP_CMD_ITEM = "item";
+        const std::string MAP_OBJ_COMMON_BRICK = "common_brick";
+        const std::string MAP_OBJ_DESTRUCT_BRICK = "destruct_brick";
+        const std::string MAP_ITEM_EXTRA_BOMB = "extra_bomb";
+        const std::string MAP_ITEM_INCREASE_RANGE = "increase_range";
+        const std::string MAP_ITEM_REMOTE = "remote";
         
         // Functions
-        const char FUNC_EXIT[] = "exit";
+        const std::string FUNC_EXIT = "exit";
         
         // Receivers
-        const char OBJ_PLAYER[] = "player";
+        const std::string OBJ_PLAYER = "player";
         
         // Messages
-        const char MSG_MOVE[] = "move";
-        const char MSG_SETBOMB[] = "setbomb";
-        const char MSG_IGNITE[] = "ignite";
-        const char MSG_EXTRA_BOMB[] = "extra_bomb";
-        const char MSG_INCREASE_RANGE[] = "increase_range";
-        const char MSG_IVINCIBLE[] = "invincible";
-        const char MSG_REMOTE[] = "remote";
+        const std::string MSG_MOVE = "move";
+        const std::string MSG_SETBOMB = "setbomb";
+        const std::string MSG_IGNITE = "ignite";
+        const std::string MSG_EXTRA_BOMB = "extra_bomb";
+        const std::string MSG_INCREASE_RANGE = "increase_range";
+        const std::string MSG_IVINCIBLE = "invincible";
+        const std::string MSG_REMOTE = "remote";
         
         // Arguments
-        const char ARG_RIGHT[] = "right";
-        const char ARG_LEFT[] = "left";
-        const char ARG_UP[] = "up";
-        const char ARG_DOWN[] = "down";
+        const std::string ARG_RIGHT = "right";
+        const std::string ARG_LEFT = "left";
+        const std::string ARG_UP = "up";
+        const std::string ARG_DOWN = "down";
         
         // Dirs & files
-        const char DIR_RESOURCES[] = "resources";
-        const char DIR_FONTS[] = "fonts";
-        const char DIR_TEXTURES[] = "textures";
+        const std::string DIR_RESOURCES = "resources";
+        const std::string DIR_FONTS = "fonts";
+        const std::string DIR_TEXTURES = "textures";
         
         // Enemy types
-        const char ENEMY_EASY[] = "easy";
-        const char ENEMY_MEDIUM[] = "medium";
-        const char ENEMY_HARD[] = "hard";
+        const std::string ENEMY_EASY = "easy";
+        const std::string ENEMY_MEDIUM = "medium";
+        const std::string ENEMY_HARD = "hard";
     };
 }
 
