@@ -21,6 +21,7 @@
 #include "../../Core/LoopQuiter.hpp"
 #include "../Map/TileMap.hpp"
 #include "../Map/TxtTileMapLoader.hpp"
+#include "../../Core/Log/LogSystem.h"
 
 using namespace std;
 
@@ -68,6 +69,8 @@ namespace Bomberman {
             layerQueue->addLayer(hudLayer);
             layerQueue->addLayer(gameLayer);
             layerQueue->addLayer(consoleLayer);
+            
+            Log::get().addLogger(consoleLayer);
             
             _isZombie = true;
         } else if (shouldExit) {
