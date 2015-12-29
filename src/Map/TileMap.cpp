@@ -262,7 +262,9 @@ namespace Bomberman {
     }
     
     void TileMap::explodeBomb() {
-        _explodeBomb = true;
+        if (!_bombs.empty()) {
+            _explodeBomb = true;
+        }
     }
     
     void TileMap::doDamage(vector<Coordinate> hitArea) {
