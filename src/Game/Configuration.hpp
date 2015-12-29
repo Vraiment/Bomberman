@@ -10,7 +10,6 @@
 #define __Configuration__hpp__
 
 #include <string>
-#include <vector>
 
 namespace Bomberman {
     class Configuration {

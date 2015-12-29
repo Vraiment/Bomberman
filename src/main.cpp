@@ -6,26 +6,17 @@
 //  Copyright (c) 2013 Vraiment. All rights reserved.
 //
 
-#include <SDL2/SDL.h>
-#include <SDL2_image/SDL_image.h>
+#include <memory>
 
-#include "Game/Configuration.hpp"
 #include "Core/Engine.hpp"
 #include "Core/EventListenerQueue.hpp"
-#include "Game/EventListeners/ConsoleEvents.hpp"
-#include "Game/EventListeners/MenuEventListener.hpp"
-#include "Game/EventListeners/PlayerEvents.hpp"
 #include "Core/LayerQueue.hpp"
-#include "Game/Layers/ConsoleLayer.hpp"
-#include "Game/Layers/GameLayer.hpp"
-#include "Game/Layers/HudLayer.hpp"
-#include "Game/Layers/MainMenuLayer.hpp"
-#include "Core/Log/LogSystem.h"
 #include "Core/MainLoop.hpp"
-#include "Game/Map/TileMap.hpp"
-#include "Game/Map/TxtTileMapLoader.hpp"
-#include "Game/Map/XmlTileMapLoader.hpp"
 #include "Core/Screen.hpp"
+
+#include "Game/Configuration.hpp"
+#include "Game/EventListeners/MenuEventListener.hpp"
+#include "Game/Layers/MainMenuLayer.hpp"
 
 using namespace Bomberman;
 using namespace std;

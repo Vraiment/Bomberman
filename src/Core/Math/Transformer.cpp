@@ -8,6 +8,8 @@
 
 #include "Transformer.hpp"
 
+#include "Coordinate.hpp"
+
 namespace Bomberman {
     Matrix<int> identity(int size) {
         auto result = Matrix<int>(size);

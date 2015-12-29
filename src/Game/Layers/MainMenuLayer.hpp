@@ -9,8 +9,10 @@
 #ifndef __MainMenuLayer__hpp__
 #define __MainMenuLayer__hpp__
 
-#include "../../Core/Layer.hpp"
+#include <memory>
 
+#include "../../Core/Layer.hpp"
+#include "../../Core/Math/Coordinate.hpp"
 #include "../../Core/Texture.hpp"
 
 namespace Bomberman {

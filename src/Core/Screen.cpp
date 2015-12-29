@@ -8,6 +8,8 @@
 
 #include "Screen.hpp"
 
+#include <SDL2/SDL.h>
+
 #include "Layer.hpp"
 #include "LayerQueue.hpp"
 #include "Log/LogSystem.h"

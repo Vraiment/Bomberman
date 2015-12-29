@@ -11,6 +11,7 @@
 
 #include "../../Core/Layer.hpp"
 
+#include <memory>
 #include <string>
 #include <vector>
 

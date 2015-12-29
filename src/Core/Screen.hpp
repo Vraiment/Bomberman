@@ -10,11 +10,13 @@
 #define __Screen__hpp__
 
 #include <memory>
-#include <SDL2/SDL.h>
 #include <string>
 #include <list>
 
 #include "Math/Rectangle.hpp"
+
+class SDL_Renderer;
+class SDL_Window;
 
 namespace Bomberman {
     class Layer;

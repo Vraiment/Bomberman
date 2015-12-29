@@ -13,6 +13,7 @@
 #include "../../Core/Math/Coordinate.hpp"
 
 #include <memory>
+#include <string>
 
 namespace Bomberman {
     class Player;

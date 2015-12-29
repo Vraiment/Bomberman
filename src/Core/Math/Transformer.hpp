@@ -9,12 +9,13 @@
 #ifndef __Transformer_hpp__
 #define __Transformer_hpp__
 
-#include "Coordinate.hpp"
 #include "Matrix.hpp"
 
 #include <stack>
 
 namespace Bomberman {
+    class Coordinate;
+    
     class Transformer {
     public:
         Transformer();

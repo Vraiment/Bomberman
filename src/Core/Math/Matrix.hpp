@@ -10,6 +10,7 @@
 #define __Matrix__hpp__
 
 #include <algorithm>
+#include <stdexcept>
 
 namespace Bomberman {
     template <class T>
