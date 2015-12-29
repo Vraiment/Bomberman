@@ -66,8 +66,8 @@ namespace Bomberman {
             shared_ptr<HudLayer> hudLayer(new HudLayer());
             hudLayer->load(renderer);
             
-            layerQueue->addLayer(hudLayer);
             layerQueue->addLayer(gameLayer);
+            layerQueue->addLayer(hudLayer);
             layerQueue->addLayer(consoleLayer);
             
             Log::get().addLogger(consoleLayer);
