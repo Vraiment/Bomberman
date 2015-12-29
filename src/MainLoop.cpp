@@ -12,6 +12,7 @@
 
 #include "CommandQueue.hpp"
 #include "EventListener.hpp"
+#include "EventListenerQueue.hpp"
 #include "Log/Log.hpp"
 #include "Log/LogLevel.hpp"
 #include "LoopQuiter.hpp"
@@ -20,16 +21,26 @@
 using namespace std;
 
 namespace Bomberman {
-    MainLoop::MainLoop() : _commandQueue(new CommandQueue()), _quiter(new LoopQuiter()) {
+    class MainLoop::EventListenerQueueImpl : public EventListenerQueue {
+    public:
+        shared_ptr<EventListener> getNewEventListener() {
+            shared_ptr<EventListener> nextEventListener;
+            
+            if (!eventListeners.empty()) {
+                nextEventListener = eventListeners.front();
+                eventListeners.pop();
+            }
+            
+            return nextEventListener;
+        }
+    };
+    
+    MainLoop::MainLoop() : _quiter(new LoopQuiter()), eventListenerQueue(new EventListenerQueueImpl()) {
         
     }
     
     MainLoop::~MainLoop() {
         
-    }
-    
-    shared_ptr<CommandQueue> MainLoop::commandQueue() {
-        return _commandQueue;
     }
     
     shared_ptr<LoopQuiter> MainLoop::quiter() {
@@ -63,11 +74,15 @@ namespace Bomberman {
                 SDL_RenderPresent((*it)->renderer().get());
             }
             
-            _commandQueue->update();
-            
             for (auto it = screens.begin(); it != screens.end(); ++it) {
                 (*it)->update();
             }
+            
+            for (auto screen : screens) {
+                screen->refreshLayers();
+            }
+            
+            refreshEventListeners();
         }
     }
     
@@ -91,17 +106,9 @@ namespace Bomberman {
         screens.remove(screen);
     }
     
-    void MainLoop::addEventListener(shared_ptr<EventListener> eventListener) {
-        if (hasEventListener(eventListener)) {
-            Log::get() << "Trying to insert existing event listener." << LogLevel::error;
-            return;
-        }
-        
-        Log::get() << "Inserting event listener." << LogLevel::info;
-        eventListeners.push_back(eventListener);
+    shared_ptr<EventListenerQueue> MainLoop::getEventListenerQueue() {
+        return eventListenerQueue;
     }
-    
-    
     
     bool MainLoop::hasScreen(shared_ptr<Screen> screen) {
         for (auto it = screens.begin(); it != screens.end(); ++it) {
@@ -121,5 +128,18 @@ namespace Bomberman {
         }
         
         return false;
+    }
+    
+    void MainLoop::refreshEventListeners() {
+        eventListeners.remove_if([] (shared_ptr<EventListener> eventListener) {
+            return eventListener->isZombie();
+        });
+        
+        auto eventListener = eventListenerQueue->getNewEventListener();
+        while (eventListener) {
+            eventListeners.push_back(eventListener);
+            
+            eventListener = eventListenerQueue->getNewEventListener();
+        }
     }
 }

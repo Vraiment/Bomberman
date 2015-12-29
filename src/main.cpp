@@ -14,9 +14,11 @@
 #include "Configuration.hpp"
 #include "Console.hpp"
 #include "Engine.hpp"
+#include "EventListenerQueue.hpp"
 #include "EventListeners/ConsoleEvents.hpp"
 #include "EventListeners/MenuEventListener.hpp"
 #include "EventListeners/PlayerEvents.hpp"
+#include "LayerQueue.hpp"
 #include "Layers/ConsoleLayer.hpp"
 #include "Layers/GameLayer.hpp"
 #include "Layers/HudLayer.hpp"
@@ -44,11 +46,14 @@ int main(int argc, char* argv[]) {
         shared_ptr<MenuEventListener> mainMenuEvents(new MenuEventListener(mainMenuLayer));
         
         mainMenuLayer->load(screen->renderer());
+        mainMenuLayer->setLoopQuiter(loop.quiter());
+        mainMenuLayer->setEventListenerQueue(loop.getEventListenerQueue());
+        mainMenuLayer->setLayerQueue(screen->getLayerQueue());
         
-        screen->addLayer(mainMenuLayer);
+        screen->getLayerQueue()->addLayer(mainMenuLayer);
+        loop.getEventListenerQueue()->addEventListener(mainMenuEvents);
         
         //Game
-        loop.addEventListener(mainMenuEvents);
         loop.addScreen(screen);
         loop.run();
     } catch (exception&) {

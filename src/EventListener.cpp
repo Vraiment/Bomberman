@@ -9,7 +9,7 @@
 #include "EventListener.hpp"
 
 namespace Bomberman {
-    EventListener::EventListener() : _enabled(true) {
+    EventListener::EventListener() : _enabled(true), _isZombie(false) {
         
     }
     
@@ -23,5 +23,9 @@ namespace Bomberman {
     
     void EventListener::disable() {
         _enabled = false;
+    }
+    
+    bool EventListener::isZombie() const {
+        return _isZombie;
     }
 }

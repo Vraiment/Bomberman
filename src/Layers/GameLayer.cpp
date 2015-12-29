@@ -10,6 +10,8 @@
 
 #include <SDL2/SDL.h>
 
+#include "../CommandFactory.hpp"
+#include "../CommandQueue.hpp"
 #include "../Constants.hpp"
 #include "../Elements/Bomb.hpp"
 #include "../Elements/Brick.hpp"
@@ -127,7 +129,7 @@ namespace Bomberman {
         }
     };
     
-    GameLayer::GameLayer() : camera(new Camera()), drawPlayer(true) {
+    GameLayer::GameLayer() : camera(new Camera()), drawPlayer(true), commandFactory(new CommandFactory()), commandQueue(new CommandQueue()) {
         
     }
     
@@ -137,6 +139,8 @@ namespace Bomberman {
     
     void GameLayer::draw() {
         Texture texture;
+        
+        commandQueue->update();
         
         background.rectangle() = camera->getScreenPosition(Coordinate::ZERO);
         background.draw();
@@ -242,10 +246,21 @@ namespace Bomberman {
         this->tileMap = tileMap;
         background.rectangle().width = tileMap->area().width * TILE_WIDTH;
         background.rectangle().height = tileMap->area().height * TILE_HEIGHT;
+        
+        commandFactory->setTileMap(tileMap);
+        commandFactory->setPlayer(tileMap->player());
     }
     
     void GameLayer::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {
         camera->setScreenSize(newSize);
+    }
+    
+    shared_ptr<CommandFactory> GameLayer::getCommandFactory() {
+        return commandFactory;
+    }
+    
+    shared_ptr<CommandQueue> GameLayer::getCommandQueue() {
+        return commandQueue;
     }
     
     void GameLayer::drawTile(Texture texture, Coordinate position) {
