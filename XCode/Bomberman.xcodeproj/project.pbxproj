@@ -351,6 +351,64 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
+		5B06B2C41C3281D900F3F9EA /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				5B4C02CC1B805B01003FCB02 /* Color.cpp */,
+				5B4C02CD1B805B01003FCB02 /* Color.hpp */,
+				5B3B82D91857ACB700CECE27 /* Command.cpp */,
+				5B5BB1C01856CE990019CAD1 /* Command.hpp */,
+				5B5BB1C21856CEDA0019CAD1 /* CommandQueue.cpp */,
+				5B5BB1C31856CEDA0019CAD1 /* CommandQueue.hpp */,
+				5BBB9E521820EB3F00726BC5 /* Engine.cpp */,
+				5BBB9E531820EB3F00726BC5 /* Engine.hpp */,
+				5B5C97B21B80EC4600C9D6C1 /* EventListener.cpp */,
+				5BBC81291829C0CF006F448F /* EventListener.hpp */,
+				5B3F40A31C320531003FB85A /* EventListenerQueue.cpp */,
+				5B3F40A41C320531003FB85A /* EventListenerQueue.hpp */,
+				5B4C02C91B805980003FCB02 /* Font.cpp */,
+				5B4C02CA1B805980003FCB02 /* Font.hpp */,
+				5BB4D8331B7FDC750066077D /* Layer.cpp */,
+				5BB4D8341B7FDC750066077D /* Layer.hpp */,
+				5B05A7DE1C3073D000EBE0D8 /* LayerQueue.cpp */,
+				5B05A7DF1C3073D000EBE0D8 /* LayerQueue.hpp */,
+				5B5BB1B71856ADE40019CAD1 /* Log */,
+				5B9382171B81A75700C42269 /* LoopQuiter.cpp */,
+				5B9382181B81A75700C42269 /* LoopQuiter.hpp */,
+				5B0496411825D01600C1FBCB /* MainLoop.cpp */,
+				5B0496421825D01600C1FBCB /* MainLoop.hpp */,
+				5B5BB1B81856AE020019CAD1 /* Math */,
+				5B0C65DE182ADDF8003E3BD4 /* Screen.cpp */,
+				5B0496401825CF7E00C1FBCB /* Screen.hpp */,
+				5B3795CC1820FBAA0050381F /* Texture.cpp */,
+				5B3795CD1820FBAA0050381F /* Texture.hpp */,
+				5B1015061A26BEE100CCCC77 /* Timer.cpp */,
+				5B1015071A26BEE100CCCC77 /* Timer.hpp */,
+				5B5BB1BA1856AE1E0019CAD1 /* Utils */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		5B06B2C51C3281E500F3F9EA /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				5BBFCCA4185FFF710016F56A /* CommandFactory.cpp */,
+				5BBFCCA5185FFF710016F56A /* CommandFactory.hpp */,
+				5B3B82D21857AB5900CECE27 /* Commands */,
+				5B755C751822E81300DADA25 /* Configuration.cpp */,
+				5B755C761822E81300DADA25 /* Configuration.hpp */,
+				5B3B82DB1857CD6A00CECE27 /* Console */,
+				5BB4D8301B7FD2F10066077D /* Console.cpp */,
+				5BB4D8311B7FD2F10066077D /* Console.hpp */,
+				5B9228971A107EA7009ADD10 /* Constants.hpp */,
+				5B5BB1B61856ADA70019CAD1 /* Elements */,
+				5B3B82CE1857A80D00CECE27 /* EventListeners */,
+				5B5BB1B91856AE110019CAD1 /* Layers */,
+				5B03C1251860E7190011C3DA /* Map */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
 		5B3B82CE1857A80D00CECE27 /* EventListeners */ = {
 			isa = PBXGroup;
 			children = (
@@ -515,51 +573,9 @@
 		5B76EC6B1820DD1B00D499EE /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				5B4C02CC1B805B01003FCB02 /* Color.cpp */,
-				5B4C02CD1B805B01003FCB02 /* Color.hpp */,
-				5B3B82D91857ACB700CECE27 /* Command.cpp */,
-				5B5BB1C01856CE990019CAD1 /* Command.hpp */,
-				5BBFCCA4185FFF710016F56A /* CommandFactory.cpp */,
-				5BBFCCA5185FFF710016F56A /* CommandFactory.hpp */,
-				5B5BB1C21856CEDA0019CAD1 /* CommandQueue.cpp */,
-				5B5BB1C31856CEDA0019CAD1 /* CommandQueue.hpp */,
-				5B3B82D21857AB5900CECE27 /* Commands */,
-				5B755C751822E81300DADA25 /* Configuration.cpp */,
-				5B755C761822E81300DADA25 /* Configuration.hpp */,
-				5B3B82DB1857CD6A00CECE27 /* Console */,
-				5BB4D8301B7FD2F10066077D /* Console.cpp */,
-				5BB4D8311B7FD2F10066077D /* Console.hpp */,
-				5B9228971A107EA7009ADD10 /* Constants.hpp */,
-				5B5BB1B61856ADA70019CAD1 /* Elements */,
-				5BBB9E521820EB3F00726BC5 /* Engine.cpp */,
-				5BBB9E531820EB3F00726BC5 /* Engine.hpp */,
-				5B5C97B21B80EC4600C9D6C1 /* EventListener.cpp */,
-				5BBC81291829C0CF006F448F /* EventListener.hpp */,
-				5B3F40A31C320531003FB85A /* EventListenerQueue.cpp */,
-				5B3F40A41C320531003FB85A /* EventListenerQueue.hpp */,
-				5B3B82CE1857A80D00CECE27 /* EventListeners */,
-				5B4C02C91B805980003FCB02 /* Font.cpp */,
-				5B4C02CA1B805980003FCB02 /* Font.hpp */,
-				5BB4D8331B7FDC750066077D /* Layer.cpp */,
-				5BB4D8341B7FDC750066077D /* Layer.hpp */,
-				5B05A7DE1C3073D000EBE0D8 /* LayerQueue.cpp */,
-				5B05A7DF1C3073D000EBE0D8 /* LayerQueue.hpp */,
-				5B5BB1B91856AE110019CAD1 /* Layers */,
-				5B5BB1B71856ADE40019CAD1 /* Log */,
-				5B9382171B81A75700C42269 /* LoopQuiter.cpp */,
-				5B9382181B81A75700C42269 /* LoopQuiter.hpp */,
+				5B06B2C41C3281D900F3F9EA /* Core */,
+				5B06B2C51C3281E500F3F9EA /* Game */,
 				5B0EEC2C1820E10A0084C40C /* main.cpp */,
-				5B0496411825D01600C1FBCB /* MainLoop.cpp */,
-				5B0496421825D01600C1FBCB /* MainLoop.hpp */,
-				5B03C1251860E7190011C3DA /* Map */,
-				5B5BB1B81856AE020019CAD1 /* Math */,
-				5B0C65DE182ADDF8003E3BD4 /* Screen.cpp */,
-				5B0496401825CF7E00C1FBCB /* Screen.hpp */,
-				5B3795CC1820FBAA0050381F /* Texture.cpp */,
-				5B3795CD1820FBAA0050381F /* Texture.hpp */,
-				5B1015061A26BEE100CCCC77 /* Timer.cpp */,
-				5B1015071A26BEE100CCCC77 /* Timer.hpp */,
-				5B5BB1BA1856AE1E0019CAD1 /* Utils */,
 			);
 			name = Source;
 			path = ../src;
