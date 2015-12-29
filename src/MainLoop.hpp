@@ -13,8 +13,8 @@
 #include <memory>
 
 namespace Bomberman {
-    class CommandQueue;
     class EventListener;
+    class EventListenerQueue;
     class LoopQuiter;
     class Screen;
     
@@ -23,27 +23,27 @@ namespace Bomberman {
         MainLoop();
         ~MainLoop();
         
-        std::shared_ptr<CommandQueue> commandQueue();
         std::shared_ptr<LoopQuiter> quiter();
         
         void run();
         
         void addScreen(std::shared_ptr<Screen> screen);
-        
         void removeScreen(std::shared_ptr<Screen> screen);
         
-        void addEventListener(std::shared_ptr<EventListener> eventListener);
-        
-        void removeEventListener(std::shared_ptr<EventListener> eventListener);
+        std::shared_ptr<EventListenerQueue> getEventListenerQueue();
         
     private:
+        class EventListenerQueueImpl;
+        
         bool hasScreen(std::shared_ptr<Screen> screen);
         bool hasEventListener(std::shared_ptr<EventListener> eventListener);
         
-        std::shared_ptr<CommandQueue> _commandQueue;
+        void refreshEventListeners();
+        
         std::list<std::shared_ptr<Screen>> screens;
         std::list<std::shared_ptr<EventListener>> eventListeners;
         std::shared_ptr<LoopQuiter> _quiter;
+        std::shared_ptr<EventListenerQueueImpl> eventListenerQueue;
     };
 }
 

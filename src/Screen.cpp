@@ -1,4 +1,4 @@
-//
+    //
 //  Screen.cpp
 //  Bomberman
 //
@@ -9,12 +9,27 @@
 #include "Screen.hpp"
 
 #include "Layer.hpp"
+#include "LayerQueue.hpp"
 #include "Log/LogSystem.h"
 
 using namespace std;
 
 namespace Bomberman {
-    Screen::Screen(int width, int height, string name) : _name(name), _rectangle(0, 0, width, height) {
+    class Screen::LayerQueueImpl : public LayerQueue {
+    public:
+        shared_ptr<Layer> getNewLayer() {
+            shared_ptr<Layer> nextLayer;
+            
+            if (!layers.empty()) {
+                nextLayer = layers.front();
+                layers.pop();
+            }
+            
+            return nextLayer;
+        }
+    };
+    
+    Screen::Screen(int width, int height, string name) : _name(name), _rectangle(0, 0, width, height), layerQueue(new LayerQueueImpl()) {
         SDL_Window *w = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, _rectangle.width, _rectangle.height, SDL_WINDOW_SHOWN);
         
         if (w == nullptr) {
@@ -119,15 +134,22 @@ namespace Bomberman {
         return _renderer;
     }
     
-    void Screen::addLayer(shared_ptr<Layer> layer) {
-        layers.push_back(layer);
-        layer->screenSizeChanged(Rectangle(), rectangle());
+    shared_ptr<LayerQueue> Screen::getLayerQueue() const {
+        return layerQueue;
     }
     
-    void Screen::removeZombieLayers() {
+    void Screen::refreshLayers() {
         layers.remove_if([] (shared_ptr<Layer> layer) {
             return layer->isZombie();
         });
+        
+        auto newLayer = layerQueue->getNewLayer();
+        while (newLayer) {
+            layers.push_back(newLayer);
+            newLayer->screenSizeChanged(Rectangle(), rectangle());
+            
+            newLayer = layerQueue->getNewLayer();
+        }
     }
     
     void Screen::clearLayers() {

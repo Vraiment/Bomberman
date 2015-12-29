@@ -18,6 +18,7 @@
 
 namespace Bomberman {
     class Layer;
+    class LayerQueue;
     
     class Screen {
     public:
@@ -39,8 +40,9 @@ namespace Bomberman {
         
         std::shared_ptr<SDL_Renderer> renderer() const;
         
-        void addLayer(std::shared_ptr<Layer> layer);
-        void removeZombieLayers();
+        std::shared_ptr<LayerQueue> getLayerQueue() const;
+        
+        void refreshLayers();
         void clearLayers();
         
     protected:
@@ -48,6 +50,8 @@ namespace Bomberman {
         virtual void sizeChanged(Rectangle previousSize);
         
     private:
+        class LayerQueueImpl;
+        
         void refreshSize(Rectangle previousSize);
         
         std::string _name;
@@ -55,6 +59,7 @@ namespace Bomberman {
         std::shared_ptr<SDL_Renderer> _renderer;
         Rectangle _rectangle;
         std::list<std::shared_ptr<Layer>> layers;
+        std::shared_ptr<LayerQueueImpl> layerQueue;
     };
 }
 
