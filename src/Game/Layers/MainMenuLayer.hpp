@@ -20,7 +20,7 @@ namespace Bomberman {
     class LayerQueue;
     class LoopQuiter;
     
-    class MainMenuLayer : public Layer {
+    class MainMenuLayer : public Layer, public std::enable_shared_from_this<MainMenuLayer> {
     public:
         MainMenuLayer();
         

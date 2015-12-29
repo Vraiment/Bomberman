@@ -24,6 +24,7 @@ namespace Bomberman {
         virtual void draw() = 0;
         
         bool isZombie() const;
+        void isZombie(bool isZombie);
         
         virtual void load(std::shared_ptr<SDL_Renderer> render) = 0;
         

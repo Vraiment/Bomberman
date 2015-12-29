@@ -13,6 +13,7 @@
 #include "../Constants.hpp"
 #include "../CommandFactory.hpp"
 #include "../../Core/CommandQueue.hpp"
+#include "../../Core/Layer.hpp"
 #include "../Elements/Player.hpp"
 
 using namespace std;
@@ -27,10 +28,38 @@ namespace Bomberman {
         
     }
     
+    void PlayerEvents::setConsoleEventListener(shared_ptr<EventListener> consoleEventListener) {
+        this->consoleEventListener = consoleEventListener;
+    }
+    
+    void PlayerEvents::setMainMenuLayer(shared_ptr<Layer> mainMenuLayer) {
+        this->mainMenuLayer = mainMenuLayer;
+    }
+    
+    void PlayerEvents::addInGameLayer(shared_ptr<Layer> inGameLayer) {
+        inGameLayers.push_back(inGameLayer);
+    }
+    
     void PlayerEvents::listenEvent(SDL_Event event) {
         shared_ptr<Command> command;
         
         if (player->isDead()) {
+            if (player->getLifesCount() <= 0) {
+                if (SDL_KEYUP == event.type) {
+                    while (!inGameLayers.empty()) {
+                        inGameLayers.back()->isZombie(true);
+                        inGameLayers.pop_back();
+                    }
+                    
+                    consoleEventListener->isZombie(true);
+                    
+                    mainMenuLayer->shouldDraw(true);
+                    mainMenuLayer->shouldUpdate(true);
+                    
+                    _isZombie = true;
+                }
+            }
+            
             return;
         }
         

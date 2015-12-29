@@ -19,6 +19,10 @@ namespace Bomberman {
         return _isZombie;
     }
     
+    void Layer::isZombie(bool isZombie) {
+        _isZombie = isZombie;
+    }
+    
     void Layer::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {
         
     }

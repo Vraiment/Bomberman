@@ -28,4 +28,8 @@ namespace Bomberman {
     bool EventListener::isZombie() const {
         return _isZombie;
     }
+    
+    void EventListener::isZombie(bool isZombie) {
+        _isZombie = isZombie;
+    }
 }

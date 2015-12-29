@@ -70,9 +70,17 @@ namespace Bomberman {
             layerQueue->addLayer(hudLayer);
             layerQueue->addLayer(consoleLayer);
             
+            playerEvents->addInGameLayer(gameLayer);
+            playerEvents->addInGameLayer(hudLayer);
+            playerEvents->addInGameLayer(consoleLayer);
+            playerEvents->setConsoleEventListener(consoleEvents);
+            playerEvents->setMainMenuLayer(shared_from_this());
+            
             Log::get().addLogger(consoleLayer);
             
-            _isZombie = true;
+            shouldStartGame = false;
+            shouldDraw(false);
+            shouldUpdate(false);
         } else if (shouldExit) {
             loopQuiter->quitLoop();
         }

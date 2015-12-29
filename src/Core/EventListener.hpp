@@ -25,6 +25,7 @@ namespace Bomberman {
         void disable();
         
         bool isZombie() const;
+        void isZombie(bool isZombie);
         
     protected:
         bool _isZombie;
