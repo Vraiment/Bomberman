@@ -36,7 +36,7 @@ namespace Bomberman {
     
     const int MainMenuLayer::ENTRIES_SPACING = 100;
     
-    MainMenuLayer::MainMenuLayer() : selected(nullptr), shouldStartGame(false) {
+    MainMenuLayer::MainMenuLayer() : selected(nullptr), shouldStartGame(false), shouldExit(false) {
         
     }
     

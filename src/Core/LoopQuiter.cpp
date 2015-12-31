@@ -8,6 +8,8 @@
 
 #include "LoopQuiter.hpp"
 
+#include "../Core/Log/LogSystem.h"
+
 namespace Bomberman {
     LoopQuiter::LoopQuiter() : _quitLoop(false) {
         
@@ -23,5 +25,6 @@ namespace Bomberman {
     
     void LoopQuiter::quitLoop() {
         _quitLoop = true;
+        Log::get() << "Quitting" << LogLevel::info;
     }
 }
