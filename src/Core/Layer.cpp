@@ -15,12 +15,12 @@ namespace Bomberman {
         
     }
     
-    bool Layer::isZombie() const {
+    bool Layer::isFinished() const {
         return _isZombie;
     }
     
-    void Layer::isZombie(bool isZombie) {
-        _isZombie = isZombie;
+    void Layer::finish() {
+        _isZombie = true;
     }
     
     void Layer::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {

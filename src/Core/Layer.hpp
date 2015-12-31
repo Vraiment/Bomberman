@@ -23,8 +23,8 @@ namespace Bomberman {
         virtual void update() = 0;
         virtual void draw() = 0;
         
-        bool isZombie() const;
-        void isZombie(bool isZombie);
+        bool isFinished() const;
+        void finish();
         
         virtual void load(std::shared_ptr<SDL_Renderer> render) = 0;
         
@@ -36,10 +36,8 @@ namespace Bomberman {
         bool shouldUpdate() const;
         void shouldUpdate(bool should);
         
-    protected:
-        bool _isZombie = false;
-        
     private:
+        bool _isZombie = false;
         bool _shouldDraw = true;
         bool _shouldUpdate = true;
     };

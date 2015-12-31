@@ -24,7 +24,7 @@ namespace Bomberman {
     void MenuEventListener::listenEvent(SDL_Event event) {
         Coordinate position;
         
-        if (menu->isZombie()) {
+        if (menu->isFinished()) {
             finish();
             return;
         }

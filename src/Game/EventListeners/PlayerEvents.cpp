@@ -47,7 +47,7 @@ namespace Bomberman {
             if (player->getLifesCount() <= 0) {
                 if (SDL_KEYUP == event.type) {
                     while (!inGameLayers.empty()) {
-                        inGameLayers.back()->isZombie(true);
+                        inGameLayers.back()->finish();
                         inGameLayers.pop_back();
                     }
                     

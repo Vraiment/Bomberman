@@ -181,7 +181,7 @@ namespace Bomberman {
         }
         
         layers.remove_if([] (shared_ptr<Layer> layer) {
-            return layer->isZombie();
+            return layer->isFinished();
         });
         
         auto newLayer = layerQueue->getNewLayer();
