@@ -9,11 +9,11 @@
 #include "EventListener.hpp"
 
 namespace Bomberman {
-    EventListener::EventListener() : _enabled(true), _isZombie(false) {
+    EventListener::EventListener() : _enabled(true), finished(false) {
         
     }
     
-    bool EventListener::enabled() const {
+    bool EventListener::isEnabled() const {
         return _enabled;
     }
     
@@ -25,11 +25,11 @@ namespace Bomberman {
         _enabled = false;
     }
     
-    bool EventListener::isZombie() const {
-        return _isZombie;
+    bool EventListener::isFinished() const {
+        return finished;
     }
     
-    void EventListener::isZombie(bool isZombie) {
-        _isZombie = isZombie;
+    void EventListener::finish() {
+        finished = true;
     }
 }

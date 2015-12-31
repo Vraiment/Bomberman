@@ -19,19 +19,17 @@ namespace Bomberman {
         
         virtual void listenEvent(SDL_Event event) = 0;
         
-        bool enabled() const;
+        bool isEnabled() const;
         
         void enable();
         void disable();
         
-        bool isZombie() const;
-        void isZombie(bool isZombie);
-        
-    protected:
-        bool _isZombie;
+        bool isFinished() const;
+        void finish();
         
     private:
         bool _enabled;
+        bool finished;
     };
 }
 

@@ -62,7 +62,7 @@ namespace Bomberman {
                 }
                 
                 for (auto it = eventListeners.begin(); it != eventListeners.end(); ++it) {
-                    if ((*it)->enabled()) {
+                    if ((*it)->isEnabled()) {
                         (*it)->listenEvent(event);
                     }
                 }
@@ -132,7 +132,7 @@ namespace Bomberman {
     
     void MainLoop::refreshEventListeners() {
         eventListeners.remove_if([] (shared_ptr<EventListener> eventListener) {
-            return eventListener->isZombie();
+            return eventListener->isFinished();
         });
         
         auto eventListener = eventListenerQueue->getNewEventListener();

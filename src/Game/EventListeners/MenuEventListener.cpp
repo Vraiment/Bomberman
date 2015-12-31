@@ -25,7 +25,7 @@ namespace Bomberman {
         Coordinate position;
         
         if (menu->isZombie()) {
-            _isZombie = true;
+            finish();
             return;
         }
         

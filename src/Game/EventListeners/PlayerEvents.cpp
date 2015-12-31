@@ -51,12 +51,12 @@ namespace Bomberman {
                         inGameLayers.pop_back();
                     }
                     
-                    consoleEventListener->isZombie(true);
+                    consoleEventListener->finish();
                     
                     mainMenuLayer->shouldDraw(true);
                     mainMenuLayer->shouldUpdate(true);
                     
-                    _isZombie = true;
+                    finish();
                 }
             }
             
