@@ -10,6 +10,8 @@
 
 #include <SDL2/SDL.h>
 
+#include "EventListener.hpp"
+#include "EventListenerQueue.hpp"
 #include "Layer.hpp"
 #include "LayerQueue.hpp"
 #include "Log/LogSystem.h"
@@ -17,6 +19,20 @@
 using namespace std;
 
 namespace Bomberman {
+    class Screen::EventListenerQueueImpl : public EventListenerQueue {
+    public:
+        shared_ptr<EventListener> getNewEventListener() {
+            shared_ptr<EventListener> nextEventListener;
+            
+            if (!eventListeners.empty()) {
+                nextEventListener = eventListeners.front();
+                eventListeners.pop();
+            }
+            
+            return nextEventListener;
+        }
+    };
+    
     class Screen::LayerQueueImpl : public LayerQueue {
     public:
         shared_ptr<Layer> getNewLayer() {
@@ -31,7 +47,7 @@ namespace Bomberman {
         }
     };
     
-    Screen::Screen(int width, int height, string name) : _name(name), _rectangle(0, 0, width, height), layerQueue(new LayerQueueImpl()) {
+    Screen::Screen(int width, int height, string name) : _name(name), _rectangle(0, 0, width, height), eventListenerQueue(new EventListenerQueueImpl()), layerQueue(new LayerQueueImpl()) {
         SDL_Window *w = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, _rectangle.width, _rectangle.height, SDL_WINDOW_SHOWN);
         
         if (w == nullptr) {
@@ -63,6 +79,14 @@ namespace Bomberman {
         for (auto layer : layers) {
             if (layer->shouldDraw()) {
                 layer->draw();
+            }
+        }
+    }
+    
+    void Screen::listenEvent(SDL_Event event) {
+        for (auto eventListener : eventListeners) {
+            if (eventListener->isEnabled()) {
+                eventListener->listenEvent(event);
             }
         }
     }
@@ -136,11 +160,26 @@ namespace Bomberman {
         return _renderer;
     }
     
+    shared_ptr<EventListenerQueue> Screen::getEventListenerQueue() const {
+        return eventListenerQueue;
+    }
+    
     shared_ptr<LayerQueue> Screen::getLayerQueue() const {
         return layerQueue;
     }
     
-    void Screen::refreshLayers() {
+    void Screen::refreshScreen() {
+        eventListeners.remove_if([] (shared_ptr<EventListener> eventListener) {
+            return eventListener->isFinished();
+        });
+        
+        auto newEventListener = eventListenerQueue->getNewEventListener();
+        while (newEventListener) {
+            eventListeners.push_back(newEventListener);
+            
+            newEventListener = eventListenerQueue->getNewEventListener();
+        }
+        
         layers.remove_if([] (shared_ptr<Layer> layer) {
             return layer->isZombie();
         });
@@ -152,6 +191,10 @@ namespace Bomberman {
             
             newLayer = layerQueue->getNewLayer();
         }
+    }
+    
+    void Screen::clearEventListeners() {
+        eventListeners.clear();
     }
     
     void Screen::clearLayers() {

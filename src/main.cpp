@@ -35,11 +35,11 @@ int main(int argc, char* argv[]) {
         
         mainMenuLayer->load(screen->renderer());
         mainMenuLayer->setLoopQuiter(loop.quiter());
-        mainMenuLayer->setEventListenerQueue(loop.getEventListenerQueue());
+        mainMenuLayer->setEventListenerQueue(screen->getEventListenerQueue());
         mainMenuLayer->setLayerQueue(screen->getLayerQueue());
         
         screen->getLayerQueue()->addLayer(mainMenuLayer);
-        loop.getEventListenerQueue()->addEventListener(mainMenuEvents);
+        screen->getEventListenerQueue()->addEventListener(mainMenuEvents);
         
         //Game
         loop.addScreen(screen);

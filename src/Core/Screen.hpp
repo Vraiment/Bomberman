@@ -15,10 +15,13 @@
 
 #include "Math/Rectangle.hpp"
 
+union SDL_Event;
 class SDL_Renderer;
 class SDL_Window;
 
 namespace Bomberman {
+    class EventListener;
+    class EventListenerQueue;
     class Layer;
     class LayerQueue;
     
@@ -27,6 +30,7 @@ namespace Bomberman {
         Screen(int width, int height, std::string name);
         ~Screen();
         
+        void listenEvent(SDL_Event event);
         void draw();
         void update();
         
@@ -42,9 +46,11 @@ namespace Bomberman {
         
         std::shared_ptr<SDL_Renderer> renderer() const;
         
+        std::shared_ptr<EventListenerQueue> getEventListenerQueue() const;
         std::shared_ptr<LayerQueue> getLayerQueue() const;
         
-        void refreshLayers();
+        void refreshScreen();
+        void clearEventListeners();
         void clearLayers();
         
     protected:
@@ -52,6 +58,7 @@ namespace Bomberman {
         virtual void sizeChanged(Rectangle previousSize);
         
     private:
+        class EventListenerQueueImpl;
         class LayerQueueImpl;
         
         void refreshSize(Rectangle previousSize);
@@ -60,6 +67,8 @@ namespace Bomberman {
         std::shared_ptr<SDL_Window> window;
         std::shared_ptr<SDL_Renderer> _renderer;
         Rectangle _rectangle;
+        std::list<std::shared_ptr<EventListener>> eventListeners;
+        std::shared_ptr<EventListenerQueueImpl> eventListenerQueue;
         std::list<std::shared_ptr<Layer>> layers;
         std::shared_ptr<LayerQueueImpl> layerQueue;
     };

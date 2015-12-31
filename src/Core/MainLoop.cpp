@@ -21,21 +21,7 @@
 using namespace std;
 
 namespace Bomberman {
-    class MainLoop::EventListenerQueueImpl : public EventListenerQueue {
-    public:
-        shared_ptr<EventListener> getNewEventListener() {
-            shared_ptr<EventListener> nextEventListener;
-            
-            if (!eventListeners.empty()) {
-                nextEventListener = eventListeners.front();
-                eventListeners.pop();
-            }
-            
-            return nextEventListener;
-        }
-    };
-    
-    MainLoop::MainLoop() : _quiter(new LoopQuiter()), eventListenerQueue(new EventListenerQueueImpl()) {
+    MainLoop::MainLoop() : _quiter(new LoopQuiter()) {
         
     }
     
@@ -61,10 +47,8 @@ namespace Bomberman {
                     _quiter->quitLoop();
                 }
                 
-                for (auto it = eventListeners.begin(); it != eventListeners.end(); ++it) {
-                    if ((*it)->isEnabled()) {
-                        (*it)->listenEvent(event);
-                    }
+                for (auto screen : screens) {
+                    screen->listenEvent(event);
                 }
             }
             
@@ -79,10 +63,8 @@ namespace Bomberman {
             }
             
             for (auto screen : screens) {
-                screen->refreshLayers();
+                screen->refreshScreen();
             }
-            
-            refreshEventListeners();
         }
     }
     
@@ -106,10 +88,6 @@ namespace Bomberman {
         screens.remove(screen);
     }
     
-    shared_ptr<EventListenerQueue> MainLoop::getEventListenerQueue() {
-        return eventListenerQueue;
-    }
-    
     bool MainLoop::hasScreen(shared_ptr<Screen> screen) {
         for (auto it = screens.begin(); it != screens.end(); ++it) {
             if (*it == screen) {
@@ -118,28 +96,5 @@ namespace Bomberman {
         }
         
         return false;
-    }
-    
-    bool MainLoop::hasEventListener(shared_ptr<EventListener> eventListener) {
-        for (auto it = eventListeners.begin(); it != eventListeners.end(); ++it) {
-            if (*it == eventListener) {
-                return true;
-            }
-        }
-        
-        return false;
-    }
-    
-    void MainLoop::refreshEventListeners() {
-        eventListeners.remove_if([] (shared_ptr<EventListener> eventListener) {
-            return eventListener->isFinished();
-        });
-        
-        auto eventListener = eventListenerQueue->getNewEventListener();
-        while (eventListener) {
-            eventListeners.push_back(eventListener);
-            
-            eventListener = eventListenerQueue->getNewEventListener();
-        }
     }
 }
