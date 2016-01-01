@@ -85,6 +85,10 @@ namespace Bomberman {
         dead = true;
         --lifes;
         
+        _hasRemote = false;
+        _maxBombs = 1;
+        explosionSize = 1;
+        
         Log::get() << "Player lifes: " << lifes << LogLevel::info;
     }
     
