@@ -16,6 +16,7 @@
 #include "../Elements/Player.hpp"
 #include "../../Core/Drawable.hpp"
 #include "../../Core/Updatable.hpp"
+#include "../Map/TileMap.hpp"
 
 using namespace std;
 using namespace Bomberman::Constants;
@@ -43,6 +44,10 @@ namespace Bomberman {
         inGameUpdatables.push_back(inGameUpdatable);
     }
     
+    void PlayerEvents::setTileMap(shared_ptr<TileMap> tileMap) {
+        this->tileMap = tileMap;
+    }
+    
     void PlayerEvents::listenEvent(SDL_Event event) {
         shared_ptr<Command> command;
         
@@ -67,6 +72,10 @@ namespace Bomberman {
             }
             
             return;
+        }
+        
+        if (tileMap->playerWins()) {
+            disable();
         }
         
         if (event.type == SDL_KEYDOWN) {

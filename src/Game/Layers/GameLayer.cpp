@@ -23,6 +23,7 @@
 #include "../../Core/Utils/Exception.hpp"
 #include "../../Core/Log/Log.hpp"
 #include "../../Core/Log/LogLevel.hpp"
+#include "../Map/TxtTileMapLoader.hpp"
 
 using namespace std;
 using namespace Bomberman::Constants;
@@ -225,6 +226,10 @@ namespace Bomberman {
             }
         } else {
             drawPlayer = true;
+        }
+        
+        if (tileMap->playerWins()) {
+            this->Updatable::disable();
         }
     }
     

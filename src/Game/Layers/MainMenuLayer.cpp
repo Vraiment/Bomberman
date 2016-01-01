@@ -78,6 +78,7 @@ namespace Bomberman {
             playerEvents->addInGameLayer(hudLayer, hudLayer);
             playerEvents->addInGameLayer(consoleLayer, consoleLayer);
             playerEvents->setConsoleEventListener(consoleEvents);
+            playerEvents->setTileMap(tileMap);
             
             auto self = shared_from_this();
             playerEvents->setMainMenuLayer(self, self);

@@ -20,6 +20,7 @@ namespace Bomberman {
     class CommandFactory;
     class CommandQueue;
     class Player;
+    class TileMap;
     
     class PlayerEvents : public EventListener {
     public:
@@ -31,6 +32,7 @@ namespace Bomberman {
         void setConsoleEventListener(std::shared_ptr<EventListener> consoleEventListener);
         void setMainMenuLayer(std::shared_ptr<Drawable> mainMenuDrawable, std::shared_ptr<Updatable> mainMenuUpdatable);
         void addInGameLayer(std::shared_ptr<Drawable> inGameDrawable, std::shared_ptr<Updatable> updatable);
+        void setTileMap(std::shared_ptr<TileMap> tileMap);
         
     private:
         std::shared_ptr<Player> player;
@@ -41,6 +43,7 @@ namespace Bomberman {
         std::shared_ptr<EventListener> consoleEventListener;
         std::vector<std::shared_ptr<Drawable>> inGameDrawables;
         std::vector<std::shared_ptr<Updatable>> inGameUpdatables;
+        std::shared_ptr<TileMap> tileMap;
     };
 }
 

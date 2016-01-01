@@ -266,6 +266,10 @@ namespace Bomberman {
         return _gameOver;
     }
     
+    bool TileMap::playerWins() const {
+        return _playerWins;
+    }
+    
     bool TileMap::doorDestroyed() const {
         return _doorDestroyed;
     }
