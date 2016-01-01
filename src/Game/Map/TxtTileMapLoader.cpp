@@ -268,6 +268,7 @@ namespace Bomberman {
                 return false;
             }
             
+            if (!StringUtils::tryParseInt(arguments[3], length)) {
                 return false;
             }
             
@@ -282,10 +283,43 @@ namespace Bomberman {
             
             Coordinate pos = start;
             for (int n = 0; n < abs(length); ++n) {
+                builder->_bricks.push_back(Brick(pos, destructible));
+                if (length < 0) {
+                    --pos.i;
+                } else {
+                    ++pos.i;
+                }
+            }
+        } else if (command == MAP_CMD_VLINE) {
+            Coordinate start;
+            int length;
             
+            if (!buildCoordinate(arguments[1], arguments[2], start)) {
                 return false;
             }
             
+            if (!StringUtils::tryParseInt(arguments[3], length)) {
+                return false;
+            }
+            
+            bool destructible;
+            if (arguments[0] == MAP_OBJ_COMMON_BRICK) {
+                destructible = false;
+            } else if (arguments[0] == MAP_OBJ_DESTRUCT_BRICK) {
+                destructible = true;
+            } else {
+                return false;
+            }
+            
+            Coordinate pos = start;
+            for (int n = 0; n < abs(length); ++n) {
+                builder->_bricks.push_back(Brick(pos, destructible));
+                if (length < 0) {
+                    --pos.j;
+                } else {
+                    ++pos.j;
+                }
+            }
         } else if (command == MAP_CMD_ITEM) {
             Coordinate pos;
             if (!buildCoordinate(arguments[1], arguments[2], pos)) {
