@@ -15,6 +15,7 @@
 
 namespace Bomberman {
     class Player;
+    class TileMap;
     
     class HudLayer : public Drawable, public Updatable {
     public:
@@ -26,6 +27,7 @@ namespace Bomberman {
         void screenSizeChanged(Rectangle previousSize, Rectangle newSize);
         
         void setPlayer(std::shared_ptr<Player> player);
+        void setTileMap(std::shared_ptr<TileMap> tileMap);
         
     private:
         Texture hud;
@@ -33,7 +35,11 @@ namespace Bomberman {
         Texture extraBomb, remote;
         Texture background;
         Texture gameOver, continueText;
+        Texture digits[10];
+        std::shared_ptr<TileMap> tileMap;
         std::shared_ptr<Player> player;
+        
+        void drawBombCount(Rectangle area);
     };
 }
 

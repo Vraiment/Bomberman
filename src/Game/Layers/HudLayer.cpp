@@ -14,6 +14,7 @@
 #include "../../Core/Color.hpp"
 #include "../../Core/Font.hpp"
 #include "../Elements/Player.hpp"
+#include "../Map/TileMap.hpp"
 
 using namespace Bomberman::Constants;
 using namespace std;
@@ -28,16 +29,44 @@ namespace Bomberman {
             life.draw();
         }
         
-        life.setAlpha(Texture::OPAQUE * .50);
+        life.setAlpha(Texture::OPAQUE * .25);
         for (int n = player->getLifesCount(); n < player->getMaxLifes(); ++n) {
             life.rectangle().i = n * life.rectangle().height;
             life.draw();
         }
         
+        if (player->hasRemote()) {
+            remote.setAlpha(Texture::OPAQUE);
+        } else {
+            remote.setAlpha(Texture::OPAQUE * .25);
+        }
+        remote.rectangle().i = life.rectangle().right() + (life.rectangle().width);
+        remote.draw();
+        
+        extraBomb.rectangle().i = remote.rectangle().right() + (remote.rectangle().width * 2);
+        extraBomb.draw();
+        drawBombCount(extraBomb.rectangle());
+        
         if (player->getLifesCount() == 0) {
             background.draw();
             gameOver.draw();
             continueText.draw();
+        }
+    }
+    
+    void HudLayer::drawBombCount(Rectangle area) {
+        string numberToDraw = to_string(player->maxBombs() - tileMap->bombCount());
+        int digitWidth = digits->rectangle().width;
+        int totalSize = (int)numberToDraw.length() * digitWidth;
+        int start = area.widthCenter() - (totalSize / 2);
+        int j = area.heightCenter() - (digits->rectangle().height / 2);
+        
+        for (int n = 0; n < numberToDraw.length(); ++n) {
+            char digit = numberToDraw[n];
+            Texture *digitTexture = &digits[digit - '0'];
+            digitTexture->rectangle().i = start + (n * digitWidth);
+            digitTexture->rectangle().j = j;
+            digitTexture->draw();
         }
     }
     
@@ -47,6 +76,10 @@ namespace Bomberman {
     
     void HudLayer::setPlayer(shared_ptr<Player> player) {
         this->player = player;
+    }
+    
+    void HudLayer::setTileMap(shared_ptr<TileMap> tileMap) {
+        this->tileMap = tileMap;
     }
     
     void HudLayer::load(shared_ptr<SDL_Renderer> renderer) {
@@ -73,6 +106,11 @@ namespace Bomberman {
         
         background = Texture::createRectangle(1, 1, Color::BLACK, renderer);
         background.setAlpha(Texture::OPAQUE * .50);
+        
+        font = Font("PressStart2P.ttf", 15, renderer);
+        for (int n = 0; n < 10; ++n) {
+            digits[n] = font.write(string(1, '0' + n));
+        }
     }
     
     void HudLayer::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {

@@ -65,6 +65,7 @@ namespace Bomberman {
             
             shared_ptr<HudLayer> hudLayer(new HudLayer());
             hudLayer->setPlayer(tileMap->player());
+            hudLayer->setTileMap(tileMap);
             hudLayer->load(renderer);
             
             screenManager->addDrawable(gameLayer);
