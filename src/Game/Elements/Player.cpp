@@ -19,7 +19,7 @@ namespace Bomberman {
         
     }
     
-    Player::Player(int lifes) : explosionSize(1), _maxBombs(1), dead(false), _isInvincible(false), _hasRemote(false), lifes(lifes) {
+    Player::Player(int lifes) : explosionSize(1), _maxBombs(1), dead(false), _isInvincible(false), _hasRemote(false), lifes(lifes), maxLifes(lifes) {
         
     }
     
@@ -75,6 +75,10 @@ namespace Bomberman {
     
     int Player::getLifesCount() const {
         return lifes;
+    }
+    
+    int Player::getMaxLifes() const {
+        return maxLifes;
     }
     
     void Player::die() {

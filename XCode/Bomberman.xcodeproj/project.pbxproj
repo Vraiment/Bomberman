@@ -68,6 +68,7 @@
 		5B8997431C35C16E003AB8B0 /* ScreenManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B8997401C35C16E003AB8B0 /* ScreenManager.cpp */; };
 		5B8997461C35C875003AB8B0 /* Updatable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B8997441C35C875003AB8B0 /* Updatable.cpp */; };
 		5B8997491C35C8DF003AB8B0 /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B8997471C35C8DF003AB8B0 /* Drawable.cpp */; };
+		5B89974E1C360DCF003AB8B0 /* life.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B89974D1C360DA9003AB8B0 /* life.png */; };
 		5B92289C1A10898E009ADD10 /* TxtTileMapLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B92289A1A10898E009ADD10 /* TxtTileMapLoader.cpp */; };
 		5B9382161B81A37B00C42269 /* QuitCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B9382141B81A37B00C42269 /* QuitCommand.cpp */; };
 		5B9382191B81A75700C42269 /* LoopQuiter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B9382171B81A75700C42269 /* LoopQuiter.cpp */; };
@@ -122,6 +123,7 @@
 			dstPath = textures;
 			dstSubfolderSpec = 7;
 			files = (
+				5B89974E1C360DCF003AB8B0 /* life.png in CopyFiles */,
 				5B46E0EE1C2FECD90037426E /* remote.png in CopyFiles */,
 				5B0C86831852553F0005CADD /* bomberman.png in CopyFiles */,
 				5B2174261A1AC2A70033B3AA /* bomb.png in CopyFiles */,
@@ -263,6 +265,7 @@
 		5B8997451C35C875003AB8B0 /* Updatable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Updatable.hpp; sourceTree = "<group>"; };
 		5B8997471C35C8DF003AB8B0 /* Drawable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Drawable.cpp; sourceTree = "<group>"; };
 		5B8997481C35C8DF003AB8B0 /* Drawable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Drawable.hpp; sourceTree = "<group>"; };
+		5B89974D1C360DA9003AB8B0 /* life.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = life.png; sourceTree = "<group>"; };
 		5B9228971A107EA7009ADD10 /* Constants.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Constants.hpp; sourceTree = "<group>"; };
 		5B92289A1A10898E009ADD10 /* TxtTileMapLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TxtTileMapLoader.cpp; sourceTree = "<group>"; };
 		5B92289B1A10898E009ADD10 /* TxtTileMapLoader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TxtTileMapLoader.hpp; sourceTree = "<group>"; };
@@ -610,6 +613,7 @@
 		5BD37AF21822145500BB1C28 /* Textures */ = {
 			isa = PBXGroup;
 			children = (
+				5B89974D1C360DA9003AB8B0 /* life.png */,
 				5BC95BC51B9CF00B005FAA0E /* extraBomb.png */,
 				5BC95BC61B9CF00B005FAA0E /* increaseRange.png */,
 				5B4A11FE18331CAB00C8A950 /* background.png */,

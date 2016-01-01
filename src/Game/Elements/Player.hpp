@@ -35,6 +35,7 @@ namespace Bomberman {
         bool isInvincible() const;
         bool hasRemote() const;
         int getLifesCount() const;
+        int getMaxLifes() const;
         void die();
         void respawn();
         
@@ -49,7 +50,7 @@ namespace Bomberman {
         int explosionSize;
         int _maxBombs;
         bool dead;
-        int lifes;
+        int lifes, maxLifes;
     };
 }
 

@@ -11,6 +11,8 @@
 #include "../Constants.hpp"
 #include "GameLayer.hpp"
 #include "../../Core/Math/Rectangle.hpp"
+#include "../../Core/Color.hpp"
+#include "../Elements/Player.hpp"
 
 using namespace Bomberman::Constants;
 using namespace std;
@@ -18,10 +20,26 @@ using namespace std;
 namespace Bomberman {
     void HudLayer::draw() {
         hud.draw();
+        
+        life.setAlpha(Texture::OPAQUE);
+        for (int n = 0; n < player->getLifesCount(); ++n) {
+            life.rectangle().i = n * life.rectangle().height;
+            life.draw();
+        }
+        
+        life.setAlpha(Texture::OPAQUE * .50);
+        for (int n = player->getLifesCount(); n < player->getMaxLifes(); ++n) {
+            life.rectangle().i = n * life.rectangle().height;
+            life.draw();
+        }
     }
     
     void HudLayer::update() {
         
+    }
+    
+    void HudLayer::setPlayer(shared_ptr<Player> player) {
+        this->player = player;
     }
     
     void HudLayer::load(shared_ptr<SDL_Renderer> renderer) {
@@ -29,6 +47,15 @@ namespace Bomberman {
         
         // HUD height is one tile
         hud.rectangle().height = TILE_HEIGHT;
+        
+        life = Texture("life.png", renderer);
+        life.rectangle().height = TILE_HEIGHT;
+        
+        extraBomb = Texture("extraBomb.png", renderer);
+        extraBomb.rectangle().height = TILE_HEIGHT;
+        
+        remote = Texture("remote.png", renderer);
+        remote.rectangle().height = TILE_HEIGHT;
     }
     
     void HudLayer::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {

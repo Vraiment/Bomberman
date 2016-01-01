@@ -14,6 +14,8 @@
 #include "../../Core/Updatable.hpp"
 
 namespace Bomberman {
+    class Player;
+    
     class HudLayer : public Drawable, public Updatable {
     public:
         void draw();
@@ -23,8 +25,13 @@ namespace Bomberman {
         
         void screenSizeChanged(Rectangle previousSize, Rectangle newSize);
         
+        void setPlayer(std::shared_ptr<Player> player);
+        
     private:
         Texture hud;
+        Texture life;
+        Texture extraBomb, remote;
+        std::shared_ptr<Player> player;
     };
 }
 

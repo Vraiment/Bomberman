@@ -63,6 +63,7 @@ namespace Bomberman {
             screenManager->addEventListener(consoleEvents);
             
             shared_ptr<HudLayer> hudLayer(new HudLayer());
+            hudLayer->setPlayer(tileMap->player());
             hudLayer->load(renderer);
             
             screenManager->addDrawable(gameLayer);
@@ -75,6 +76,7 @@ namespace Bomberman {
             playerEvents->addInGameLayer(hudLayer, hudLayer);
             playerEvents->addInGameLayer(consoleLayer, consoleLayer);
             playerEvents->setConsoleEventListener(consoleEvents);
+            
             auto self = shared_from_this();
             playerEvents->setMainMenuLayer(self, self);
             
