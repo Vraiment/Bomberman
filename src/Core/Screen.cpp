@@ -62,6 +62,11 @@ namespace Bomberman {
         _renderer.reset(r, [](SDL_Renderer *r) {
             SDL_DestroyRenderer(r);
         });
+        
+        // Enable transparencies
+        if (SDL_SetRenderDrawBlendMode(_renderer.get(), SDL_BLENDMODE_BLEND)) {
+            Log::get() << "Could not enable transparencies in window: \"" << name << "\": " << SDL_GetError() << "." << LogLevel::warning;
+        }
     }
     
     Screen::~Screen() {

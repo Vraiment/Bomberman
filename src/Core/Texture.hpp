@@ -23,6 +23,9 @@ namespace Bomberman {
     class Texture {
     friend class Font;
     public:
+        static const uint8_t OPAQUE;
+        static const uint8_t TRANSPARENT;
+        
         Texture();
         Texture(std::string fileName, std::shared_ptr<SDL_Renderer> renderer);
         
@@ -31,6 +34,7 @@ namespace Bomberman {
         void clear();
         
         void setColor(Color color);
+        void setAlpha(uint8_t alpha);
         
         bool isLoaded() const;
         std::string name() const;

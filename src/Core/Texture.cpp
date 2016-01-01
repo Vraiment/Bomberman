@@ -21,6 +21,9 @@ using namespace std;
 using namespace Bomberman::Constants;
 
 namespace Bomberman {
+    const uint8_t Texture::OPAQUE = 255;
+    const uint8_t Texture::TRANSPARENT = 0;
+    
     Texture::Texture() : texture(nullptr), renderer(nullptr), _loaded(false), _rectangle() {
         
     }
@@ -54,6 +57,12 @@ namespace Bomberman {
         
         if (SDL_SetTextureColorMod(texture.get(), color.getRed(), color.getGreen(), color.getBlue()) != 0) {
             Log::get() << "Error setting the color for texture: \"" << _name << "\": " << SDL_GetError() << LogLevel::error;
+        }
+    }
+    
+    void Texture::setAlpha(uint8_t alpha) {
+        if (SDL_SetTextureAlphaMod(texture.get(), alpha)) {
+            Log::get() << "Could not set alpha for texture: \"" << _name << "\": " << SDL_GetError() << LogLevel::warning;
         }
     }
     
@@ -98,6 +107,10 @@ namespace Bomberman {
         if (t != nullptr) {
             texture.reset(t, SDL_DestroyTexture);
             resetSize();
+            
+            if (SDL_SetTextureBlendMode(texture.get(), SDL_BLENDMODE_BLEND)) {
+                Log::get() << "Could not enable transparency for texture: \"" << _name << "\": " << SDL_GetError() << "." << LogLevel::warning;
+            }
             
             _loaded = true;
         } else {
