@@ -20,6 +20,7 @@
 #include "../../Core/Utils/OperatingSystem.hpp"
 #include "DummyTileMapBuilder.hpp"
 
+#include <cstdlib>
 #include <fstream>
 #include <sstream>
 
@@ -78,8 +79,12 @@ namespace Bomberman {
                 _validCommand = _arguments.size() == 2;
             } else if (_command == MAP_CMD_SINGLE) {
                 _validCommand = _arguments.size() == 3;
-            } else if (_command == MAP_CMD_LINE) {
+            } else if (_command == MAP_CMD_BLOCK) {
                 _validCommand = _arguments.size() == 5;
+            } else if (_command == MAP_CMD_VLINE) {
+                _validCommand = _arguments.size() == 4;
+            } else if (_command == MAP_CMD_HLINE) {
+                _validCommand = _arguments.size() == 4;
             } else if (_command == MAP_CMD_ITEM) {
                 _validCommand = _arguments.size() == 3;
             } else if (_command == MAP_CMD_DOOR) {
@@ -222,7 +227,7 @@ namespace Bomberman {
             } else {
                 return false;
             }
-        } else if (command == MAP_CMD_LINE) {
+        } else if (command == MAP_CMD_BLOCK) {
             Coordinate start, end;
             
             if (!buildCoordinate(arguments[1], arguments[2], start)) {
@@ -255,6 +260,32 @@ namespace Bomberman {
                     builder->_bricks.push_back(Brick(pos, destructible));
                 }
             }
+        } else if (command == MAP_CMD_HLINE) {
+            Coordinate start;
+            int length;
+            
+            if (!buildCoordinate(arguments[1], arguments[2], start)) {
+                return false;
+            }
+            
+                return false;
+            }
+            
+            bool destructible;
+            if (arguments[0] == MAP_OBJ_COMMON_BRICK) {
+                destructible = false;
+            } else if (arguments[0] == MAP_OBJ_DESTRUCT_BRICK) {
+                destructible = true;
+            } else {
+                return false;
+            }
+            
+            Coordinate pos = start;
+            for (int n = 0; n < abs(length); ++n) {
+            
+                return false;
+            }
+            
         } else if (command == MAP_CMD_ITEM) {
             Coordinate pos;
             if (!buildCoordinate(arguments[1], arguments[2], pos)) {

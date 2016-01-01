@@ -39,7 +39,9 @@ namespace Bomberman {
         const std::string MAP_CMD_DOOR = "door";
         const std::string MAP_CMD_SIZE = "size";
         const std::string MAP_CMD_SINGLE = "single";
-        const std::string MAP_CMD_LINE = "line";
+        const std::string MAP_CMD_BLOCK = "block";
+        const std::string MAP_CMD_VLINE = "vertical_line";
+        const std::string MAP_CMD_HLINE = "horizontal_line";
         const std::string MAP_CMD_ITEM = "item";
         const std::string MAP_OBJ_COMMON_BRICK = "common_brick";
         const std::string MAP_OBJ_DESTRUCT_BRICK = "destruct_brick";
