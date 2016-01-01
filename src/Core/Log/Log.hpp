@@ -23,8 +23,10 @@ namespace Bomberman {
         static Log& get();
         
         Log& operator<<(int value);
+        Log& operator<<(long int value);
         Log& operator<<(const char *value);
         Log& operator<<(std::string value);
+        Log& operator<<(void *value);
         void operator<<(LogLevel level);
         void operator<<(std::exception exception);
         

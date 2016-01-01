@@ -33,6 +33,12 @@ namespace Bomberman {
         return singleton;
     }
     
+    Log& Log::operator<<(long int value) {
+        buffer << value;
+        
+        return singleton;
+    }
+    
     Log& Log::operator<<(const char *value) {
         buffer << value;
         
@@ -40,6 +46,12 @@ namespace Bomberman {
     }
     
     Log& Log::operator<<(string value) {
+        buffer << value;
+        
+        return singleton;
+    }
+    
+    Log& Log::operator<<(void *value) {
         buffer << value;
         
         return singleton;
