@@ -33,7 +33,7 @@ namespace Bomberman {
         this->consoleEventListener = consoleEventListener;
     }
     
-    void PlayerEvents::setMainMenuLayer(shared_ptr<Drawable> mainMenuDrawable, shared_ptr<Updatable> updatable) {
+    void PlayerEvents::setMainMenuLayer(shared_ptr<Drawable> mainMenuDrawable, shared_ptr<Updatable> mainMenuUpdatable) {
         this->mainMenuDrawable = mainMenuDrawable;
         this->mainMenuUpdatable = mainMenuUpdatable;
     }
