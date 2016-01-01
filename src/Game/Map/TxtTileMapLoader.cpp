@@ -82,6 +82,8 @@ namespace Bomberman {
                 _validCommand = _arguments.size() == 5;
             } else if (_command == MAP_CMD_ITEM) {
                 _validCommand = _arguments.size() == 3;
+            } else if (_command == MAP_CMD_DOOR) {
+                _validCommand = _arguments.size() == 2;
             } else {
                 _validCommand = false;
             }
@@ -140,7 +142,7 @@ namespace Bomberman {
     }
     
     bool TxtTileMapLoader::processCommand(string command, vector<string> arguments) {
-        DummyTileMapBuilder *builder = static_cast<DummyTileMapBuilder *>(_builder.get());
+        auto builder = dynamic_pointer_cast<DummyTileMapBuilder>(_builder);
         
         if (command == MAP_CMD_NAME) {
             builder->_name = StringUtils::join(arguments, ' ');
@@ -271,6 +273,10 @@ namespace Bomberman {
             }
             
             builder->_items.push_back(item);
+        } else if (command == MAP_CMD_DOOR) {
+            if (!buildCoordinate(arguments[0], arguments[1], builder->doorPosition)) {
+                return false;
+            }
         } else {
             return false;
         }

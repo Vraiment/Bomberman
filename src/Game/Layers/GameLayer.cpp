@@ -145,6 +145,9 @@ namespace Bomberman {
         background.rectangle() = camera->getScreenPosition(Coordinate::ZERO);
         background.draw();
         
+        // Draw door
+        drawTile(!tileMap->doorDestroyed() ? door : destroyedDoor, tileMap->doorPosition());
+        
         // Draw Items
         auto items = tileMap->items();
         for (auto item : items) {
@@ -235,6 +238,9 @@ namespace Bomberman {
         extraBomb = Texture("extraBomb.png", renderer);
         increaseRange = Texture("increaseRange.png", renderer);
         remote = Texture("remote.png", renderer);
+        
+        door = Texture("door.png", renderer);
+        destroyedDoor = Texture("destroyedDoor.png", renderer);
         
         Texture enemy;
         

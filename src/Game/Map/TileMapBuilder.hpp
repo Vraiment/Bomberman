@@ -15,6 +15,7 @@
 
 namespace Bomberman {
     class Brick;
+    class Coordinate;
     class Enemy;
     class Item;
     class Player;
@@ -25,6 +26,7 @@ namespace Bomberman {
         
         virtual int width() const = 0;
         virtual int height() const = 0;
+        virtual Coordinate getDoorPosition() const = 0;
         virtual int enemyRange(std::string enemyType) const = 0;
         virtual int enemySpeed(std::string enemyType) const = 0;
         virtual std::string name() const = 0;

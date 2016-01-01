@@ -11,6 +11,8 @@
 
 #include "TileMapBuilder.hpp"
 
+#include "../../Core/Math/Coordinate.hpp"
+
 namespace Bomberman {
     class DummyTileMapBuilder : public TileMapBuilder {
     public:
@@ -25,6 +27,7 @@ namespace Bomberman {
             int medium = 1000;
             int hard = 750;
         } enemiesSpeed;
+        Coordinate doorPosition;
         std::string _name;
         std::vector<Brick> _bricks;
         std::vector<Enemy> _enemies;
@@ -38,6 +41,8 @@ namespace Bomberman {
         int enemyRange(std::string enemyType) const;
         
         int enemySpeed(std::string enemyType) const;
+        
+        Coordinate getDoorPosition() const;
         
         std::string name() const;
         

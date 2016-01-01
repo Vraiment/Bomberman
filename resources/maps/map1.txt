@@ -1,5 +1,6 @@
 name Map  1
 player 0 0
+door 1 11
 size 20 25
 
 enemy_range hard 10

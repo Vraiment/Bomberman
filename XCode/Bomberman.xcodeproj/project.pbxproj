@@ -70,6 +70,8 @@
 		5B8997491C35C8DF003AB8B0 /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B8997471C35C8DF003AB8B0 /* Drawable.cpp */; };
 		5B89974E1C360DCF003AB8B0 /* life.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B89974D1C360DA9003AB8B0 /* life.png */; };
 		5B8997511C366096003AB8B0 /* GameOverCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B89974F1C366096003AB8B0 /* GameOverCommand.cpp */; };
+		5B8997541C367DC3003AB8B0 /* destroyedDoor.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B8997531C367CB3003AB8B0 /* destroyedDoor.png */; };
+		5B8997551C367DC3003AB8B0 /* door.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B8997521C3677A6003AB8B0 /* door.png */; };
 		5B92289C1A10898E009ADD10 /* TxtTileMapLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B92289A1A10898E009ADD10 /* TxtTileMapLoader.cpp */; };
 		5B9382161B81A37B00C42269 /* QuitCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B9382141B81A37B00C42269 /* QuitCommand.cpp */; };
 		5B9382191B81A75700C42269 /* LoopQuiter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B9382171B81A75700C42269 /* LoopQuiter.cpp */; };
@@ -124,6 +126,8 @@
 			dstPath = textures;
 			dstSubfolderSpec = 7;
 			files = (
+				5B8997541C367DC3003AB8B0 /* destroyedDoor.png in CopyFiles */,
+				5B8997551C367DC3003AB8B0 /* door.png in CopyFiles */,
 				5B89974E1C360DCF003AB8B0 /* life.png in CopyFiles */,
 				5B46E0EE1C2FECD90037426E /* remote.png in CopyFiles */,
 				5B0C86831852553F0005CADD /* bomberman.png in CopyFiles */,
@@ -269,6 +273,8 @@
 		5B89974D1C360DA9003AB8B0 /* life.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = life.png; sourceTree = "<group>"; };
 		5B89974F1C366096003AB8B0 /* GameOverCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameOverCommand.cpp; sourceTree = "<group>"; };
 		5B8997501C366096003AB8B0 /* GameOverCommand.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameOverCommand.hpp; sourceTree = "<group>"; };
+		5B8997521C3677A6003AB8B0 /* door.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = door.png; sourceTree = "<group>"; };
+		5B8997531C367CB3003AB8B0 /* destroyedDoor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = destroyedDoor.png; sourceTree = "<group>"; };
 		5B9228971A107EA7009ADD10 /* Constants.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Constants.hpp; sourceTree = "<group>"; };
 		5B92289A1A10898E009ADD10 /* TxtTileMapLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TxtTileMapLoader.cpp; sourceTree = "<group>"; };
 		5B92289B1A10898E009ADD10 /* TxtTileMapLoader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TxtTileMapLoader.hpp; sourceTree = "<group>"; };
@@ -618,19 +624,21 @@
 		5BD37AF21822145500BB1C28 /* Textures */ = {
 			isa = PBXGroup;
 			children = (
-				5B89974D1C360DA9003AB8B0 /* life.png */,
-				5BC95BC51B9CF00B005FAA0E /* extraBomb.png */,
-				5BC95BC61B9CF00B005FAA0E /* increaseRange.png */,
+				5B8997531C367CB3003AB8B0 /* destroyedDoor.png */,
 				5B4A11FE18331CAB00C8A950 /* background.png */,
 				5B2174251A1AC2820033B3AA /* bomb.png */,
 				5B0C86821852550C0005CADD /* bomberman.png */,
 				5B4A11FF18331CAB00C8A950 /* brick.png */,
 				5B4A120018331CAB00C8A950 /* destructibleBrick.png */,
+				5B8997521C3677A6003AB8B0 /* door.png */,
 				5B00227B1A2C0593008805D9 /* enemy1.png */,
 				5B00227D1A2C0A4C008805D9 /* enemy2.png */,
 				5B00227E1A2C0A4C008805D9 /* enemy3.png */,
 				5B1015091A26DFD400CCCC77 /* explosion.png */,
+				5BC95BC51B9CF00B005FAA0E /* extraBomb.png */,
 				5B31D6751A299A53004ECEBD /* hud.png */,
+				5BC95BC61B9CF00B005FAA0E /* increaseRange.png */,
+				5B89974D1C360DA9003AB8B0 /* life.png */,
 				5B46E0EC1C2FECD20037426E /* remote.png */,
 				5BD37AF31822199200BB1C28 /* tile0.png */,
 				5BD37AF5182219F300BB1C28 /* tile1.png */,

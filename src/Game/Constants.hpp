@@ -36,6 +36,7 @@ namespace Bomberman {
         const std::string MAP_CMD_ENEMY_RANGE = "enemy_range";
         const std::string MAP_CMD_ENEMY_SPEED = "enemy_speed";
         const std::string MAP_CMD_PLAYER = "player";
+        const std::string MAP_CMD_DOOR = "door";
         const std::string MAP_CMD_SIZE = "size";
         const std::string MAP_CMD_SINGLE = "single";
         const std::string MAP_CMD_LINE = "line";

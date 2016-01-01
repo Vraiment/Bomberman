@@ -52,11 +52,15 @@ namespace Bomberman {
         bool tileHasBrick(Coordinate tile) const;
         bool tileHasBomb(Coordinate tile) const;
         bool gameOver() const;
+        bool doorDestroyed() const;
+        Coordinate doorPosition() const;
         
     private:
         static const int playerRespawnTime;
         
         Rectangle _area;
+        bool _doorDestroyed;
+        Coordinate _doorPosition;
         std::string _name;
         std::shared_ptr<Player> _player;
         std::vector<Brick> _bricks;

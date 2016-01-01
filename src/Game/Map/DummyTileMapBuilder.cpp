@@ -42,6 +42,10 @@ namespace Bomberman {
         return -1;
     }
     
+    Coordinate DummyTileMapBuilder::getDoorPosition() const {
+        return doorPosition;
+    }
+    
     int DummyTileMapBuilder::enemySpeed(string enemyType) const {
         if (ENEMY_EASY == enemyType) {
             return enemiesSpeed.easy;

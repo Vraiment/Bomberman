@@ -32,7 +32,7 @@ using namespace Bomberman::Constants;
 namespace Bomberman {
     const int TileMap::playerRespawnTime = 2000;
     
-    TileMap::TileMap(shared_ptr<TileMapBuilder> builder) : _explodeBomb(false), _gameOver(false) {
+    TileMap::TileMap(shared_ptr<TileMapBuilder> builder) : _explodeBomb(false), _gameOver(false), _doorDestroyed(false) {
         if (!builder) {
             Log::get() << "Invalid information to create map." << NullArgumentException();
         }
@@ -124,6 +124,8 @@ namespace Bomberman {
                 _items.push_back(item);
             }
         };
+        
+        _doorPosition = builder->getDoorPosition();
     }
     
     TileMap::~TileMap() {
@@ -260,6 +262,14 @@ namespace Bomberman {
         return _gameOver;
     }
     
+    bool TileMap::doorDestroyed() const {
+        return _doorDestroyed;
+    }
+    
+    Coordinate TileMap::doorPosition() const {
+        return _doorPosition;
+    }
+    
     void TileMap::updateEnemies() {
         shared_ptr<TileMap> ptr = shared_from_this();
         
@@ -296,10 +306,6 @@ namespace Bomberman {
             
             _enemies.remove_if([position] (Enemy enemy) {
                 return position == enemy.getPosition();
-            });
-            
-            _items.remove_if([position] (Item item) {
-                return position == item.getPosition();
             });
             
             VectorUtils::removeIf(_bricks, [position] (Brick& brick) {
