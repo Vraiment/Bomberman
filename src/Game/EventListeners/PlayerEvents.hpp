@@ -15,9 +15,10 @@
 #include <vector>
 
 namespace Bomberman {
+    class Drawable;
+    class Updatable;
     class CommandFactory;
     class CommandQueue;
-    class Layer;
     class Player;
     
     class PlayerEvents : public EventListener {
@@ -28,16 +29,18 @@ namespace Bomberman {
         void listenEvent(SDL_Event event);
         
         void setConsoleEventListener(std::shared_ptr<EventListener> consoleEventListener);
-        void setMainMenuLayer(std::shared_ptr<Layer> mainMenuLayer);
-        void addInGameLayer(std::shared_ptr<Layer> inGameLayer);
+        void setMainMenuLayer(std::shared_ptr<Drawable> mainMenuDrawable, std::shared_ptr<Updatable> mainMenuUpdatable);
+        void addInGameLayer(std::shared_ptr<Drawable> inGameDrawable, std::shared_ptr<Updatable> updatable);
         
     private:
         std::shared_ptr<Player> player;
         std::shared_ptr<CommandFactory> commandFactory;
         std::shared_ptr<CommandQueue> commandQueue;
-        std::shared_ptr<Layer> mainMenuLayer;
+        std::shared_ptr<Drawable> mainMenuDrawable;
+        std::shared_ptr<Updatable> mainMenuUpdatable;
         std::shared_ptr<EventListener> consoleEventListener;
-        std::vector<std::shared_ptr<Layer>> inGameLayers;
+        std::vector<std::shared_ptr<Drawable>> inGameDrawables;
+        std::vector<std::shared_ptr<Updatable>> inGameUpdatables;
     };
 }
 

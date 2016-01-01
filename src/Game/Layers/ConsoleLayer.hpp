@@ -11,14 +11,15 @@
 
 #include <deque>
 
+#include "../../Core/Drawable.hpp"
 #include "../../Core/Font.hpp"
-#include "../../Core/Layer.hpp"
 #include "../../Core/Log/Logger.hpp"
 #include "../../Core/Texture.hpp"
 #include "../../Core/Timer.hpp"
+#include "../../Core/Updatable.hpp"
 
 namespace Bomberman {
-    class ConsoleLayer : public Layer, public Logger {
+    class ConsoleLayer : public Drawable, public Updatable, public Logger {
     public:
         ConsoleLayer();
         

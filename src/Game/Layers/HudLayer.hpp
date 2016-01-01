@@ -9,11 +9,12 @@
 #ifndef __HudLayer__hpp__
 #define __HudLayer__hpp__
 
-#include "../../Core/Layer.hpp"
+#include "../../Core/Drawable.hpp"
 #include "../../Core/Texture.hpp"
+#include "../../Core/Updatable.hpp"
 
 namespace Bomberman {
-    class HudLayer : public Layer {
+    class HudLayer : public Drawable, public Updatable {
     public:
         void draw();
         void update();

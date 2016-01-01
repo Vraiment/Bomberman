@@ -13,8 +13,9 @@
 #include "../Constants.hpp"
 #include "../CommandFactory.hpp"
 #include "../../Core/CommandQueue.hpp"
-#include "../../Core/Layer.hpp"
 #include "../Elements/Player.hpp"
+#include "../../Core/Drawable.hpp"
+#include "../../Core/Updatable.hpp"
 
 using namespace std;
 using namespace Bomberman::Constants;
@@ -32,12 +33,14 @@ namespace Bomberman {
         this->consoleEventListener = consoleEventListener;
     }
     
-    void PlayerEvents::setMainMenuLayer(shared_ptr<Layer> mainMenuLayer) {
-        this->mainMenuLayer = mainMenuLayer;
+    void PlayerEvents::setMainMenuLayer(shared_ptr<Drawable> mainMenuDrawable, shared_ptr<Updatable> updatable) {
+        this->mainMenuDrawable = mainMenuDrawable;
+        this->mainMenuUpdatable = mainMenuUpdatable;
     }
     
-    void PlayerEvents::addInGameLayer(shared_ptr<Layer> inGameLayer) {
-        inGameLayers.push_back(inGameLayer);
+    void PlayerEvents::addInGameLayer(shared_ptr<Drawable> inGameDrawable, shared_ptr<Updatable> inGameUpdatable) {
+        inGameDrawables.push_back(inGameDrawable);
+        inGameUpdatables.push_back(inGameUpdatable);
     }
     
     void PlayerEvents::listenEvent(SDL_Event event) {
@@ -46,15 +49,18 @@ namespace Bomberman {
         if (player->isDead()) {
             if (player->getLifesCount() <= 0) {
                 if (SDL_KEYUP == event.type) {
-                    while (!inGameLayers.empty()) {
-                        inGameLayers.back()->finish();
-                        inGameLayers.pop_back();
+                    while (!inGameDrawables.empty()) {
+                        inGameDrawables.back()->finish();
+                        inGameDrawables.pop_back();
+                        
+                        inGameUpdatables.back()->finish();
+                        inGameUpdatables.pop_back();
                     }
                     
                     consoleEventListener->finish();
                     
-                    mainMenuLayer->shouldDraw(true);
-                    mainMenuLayer->shouldUpdate(true);
+                    mainMenuDrawable->enable();
+                    mainMenuUpdatable->enable();
                     
                     finish();
                 }

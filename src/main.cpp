@@ -9,10 +9,9 @@
 #include <memory>
 
 #include "Core/Engine.hpp"
-#include "Core/EventListenerQueue.hpp"
-#include "Core/LayerQueue.hpp"
 #include "Core/MainLoop.hpp"
 #include "Core/Screen.hpp"
+#include "Core/ScreenManager.hpp"
 
 #include "Game/Configuration.hpp"
 #include "Game/EventListeners/MenuEventListener.hpp"
@@ -35,11 +34,11 @@ int main(int argc, char* argv[]) {
         
         mainMenuLayer->load(screen->renderer());
         mainMenuLayer->setLoopQuiter(loop.quiter());
-        mainMenuLayer->setEventListenerQueue(screen->getEventListenerQueue());
-        mainMenuLayer->setLayerQueue(screen->getLayerQueue());
+        mainMenuLayer->setScreenManager(screen->getScreenManager());
         
-        screen->getLayerQueue()->addLayer(mainMenuLayer);
-        screen->getEventListenerQueue()->addEventListener(mainMenuEvents);
+        screen->getScreenManager()->addDrawable(mainMenuLayer);
+        screen->getScreenManager()->addUpdatable(mainMenuLayer);
+        screen->getScreenManager()->addEventListener(mainMenuEvents);
         
         //Game
         loop.addScreen(screen);

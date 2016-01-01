@@ -11,25 +11,12 @@
 
 union SDL_Event;
 
+#include "ScreenComponent.hpp"
+
 namespace Bomberman {
-    class EventListener {
+    class EventListener : public ScreenComponent {
     public:
-        EventListener();
-        virtual ~EventListener() { }
-        
         virtual void listenEvent(SDL_Event event) = 0;
-        
-        bool isEnabled() const;
-        
-        void enable();
-        void disable();
-        
-        bool isFinished() const;
-        void finish();
-        
-    private:
-        bool _enabled;
-        bool finished;
     };
 }
 

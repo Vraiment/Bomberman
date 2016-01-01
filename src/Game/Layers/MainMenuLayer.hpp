@@ -11,16 +11,17 @@
 
 #include <memory>
 
-#include "../../Core/Layer.hpp"
+#include "../../Core/Drawable.hpp"
+#include "../../Core/Updatable.hpp"
+
 #include "../../Core/Math/Coordinate.hpp"
 #include "../../Core/Texture.hpp"
 
 namespace Bomberman {
-    class EventListenerQueue;
-    class LayerQueue;
     class LoopQuiter;
+    class ScreenManager;
     
-    class MainMenuLayer : public Layer, public std::enable_shared_from_this<MainMenuLayer> {
+    class MainMenuLayer : public Drawable, public Updatable, public std::enable_shared_from_this<MainMenuLayer> {
     public:
         MainMenuLayer();
         
@@ -30,8 +31,7 @@ namespace Bomberman {
         void select(Coordinate position);
         void click(Coordinate position);
         
-        void setEventListenerQueue(std::shared_ptr<EventListenerQueue> eventListenerQueue);
-        void setLayerQueue(std::shared_ptr<LayerQueue> layerManager);
+        void setScreenManager(std::shared_ptr<ScreenManager> screenManager);
         void setLoopQuiter(std::shared_ptr<LoopQuiter> loopQuiter);
         
         void load(std::shared_ptr<SDL_Renderer> renderer);
@@ -45,10 +45,9 @@ namespace Bomberman {
         Texture *selected;
         Texture startGame;
         Texture exit;
-        std::shared_ptr<LayerQueue> layerQueue;
         std::shared_ptr<LoopQuiter> loopQuiter;
         std::shared_ptr<SDL_Renderer> renderer;
-        std::shared_ptr<EventListenerQueue> eventListenerQueue;
+        std::shared_ptr<ScreenManager> screenManager;
     };
 }
 

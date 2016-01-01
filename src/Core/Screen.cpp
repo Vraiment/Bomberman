@@ -10,44 +10,37 @@
 
 #include <SDL2/SDL.h>
 
+#include <queue>
+
 #include "EventListener.hpp"
-#include "EventListenerQueue.hpp"
-#include "Layer.hpp"
-#include "LayerQueue.hpp"
+#include "Drawable.hpp"
 #include "Log/LogSystem.h"
+#include "ScreenManager.hpp"
+#include "Updatable.hpp"
 
 using namespace std;
 
 namespace Bomberman {
-    class Screen::EventListenerQueueImpl : public EventListenerQueue {
+    class ScreenManagerImpl : public ScreenManager {
     public:
-        shared_ptr<EventListener> getNewEventListener() {
-            shared_ptr<EventListener> nextEventListener;
-            
-            if (!eventListeners.empty()) {
-                nextEventListener = eventListeners.front();
-                eventListeners.pop();
-            }
-            
-            return nextEventListener;
+        void addEventListener(shared_ptr<EventListener> eventListener) {
+            eventListeners.push(eventListener);
         }
+        
+        void addDrawable(shared_ptr<Drawable> drawable) {
+            drawables.push(drawable);
+        }
+        
+        void addUpdatable(shared_ptr<Updatable> updatable) {
+            updatables.push(updatable);
+        }
+        
+        queue<shared_ptr<EventListener>> eventListeners;
+        queue<shared_ptr<Drawable>> drawables;
+        queue<shared_ptr<Updatable>> updatables;
     };
     
-    class Screen::LayerQueueImpl : public LayerQueue {
-    public:
-        shared_ptr<Layer> getNewLayer() {
-            shared_ptr<Layer> nextLayer;
-            
-            if (!layers.empty()) {
-                nextLayer = layers.front();
-                layers.pop();
-            }
-            
-            return nextLayer;
-        }
-    };
-    
-    Screen::Screen(int width, int height, string name) : _name(name), _rectangle(0, 0, width, height), eventListenerQueue(new EventListenerQueueImpl()), layerQueue(new LayerQueueImpl()) {
+    Screen::Screen(int width, int height, string name) : _name(name), _rectangle(0, 0, width, height), screenManager(new ScreenManagerImpl()) {
         SDL_Window *w = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, _rectangle.width, _rectangle.height, SDL_WINDOW_SHOWN);
         
         if (w == nullptr) {
@@ -76,9 +69,9 @@ namespace Bomberman {
     }
     
     void Screen::draw() {
-        for (auto layer : layers) {
-            if (layer->shouldDraw()) {
-                layer->draw();
+        for (auto drawable : drawables) {
+            if (drawable->isEnabled()) {
+                drawable->draw();
             }
         }
     }
@@ -92,9 +85,9 @@ namespace Bomberman {
     }
     
     void Screen::update() {
-        for (auto layer : layers) {
-            if (layer->shouldUpdate()) {
-                layer->update();
+        for (auto updatable : updatables) {
+            if (updatable->isEnabled()) {
+                updatable->update();
             }
         }
     }
@@ -160,12 +153,8 @@ namespace Bomberman {
         return _renderer;
     }
     
-    shared_ptr<EventListenerQueue> Screen::getEventListenerQueue() const {
-        return eventListenerQueue;
-    }
-    
-    shared_ptr<LayerQueue> Screen::getLayerQueue() const {
-        return layerQueue;
+    shared_ptr<ScreenManager> Screen::getScreenManager() {
+        return screenManager;
     }
     
     void Screen::refreshScreen() {
@@ -173,32 +162,38 @@ namespace Bomberman {
             return eventListener->isFinished();
         });
         
-        auto newEventListener = eventListenerQueue->getNewEventListener();
-        while (newEventListener) {
-            eventListeners.push_back(newEventListener);
-            
-            newEventListener = eventListenerQueue->getNewEventListener();
-        }
-        
-        layers.remove_if([] (shared_ptr<Layer> layer) {
-            return layer->isFinished();
+        drawables.remove_if([] (shared_ptr<Drawable> drawable) {
+            return drawable->isFinished();
         });
         
-        auto newLayer = layerQueue->getNewLayer();
-        while (newLayer) {
-            layers.push_back(newLayer);
-            newLayer->screenSizeChanged(Rectangle(), rectangle());
+        updatables.remove_if([] (shared_ptr<Updatable> updatable) {
+            return updatable->isFinished();
+        });
+        
+        auto screenManager = dynamic_pointer_cast<ScreenManagerImpl>(this->screenManager);
+        
+        while (!screenManager->eventListeners.empty()) {
+            auto eventListener = screenManager->eventListeners.front();
+            screenManager->eventListeners.pop();
             
-            newLayer = layerQueue->getNewLayer();
+            eventListeners.push_back(eventListener);
         }
-    }
-    
-    void Screen::clearEventListeners() {
-        eventListeners.clear();
-    }
-    
-    void Screen::clearLayers() {
-        layers.clear();
+        
+        while (!screenManager->drawables.empty()) {
+            auto drawable = screenManager->drawables.front();
+            screenManager->drawables.pop();
+            
+            drawables.push_back(drawable);
+            
+            drawable->screenSizeChanged(Rectangle(), rectangle());
+        }
+        
+        while (!screenManager->updatables.empty()) {
+            auto updatable = screenManager->updatables.front();
+            screenManager->updatables.pop();
+            
+            updatables.push_back(updatable);
+        }
     }
     
     void Screen::nameChanged(string prevName) {
@@ -206,8 +201,8 @@ namespace Bomberman {
     }
     
     void Screen::sizeChanged(Rectangle previousSize) {
-        for (auto layer : layers) {
-            layer->screenSizeChanged(previousSize, rectangle());
+        for (auto drawable : drawables) {
+            drawable->screenSizeChanged(previousSize, rectangle());
         }
     }
     

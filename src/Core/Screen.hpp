@@ -21,9 +21,9 @@ class SDL_Window;
 
 namespace Bomberman {
     class EventListener;
-    class EventListenerQueue;
-    class Layer;
-    class LayerQueue;
+    class Drawable;
+    class ScreenManager;
+    class Updatable;
     
     class Screen {
     public:
@@ -46,31 +46,27 @@ namespace Bomberman {
         
         std::shared_ptr<SDL_Renderer> renderer() const;
         
-        std::shared_ptr<EventListenerQueue> getEventListenerQueue() const;
-        std::shared_ptr<LayerQueue> getLayerQueue() const;
+        std::shared_ptr<ScreenManager> getScreenManager();
         
         void refreshScreen();
-        void clearEventListeners();
-        void clearLayers();
         
     protected:
         virtual void nameChanged(std::string prevName);
         virtual void sizeChanged(Rectangle previousSize);
         
     private:
-        class EventListenerQueueImpl;
-        class LayerQueueImpl;
-        
         void refreshSize(Rectangle previousSize);
         
         std::string _name;
         std::shared_ptr<SDL_Window> window;
         std::shared_ptr<SDL_Renderer> _renderer;
         Rectangle _rectangle;
+        
+        std::shared_ptr<ScreenManager> screenManager;
+        
         std::list<std::shared_ptr<EventListener>> eventListeners;
-        std::shared_ptr<EventListenerQueueImpl> eventListenerQueue;
-        std::list<std::shared_ptr<Layer>> layers;
-        std::shared_ptr<LayerQueueImpl> layerQueue;
+        std::list<std::shared_ptr<Drawable>> drawables;
+        std::list<std::shared_ptr<Updatable>> updatables;
     };
 }
 

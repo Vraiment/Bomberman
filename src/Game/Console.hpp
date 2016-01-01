@@ -19,11 +19,11 @@ namespace Bomberman {
     class CommandQueue;
     class ConsoleLayer;
     class EventListener;
-    class Layer;
+    class Updatable;
     
     class Console {
     public:
-        Console(std::shared_ptr<CommandFactory> commandFactory, std::shared_ptr<CommandQueue> commandQueue, std::shared_ptr<ConsoleLayer> consoleLayer, std::shared_ptr<Layer> gameLayer, std::shared_ptr<EventListener> playerEvents);
+        Console(std::shared_ptr<CommandFactory> commandFactory, std::shared_ptr<CommandQueue> commandQueue, std::shared_ptr<ConsoleLayer> consoleLayer, std::shared_ptr<Updatable> gameLayer, std::shared_ptr<EventListener> playerEvents);
         
         bool visible() const;
         
@@ -43,7 +43,7 @@ namespace Bomberman {
         std::shared_ptr<CommandQueue> commandQueue;
         std::shared_ptr<EventListener> playerEvents;
         std::shared_ptr<ConsoleLayer> consoleLayer;
-        std::shared_ptr<Layer> gameLayer;
+        std::shared_ptr<Updatable> gameLayer;
         
         Parser parser;
     };

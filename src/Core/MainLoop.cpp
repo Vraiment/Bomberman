@@ -12,7 +12,6 @@
 
 #include "CommandQueue.hpp"
 #include "EventListener.hpp"
-#include "EventListenerQueue.hpp"
 #include "Log/Log.hpp"
 #include "Log/LogLevel.hpp"
 #include "LoopQuiter.hpp"

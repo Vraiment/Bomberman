@@ -19,7 +19,7 @@ namespace Bomberman {
     const int ConsoleLayer::QUEUE_SIZE = 15;
     
     ConsoleLayer::ConsoleLayer() : drawCursor(true) {
-        shouldDraw(false);
+        Drawable::disable();
         cursorBlink.start();
     }
     

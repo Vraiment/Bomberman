@@ -24,11 +24,6 @@ namespace Bomberman {
     void MenuEventListener::listenEvent(SDL_Event event) {
         Coordinate position;
         
-        if (menu->isFinished()) {
-            finish();
-            return;
-        }
-        
         if (SDL_MOUSEBUTTONDOWN == event.type) {
             SDL_GetMouseState(&position.i, &position.j);
             

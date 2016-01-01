@@ -12,34 +12,35 @@
 
 #include "../Core/CommandQueue.hpp"
 #include "../Core/EventListener.hpp"
-#include "../Core/Layer.hpp"
 #include "Layers/ConsoleLayer.hpp"
 #include "../Core/Log/LogSystem.h"
+#include "../Core/Updatable.hpp"
 
 using namespace std;
 
 namespace Bomberman {
     const int Console::BUFFER_SIZE = 80;
     
-    Console::Console(shared_ptr<CommandFactory> commandFactory, shared_ptr<CommandQueue> commandQueue, shared_ptr<ConsoleLayer> consoleLayer, shared_ptr<Layer> gameLayer, shared_ptr<EventListener> playerEvents) : parser(commandFactory), commandQueue(commandQueue), consoleLayer(consoleLayer), gameLayer(gameLayer), playerEvents(playerEvents) {
+    Console::Console(shared_ptr<CommandFactory> commandFactory, shared_ptr<CommandQueue> commandQueue, shared_ptr<ConsoleLayer> consoleLayer, shared_ptr<Updatable> gameLayer, shared_ptr<EventListener> playerEvents) : parser(commandFactory), commandQueue(commandQueue), consoleLayer(consoleLayer), gameLayer(gameLayer), playerEvents(playerEvents) {
         
     }
     
     bool Console::visible() const {
-        return consoleLayer->shouldDraw();
+        return consoleLayer->Drawable::isEnabled();
     }
     
     void Console::hide() {
-        consoleLayer->shouldDraw(false);
-        gameLayer->shouldUpdate(true);
+        consoleLayer->Drawable::disable();
+        gameLayer->enable();
         playerEvents->enable();
         
         SDL_StopTextInput();
     }
     
     void Console::show() {
-        consoleLayer->shouldDraw(true);
-        gameLayer->shouldUpdate(false);
+        consoleLayer->Drawable::enable();
+        
+        gameLayer->Updatable::disable();
         playerEvents->disable();
         
         SDL_StartTextInput();

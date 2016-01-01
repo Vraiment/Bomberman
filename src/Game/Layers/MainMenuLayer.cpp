@@ -10,11 +10,9 @@
 
 #include "../CommandFactory.hpp"
 #include "../Console.hpp"
-#include "../../Core/EventListenerQueue.hpp"
 #include "../EventListeners/ConsoleEvents.hpp"
 #include "../EventListeners/PlayerEvents.hpp"
 #include "../../Core/Font.hpp"
-#include "../../Core/LayerQueue.hpp"
 #include "../Layers/ConsoleLayer.hpp"
 #include "../Layers/GameLayer.hpp"
 #include "../Layers/HudLayer.hpp"
@@ -22,6 +20,7 @@
 #include "../Map/TileMap.hpp"
 #include "../Map/TxtTileMapLoader.hpp"
 #include "../../Core/Log/LogSystem.h"
+#include "../../Core/ScreenManager.hpp"
 
 using namespace std;
 
@@ -53,7 +52,7 @@ namespace Bomberman {
             auto commandQueue = gameLayer->getCommandQueue();
             
             shared_ptr<PlayerEvents> playerEvents(new PlayerEvents(commandFactory, commandQueue, tileMap->player()));
-            eventListenerQueue->addEventListener(playerEvents);
+            screenManager->addEventListener(playerEvents);
             
             shared_ptr<ConsoleLayer> consoleLayer(new ConsoleLayer());
             consoleLayer->load(renderer);
@@ -61,26 +60,29 @@ namespace Bomberman {
             shared_ptr<Console> console(new Console(commandFactory, commandQueue, consoleLayer, gameLayer, playerEvents));
             
             shared_ptr<ConsoleEvents> consoleEvents(new ConsoleEvents(console));
-            eventListenerQueue->addEventListener(consoleEvents);
+            screenManager->addEventListener(consoleEvents);
             
             shared_ptr<HudLayer> hudLayer(new HudLayer());
             hudLayer->load(renderer);
             
-            layerQueue->addLayer(gameLayer);
-            layerQueue->addLayer(hudLayer);
-            layerQueue->addLayer(consoleLayer);
+            screenManager->addDrawable(gameLayer);
+            screenManager->addUpdatable(gameLayer);
+            screenManager->addDrawable(hudLayer);
+            screenManager->addDrawable(consoleLayer);
+            screenManager->addUpdatable(consoleLayer);
             
-            playerEvents->addInGameLayer(gameLayer);
-            playerEvents->addInGameLayer(hudLayer);
-            playerEvents->addInGameLayer(consoleLayer);
+            playerEvents->addInGameLayer(gameLayer, gameLayer);
+            playerEvents->addInGameLayer(hudLayer, hudLayer);
+            playerEvents->addInGameLayer(consoleLayer, consoleLayer);
             playerEvents->setConsoleEventListener(consoleEvents);
-            playerEvents->setMainMenuLayer(shared_from_this());
+            auto self = shared_from_this();
+            playerEvents->setMainMenuLayer(self, self);
             
             Log::get().addLogger(consoleLayer);
             
             shouldStartGame = false;
-            shouldDraw(false);
-            shouldUpdate(false);
+            Drawable::disable();
+            Updatable::disable();
         } else if (shouldExit) {
             loopQuiter->quitLoop();
         }
@@ -120,12 +122,8 @@ namespace Bomberman {
         }
     }
     
-    void MainMenuLayer::setEventListenerQueue(shared_ptr<EventListenerQueue> eventListenerQueue) {
-        this->eventListenerQueue = eventListenerQueue;
-    }
-    
-    void MainMenuLayer::setLayerQueue(shared_ptr<LayerQueue> layerQueue) {
-        this->layerQueue = layerQueue;
+    void MainMenuLayer::setScreenManager(shared_ptr<ScreenManager> screenManager) {
+        this->screenManager = screenManager;
     }
     
     void MainMenuLayer::setLoopQuiter(shared_ptr<LoopQuiter> loopQuiter) {

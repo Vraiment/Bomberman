@@ -9,7 +9,8 @@
 #ifndef __GameLayer__hpp__
 #define __GameLayer__hpp__
 
-#include "../../Core/Layer.hpp"
+#include "../../Core/Drawable.hpp"
+#include "../../Core/Updatable.hpp"
 
 #include <memory>
 #include <string>
@@ -23,7 +24,7 @@ namespace Bomberman {
     class CommandQueue;
     class TileMap;
     
-    class GameLayer : public Layer {
+    class GameLayer : public Drawable, public Updatable {
     public:
         GameLayer();
         
