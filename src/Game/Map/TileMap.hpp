@@ -52,6 +52,7 @@ namespace Bomberman {
         bool tileHasBrick(Coordinate tile) const;
         bool tileHasBomb(Coordinate tile) const;
         bool gameOver() const;
+        bool playerWins() const;
         bool doorDestroyed() const;
         Coordinate doorPosition() const;
         
@@ -71,6 +72,7 @@ namespace Bomberman {
         Timer playerRespawn;
         bool _explodeBomb;
         bool _gameOver;
+        bool _playerWins;
         
         void updateEnemies();
         void updateBombs();

@@ -32,7 +32,7 @@ using namespace Bomberman::Constants;
 namespace Bomberman {
     const int TileMap::playerRespawnTime = 2000;
     
-    TileMap::TileMap(shared_ptr<TileMapBuilder> builder) : _explodeBomb(false), _gameOver(false), _doorDestroyed(false) {
+    TileMap::TileMap(shared_ptr<TileMapBuilder> builder) : _explodeBomb(false), _gameOver(false), _doorDestroyed(false), _playerWins(false) {
         if (!builder) {
             Log::get() << "Invalid information to create map." << NullArgumentException();
         }
@@ -223,6 +223,10 @@ namespace Bomberman {
                 _player->respawn();
                 playerRespawn.stop();
             }
+        } else if (_player->position() == _doorPosition && _enemies.empty()) {
+            _playerWins = true;
+            
+            Log::get() << "Player wins" << LogLevel::info;
         }
     }
     
