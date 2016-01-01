@@ -55,6 +55,7 @@ namespace Bomberman {
         bool playerWins() const;
         bool doorDestroyed() const;
         Coordinate doorPosition() const;
+        int enemiesLeft() const;
         
     private:
         static const int playerRespawnTime;

@@ -274,6 +274,10 @@ namespace Bomberman {
         return _doorPosition;
     }
     
+    int TileMap::enemiesLeft() const {
+        return (int)_enemies.size();
+    }
+    
     void TileMap::updateEnemies() {
         shared_ptr<TileMap> ptr = shared_from_this();
         

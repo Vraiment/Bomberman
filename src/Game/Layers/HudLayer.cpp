@@ -47,13 +47,22 @@ namespace Bomberman {
         extraBomb.draw();
         Rectangle area = extraBomb.rectangle();
         area.i -= remote.rectangle().width;
-        drawNumber(player->maxBombs() - tileMap->bombCount(), area);;
+        drawNumber(player->maxBombs() - tileMap->bombCount(), area);
         
         explosion.rectangle().i = extraBomb.rectangle().right() + (extraBomb.rectangle().width * 2);
         explosion.draw();
         area = explosion.rectangle();
         area.i -= extraBomb.rectangle().width;
         drawNumber(player->getExplosionSize(), area);
+        
+        area.i = hud.rectangle().right() - TILE_WIDTH;
+        area.j = hud.rectangle().i;
+        area.width = TILE_WIDTH;
+        area.height = TILE_HEIGHT;
+        drawNumber(tileMap->enemiesLeft(), area);
+        enemiesLeft.rectangle().i = area.i - enemiesLeft.rectangle().width;
+        enemiesLeft.rectangle().j = area.heightCenter() - (enemiesLeft.rectangle().height / 2);
+        enemiesLeft.draw();
         
         if (player->getLifesCount() == 0) {
             background.draw();
@@ -122,6 +131,8 @@ namespace Bomberman {
         for (int n = 0; n < 10; ++n) {
             digits[n] = font.write(string(1, '0' + n));
         }
+        
+        enemiesLeft = font.write("Enemies left:");
     }
     
     void HudLayer::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {

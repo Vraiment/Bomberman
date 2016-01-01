@@ -36,6 +36,7 @@ namespace Bomberman {
         Texture background;
         Texture gameOver, continueText;
         Texture digits[10];
+        Texture enemiesLeft;
         std::shared_ptr<TileMap> tileMap;
         std::shared_ptr<Player> player;
         
