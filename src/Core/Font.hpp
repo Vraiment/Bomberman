@@ -30,6 +30,8 @@ namespace Bomberman {
         std::string name() const;
         int size() const;
         
+        void setUnderLine();
+        
     private:
         bool _loaded;
         std::shared_ptr<SDL_Renderer> renderer;

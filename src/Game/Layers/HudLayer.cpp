@@ -37,6 +37,7 @@ namespace Bomberman {
         if (player->getLifesCount() == 0) {
             background.draw();
             gameOver.draw();
+            continueText.draw();
         }
     }
     
@@ -64,7 +65,11 @@ namespace Bomberman {
         remote.rectangle().height = TILE_HEIGHT;
         
         Font font("PressStart2P.ttf", 75, renderer);
+        font.setUnderLine();
         gameOver = font.write("GAME OVER", Color::RED);
+        
+        font = Font("PressStart2P.ttf", 25, renderer);
+        continueText = font.write("Press any key to return...", Color::RED);
         
         background = Texture::createRectangle(1, 1, Color::BLACK, renderer);
         background.setAlpha(Texture::OPAQUE * .50);
@@ -75,6 +80,9 @@ namespace Bomberman {
         
         gameOver.rectangle().i = newSize.widthCenter() - gameOver.rectangle().widthCenter();
         gameOver.rectangle().j = newSize.heightCenter() - gameOver.rectangle().heightCenter();
+        
+        continueText.rectangle().i = newSize.widthCenter() - continueText.rectangle().widthCenter();
+        continueText.rectangle().j = gameOver.rectangle().bottom() + 10;
         
         background.rectangle() = newSize;
     }

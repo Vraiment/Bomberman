@@ -32,7 +32,7 @@ namespace Bomberman {
         Texture life;
         Texture extraBomb, remote;
         Texture background;
-        Texture gameOver;
+        Texture gameOver, continueText;
         std::shared_ptr<Player> player;
     };
 }

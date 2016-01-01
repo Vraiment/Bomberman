@@ -68,6 +68,10 @@ namespace Bomberman {
         return _size;
     }
     
+    void Font::setUnderLine() {
+        TTF_SetFontStyle(font.get(), TTF_STYLE_UNDERLINE);
+    }
+    
     string Font::fontId() const {
         stringstream id;
         
