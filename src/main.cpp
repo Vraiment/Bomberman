@@ -35,6 +35,7 @@ int main(int argc, char* argv[]) {
         mainMenuLayer->load(screen->renderer());
         mainMenuLayer->setLoopQuiter(loop.quiter());
         mainMenuLayer->setScreenManager(screen->getScreenManager());
+        mainMenuLayer->setStartMap(config.startMap());
         
         screen->getScreenManager()->addDrawable(mainMenuLayer);
         screen->getScreenManager()->addUpdatable(mainMenuLayer);

@@ -33,6 +33,7 @@ namespace Bomberman {
         
         void setScreenManager(std::shared_ptr<ScreenManager> screenManager);
         void setLoopQuiter(std::shared_ptr<LoopQuiter> loopQuiter);
+        void setStartMap(std::string startMap);
         
         void load(std::shared_ptr<SDL_Renderer> renderer);
         
@@ -48,6 +49,7 @@ namespace Bomberman {
         std::shared_ptr<LoopQuiter> loopQuiter;
         std::shared_ptr<SDL_Renderer> renderer;
         std::shared_ptr<ScreenManager> screenManager;
+        std::string startMap;
     };
 }
 

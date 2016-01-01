@@ -25,9 +25,9 @@
 using namespace std;
 
 namespace Bomberman {
-    shared_ptr<TileMap> loadTileMap() {
+    shared_ptr<TileMap> loadTileMap(string startMap) {
         TxtTileMapLoader mapLoader;
-        shared_ptr<TileMapBuilder> builder = mapLoader.load("map1.txt");
+        shared_ptr<TileMapBuilder> builder = mapLoader.load(startMap);
         shared_ptr<TileMap> tileMap(new TileMap(builder));
         
         return tileMap;
@@ -41,7 +41,7 @@ namespace Bomberman {
     
     void MainMenuLayer::update() {
         if (shouldStartGame) {
-            auto tileMap = loadTileMap();
+            auto tileMap = loadTileMap(startMap);
             
             shared_ptr<GameLayer> gameLayer(new GameLayer());
             gameLayer->load(renderer);
@@ -132,6 +132,10 @@ namespace Bomberman {
     
     void MainMenuLayer::setLoopQuiter(shared_ptr<LoopQuiter> loopQuiter) {
         this->loopQuiter = loopQuiter;
+    }
+    
+    void MainMenuLayer::setStartMap(string startMap) {
+        this->startMap = startMap;
     }
     
     void MainMenuLayer::load(shared_ptr<SDL_Renderer> renderer) {

@@ -29,7 +29,7 @@ namespace Bomberman {
     }
     
     bool Configuration::load(string fileName) {
-        XMLDocument file;
+        XMLDocument file(true, COLLAPSE_WHITESPACE);
         bool result = false;
         
         if (_loaded) {
@@ -41,6 +41,7 @@ namespace Bomberman {
             
             loadViewport(root->FirstChildElement(CFG_VIEWPORT.c_str()));
             loadLoggers(root->FirstChildElement(CFG_LOGGERS.c_str()));
+            loadStartMap(root->FirstChildElement(CFG_START_MAP.c_str()));
             
             Log::get() << "Using configuration file \"" << fileName << "\"." << LogLevel::info;
             
@@ -86,8 +87,13 @@ namespace Bomberman {
         return _viewportHeight;
     }
     
+    string Configuration::startMap() const {
+        return _startMap;
+    }
+    
     void Configuration::defaults() {
         _fileName = CFG_NULLFILE;
+        _startMap.clear();
         
         loadViewport(nullptr);
         loadLoggers(nullptr);
@@ -158,5 +164,13 @@ namespace Bomberman {
             auto logger = LoggerFactory::get().getLogger(loggerName->GetText());
             Log::get().addLogger(logger);
         }
+    }
+    
+    void Configuration::loadStartMap(void *ptr) {
+        XMLElement *node = (XMLElement *)ptr;
+        
+        if (node == nullptr) return;
+        
+        _startMap = node->GetText();
     }
 }

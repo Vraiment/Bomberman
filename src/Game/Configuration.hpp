@@ -25,14 +25,18 @@ namespace Bomberman {
         int viewportWidth() const;
         int viewportHeight() const;
         
+        std::string startMap() const;
+        
     private:
         void defaults();
         void loadViewport(void *);
         void loadLoggers(void *);
+        void loadStartMap(void *);
         
         bool _loaded;
         std::string _fileName;
         std::string _viewportTitle;
+        std::string _startMap;
         int _viewportWidth;
         int _viewportHeight;
     };

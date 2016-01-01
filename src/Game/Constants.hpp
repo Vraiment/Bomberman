@@ -29,6 +29,7 @@ namespace Bomberman {
         const std::string CFG_HEIGHT = "height";
         const std::string CFG_LOGGERS = "loggers";
         const std::string CFG_LOGGER = "logger";
+        const std::string CFG_START_MAP = "start_map";
         
         // Map file
         const std::string MAP_CMD_NAME = "name";
