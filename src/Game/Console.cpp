@@ -79,6 +79,10 @@ namespace Bomberman {
     }
     
     void Console::commitBuffer() {
+        if (buffer.empty()) {
+            return;
+        }
+        
         Log::get() << buffer << LogLevel::info;
         auto cmds = parser.parse(buffer);
         
