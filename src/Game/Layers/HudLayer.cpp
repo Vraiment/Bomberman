@@ -12,6 +12,7 @@
 #include "GameLayer.hpp"
 #include "../../Core/Math/Rectangle.hpp"
 #include "../../Core/Color.hpp"
+#include "../../Core/Font.hpp"
 #include "../Elements/Player.hpp"
 
 using namespace Bomberman::Constants;
@@ -31,6 +32,11 @@ namespace Bomberman {
         for (int n = player->getLifesCount(); n < player->getMaxLifes(); ++n) {
             life.rectangle().i = n * life.rectangle().height;
             life.draw();
+        }
+        
+        if (player->getLifesCount() == 0) {
+            background.draw();
+            gameOver.draw();
         }
     }
     
@@ -56,9 +62,20 @@ namespace Bomberman {
         
         remote = Texture("remote.png", renderer);
         remote.rectangle().height = TILE_HEIGHT;
+        
+        Font font("PressStart2P.ttf", 75, renderer);
+        gameOver = font.write("GAME OVER", Color::RED);
+        
+        background = Texture::createRectangle(1, 1, Color::BLACK, renderer);
+        background.setAlpha(Texture::OPAQUE * .50);
     }
     
     void HudLayer::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {
         hud.rectangle().width = newSize.width;
+        
+        gameOver.rectangle().i = newSize.widthCenter() - gameOver.rectangle().widthCenter();
+        gameOver.rectangle().j = newSize.heightCenter() - gameOver.rectangle().heightCenter();
+        
+        background.rectangle() = newSize;
     }
 }

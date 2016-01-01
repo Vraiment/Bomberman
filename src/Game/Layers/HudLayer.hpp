@@ -31,6 +31,8 @@ namespace Bomberman {
         Texture hud;
         Texture life;
         Texture extraBomb, remote;
+        Texture background;
+        Texture gameOver;
         std::shared_ptr<Player> player;
     };
 }

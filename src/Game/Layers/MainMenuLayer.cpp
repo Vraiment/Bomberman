@@ -101,14 +101,14 @@ namespace Bomberman {
                 selected->setColor(Color::WHITE);
             }
             
-            startGame.setColor(Color::RED);
+            startGame.setColor(Color::BLUE);
             selected =  &startGame;
         } else if (exit.rectangle().contains(position)) {
             if (selected && &exit != selected) {
                 selected->setColor(Color::WHITE);
             }
             
-            exit.setColor(Color::RED);
+            exit.setColor(Color::BLUE);
             selected = &exit;
         } else if (selected) {
             selected->setColor(Color::WHITE);
