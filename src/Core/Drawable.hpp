@@ -13,8 +13,6 @@
 
 #include <memory>
 
-struct SDL_Renderer;
-
 namespace Bomberman {
     class Rectangle;
     
