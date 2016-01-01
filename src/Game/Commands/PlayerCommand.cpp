@@ -17,6 +17,7 @@
 #include "../../Core/Log/LogLevel.hpp"
 #include "../Map/TileMap.hpp"
 #include "../../Core/Utils/Exception.hpp"
+#include "../../Core/Utils/StringUtils.hpp"
 
 using namespace std;
 using namespace Bomberman::Constants;
@@ -34,7 +35,18 @@ namespace Bomberman {
         } else if (command == MSG_SETBOMB) {
             setBomb();
         } else if (command == MSG_EXTRA_BOMB) {
-            player->addItem(Item::EXTRA_BOMB);
+            if (arguments.empty()) {
+                arguments.push_back("1");
+            }
+            
+            int ammount;
+            if (arguments.size() == 1 && StringUtils::tryParseInt(arguments[0], ammount)) {
+                for (int n =  0; n < ammount; ++n) {
+                    player->addItem(Item::EXTRA_BOMB);
+                }
+            } else {
+                Log::get() << "Command \"" << OBJ_PLAYER << "." << MSG_EXTRA_BOMB << "(int) requires one optional integer argument." << LogLevel::warning;
+            }
         } else if (command == MSG_INCREASE_RANGE) {
             player->addItem(Item::INCREASE_RANGE);
         } else if (command == MSG_IVINCIBLE) {
