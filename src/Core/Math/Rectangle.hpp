@@ -19,6 +19,9 @@ namespace Bomberman {
         
         int width, height;
         
+        int widthHalf() const;
+        int heightHalf() const;
+        
         int widthCenter() const;
         int heightCenter() const;
         int left() const;

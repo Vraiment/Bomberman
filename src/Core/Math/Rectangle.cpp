@@ -21,12 +21,20 @@ namespace Bomberman {
         
     }
     
+    int Rectangle::widthHalf() const {
+        return width / 2;
+    }
+    
+    int Rectangle::heightHalf() const {
+        return height / 2;
+    }
+    
     int Rectangle::widthCenter() const {
-        return i + (width / 2);
+        return i + widthHalf();
     }
     
     int Rectangle::heightCenter() const {
-        return j + (height / 2);
+        return j + heightHalf();
     }
     
     int Rectangle::left() const {
