@@ -122,7 +122,7 @@ namespace Bomberman {
         gameOver = font.write("GAME OVER", Color::RED);
         
         font = Font("PressStart2P.ttf", 25, renderer);
-        continueText = font.write("Press any key to return...", Color::RED);
+        continueText = font.write("Press enter to return...", Color::RED);
         
         background = Texture::createRectangle(1, 1, Color::BLACK, renderer);
         background.setAlpha(Texture::OPAQUE * .50);

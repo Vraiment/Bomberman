@@ -53,7 +53,7 @@ namespace Bomberman {
         
         if (player->isDead()) {
             if (player->getLifesCount() <= 0) {
-                if (SDL_KEYUP == event.type) {
+                if (SDL_KEYUP == event.type && SDLK_RETURN == event.key.keysym.sym) {
                     while (!inGameDrawables.empty()) {
                         inGameDrawables.back()->finish();
                         inGameDrawables.pop_back();
