@@ -69,6 +69,7 @@
 		5B8997461C35C875003AB8B0 /* Updatable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B8997441C35C875003AB8B0 /* Updatable.cpp */; };
 		5B8997491C35C8DF003AB8B0 /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B8997471C35C8DF003AB8B0 /* Drawable.cpp */; };
 		5B89974E1C360DCF003AB8B0 /* life.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B89974D1C360DA9003AB8B0 /* life.png */; };
+		5B8997511C366096003AB8B0 /* GameOverCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B89974F1C366096003AB8B0 /* GameOverCommand.cpp */; };
 		5B92289C1A10898E009ADD10 /* TxtTileMapLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B92289A1A10898E009ADD10 /* TxtTileMapLoader.cpp */; };
 		5B9382161B81A37B00C42269 /* QuitCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B9382141B81A37B00C42269 /* QuitCommand.cpp */; };
 		5B9382191B81A75700C42269 /* LoopQuiter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B9382171B81A75700C42269 /* LoopQuiter.cpp */; };
@@ -266,6 +267,8 @@
 		5B8997471C35C8DF003AB8B0 /* Drawable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Drawable.cpp; sourceTree = "<group>"; };
 		5B8997481C35C8DF003AB8B0 /* Drawable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Drawable.hpp; sourceTree = "<group>"; };
 		5B89974D1C360DA9003AB8B0 /* life.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = life.png; sourceTree = "<group>"; };
+		5B89974F1C366096003AB8B0 /* GameOverCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameOverCommand.cpp; sourceTree = "<group>"; };
+		5B8997501C366096003AB8B0 /* GameOverCommand.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameOverCommand.hpp; sourceTree = "<group>"; };
 		5B9228971A107EA7009ADD10 /* Constants.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Constants.hpp; sourceTree = "<group>"; };
 		5B92289A1A10898E009ADD10 /* TxtTileMapLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TxtTileMapLoader.cpp; sourceTree = "<group>"; };
 		5B92289B1A10898E009ADD10 /* TxtTileMapLoader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TxtTileMapLoader.hpp; sourceTree = "<group>"; };
@@ -433,6 +436,8 @@
 		5B3B82D21857AB5900CECE27 /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				5B89974F1C366096003AB8B0 /* GameOverCommand.cpp */,
+				5B8997501C366096003AB8B0 /* GameOverCommand.hpp */,
 				5B3B82D31857AB7800CECE27 /* PlayerCommand.cpp */,
 				5B3B82D41857AB7800CECE27 /* PlayerCommand.hpp */,
 				5B9382141B81A37B00C42269 /* QuitCommand.cpp */,
@@ -774,6 +779,7 @@
 				5BB4D82F1B7FCE380066077D /* ConsoleEvents.cpp in Sources */,
 				5B4C02BC1B80527D003FCB02 /* GameLayer.cpp in Sources */,
 				5B1817AD1C305F09001CDAD8 /* MenuEventListener.cpp in Sources */,
+				5B8997511C366096003AB8B0 /* GameOverCommand.cpp in Sources */,
 				5B4C02C81B80578D003FCB02 /* ConsoleLayer.cpp in Sources */,
 				5B5BB1C41856CEDA0019CAD1 /* CommandQueue.cpp in Sources */,
 				5BD6AD0518237F2D00E661DA /* Logger.cpp in Sources */,

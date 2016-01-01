@@ -9,6 +9,7 @@
 #include "CommandFactory.hpp"
 
 #include "Constants.hpp"
+#include "Commands/GameOverCommand.hpp"
 #include "Commands/PlayerCommand.hpp"
 #include "Commands/QuitCommand.hpp"
 #include "Elements/Player.hpp"
@@ -33,6 +34,10 @@ namespace Bomberman {
         this->tileMap = tileMap;
     }
     
+    void CommandFactory::setConsole(weak_ptr<Console> console) {
+        this->console = console;
+    }
+    
     void CommandFactory::setLoopQuiter(shared_ptr<LoopQuiter> loopQuiter) {
         this->loopQuiter = loopQuiter;
     }
@@ -47,6 +52,9 @@ namespace Bomberman {
         
         if (FUNC_EXIT == function) {
             result.reset(new QuitCommand(loopQuiter));
+        } else if (FUNC_GAME_OVER == function){
+            auto console = this->console.lock();
+            result.reset(new GameOverCommand(console, tileMap));
         } else {
             throw InvalidFunctionException();
         }

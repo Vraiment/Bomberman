@@ -58,6 +58,7 @@ namespace Bomberman {
             consoleLayer->load(renderer);
             
             shared_ptr<Console> console(new Console(commandFactory, commandQueue, consoleLayer, gameLayer, playerEvents));
+            gameLayer->getCommandFactory()->setConsole(console);
             
             shared_ptr<ConsoleEvents> consoleEvents(new ConsoleEvents(console));
             screenManager->addEventListener(consoleEvents);

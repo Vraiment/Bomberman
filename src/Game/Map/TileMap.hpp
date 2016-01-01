@@ -47,6 +47,7 @@ namespace Bomberman {
         void addBomb(Bomb bomb);
         int bombCount() const;
         void explodeBomb();
+        void endGame();
         
         bool tileHasBrick(Coordinate tile) const;
         bool tileHasBomb(Coordinate tile) const;

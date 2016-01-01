@@ -228,6 +228,14 @@ namespace Bomberman {
         _bombs.push_back(bomb);
     }
     
+    void TileMap::endGame() {
+        while (_player->getLifesCount() > 0) {
+            _player->die();
+        }
+        
+        _gameOver = true;
+    }
+    
     bool TileMap::tileHasBrick(Coordinate tile) const {
         for (auto brick = _bricks.begin(); brick != _bricks.end(); ++brick) {
             if (brick->position() == tile) {

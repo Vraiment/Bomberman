@@ -48,6 +48,7 @@ namespace Bomberman {
         
         // Functions
         const std::string FUNC_EXIT = "exit";
+        const std::string FUNC_GAME_OVER = "game_over";
         
         // Receivers
         const std::string OBJ_PLAYER = "player";
