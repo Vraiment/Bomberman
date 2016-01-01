@@ -45,7 +45,15 @@ namespace Bomberman {
         
         extraBomb.rectangle().i = remote.rectangle().right() + (remote.rectangle().width * 2);
         extraBomb.draw();
-        drawBombCount(extraBomb.rectangle());
+        Rectangle area = extraBomb.rectangle();
+        area.i -= remote.rectangle().width;
+        drawNumber(player->maxBombs() - tileMap->bombCount(), area);;
+        
+        explosion.rectangle().i = extraBomb.rectangle().right() + (extraBomb.rectangle().width * 2);
+        explosion.draw();
+        area = explosion.rectangle();
+        area.i -= extraBomb.rectangle().width;
+        drawNumber(player->getExplosionSize(), area);
         
         if (player->getLifesCount() == 0) {
             background.draw();
@@ -54,15 +62,15 @@ namespace Bomberman {
         }
     }
     
-    void HudLayer::drawBombCount(Rectangle area) {
-        string numberToDraw = to_string(player->maxBombs() - tileMap->bombCount());
+    void HudLayer::drawNumber(int numberToDraw, Rectangle area) {
+        string stringToDraw = to_string(numberToDraw);
         int digitWidth = digits->rectangle().width;
-        int totalSize = (int)numberToDraw.length() * digitWidth;
+        int totalSize = (int)stringToDraw.length() * digitWidth;
         int start = area.widthCenter() - (totalSize / 2);
         int j = area.heightCenter() - (digits->rectangle().height / 2);
         
-        for (int n = 0; n < numberToDraw.length(); ++n) {
-            char digit = numberToDraw[n];
+        for (int n = 0; n < stringToDraw.length(); ++n) {
+            char digit = stringToDraw[n];
             Texture *digitTexture = &digits[digit - '0'];
             digitTexture->rectangle().i = start + (n * digitWidth);
             digitTexture->rectangle().j = j;
@@ -96,6 +104,9 @@ namespace Bomberman {
         
         remote = Texture("remote.png", renderer);
         remote.rectangle().height = TILE_HEIGHT;
+        
+        explosion = Texture("explosion.png", renderer);
+        explosion.rectangle().height = TILE_HEIGHT;
         
         Font font("PressStart2P.ttf", 75, renderer);
         font.setUnderLine();

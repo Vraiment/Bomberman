@@ -32,14 +32,14 @@ namespace Bomberman {
     private:
         Texture hud;
         Texture life;
-        Texture extraBomb, remote;
+        Texture extraBomb, remote, explosion;
         Texture background;
         Texture gameOver, continueText;
         Texture digits[10];
         std::shared_ptr<TileMap> tileMap;
         std::shared_ptr<Player> player;
         
-        void drawBombCount(Rectangle area);
+        void drawNumber(int numberToDraw, Rectangle area);
     };
 }
 
