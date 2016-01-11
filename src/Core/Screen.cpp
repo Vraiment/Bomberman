@@ -97,6 +97,14 @@ namespace Bomberman {
         }
     }
     
+    void Screen::postUpdate() {
+        for (auto updatable : updatables) {
+            if (updatable->isEnabled()) {
+                updatable->postUpdate();
+            }
+        }
+    }
+    
     string Screen::name() const {
         return _name;
     }

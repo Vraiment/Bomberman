@@ -62,6 +62,10 @@ namespace Bomberman {
             }
             
             for (auto screen : screens) {
+                screen->postUpdate();
+            }
+            
+            for (auto screen : screens) {
                 screen->refreshScreen();
             }
         }

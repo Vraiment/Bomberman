@@ -33,6 +33,7 @@ namespace Bomberman {
         void listenEvent(SDL_Event event);
         void draw();
         void update();
+        void postUpdate();
         
         std::string name() const;
         int width() const;

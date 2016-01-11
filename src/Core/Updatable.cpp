@@ -7,3 +7,9 @@
 //
 
 #include "Updatable.hpp"
+
+namespace Bomberman {
+    void Updatable::postUpdate() {
+        
+    }
+}
