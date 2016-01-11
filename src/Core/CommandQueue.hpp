@@ -12,10 +12,12 @@
 #include <memory>
 #include <queue>
 
+#include "Updatable.hpp"
+
 namespace Bomberman {
     class Command;
     
-    class CommandQueue {
+    class CommandQueue : public Updatable {
     public:
         void addCommand(std::shared_ptr<Command> command);
         
