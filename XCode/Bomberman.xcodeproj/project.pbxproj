@@ -40,6 +40,7 @@
 		5B3D1311182C717A0070A335 /* tile1.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BD37AF5182219F300BB1C28 /* tile1.png */; };
 		5B3D1312182C717A0070A335 /* tile2.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BD37AF6182219F300BB1C28 /* tile2.png */; };
 		5B3D1314182C71A90070A335 /* map1.xml in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BF63CA818218A41001315AD /* map1.xml */; };
+		5B40BF9E1C44D8B2001A2805 /* LevelListLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B40BF9C1C44D8B2001A2805 /* LevelListLayer.cpp */; };
 		5B46E0ED1C2FECD20037426E /* remote.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B46E0EC1C2FECD20037426E /* remote.png */; };
 		5B46E0EE1C2FECD90037426E /* remote.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B46E0EC1C2FECD20037426E /* remote.png */; };
 		5B4A120118331CAB00C8A950 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4A11FE18331CAB00C8A950 /* background.png */; };
@@ -79,6 +80,7 @@
 		5BB4D82F1B7FCE380066077D /* ConsoleEvents.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BB4D82D1B7FCE380066077D /* ConsoleEvents.cpp */; };
 		5BB4D8321B7FD2F10066077D /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BB4D8301B7FD2F10066077D /* Console.cpp */; };
 		5BB4D8381B7FE6680066077D /* HudLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BB4D8361B7FE6680066077D /* HudLayer.cpp */; };
+		5BB79DAD1C45ADCC00E72350 /* map2.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BB79DAC1C45AD9E00E72350 /* map2.txt */; };
 		5BBB9E541820EB3F00726BC5 /* Engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BBB9E521820EB3F00726BC5 /* Engine.cpp */; };
 		5BBFCCA2185FFD910016F56A /* First.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BBFCC9E185FFD910016F56A /* First.cpp */; };
 		5BBFCCA3185FFD910016F56A /* Parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BBFCCA0185FFD910016F56A /* Parser.cpp */; };
@@ -154,6 +156,7 @@
 			dstPath = maps;
 			dstSubfolderSpec = 7;
 			files = (
+				5BB79DAD1C45ADCC00E72350 /* map2.txt in CopyFiles */,
 				5B2234771A16F57E005BDA1C /* map1.txt in CopyFiles */,
 				5B3D1314182C71A90070A335 /* map1.xml in CopyFiles */,
 			);
@@ -233,6 +236,8 @@
 		5B3B82DD1857CDC100CECE27 /* TokenFactory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TokenFactory.hpp; sourceTree = "<group>"; };
 		5B3B82DF1857CE3D00CECE27 /* Token.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Token.cpp; sourceTree = "<group>"; };
 		5B3B82E01857CE3D00CECE27 /* Token.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Token.hpp; sourceTree = "<group>"; };
+		5B40BF9C1C44D8B2001A2805 /* LevelListLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelListLayer.cpp; sourceTree = "<group>"; };
+		5B40BF9D1C44D8B2001A2805 /* LevelListLayer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelListLayer.hpp; sourceTree = "<group>"; };
 		5B46E0EC1C2FECD20037426E /* remote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remote.png; sourceTree = "<group>"; };
 		5B4A11FE18331CAB00C8A950 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		5B4A11FF18331CAB00C8A950 /* brick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brick.png; sourceTree = "<group>"; };
@@ -290,6 +295,7 @@
 		5BB4D8311B7FD2F10066077D /* Console.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Console.hpp; sourceTree = "<group>"; };
 		5BB4D8361B7FE6680066077D /* HudLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HudLayer.cpp; sourceTree = "<group>"; };
 		5BB4D8371B7FE6680066077D /* HudLayer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HudLayer.hpp; sourceTree = "<group>"; };
+		5BB79DAC1C45AD9E00E72350 /* map2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map2.txt; sourceTree = "<group>"; };
 		5BBB9E521820EB3F00726BC5 /* Engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Engine.cpp; sourceTree = "<group>"; };
 		5BBB9E531820EB3F00726BC5 /* Engine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Engine.hpp; sourceTree = "<group>"; };
 		5BBC81291829C0CF006F448F /* EventListener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EventListener.hpp; sourceTree = "<group>"; };
@@ -527,6 +533,8 @@
 				5BDBF7E61821780000BE71CC /* GameLayer.hpp */,
 				5BB4D8361B7FE6680066077D /* HudLayer.cpp */,
 				5BB4D8371B7FE6680066077D /* HudLayer.hpp */,
+				5B40BF9C1C44D8B2001A2805 /* LevelListLayer.cpp */,
+				5B40BF9D1C44D8B2001A2805 /* LevelListLayer.hpp */,
 				5B1817A91C305561001CDAD8 /* MainMenuLayer.cpp */,
 				5B1817A81C30554D001CDAD8 /* MainMenuLayer.hpp */,
 			);
@@ -669,8 +677,9 @@
 		5BF63CA7182189FA001315AD /* Maps */ = {
 			isa = PBXGroup;
 			children = (
-				5BF63CA818218A41001315AD /* map1.xml */,
 				5B2234731A16ED72005BDA1C /* map1.txt */,
+				5BF63CA818218A41001315AD /* map1.xml */,
+				5BB79DAC1C45AD9E00E72350 /* map2.txt */,
 			);
 			name = Maps;
 			path = maps;
@@ -787,6 +796,7 @@
 				5BB4D82F1B7FCE380066077D /* ConsoleEvents.cpp in Sources */,
 				5B4C02BC1B80527D003FCB02 /* GameLayer.cpp in Sources */,
 				5B8997511C366096003AB8B0 /* GameOverCommand.cpp in Sources */,
+				5B40BF9E1C44D8B2001A2805 /* LevelListLayer.cpp in Sources */,
 				5B4C02C81B80578D003FCB02 /* ConsoleLayer.cpp in Sources */,
 				5B5BB1C41856CEDA0019CAD1 /* CommandQueue.cpp in Sources */,
 				5BD6AD0518237F2D00E661DA /* Logger.cpp in Sources */,

@@ -1,3 +1,5 @@
+#<mapfile>
+
 name Map  1
 player 0 0
 door 1 11
