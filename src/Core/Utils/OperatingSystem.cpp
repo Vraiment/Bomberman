@@ -41,7 +41,11 @@ namespace Bomberman {
             
             // read each entry in the directory
             for (auto ent = readdir(dir.get()); nullptr != ent; ent = readdir(dir.get())) {
-                contents.push_back(ent->d_name);
+                string entName = ent->d_name;
+                
+                if ("." != entName && ".." != entName) {
+                    contents.push_back(entName);
+                }
             }
             
             result = true;
