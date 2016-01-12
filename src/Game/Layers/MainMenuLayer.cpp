@@ -8,6 +8,8 @@
 
 #include "MainMenuLayer.hpp"
 
+#include <SDL2/SDL.h>
+
 #include "../CommandFactory.hpp"
 #include "../Console.hpp"
 #include "../EventListeners/ConsoleEvents.hpp"
@@ -21,76 +23,54 @@
 #include "../Map/TxtTileMapLoader.hpp"
 #include "../../Core/Log/LogSystem.h"
 #include "../../Core/ScreenManager.hpp"
+#include "../Director.hpp"
 
 using namespace std;
 
 namespace Bomberman {
-    shared_ptr<TileMap> loadTileMap(string startMap) {
-        TxtTileMapLoader mapLoader;
-        shared_ptr<TileMapBuilder> builder = mapLoader.load(startMap);
-        shared_ptr<TileMap> tileMap(new TileMap(builder));
-        
-        return tileMap;
-    }
-    
     const int MainMenuLayer::ENTRIES_SPACING = 100;
     
     MainMenuLayer::MainMenuLayer() : selected(nullptr), shouldStartGame(false), shouldExit(false) {
         
     }
     
+    void MainMenuLayer::listenEvent(SDL_Event event) {
+        Coordinate position;
+        
+        if (SDL_MOUSEBUTTONDOWN == event.type) {
+            SDL_GetMouseState(&position.i, &position.j);
+            
+            click(position);
+        } else if (SDL_MOUSEMOTION == event.type) {
+            SDL_GetMouseState(&position.i, &position.j);
+            
+            select(position);
+        }
+    }
+    
     void MainMenuLayer::update() {
         if (shouldStartGame) {
-            auto tileMap = loadTileMap(startMap);
-            
-            shared_ptr<GameLayer> gameLayer(new GameLayer());
-            gameLayer->load(renderer);
-            gameLayer->setTileMap(tileMap);
-            gameLayer->getCommandFactory()->setLoopQuiter(loopQuiter);
-            
-            auto commandFactory = gameLayer->getCommandFactory();
-            auto commandQueue = gameLayer->getCommandQueue();
-            
-            shared_ptr<PlayerEvents> playerEvents(new PlayerEvents(commandFactory, commandQueue, tileMap->player()));
-            screenManager->addEventListener(playerEvents);
-            
-            shared_ptr<ConsoleLayer> consoleLayer(new ConsoleLayer());
-            consoleLayer->load(renderer);
-            
-            shared_ptr<Console> console(new Console(commandFactory, commandQueue, consoleLayer, gameLayer, playerEvents));
-            gameLayer->getCommandFactory()->setConsole(console);
-            
-            shared_ptr<ConsoleEvents> consoleEvents(new ConsoleEvents(console));
-            screenManager->addEventListener(consoleEvents);
-            
-            shared_ptr<HudLayer> hudLayer(new HudLayer());
-            hudLayer->setPlayer(tileMap->player());
-            hudLayer->setTileMap(tileMap);
-            hudLayer->load(renderer);
-            
-            screenManager->addDrawable(gameLayer);
-            screenManager->addUpdatable(gameLayer);
-            screenManager->addDrawable(hudLayer);
-            screenManager->addDrawable(consoleLayer);
-            screenManager->addUpdatable(consoleLayer);
-            
-            playerEvents->addInGameLayer(gameLayer, gameLayer);
-            playerEvents->addInGameLayer(hudLayer, hudLayer);
-            playerEvents->addInGameLayer(consoleLayer, consoleLayer);
-            playerEvents->setConsoleEventListener(consoleEvents);
-            playerEvents->setTileMap(tileMap);
-            
-            auto self = shared_from_this();
-            playerEvents->setMainMenuLayer(self, self);
-            
-            Log::get().addLogger(consoleLayer);
-            
-            shouldStartGame = false;
-            Drawable::disable();
-            Updatable::disable();
+            if (this->director.expired()) {
+                Log::get() << "Invalid Director for MainMenuLayer" << LogLevel::error;
+            } else {
+                auto director = this->director.lock();
+                
+                director->showLevelList();
+            }
         } else if (shouldExit) {
-            loopQuiter->quitLoop();
+            if (this->loopQuiter.expired()) {
+                Log::get() << "Invalid LoopQuiter for MainMenuLayer" << LogLevel::error;
+            } else {
+                auto loopQuiter = this->loopQuiter.lock();
+                
+                loopQuiter->quitLoop();
+            }
         }
+    }
+    
+    void MainMenuLayer::postUpdate() {
+        shouldStartGame = false;
+        shouldExit = false;
     }
     
     void MainMenuLayer::draw() {
@@ -127,16 +107,12 @@ namespace Bomberman {
         }
     }
     
-    void MainMenuLayer::setScreenManager(shared_ptr<ScreenManager> screenManager) {
-        this->screenManager = screenManager;
+    void MainMenuLayer::setDirector(weak_ptr<Director> Director) {
+        this->director = Director;
     }
     
-    void MainMenuLayer::setLoopQuiter(shared_ptr<LoopQuiter> loopQuiter) {
+    void MainMenuLayer::setLoopQuiter(weak_ptr<LoopQuiter> loopQuiter) {
         this->loopQuiter = loopQuiter;
-    }
-    
-    void MainMenuLayer::setStartMap(string startMap) {
-        this->startMap = startMap;
     }
     
     void MainMenuLayer::load(shared_ptr<SDL_Renderer> renderer) {
@@ -144,8 +120,6 @@ namespace Bomberman {
         
         startGame = font.write("Start Game");
         exit = font.write("Exit");
-        
-        this->renderer = renderer;
     }
     
     void MainMenuLayer::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {

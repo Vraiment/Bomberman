@@ -22,7 +22,6 @@
 		5B1015081A26BEE100CCCC77 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B1015061A26BEE100CCCC77 /* Timer.cpp */; };
 		5B10150A1A26E2EB00CCCC77 /* explosion.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B1015091A26DFD400CCCC77 /* explosion.png */; };
 		5B1817AA1C305561001CDAD8 /* MainMenuLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B1817A91C305561001CDAD8 /* MainMenuLayer.cpp */; };
-		5B1817AD1C305F09001CDAD8 /* MenuEventListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B1817AB1C305F09001CDAD8 /* MenuEventListener.cpp */; };
 		5B1BF7521822E48B009DCA31 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1BF7511822E48B009DCA31 /* SDL2_image.framework */; };
 		5B2174241A1AB20D0033B3AA /* Bomb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B2174221A1AB20D0033B3AA /* Bomb.cpp */; };
 		5B2174261A1AC2A70033B3AA /* bomb.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B2174251A1AC2820033B3AA /* bomb.png */; };
@@ -60,6 +59,7 @@
 		5B5BB1C71856D5370019CAD1 /* XmlTileMapLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BB1C51856D5370019CAD1 /* XmlTileMapLoader.cpp */; };
 		5B5C97B11B80DFFE00C9D6C1 /* PressStart2P.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B5C97B01B80DFF400C9D6C1 /* PressStart2P.ttf */; };
 		5B5C97B31B80EC4600C9D6C1 /* EventListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B5C97B21B80EC4600C9D6C1 /* EventListener.cpp */; };
+		5B6C87511C437F7D003AA44A /* Director.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B6C874F1C437F7D003AA44A /* Director.cpp */; };
 		5B755C771822E81300DADA25 /* Configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B755C751822E81300DADA25 /* Configuration.cpp */; };
 		5B7732B5182AFB2F003A2747 /* SDL2_image.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B1BF7511822E48B009DCA31 /* SDL2_image.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5B87384D184E582B0014D94B /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B87384C184E582B0014D94B /* Rectangle.cpp */; };
@@ -208,8 +208,6 @@
 		5B15D56918466CB50039FD7B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = SOURCE_ROOT; };
 		5B1817A81C30554D001CDAD8 /* MainMenuLayer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MainMenuLayer.hpp; sourceTree = "<group>"; };
 		5B1817A91C305561001CDAD8 /* MainMenuLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainMenuLayer.cpp; sourceTree = "<group>"; };
-		5B1817AB1C305F09001CDAD8 /* MenuEventListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuEventListener.cpp; sourceTree = "<group>"; };
-		5B1817AC1C305F09001CDAD8 /* MenuEventListener.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MenuEventListener.hpp; sourceTree = "<group>"; };
 		5B1BF7511822E48B009DCA31 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2_image.framework; sourceTree = "<group>"; };
 		5B2174211A1A7D3D0033B3AA /* LogSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogSystem.h; sourceTree = "<group>"; };
 		5B2174221A1AB20D0033B3AA /* Bomb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bomb.cpp; sourceTree = "<group>"; };
@@ -256,6 +254,8 @@
 		5B5BB1C61856D5370019CAD1 /* XmlTileMapLoader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XmlTileMapLoader.hpp; sourceTree = "<group>"; };
 		5B5C97B01B80DFF400C9D6C1 /* PressStart2P.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PressStart2P.ttf; sourceTree = "<group>"; };
 		5B5C97B21B80EC4600C9D6C1 /* EventListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventListener.cpp; sourceTree = "<group>"; };
+		5B6C874F1C437F7D003AA44A /* Director.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Director.cpp; sourceTree = "<group>"; };
+		5B6C87501C437F7D003AA44A /* Director.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Director.hpp; sourceTree = "<group>"; };
 		5B755C751822E81300DADA25 /* Configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Configuration.cpp; sourceTree = "<group>"; };
 		5B755C761822E81300DADA25 /* Configuration.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Configuration.hpp; sourceTree = "<group>"; };
 		5B76EC621820DD1B00D499EE /* Bomberman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bomberman.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -418,6 +418,8 @@
 				5BB4D8301B7FD2F10066077D /* Console.cpp */,
 				5BB4D8311B7FD2F10066077D /* Console.hpp */,
 				5B9228971A107EA7009ADD10 /* Constants.hpp */,
+				5B6C874F1C437F7D003AA44A /* Director.cpp */,
+				5B6C87501C437F7D003AA44A /* Director.hpp */,
 				5B5BB1B61856ADA70019CAD1 /* Elements */,
 				5B3B82CE1857A80D00CECE27 /* EventListeners */,
 				5B5BB1B91856AE110019CAD1 /* Layers */,
@@ -431,8 +433,6 @@
 			children = (
 				5BB4D82D1B7FCE380066077D /* ConsoleEvents.cpp */,
 				5BB4D82E1B7FCE380066077D /* ConsoleEvents.hpp */,
-				5B1817AB1C305F09001CDAD8 /* MenuEventListener.cpp */,
-				5B1817AC1C305F09001CDAD8 /* MenuEventListener.hpp */,
 				5B3B82CF1857A82700CECE27 /* PlayerEvents.cpp */,
 				5B3B82D01857A82700CECE27 /* PlayerEvents.hpp */,
 			);
@@ -786,7 +786,6 @@
 				5BBFCCA2185FFD910016F56A /* First.cpp in Sources */,
 				5BB4D82F1B7FCE380066077D /* ConsoleEvents.cpp in Sources */,
 				5B4C02BC1B80527D003FCB02 /* GameLayer.cpp in Sources */,
-				5B1817AD1C305F09001CDAD8 /* MenuEventListener.cpp in Sources */,
 				5B8997511C366096003AB8B0 /* GameOverCommand.cpp in Sources */,
 				5B4C02C81B80578D003FCB02 /* ConsoleLayer.cpp in Sources */,
 				5B5BB1C41856CEDA0019CAD1 /* CommandQueue.cpp in Sources */,
@@ -795,6 +794,7 @@
 				5B9382191B81A75700C42269 /* LoopQuiter.cpp in Sources */,
 				5B0EEC2D1820E10A0084C40C /* main.cpp in Sources */,
 				5B3B82D11857A82700CECE27 /* PlayerEvents.cpp in Sources */,
+				5B6C87511C437F7D003AA44A /* Director.cpp in Sources */,
 				5B0022831A2C1206008805D9 /* Random.cpp in Sources */,
 				5B0496431825D01600C1FBCB /* MainLoop.cpp in Sources */,
 				5B9382161B81A37B00C42269 /* QuitCommand.cpp in Sources */,
