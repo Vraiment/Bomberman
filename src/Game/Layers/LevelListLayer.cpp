@@ -13,6 +13,8 @@
 #include "../../Core/Utils/OperatingSystem.hpp"
 #include "../../Core/Log/LogSystem.h"
 
+#include "../Director.hpp"
+
 #include <SDL2/SDL.h>
 #include <iostream>
 #include <fstream>
@@ -20,7 +22,7 @@
 using namespace std;
 
 namespace Bomberman {
-    enum class SelectedButton {
+    enum class LevelListLayer::Button {
         none,
         reload,
         cancel,
@@ -40,7 +42,7 @@ namespace Bomberman {
         return false;
     }
     
-    LevelListLayer::LevelListLayer() : selected(0), newSelected(-1), selectedButton(SelectedButton::none) {
+    LevelListLayer::LevelListLayer() : selected(0), newSelected(-1), selectedButton(Button::none), clickedButton(Button::none) {
         
     }
     
@@ -59,7 +61,7 @@ namespace Bomberman {
             auto keySym = event.key.keysym.sym;
             
             if (SDLK_UP == keySym) {
-                newSelected = selected - 1;;
+                newSelected = selected - 1;
             } else if (SDLK_DOWN == keySym) {
                 newSelected = selected + 1;
             }
@@ -73,10 +75,10 @@ namespace Bomberman {
         position.i += 10;
         position.j += 10;
         for (auto&& map : maps) {
-            map.rectangle() = position;
-            map.draw();
+            map.second.rectangle() = position;
+            map.second.draw();
             
-            position.j += map.rectangle().height + 5;
+            position.j += map.second.rectangle().height + 5;
         }
         
         cancel.draw();
@@ -85,15 +87,16 @@ namespace Bomberman {
     }
     
     void LevelListLayer::update() {
-        if (SelectedButton::cancel == selectedButton) {
+        // Set mouseover effects
+        if (Button::cancel == selectedButton) {
             reload.setColor(Color::WHITE);
             cancel.setColor(Color::RED);
             ok.setColor(Color::WHITE);
-        } else if (SelectedButton::reload == selectedButton) {
+        } else if (Button::reload == selectedButton) {
             reload.setColor(Color::YELLOW);
             cancel.setColor(Color::WHITE);
             ok.setColor(Color::WHITE);
-        } else if (SelectedButton::ok == selectedButton){
+        } else if (Button::ok == selectedButton){
             reload.setColor(Color::WHITE);
             cancel.setColor(Color::WHITE);
             ok.setColor(Color::GREEN);
@@ -104,9 +107,33 @@ namespace Bomberman {
         }
         
         if (newSelected >= 0 && newSelected < maps.size()) {
-            maps[selected].setColor(Color::WHITE);
+            maps[selected].second.setColor(Color::WHITE);
             selected = newSelected;
-            maps[selected].setColor(Color::BLUE);
+            maps[selected].second.setColor(Color::BLUE);
+        }
+        
+        // Click stuff
+        if (Button::cancel == clickedButton) {
+            if (!director.expired()) {
+                auto director = this->director.lock();
+                director->hideLevelList();
+            } else {
+                Log::get() << "No Director set for LevelListLayer" << LogLevel::error;
+            }
+            
+            clickedButton = Button::none;
+        } else if (Button::reload == clickedButton) {
+            fillMapList();
+            clickedButton = Button::none;
+        } else if (Button::ok == clickedButton){
+            if (!director.expired()) {
+                auto director = this->director.lock();
+                director->loadLevel(maps[selected].first);
+            } else {
+                Log::get() << "No Director set for LevelListLayer" << LogLevel::error;
+            }
+            
+            clickedButton = Button::none;
         }
     }
     
@@ -143,7 +170,7 @@ namespace Bomberman {
             
             // Create the texture
             Texture texture = font.write(baseName);
-            maps.push_back(texture);
+            maps.emplace_back(fileName, texture);
         }
         
         if (!maps.empty()) {
@@ -170,22 +197,34 @@ namespace Bomberman {
         ok.rectangle().j = reload.rectangle().j;
     }
     
+    void LevelListLayer::setDirector(weak_ptr<Director> director) {
+        this->director = director;
+    }
+    
     void LevelListLayer::click(Coordinate position) {
-        
+        if (cancel.rectangle().contains(position)) {
+            clickedButton = Button::cancel;
+        } else if (reload.rectangle().contains(position)) {
+            clickedButton = Button::reload;
+        } else if (ok.rectangle().contains(position)) {
+            clickedButton = Button::ok;
+        } else {
+            clickedButton = Button::none;
+        }
     }
     
     void LevelListLayer::select(Coordinate position) {
         if (cancel.rectangle().contains(position)) {
-            selectedButton = SelectedButton::cancel;
+            selectedButton = Button::cancel;
         } else if (reload.rectangle().contains(position)) {
-            selectedButton = SelectedButton::reload;
+            selectedButton = Button::reload;
         } else if (ok.rectangle().contains(position)) {
-            selectedButton = SelectedButton::ok;
+            selectedButton = Button::ok;
         } else {
-            selectedButton = SelectedButton::none;
+            selectedButton = Button::none;
             
             for (int n = 0; n < maps.size(); ++n) {
-                if (maps[n].rectangle().contains(position)) {
+                if (maps[n].second.rectangle().contains(position)) {
                     newSelected = n;
                     break;
                 }

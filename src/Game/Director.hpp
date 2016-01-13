@@ -13,6 +13,7 @@
 
 #include <cinttypes>
 #include <memory>
+#include <string>
 
 struct SDL_Renderer;
 
@@ -20,6 +21,7 @@ namespace Bomberman {
     class HudLayer;
     class LoopQuiter;
     class ScreenManager;
+    class LevelListLayer;
     
     // Layers
     class MainMenuLayer;
@@ -38,6 +40,9 @@ namespace Bomberman {
         void postUpdate();
         
         void showLevelList();
+        void hideLevelList();
+        
+        void loadLevel(std::string levelName);
 
         void setLoopQuiter(std::weak_ptr<LoopQuiter> loopQuiter);
         void setScreenManager(std::weak_ptr<ScreenManager> screenManager);
@@ -45,15 +50,18 @@ namespace Bomberman {
         
     private:
         enum class ProgramState : std::uint8_t;
-        ProgramState state;
-        
-        bool _showLevelList;
+        ProgramState state, nextState;
         
         std::weak_ptr<LoopQuiter> loopQuiter;
         std::weak_ptr<ScreenManager> screenManager;
         std::weak_ptr<SDL_Renderer> renderer;
         
         std::weak_ptr<MainMenuLayer> mainMenuLayer;
+        std::weak_ptr<LevelListLayer> levelListLayer;
+        
+        std::string nextMap;
+        
+        void overWriteNextState(ProgramState state);
     };
 }
 

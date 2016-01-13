@@ -16,11 +16,13 @@
 #include "../../Core/Font.hpp"
 
 #include <vector>
+#include <utility>
 
 struct SDL_Renderer;
 
 namespace Bomberman {
     class Coordinate;
+    class Director;
     
     class LevelListLayer : public Drawable, public EventListener, public Updatable {
     public:
@@ -36,23 +38,30 @@ namespace Bomberman {
         
         void screenSizeChanged(Rectangle previousSize, Rectangle newSize);
         
-    private:
-        Font font;
+        void setDirector(std::weak_ptr<Director> director);
         
-        enum class SelectedButton selectedButton;
+    private:
+        enum class Button;
         
         void click(Coordinate position);
         void select(Coordinate position);
         
+        Font font;
+        
+        enum Button selectedButton;
+        enum Button clickedButton;
+        
         int selected, newSelected;
         
-        std::vector<Texture> maps;
+        std::vector<std::pair<std::string, Texture>> maps;
         
         Texture background;
         
         Texture reload;
         Texture cancel;
         Texture ok;
+        
+        std::weak_ptr<Director> director;
     };
 }
 
