@@ -23,6 +23,8 @@ namespace Bomberman {
         
         void update();
         
+        void clear();
+        
     private:
         std::queue<std::shared_ptr<Command>> commands;
     };

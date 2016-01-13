@@ -36,4 +36,9 @@ namespace Bomberman {
             commands.front()->execute();
         }
     }
+    
+    void CommandQueue::clear() {
+        queue<shared_ptr<Command>> empty;
+        swap(commands, empty);
+    }
 }
