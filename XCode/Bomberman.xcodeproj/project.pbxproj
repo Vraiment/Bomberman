@@ -22,6 +22,7 @@
 		5B1015081A26BEE100CCCC77 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B1015061A26BEE100CCCC77 /* Timer.cpp */; };
 		5B10150A1A26E2EB00CCCC77 /* explosion.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B1015091A26DFD400CCCC77 /* explosion.png */; };
 		5B1817AA1C305561001CDAD8 /* MainMenuLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B1817A91C305561001CDAD8 /* MainMenuLayer.cpp */; };
+		5B1B5F891C461D0200DDB79B /* PointerUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B1B5F871C461D0200DDB79B /* PointerUtils.cpp */; };
 		5B1BF7521822E48B009DCA31 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1BF7511822E48B009DCA31 /* SDL2_image.framework */; };
 		5B2174241A1AB20D0033B3AA /* Bomb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B2174221A1AB20D0033B3AA /* Bomb.cpp */; };
 		5B2174261A1AC2A70033B3AA /* bomb.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B2174251A1AC2820033B3AA /* bomb.png */; };
@@ -211,6 +212,8 @@
 		5B15D56918466CB50039FD7B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = SOURCE_ROOT; };
 		5B1817A81C30554D001CDAD8 /* MainMenuLayer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MainMenuLayer.hpp; sourceTree = "<group>"; };
 		5B1817A91C305561001CDAD8 /* MainMenuLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainMenuLayer.cpp; sourceTree = "<group>"; };
+		5B1B5F871C461D0200DDB79B /* PointerUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PointerUtils.cpp; sourceTree = "<group>"; };
+		5B1B5F881C461D0200DDB79B /* PointerUtils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PointerUtils.hpp; sourceTree = "<group>"; };
 		5B1BF7511822E48B009DCA31 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2_image.framework; sourceTree = "<group>"; };
 		5B2174211A1A7D3D0033B3AA /* LogSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogSystem.h; sourceTree = "<group>"; };
 		5B2174221A1AB20D0033B3AA /* Bomb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bomb.cpp; sourceTree = "<group>"; };
@@ -550,6 +553,8 @@
 				5B2234741A16EEB8005BDA1C /* StringUtils.cpp */,
 				5B2234751A16EEB8005BDA1C /* StringUtils.hpp */,
 				5B31D6731A298524004ECEBD /* VectorUtils.hpp */,
+				5B1B5F871C461D0200DDB79B /* PointerUtils.cpp */,
+				5B1B5F881C461D0200DDB79B /* PointerUtils.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -822,6 +827,7 @@
 				5B3795CE1820FBAA0050381F /* Texture.cpp in Sources */,
 				5BDC7DA5182AA18C0093391D /* Coordinate.cpp in Sources */,
 				5B3B82DA1857ACB700CECE27 /* Command.cpp in Sources */,
+				5B1B5F891C461D0200DDB79B /* PointerUtils.cpp in Sources */,
 				5B8997431C35C16E003AB8B0 /* ScreenManager.cpp in Sources */,
 				5B2174241A1AB20D0033B3AA /* Bomb.cpp in Sources */,
 				5BBFCCA6185FFF710016F56A /* CommandFactory.cpp in Sources */,
