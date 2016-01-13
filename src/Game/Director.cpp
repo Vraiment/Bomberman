@@ -11,6 +11,7 @@
 #include "../Core/LoopQuiter.hpp"
 #include "../Core/Log/LogSystem.h"
 #include "../Core/ScreenManager.hpp"
+#include "../Core/Utils/PointerUtils.hpp"
 
 #include "Layers/MainMenuLayer.hpp"
 #include "Layers/LevelListLayer.hpp"
@@ -20,13 +21,13 @@ using namespace std;
 namespace Bomberman {
     template <typename T>
     bool lock(weak_ptr<T> in, shared_ptr<T>& out, string component) {
-        if (in.expired()) {
-            Log::get() << "No " << component << " for GameStateManager" << LogLevel::error;
-            return false;
-        }
-        out = in.lock();
+        bool result = lockWeakPointer(in, out);
         
-        return true;
+        if (!result) {
+            Log::get() << "No " << component << " for GameStateManager" << LogLevel::error;
+        }
+        
+        return result;
     }
     
     template <typename T>
@@ -128,28 +129,24 @@ namespace Bomberman {
             return;
         }
         
+        shared_ptr<MainMenuLayer> mainMenuLayer;
+        shared_ptr<LevelListLayer> levelListLayer;
+        
+        if (!lock<MainMenuLayer>(this->mainMenuLayer, mainMenuLayer, "MainMenuLayer") ||
+            !lock<LevelListLayer>(this->levelListLayer, levelListLayer, "LevelListLayer")) {
+            return;
+        }
+        
         if (ProgramState::MainMenu == nextState) {
-            shared_ptr<MainMenuLayer> mainMenuLayer;
-            shared_ptr<LevelListLayer> levelListLayer;
+            enableScreenComponent(mainMenuLayer);
             
-            if (lock<MainMenuLayer>(this->mainMenuLayer, mainMenuLayer, "MainMenuLayer") &&
-                lock<LevelListLayer>(this->levelListLayer, levelListLayer, "LevelListLayer")) {
-                enableScreenComponent(mainMenuLayer);
-                
-                disableScreenComponent(levelListLayer);
-            }
+            disableScreenComponent(levelListLayer);
         } else if (ProgramState::LevelList == nextState) {
-            shared_ptr<MainMenuLayer> mainMenuLayer;
-            shared_ptr<LevelListLayer> levelListLayer;
+            enableScreenComponent(levelListLayer);
             
-            if (lock<MainMenuLayer>(this->mainMenuLayer, mainMenuLayer, "MainMenuLayer") &&
-                lock<LevelListLayer>(this->levelListLayer, levelListLayer, "LevelListLayer")) {
-                enableScreenComponent(levelListLayer);
-                
-                levelListLayer->fillMapList();
-                
-                disableScreenComponent(mainMenuLayer);
-            }
+            levelListLayer->fillMapList();
+            
+            disableScreenComponent(mainMenuLayer);
         }
         
         nextState = ProgramState::None;
