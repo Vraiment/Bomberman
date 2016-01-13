@@ -8,13 +8,23 @@
 
 #include "Director.hpp"
 
-#include "../Core/LoopQuiter.hpp"
+#include "../Core/CommandQueue.hpp"
 #include "../Core/Log/LogSystem.h"
+#include "../Core/LoopQuiter.hpp"
 #include "../Core/ScreenManager.hpp"
+#include "../Core/Utils/OperatingSystem.hpp"
 #include "../Core/Utils/PointerUtils.hpp"
 
-#include "Layers/MainMenuLayer.hpp"
+#include "CommandFactory.hpp"
+#include "Console.hpp"
+#include "Layers/ConsoleLayer.hpp"
+#include "Layers/GameLayer.hpp"
+#include "Layers/HudLayer.hpp"
 #include "Layers/LevelListLayer.hpp"
+#include "Layers/MainMenuLayer.hpp"
+#include "Map/TileMap.hpp"
+#include "Map/TileMapBuilder.hpp"
+#include "Map/TxtTileMapLoader.hpp"
 
 using namespace std;
 
@@ -66,6 +76,19 @@ namespace Bomberman {
         }
     }
     
+    shared_ptr<TileMap> loadTileMap(string mapFile) {
+        shared_ptr<TileMap> result;
+        string mapPath = getPath({ "maps" }, mapFile);
+        
+        auto mapLoader = TxtTileMapLoader().load(mapFile);
+        
+        if (mapLoader) {
+            result = make_shared<TileMap>(mapLoader);
+        }
+        
+        return result;
+    }
+    
     enum class Director::ProgramState : uint8_t {
         None,
         MainMenu,
@@ -100,20 +123,59 @@ namespace Bomberman {
         levelListLayer->load(renderer);
         levelListLayer->setDirector(self);
         
+        // Initialize HUD
+        auto hudLayer = make_shared<HudLayer>();
+        hudLayer->load(renderer);
+        
+        // Initialize game
+        auto gameLayer = make_shared<GameLayer>();
+        gameLayer->load(renderer);
+        
+        // Initialize console layer
+        auto consoleLayer = make_shared<ConsoleLayer>();
+        consoleLayer->load(renderer);
+        
+        // Command stuff
+        auto commandQueue = make_shared<CommandQueue>();
+        auto commandFactory = make_shared<CommandFactory>();
+        
+        // Console
+        console = make_shared<Console>(commandFactory);
+        console->setCommandQueue(commandQueue);
+        console->setConsoleLayer(consoleLayer);
+        console->setDirector(self);
+        
         // Store everything
+        this->commandFactory = commandFactory;
+        this->commandQueue = commandQueue;
+        this->gameLayer = gameLayer;
         this->mainMenuLayer = mainMenuLayer;
         this->levelListLayer = levelListLayer;
+        this->hudLayer = hudLayer;
+        this->consoleLayer = consoleLayer;
         
-        // Register everything
+        // Register event listeners
         screenManager->addEventListener(mainMenuLayer);
         screenManager->addEventListener(levelListLayer);
+        
+        // Register drawables
         screenManager->addDrawable(mainMenuLayer);
         screenManager->addDrawable(levelListLayer);
+        screenManager->addDrawable(gameLayer);
+        screenManager->addDrawable(hudLayer);
+        screenManager->addDrawable(consoleLayer);
+        
+        // Register updatables
+        screenManager->addUpdatable(gameLayer);
         screenManager->addUpdatable(mainMenuLayer);
         screenManager->addUpdatable(levelListLayer);
+        screenManager->addUpdatable(commandQueue);
         
         // Set the default state for everything
         enableScreenComponent(mainMenuLayer);
+        disableScreenComponent(commandQueue);
+        disableScreenComponent(gameLayer);
+        disableScreenComponent(hudLayer);
         disableScreenComponent(levelListLayer);
     }
     
@@ -129,11 +191,19 @@ namespace Bomberman {
             return;
         }
         
+        shared_ptr<CommandQueue> commandQueue;
+        shared_ptr<ConsoleLayer> consoleLayer;
+        shared_ptr<GameLayer> gameLayer;
+        shared_ptr<HudLayer> hudLayer;
         shared_ptr<MainMenuLayer> mainMenuLayer;
         shared_ptr<LevelListLayer> levelListLayer;
         
         if (!lock<MainMenuLayer>(this->mainMenuLayer, mainMenuLayer, "MainMenuLayer") ||
-            !lock<LevelListLayer>(this->levelListLayer, levelListLayer, "LevelListLayer")) {
+            !lock<LevelListLayer>(this->levelListLayer, levelListLayer, "LevelListLayer") ||
+            !lock<HudLayer>(this->hudLayer, hudLayer, "HudLayer") ||
+            !lock<CommandQueue>(this->commandQueue, commandQueue, "CommandQueue") ||
+            !lock<ConsoleLayer>(this->consoleLayer, consoleLayer, "ConsoleLayer") ||
+            !lock<GameLayer>(this->gameLayer, gameLayer, "GameLayer")) {
             return;
         }
         
@@ -141,12 +211,36 @@ namespace Bomberman {
             enableScreenComponent(mainMenuLayer);
             
             disableScreenComponent(levelListLayer);
+            disableScreenComponent(hudLayer);
+            disableScreenComponent(commandQueue);
         } else if (ProgramState::LevelList == nextState) {
             enableScreenComponent(levelListLayer);
             
             levelListLayer->fillMapList();
             
             disableScreenComponent(mainMenuLayer);
+            disableScreenComponent(hudLayer);
+            disableScreenComponent(commandQueue);
+        }  else if (ProgramState::InGame == nextState) {
+            auto tileMap = loadTileMap(nextMap);
+            
+            if (tileMap) {
+                enableScreenComponent(hudLayer);
+                enableScreenComponent(commandQueue);
+                enableScreenComponent(gameLayer);
+                enableScreenComponent(consoleLayer);
+                
+                commandQueue->clear();
+                gameLayer->setTileMap(tileMap);
+                hudLayer->setTileMap(tileMap);
+                hudLayer->setPlayer(tileMap->player());
+                consoleLayer->Drawable::disable();
+                
+                disableScreenComponent(mainMenuLayer);
+                disableScreenComponent(levelListLayer);
+            } else {
+                Log::get() << "Could not open map \"" << nextMap << "\"" << LogLevel::error;
+            }
         }
         
         nextState = ProgramState::None;
@@ -164,6 +258,20 @@ namespace Bomberman {
         overWriteNextState(ProgramState::InGame);
         
         nextMap = levelName;
+    }
+    
+    void Director::pauseGame() {
+        if (ProgramState::InGame != state) {
+            Log::get() << "Not in game, cannot pause game" << LogLevel::error;
+            return;
+        }
+    }
+    
+    void Director::unPauseGame() {
+        if (ProgramState::InGame != state) {
+            Log::get() << "Not in game, cannot pause game" << LogLevel::error;
+            return;
+        }
     }
     
     void Director::setLoopQuiter(weak_ptr<LoopQuiter> loopQuiter) {

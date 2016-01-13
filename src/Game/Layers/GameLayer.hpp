@@ -20,8 +20,6 @@
 #include "../../Core/Timer.hpp"
 
 namespace Bomberman {
-    class CommandFactory;
-    class CommandQueue;
     class TileMap;
     
     class GameLayer : public Drawable, public Updatable {
@@ -38,9 +36,6 @@ namespace Bomberman {
         void setTileMap(std::shared_ptr<TileMap> tileMap);
         
         void screenSizeChanged(Rectangle previousSize, Rectangle newSize);
-        
-        std::shared_ptr<CommandFactory> getCommandFactory();
-        std::shared_ptr<CommandQueue> getCommandQueue();
         
     private:
         class Camera;
@@ -62,8 +57,6 @@ namespace Bomberman {
         Timer blinkPlayerTimer;
         
         std::shared_ptr<TileMap> tileMap;
-        std::shared_ptr<CommandFactory> commandFactory;
-        std::shared_ptr<CommandQueue> commandQueue;
         
         std::shared_ptr<Camera> camera;
         

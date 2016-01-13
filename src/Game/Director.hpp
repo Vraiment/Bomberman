@@ -18,12 +18,19 @@
 struct SDL_Renderer;
 
 namespace Bomberman {
-    class HudLayer;
+    class CommandFactory;
+    class CommandQueue;
+    class Console;
+    
+    // Engine stuff
     class LoopQuiter;
     class ScreenManager;
-    class LevelListLayer;
     
     // Layers
+    class ConsoleLayer;
+    class GameLayer;
+    class HudLayer;
+    class LevelListLayer;
     class MainMenuLayer;
     
     // In game stuff
@@ -43,6 +50,9 @@ namespace Bomberman {
         void hideLevelList();
         
         void loadLevel(std::string levelName);
+        
+        void pauseGame();
+        void unPauseGame();
 
         void setLoopQuiter(std::weak_ptr<LoopQuiter> loopQuiter);
         void setScreenManager(std::weak_ptr<ScreenManager> screenManager);
@@ -56,8 +66,15 @@ namespace Bomberman {
         std::weak_ptr<ScreenManager> screenManager;
         std::weak_ptr<SDL_Renderer> renderer;
         
+        std::weak_ptr<CommandQueue> commandQueue;
+        std::weak_ptr<ConsoleLayer> consoleLayer;
+        std::weak_ptr<GameLayer> gameLayer;
+        std::weak_ptr<HudLayer> hudLayer;
         std::weak_ptr<MainMenuLayer> mainMenuLayer;
         std::weak_ptr<LevelListLayer> levelListLayer;
+        
+        std::shared_ptr<CommandFactory> commandFactory;
+        std::shared_ptr<Console> console;
         
         std::string nextMap;
         

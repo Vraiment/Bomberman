@@ -11,23 +11,21 @@
 
 #include "../../Core/Drawable.hpp"
 #include "../../Core/Texture.hpp"
-#include "../../Core/Updatable.hpp"
 
 namespace Bomberman {
     class Player;
     class TileMap;
     
-    class HudLayer : public Drawable, public Updatable {
+    class HudLayer : public Drawable {
     public:
         void draw();
-        void update();
         
         void load(std::shared_ptr<SDL_Renderer> renderer);
         
         void screenSizeChanged(Rectangle previousSize, Rectangle newSize);
         
-        void setPlayer(std::shared_ptr<Player> player);
-        void setTileMap(std::shared_ptr<TileMap> tileMap);
+        void setPlayer(std::weak_ptr<Player> player);
+        void setTileMap(std::weak_ptr<TileMap> tileMap);
         
     private:
         Texture hud;
@@ -37,8 +35,8 @@ namespace Bomberman {
         Texture gameOver, continueText;
         Texture digits[10];
         Texture enemiesLeft;
-        std::shared_ptr<TileMap> tileMap;
-        std::shared_ptr<Player> player;
+        std::weak_ptr<TileMap> tileMap;
+        std::weak_ptr<Player> player;
         
         void drawNumber(int numberToDraw, Rectangle area);
     };

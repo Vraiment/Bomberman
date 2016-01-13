@@ -15,27 +15,69 @@
 #include "../../Core/Font.hpp"
 #include "../Elements/Player.hpp"
 #include "../Map/TileMap.hpp"
+#include "../../Core/Log/LogSystem.h"
+#include "../../Core/Utils/PointerUtils.hpp"
 
 using namespace Bomberman::Constants;
 using namespace std;
 
 namespace Bomberman {
+    template <typename T>
+    bool lock(weak_ptr<T> in, shared_ptr<T>& out, string component) {
+        bool result = lockWeakPointer(in, out);
+        
+        if (!result) {
+            Log::get() << "No " << component << " for HudLayer" << LogLevel::error;
+        }
+        
+        return result;
+    }
+    
     void HudLayer::draw() {
+        shared_ptr<Player> player;
+        int playerLifes = -1;
+        int playerMaxLifes = -1;
+        bool playerHasRemote = false;
+        int playerMaxBombs = -1;
+        int explosionSize = -1;
+        if (lock<Player>(this->player, player, "Player")) {
+            playerLifes = player->getLifesCount();
+            playerMaxLifes = player->getMaxLifes();
+            playerHasRemote = player->hasRemote();
+            playerMaxBombs = player->maxBombs();
+            explosionSize = player->getExplosionSize();
+        }
+        
+        shared_ptr<TileMap> tileMap;
+        int mapBombs = -1;
+        int mapEnemies = -1;
+        if (lock<TileMap>(this->tileMap, tileMap, "TileMap")) {
+            auto tileMap = this->tileMap.lock();
+            
+            mapBombs = tileMap->bombCount();
+            mapEnemies = tileMap->enemiesLeft();
+        }
+        
+        int bombsAvailable = playerMaxBombs - mapBombs;
+        if (bombsAvailable < 0) {
+            bombsAvailable = -1;
+        }
+        
         hud.draw();
         
         life.setAlpha(Texture::OPAQUE);
-        for (int n = 0; n < player->getLifesCount(); ++n) {
+        for (int n = 0; n < playerLifes; ++n) {
             life.rectangle().i = n * life.rectangle().height;
             life.draw();
         }
         
         life.setAlpha(Texture::OPAQUE * .25);
-        for (int n = player->getLifesCount(); n < player->getMaxLifes(); ++n) {
+        for (int n = playerLifes; n < playerMaxLifes; ++n) {
             life.rectangle().i = n * life.rectangle().height;
             life.draw();
         }
         
-        if (player->hasRemote()) {
+        if (playerHasRemote) {
             remote.setAlpha(Texture::OPAQUE);
         } else {
             remote.setAlpha(Texture::OPAQUE * .25);
@@ -47,24 +89,24 @@ namespace Bomberman {
         extraBomb.draw();
         Rectangle area = extraBomb.rectangle();
         area.i -= remote.rectangle().width;
-        drawNumber(player->maxBombs() - tileMap->bombCount(), area);
+        drawNumber(bombsAvailable, area);
         
         explosion.rectangle().i = extraBomb.rectangle().right() + (extraBomb.rectangle().width * 2);
         explosion.draw();
         area = explosion.rectangle();
         area.i -= extraBomb.rectangle().width;
-        drawNumber(player->getExplosionSize(), area);
+        drawNumber(explosionSize, area);
         
         area.i = hud.rectangle().right() - TILE_WIDTH;
         area.j = hud.rectangle().i;
         area.width = TILE_WIDTH;
         area.height = TILE_HEIGHT;
-        drawNumber(tileMap->enemiesLeft(), area);
+        drawNumber(mapEnemies, area);
         enemiesLeft.rectangle().i = area.i - enemiesLeft.rectangle().width;
         enemiesLeft.rectangle().j = area.heightCenter() - (enemiesLeft.rectangle().height / 2);
         enemiesLeft.draw();
         
-        if (player->getLifesCount() == 0) {
+        if (0 == playerLifes) {
             background.draw();
             gameOver.draw();
             continueText.draw();
@@ -87,15 +129,11 @@ namespace Bomberman {
         }
     }
     
-    void HudLayer::update() {
-        
-    }
-    
-    void HudLayer::setPlayer(shared_ptr<Player> player) {
+    void HudLayer::setPlayer(weak_ptr<Player> player) {
         this->player = player;
     }
     
-    void HudLayer::setTileMap(shared_ptr<TileMap> tileMap) {
+    void HudLayer::setTileMap(weak_ptr<TileMap> tileMap) {
         this->tileMap = tileMap;
     }
     

@@ -18,12 +18,11 @@ namespace Bomberman {
     class CommandFactory;
     class CommandQueue;
     class ConsoleLayer;
-    class EventListener;
-    class Updatable;
+    class Director;
     
     class Console {
     public:
-        Console(std::shared_ptr<CommandFactory> commandFactory, std::shared_ptr<CommandQueue> commandQueue, std::shared_ptr<ConsoleLayer> consoleLayer, std::shared_ptr<Updatable> gameLayer, std::shared_ptr<EventListener> playerEvents);
+        Console(std::shared_ptr<CommandFactory> commandFactory);
         
         bool visible() const;
         
@@ -36,14 +35,19 @@ namespace Bomberman {
         void clearBuffer();
         void commitBuffer();
         
+        void setCommandQueue(std::weak_ptr<CommandQueue> commandQueue);
+        void setConsoleLayer(std::weak_ptr<ConsoleLayer> consoleLayer);
+        void setDirector(std::weak_ptr<Director> director);
+        
     private:
         static const int BUFFER_SIZE;
         
+        bool _visible;
+        
         std::string buffer;
-        std::shared_ptr<CommandQueue> commandQueue;
-        std::shared_ptr<EventListener> playerEvents;
-        std::shared_ptr<ConsoleLayer> consoleLayer;
-        std::shared_ptr<Updatable> gameLayer;
+        std::weak_ptr<CommandQueue> commandQueue;
+        std::weak_ptr<ConsoleLayer> consoleLayer;
+        std::weak_ptr<Director> director;
         
         Parser parser;
     };
