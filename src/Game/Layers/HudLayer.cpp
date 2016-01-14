@@ -106,7 +106,7 @@ namespace Bomberman {
         enemiesLeft.rectangle().j = area.heightCenter() - (enemiesLeft.rectangle().height / 2);
         enemiesLeft.draw();
         
-        if (0 == playerLifes) {
+        if (tileMap->gameOver() || tileMap->playerWins()) {
             background.draw();
             gameOver.draw();
             continueText.draw();
