@@ -18,6 +18,7 @@
 #include "CommandFactory.hpp"
 #include "Console.hpp"
 #include "EventListeners/ConsoleEvents.hpp"
+#include "EventListeners/PlayerEvents.hpp"
 #include "Layers/ConsoleLayer.hpp"
 #include "Layers/GameLayer.hpp"
 #include "Layers/HudLayer.hpp"
@@ -140,6 +141,11 @@ namespace Bomberman {
         auto commandFactory = make_shared<CommandFactory>();
         commandFactory->setLoopQuiter(loopQuiter);
         
+        // Player events
+        auto playerEvents = make_shared<PlayerEvents>();
+        playerEvents->setCommandFactory(commandFactory);
+        playerEvents->setCommandQueue(commandQueue);
+        
         // Console
         console = make_shared<Console>(commandFactory);
         console->setCommandQueue(commandQueue);
@@ -159,11 +165,13 @@ namespace Bomberman {
         this->hudLayer = hudLayer;
         this->consoleLayer = consoleLayer;
         this->consoleEvents = consoleEvents;
+        this->playerEvents = playerEvents;
         
         // Register event listeners
         screenManager->addEventListener(mainMenuLayer);
         screenManager->addEventListener(levelListLayer);
         screenManager->addEventListener(consoleEvents);
+        screenManager->addEventListener(playerEvents);
         
         // Register drawables
         screenManager->addDrawable(mainMenuLayer);
@@ -185,6 +193,7 @@ namespace Bomberman {
         disableScreenComponent(hudLayer);
         disableScreenComponent(levelListLayer);
         disableScreenComponent(consoleEvents);
+        disableScreenComponent(playerEvents);
     }
     
     void Director::update() {
@@ -206,6 +215,7 @@ namespace Bomberman {
         shared_ptr<MainMenuLayer> mainMenuLayer;
         shared_ptr<LevelListLayer> levelListLayer;
         shared_ptr<ConsoleEvents> consoleEvents;
+        shared_ptr<PlayerEvents> playerEvents;
         
         if (!_lock(this->mainMenuLayer, mainMenuLayer, "MainMenuLayer") ||
             !_lock(this->levelListLayer, levelListLayer, "LevelListLayer") ||
@@ -213,7 +223,8 @@ namespace Bomberman {
             !_lock(this->commandQueue, commandQueue, "CommandQueue") ||
             !_lock(this->consoleLayer, consoleLayer, "ConsoleLayer") ||
             !_lock(this->gameLayer, gameLayer, "GameLayer") ||
-            !_lock(this->consoleEvents, consoleEvents, "ConsoleEvents")) {
+            !_lock(this->consoleEvents, consoleEvents, "ConsoleEvents") ||
+            !_lock(this->playerEvents, playerEvents, "PlayerEvents")) {
             return;
         }
         
@@ -226,6 +237,7 @@ namespace Bomberman {
             disableScreenComponent(hudLayer);
             disableScreenComponent(commandQueue);
             disableScreenComponent(consoleEvents);
+            disableScreenComponent(playerEvents);
         } else if (ProgramState::LevelList == nextState) {
             state = ProgramState::LevelList;
             
@@ -237,6 +249,7 @@ namespace Bomberman {
             disableScreenComponent(hudLayer);
             disableScreenComponent(commandQueue);
             disableScreenComponent(consoleEvents);
+            disableScreenComponent(playerEvents);
         }  else if (ProgramState::InGame == nextState) {
             state = ProgramState::InGame;
             
@@ -248,6 +261,7 @@ namespace Bomberman {
                 enableScreenComponent(gameLayer);
                 enableScreenComponent(consoleLayer);
                 enableScreenComponent(consoleEvents);
+                enableScreenComponent(playerEvents);
                 
                 commandQueue->clear();
                 commandFactory->setTileMap(tileMap);
@@ -288,8 +302,11 @@ namespace Bomberman {
         }
         
         shared_ptr<GameLayer> gameLayer;
-        if (_lock(this->gameLayer, gameLayer, "GameLayer")) {
+        shared_ptr<PlayerEvents> playerEvents;
+        if (_lock(this->gameLayer, gameLayer, "GameLayer") &&
+            _lock(this->playerEvents, playerEvents, "PlayerEvents")) {
             gameLayer->Updatable::disable();
+            playerEvents->disable();
         }
     }
     
@@ -300,8 +317,11 @@ namespace Bomberman {
         }
         
         shared_ptr<GameLayer> gameLayer;
-        if (_lock(this->gameLayer, gameLayer, "GameLayer")) {
+        shared_ptr<PlayerEvents> playerEvents;
+        if (_lock(this->gameLayer, gameLayer, "GameLayer") &&
+            _lock(this->playerEvents, playerEvents, "PlayerEvents")) {
             gameLayer->Updatable::enable();
+            playerEvents->enable();
         }
     }
     

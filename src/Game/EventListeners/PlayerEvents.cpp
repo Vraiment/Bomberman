@@ -10,72 +10,38 @@
 
 #include <SDL2/SDL.h>
 
+#include "../../Core/CommandQueue.hpp"
+#include "../../Core/Log/LogSystem.h"
+#include "../../Core/Utils/PointerUtils.hpp"
+
 #include "../Constants.hpp"
 #include "../CommandFactory.hpp"
-#include "../../Core/CommandQueue.hpp"
 #include "../Elements/Player.hpp"
-#include "../../Core/Drawable.hpp"
-#include "../../Core/Updatable.hpp"
 #include "../Map/TileMap.hpp"
 
 using namespace std;
 using namespace Bomberman::Constants;
 
 namespace Bomberman {
-    PlayerEvents::PlayerEvents(shared_ptr<CommandFactory> commandFactory, shared_ptr<CommandQueue> commandQueue, shared_ptr<Player> player) : commandFactory(commandFactory), commandQueue(commandQueue), player(player) {
+    template <typename T>
+    bool _lock(weak_ptr<T> in, shared_ptr<T>& out, string component) {
+        bool result = lockWeakPointer(in, out);
         
-    }
-    
-    PlayerEvents::~PlayerEvents() {
+        if (!result) {
+            Log::get() << "No " << component << " for PlayerEvents" << LogLevel::error;
+        }
         
-    }
-    
-    void PlayerEvents::setConsoleEventListener(shared_ptr<EventListener> consoleEventListener) {
-        this->consoleEventListener = consoleEventListener;
-    }
-    
-    void PlayerEvents::setMainMenuLayer(shared_ptr<Drawable> mainMenuDrawable, shared_ptr<Updatable> mainMenuUpdatable) {
-        this->mainMenuDrawable = mainMenuDrawable;
-        this->mainMenuUpdatable = mainMenuUpdatable;
-    }
-    
-    void PlayerEvents::addInGameLayer(shared_ptr<Drawable> inGameDrawable, shared_ptr<Updatable> inGameUpdatable) {
-        inGameDrawables.push_back(inGameDrawable);
-        inGameUpdatables.push_back(inGameUpdatable);
-    }
-    
-    void PlayerEvents::setTileMap(shared_ptr<TileMap> tileMap) {
-        this->tileMap = tileMap;
+        return result;
     }
     
     void PlayerEvents::listenEvent(SDL_Event event) {
         shared_ptr<Command> command;
+        shared_ptr<CommandFactory> commandFactory;
+        shared_ptr<CommandQueue> commandQueue;
         
-        if (player->isDead()) {
-            if (player->getLifesCount() <= 0) {
-                if (SDL_KEYUP == event.type && SDLK_RETURN == event.key.keysym.sym) {
-                    while (!inGameDrawables.empty()) {
-                        inGameDrawables.back()->finish();
-                        inGameDrawables.pop_back();
-                        
-                        inGameUpdatables.back()->finish();
-                        inGameUpdatables.pop_back();
-                    }
-                    
-                    consoleEventListener->finish();
-                    
-                    mainMenuDrawable->enable();
-                    mainMenuUpdatable->enable();
-                    
-                    finish();
-                }
-            }
-            
+        if (!_lock(this->commandFactory, commandFactory, "CommandFactory") ||
+            !_lock(this->commandQueue, commandQueue, "CommandQueue")) {
             return;
-        }
-        
-        if (tileMap->playerWins()) {
-            disable();
         }
         
         if (event.type == SDL_KEYDOWN) {
@@ -117,5 +83,13 @@ namespace Bomberman {
         if (command) {
             commandQueue->addCommand(command);
         }
+    }
+    
+    void PlayerEvents::setCommandFactory(weak_ptr<CommandFactory> commandFactory) {
+        this->commandFactory = commandFactory;
+    }
+    
+    void PlayerEvents::setCommandQueue(weak_ptr<CommandQueue> commandQueue) {
+        this->commandQueue = commandQueue;
     }
 }
