@@ -295,34 +295,38 @@ namespace Bomberman {
         nextMap = levelName;
     }
     
-    void Director::pauseGame() {
-        if (ProgramState::InGame != state) {
-            Log::get() << "Not in game, cannot pause game" << LogLevel::error;
+    void Director::showConsole() {
+        shared_ptr<GameLayer> gameLayer;
+        shared_ptr<PlayerEvents> playerEvents;
+        shared_ptr<ConsoleLayer> consoleLayer;
+        
+        if (!_lock(this->gameLayer, gameLayer, "GameLayer") ||
+            !_lock(this->consoleLayer, consoleLayer, "ConsoleLayer") ||
+            !_lock(this->playerEvents, playerEvents, "PlayerEvents")) {
             return;
         }
         
-        shared_ptr<GameLayer> gameLayer;
-        shared_ptr<PlayerEvents> playerEvents;
-        if (_lock(this->gameLayer, gameLayer, "GameLayer") &&
-            _lock(this->playerEvents, playerEvents, "PlayerEvents")) {
-            gameLayer->Updatable::disable();
-            playerEvents->disable();
-        }
+        gameLayer->Updatable::disable();
+        playerEvents->disable();
+        
+        enableScreenComponent(consoleLayer);
     }
     
-    void Director::unPauseGame() {
-        if (ProgramState::InGame != state) {
-            Log::get() << "Not in game, cannot pause game" << LogLevel::error;
+    void Director::hideConsole() {
+        shared_ptr<GameLayer> gameLayer;
+        shared_ptr<PlayerEvents> playerEvents;
+        shared_ptr<ConsoleLayer> consoleLayer;
+        
+        if (!_lock(this->gameLayer, gameLayer, "GameLayer") ||
+            !_lock(this->consoleLayer, consoleLayer, "ConsoleLayer") ||
+            !_lock(this->playerEvents, playerEvents, "PlayerEvents")) {
             return;
         }
         
-        shared_ptr<GameLayer> gameLayer;
-        shared_ptr<PlayerEvents> playerEvents;
-        if (_lock(this->gameLayer, gameLayer, "GameLayer") &&
-            _lock(this->playerEvents, playerEvents, "PlayerEvents")) {
-            gameLayer->Updatable::enable();
-            playerEvents->enable();
-        }
+        disableScreenComponent(consoleLayer);
+        
+        gameLayer->Updatable::enable();
+        playerEvents->enable();
     }
     
     void Director::setLoopQuiter(weak_ptr<LoopQuiter> loopQuiter) {

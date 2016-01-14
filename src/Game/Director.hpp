@@ -55,8 +55,8 @@ namespace Bomberman {
         
         void loadLevel(std::string levelName);
         
-        void pauseGame();
-        void unPauseGame();
+        void showConsole();
+        void hideConsole();
 
         void setLoopQuiter(std::weak_ptr<LoopQuiter> loopQuiter);
         void setScreenManager(std::weak_ptr<ScreenManager> screenManager);
