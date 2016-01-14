@@ -135,6 +135,7 @@ namespace Bomberman {
         // Initialize console layer
         auto consoleLayer = make_shared<ConsoleLayer>();
         consoleLayer->load(renderer);
+        Log::get().addLogger(consoleLayer);
         
         // Command stuff
         auto commandQueue = make_shared<CommandQueue>();
