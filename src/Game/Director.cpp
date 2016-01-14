@@ -17,6 +17,7 @@
 
 #include "CommandFactory.hpp"
 #include "Console.hpp"
+#include "EventListeners/ConsoleEvents.hpp"
 #include "Layers/ConsoleLayer.hpp"
 #include "Layers/GameLayer.hpp"
 #include "Layers/HudLayer.hpp"
@@ -145,6 +146,10 @@ namespace Bomberman {
         console->setConsoleLayer(consoleLayer);
         console->setDirector(self);
         
+        // Initialize console events listener
+        auto consoleEvents = make_shared<ConsoleEvents>();
+        consoleEvents->setConsole(console);
+        
         // Store everything
         this->commandFactory = commandFactory;
         this->commandQueue = commandQueue;
@@ -153,10 +158,12 @@ namespace Bomberman {
         this->levelListLayer = levelListLayer;
         this->hudLayer = hudLayer;
         this->consoleLayer = consoleLayer;
+        this->consoleEvents = consoleEvents;
         
         // Register event listeners
         screenManager->addEventListener(mainMenuLayer);
         screenManager->addEventListener(levelListLayer);
+        screenManager->addEventListener(consoleEvents);
         
         // Register drawables
         screenManager->addDrawable(mainMenuLayer);
@@ -177,6 +184,7 @@ namespace Bomberman {
         disableScreenComponent(gameLayer);
         disableScreenComponent(hudLayer);
         disableScreenComponent(levelListLayer);
+        disableScreenComponent(consoleEvents);
     }
     
     void Director::update() {
@@ -197,13 +205,15 @@ namespace Bomberman {
         shared_ptr<HudLayer> hudLayer;
         shared_ptr<MainMenuLayer> mainMenuLayer;
         shared_ptr<LevelListLayer> levelListLayer;
+        shared_ptr<ConsoleEvents> consoleEvents;
         
         if (!_lock(this->mainMenuLayer, mainMenuLayer, "MainMenuLayer") ||
             !_lock(this->levelListLayer, levelListLayer, "LevelListLayer") ||
             !_lock(this->hudLayer, hudLayer, "HudLayer") ||
             !_lock(this->commandQueue, commandQueue, "CommandQueue") ||
             !_lock(this->consoleLayer, consoleLayer, "ConsoleLayer") ||
-            !_lock(this->gameLayer, gameLayer, "GameLayer")) {
+            !_lock(this->gameLayer, gameLayer, "GameLayer") ||
+            !_lock(this->consoleEvents, consoleEvents, "ConsoleEvents")) {
             return;
         }
         
@@ -215,6 +225,7 @@ namespace Bomberman {
             disableScreenComponent(levelListLayer);
             disableScreenComponent(hudLayer);
             disableScreenComponent(commandQueue);
+            disableScreenComponent(consoleEvents);
         } else if (ProgramState::LevelList == nextState) {
             state = ProgramState::LevelList;
             
@@ -225,6 +236,7 @@ namespace Bomberman {
             disableScreenComponent(mainMenuLayer);
             disableScreenComponent(hudLayer);
             disableScreenComponent(commandQueue);
+            disableScreenComponent(consoleEvents);
         }  else if (ProgramState::InGame == nextState) {
             state = ProgramState::InGame;
             
@@ -235,6 +247,7 @@ namespace Bomberman {
                 enableScreenComponent(commandQueue);
                 enableScreenComponent(gameLayer);
                 enableScreenComponent(consoleLayer);
+                enableScreenComponent(consoleEvents);
                 
                 commandQueue->clear();
                 commandFactory->setTileMap(tileMap);

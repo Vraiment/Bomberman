@@ -19,13 +19,12 @@ namespace Bomberman {
     
     class ConsoleEvents : public EventListener {
     public:
-        ConsoleEvents(std::shared_ptr<Console> console);
-        ~ConsoleEvents();
-        
         void listenEvent(SDL_Event event);
         
+        void setConsole(std::weak_ptr<Console> console);
+        
     private:
-        std::shared_ptr<Console> console;
+        std::weak_ptr<Console> console;
     };
 }
 

@@ -9,22 +9,21 @@
 #include "ConsoleEvents.hpp"
 #include <SDL2/SDL.h>
 
-#include "../../Core/CommandQueue.hpp"
+#include "../../Core/Log/LogSystem.h"
+#include "../../Core/Utils/PointerUtils.hpp"
+
 #include "../Console.hpp"
-#include "../../Core/Utils/Exception.hpp"
 
 using namespace std;
 
 namespace Bomberman {
-    ConsoleEvents::ConsoleEvents(shared_ptr<Console> console) : console(console) {
-        
-    }
-    
-    ConsoleEvents::~ConsoleEvents() {
-        
-    }
-    
     void ConsoleEvents::listenEvent(SDL_Event event) {
+        shared_ptr<Console> console;
+        if (!lockWeakPointer(this->console, console)) {
+            Log::get() << "No Console for ConsoleEvents" << LogLevel::error;
+            return;
+        }
+        
         if (console->visible()) {
             if (SDL_KEYUP == event.type) {
                 auto keySym = event.key.keysym.sym;
@@ -47,5 +46,9 @@ namespace Bomberman {
         } else if (event.type == SDL_KEYUP && SDLK_BACKSPACE == event.key.keysym.sym) {
             console->show();
         }
+    }
+    
+    void ConsoleEvents::setConsole(weak_ptr<Console> console) {
+        this->console = console;
     }
 }

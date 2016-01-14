@@ -26,6 +26,10 @@ namespace Bomberman {
     class LoopQuiter;
     class ScreenManager;
     
+    // Event listeners
+    class ConsoleEvents;
+    class PlayerEvents;
+    
     // Layers
     class ConsoleLayer;
     class GameLayer;
@@ -67,6 +71,8 @@ namespace Bomberman {
         std::weak_ptr<SDL_Renderer> renderer;
         
         std::weak_ptr<CommandQueue> commandQueue;
+        std::weak_ptr<ConsoleEvents> consoleEvents;
+        std::weak_ptr<PlayerEvents> playerEvents;
         std::weak_ptr<ConsoleLayer> consoleLayer;
         std::weak_ptr<GameLayer> gameLayer;
         std::weak_ptr<HudLayer> hudLayer;
