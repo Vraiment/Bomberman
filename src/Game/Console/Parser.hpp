@@ -20,13 +20,13 @@ namespace Bomberman {
     
     class Parser {
     public:
-        Parser(std::shared_ptr<CommandFactory> commandFactory);
+        Parser(std::weak_ptr<CommandFactory> commandFactory);
         ~Parser();
         
         std::queue<std::shared_ptr<Command>> parse(std::string command);
         
     private:
-        std::shared_ptr<CommandFactory> commandFactory;
+        std::weak_ptr<CommandFactory> commandFactory;
         std::queue<std::shared_ptr<Command>> commands;
         
         void expressions();
