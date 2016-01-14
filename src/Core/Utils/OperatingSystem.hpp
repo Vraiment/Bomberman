@@ -22,6 +22,8 @@ namespace Bomberman {
     
     std::string getPath(std::vector<std::string> dirs);
     std::string getPath(std::vector<std::string> dirs, std::string file);
+    
+    bool listDir(std::string path, std::vector<std::string>& contents);
 }
 
 #endif //__OperatingSystem__hpp__

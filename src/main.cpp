@@ -14,8 +14,7 @@
 #include "Core/ScreenManager.hpp"
 
 #include "Game/Configuration.hpp"
-#include "Game/EventListeners/MenuEventListener.hpp"
-#include "Game/Layers/MainMenuLayer.hpp"
+#include "Game/Director.hpp"
 
 using namespace Bomberman;
 using namespace std;
@@ -25,21 +24,19 @@ int main(int argc, char* argv[]) {
         //Standalone objects
         Engine engine;
         Configuration config("config.xml");
-        shared_ptr<MainMenuLayer> mainMenuLayer(new MainMenuLayer());
         MainLoop loop;
+        auto director = make_shared<Director>();
         
         //Dependants objects
         shared_ptr<Screen> screen(new Screen(config.viewportWidth(), config.viewportHeight(), config.viewportTitle()));
-        shared_ptr<MenuEventListener> mainMenuEvents(new MenuEventListener(mainMenuLayer));
         
-        mainMenuLayer->load(screen->renderer());
-        mainMenuLayer->setLoopQuiter(loop.quiter());
-        mainMenuLayer->setScreenManager(screen->getScreenManager());
-        mainMenuLayer->setStartMap(config.startMap());
+        // Configure the director
+        director->setScreenManager(screen->getScreenManager());
+        director->setLoopQuiter(loop.quiter());
+        director->setRenderer(screen->renderer());
         
-        screen->getScreenManager()->addDrawable(mainMenuLayer);
-        screen->getScreenManager()->addUpdatable(mainMenuLayer);
-        screen->getScreenManager()->addEventListener(mainMenuEvents);
+        // Register the director
+        screen->getScreenManager()->addUpdatable(director);
         
         //Game
         loop.addScreen(screen);

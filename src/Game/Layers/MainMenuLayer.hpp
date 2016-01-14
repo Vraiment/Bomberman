@@ -11,6 +11,7 @@
 
 #include <memory>
 
+#include "../../Core/EventListener.hpp"
 #include "../../Core/Drawable.hpp"
 #include "../../Core/Updatable.hpp"
 
@@ -18,22 +19,23 @@
 #include "../../Core/Texture.hpp"
 
 namespace Bomberman {
+    class Director;
     class LoopQuiter;
-    class ScreenManager;
     
-    class MainMenuLayer : public Drawable, public Updatable, public std::enable_shared_from_this<MainMenuLayer> {
+    class MainMenuLayer : public EventListener, public Drawable, public Updatable {
     public:
         MainMenuLayer();
         
+        void listenEvent(SDL_Event event);
         void update();
         void draw();
+        void postUpdate();
         
         void select(Coordinate position);
         void click(Coordinate position);
         
-        void setScreenManager(std::shared_ptr<ScreenManager> screenManager);
-        void setLoopQuiter(std::shared_ptr<LoopQuiter> loopQuiter);
-        void setStartMap(std::string startMap);
+        void setDirector(std::weak_ptr<Director> Director);
+        void setLoopQuiter(std::weak_ptr<LoopQuiter> loopQuiter);
         
         void load(std::shared_ptr<SDL_Renderer> renderer);
         
@@ -46,10 +48,8 @@ namespace Bomberman {
         Texture *selected;
         Texture startGame;
         Texture exit;
-        std::shared_ptr<LoopQuiter> loopQuiter;
-        std::shared_ptr<SDL_Renderer> renderer;
-        std::shared_ptr<ScreenManager> screenManager;
-        std::string startMap;
+        std::weak_ptr<LoopQuiter> loopQuiter;
+        std::weak_ptr<Director> director;
     };
 }
 

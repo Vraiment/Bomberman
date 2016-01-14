@@ -119,28 +119,28 @@ namespace Bomberman {
         
         if (file) {
             Log::get() << "Reading map file: " << fileName << LogLevel::info;
+            _builder.reset(new DummyTileMapBuilder());
+            
+            string line;
+            while (getline(file, line)) {
+                line = StringUtils::trim(line);
+                
+                if (line.empty() || line[0] == '#') {
+                    continue;
+                }
+                
+                CommandReader commandReader(line);
+                string command = commandReader.getCommand();
+                vector<string> arguments = commandReader.getArguments();
+                
+                if (!(commandReader.validCommand() && processCommand(command, arguments))) {
+                    printError(line);
+                    continue;
+                }
+            }
         } else {
             Log::get() << "Could not open file: " << fileName << OpeningFileErrorException();
-        }
-        
-        _builder.reset(new DummyTileMapBuilder());
-        
-        string line;
-        while (getline(file, line)) {
-            line = StringUtils::trim(line);
-            
-            if (line.empty() || line[0] == '#') {
-                continue;
-            }
-            
-            CommandReader commandReader(line);
-            string command = commandReader.getCommand();
-            vector<string> arguments = commandReader.getArguments();
-            
-            if (!(commandReader.validCommand() && processCommand(command, arguments))) {
-                printError(line);
-                continue;
-            }
+            _builder.reset();
         }
         
         return _builder;

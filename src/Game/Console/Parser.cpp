@@ -12,6 +12,7 @@
 #include "../../Core/Log/Log.hpp"
 #include "../../Core/Log/LogLevel.hpp"
 #include "../../Core/Utils/Exception.hpp"
+#include "../../Core/Utils/PointerUtils.hpp"
 #include "First.hpp"
 #include "Token.hpp"
 
@@ -22,7 +23,7 @@ namespace Bomberman {
         return tokenSet.find(token) != tokenSet.end();
     }
     
-    Parser::Parser(shared_ptr<CommandFactory> commandFactory) : commandFactory(commandFactory) {
+    Parser::Parser(weak_ptr<CommandFactory> commandFactory) : commandFactory(commandFactory) {
         
     }
     
@@ -68,27 +69,32 @@ namespace Bomberman {
         
         if (!values.empty()) {
             vector<string> arguments;
+            shared_ptr<CommandFactory> commandFactory;
             
-            if (objectCall) {
-                arguments = vector<string>(values.begin() + 2, values.end());
-                
-                try {
-                    auto command = commandFactory->sendMessage(values[0], values[1], arguments);
+            if (lockWeakPointer(this->commandFactory, commandFactory)) {
+                if (objectCall) {
+                    arguments = vector<string>(values.begin() + 2, values.end());
                     
-                    commands.push(command);
-                } catch (InvalidReceiverException&) {
-                    Log::get() << "Unknown object \"" << values[0] << "\"." << LogLevel::error;
+                    try {
+                        auto command = commandFactory->sendMessage(values[0], values[1], arguments);
+                        
+                        commands.push(command);
+                    } catch (InvalidReceiverException&) {
+                        Log::get() << "Unknown object \"" << values[0] << "\"." << LogLevel::error;
+                    }
+                } else {
+                    arguments = vector<string>(values.begin() + 1, values.end());
+                    
+                    try {
+                        auto command = commandFactory->call(values[0], arguments);
+                        
+                        commands.push(command);
+                    } catch (InvalidFunctionException&) {
+                        Log::get() << "Unkown function \"" << values[0] << "\"." << LogLevel::error;
+                    }
                 }
             } else {
-                arguments = vector<string>(values.begin() + 1, values.end());
-                
-                try {
-                    auto command = commandFactory->call(values[0], arguments);
-                
-                    commands.push(command);
-                } catch (InvalidFunctionException&) {
-                    Log::get() << "Unkown function \"" << values[0] << "\"." << LogLevel::error;
-                }
+                Log::get() << "No CommandFactory for Parser" << LogLevel::error;
             }
         }
     }
