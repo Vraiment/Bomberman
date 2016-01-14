@@ -17,20 +17,32 @@
 #include "../Core/Log/LogLevel.hpp"
 #include "../Core/Utils/Exception.hpp"
 #include "../Core/Utils/StringUtils.hpp"
+#include "../Core/Utils/PointerUtils.hpp"
 
 using namespace std;
 using namespace Bomberman::Constants;
 
 namespace Bomberman {
+    template <typename T>
+    bool _lock(weak_ptr<T> in, shared_ptr<T>& out, string component) {
+        bool result = lockWeakPointer(in, out);
+        
+        if (!result) {
+            Log::get() << "No " << component << " for CommandFactory" << LogLevel::error;
+        }
+        
+        return result;
+    }
+    
     CommandFactory::~CommandFactory() {
         
     }
     
-    void CommandFactory::setPlayer(shared_ptr<Player> player) {
+    void CommandFactory::setPlayer(weak_ptr<Player> player) {
         this->player = player;
     }
     
-    void CommandFactory::setTileMap(shared_ptr<TileMap> tileMap) {
+    void CommandFactory::setTileMap(weak_ptr<TileMap> tileMap) {
         this->tileMap = tileMap;
     }
     
@@ -38,7 +50,7 @@ namespace Bomberman {
         this->console = console;
     }
     
-    void CommandFactory::setLoopQuiter(shared_ptr<LoopQuiter> loopQuiter) {
+    void CommandFactory::setLoopQuiter(weak_ptr<LoopQuiter> loopQuiter) {
         this->loopQuiter = loopQuiter;
     }
     
@@ -51,10 +63,17 @@ namespace Bomberman {
         }
         
         if (FUNC_EXIT == function) {
-            result.reset(new QuitCommand(loopQuiter));
+            shared_ptr<LoopQuiter> loopQuiter;
+            if (_lock(this->loopQuiter, loopQuiter, "LoopQuiter")) {
+                result.reset(new QuitCommand(loopQuiter));
+            }
         } else if (FUNC_GAME_OVER == function){
-            auto console = this->console.lock();
-            result.reset(new GameOverCommand(console, tileMap));
+            shared_ptr<Console> console;
+            shared_ptr<TileMap> tileMap;
+            if (_lock(this->console, console, "Console") &&
+                _lock(this->tileMap, tileMap, "TileMap")) {
+                result.reset(new GameOverCommand(console, tileMap));
+            }
         } else {
             throw InvalidFunctionException();
         }
@@ -72,7 +91,12 @@ namespace Bomberman {
         }
         
         if (receiver == OBJ_PLAYER) {
-            result.reset(new PlayerCommand(player, tileMap, message, arguments));
+            shared_ptr<Player> player;
+            shared_ptr<TileMap> tileMap;
+            if (_lock(this->player, player, "Player") &&
+                _lock(this->tileMap, tileMap, "TileMap")) {
+                result.reset(new PlayerCommand(player, tileMap, message, arguments));
+            }
         } else {
             throw InvalidReceiverException();
         }

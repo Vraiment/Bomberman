@@ -24,11 +24,11 @@ namespace Bomberman {
     public:
         ~CommandFactory();
         
-        void setPlayer(std::shared_ptr<Player> player);
+        void setPlayer(std::weak_ptr<Player> player);
         
-        void setTileMap(std::shared_ptr<TileMap> tileMap);
+        void setTileMap(std::weak_ptr<TileMap> tileMap);
         
-        void setLoopQuiter(std::shared_ptr<LoopQuiter> loopQuiter);
+        void setLoopQuiter(std::weak_ptr<LoopQuiter> loopQuiter);
         
         void setConsole(std::weak_ptr<Console> console);
         
@@ -37,9 +37,9 @@ namespace Bomberman {
         std::shared_ptr<Command> sendMessage(std::string receiver, std::string message, std::vector<std::string> arguments = { });
         
     private:
-        std::shared_ptr<Player> player;
-        std::shared_ptr<TileMap> tileMap;
-        std::shared_ptr<LoopQuiter> loopQuiter;
+        std::weak_ptr<Player> player;
+        std::weak_ptr<TileMap> tileMap;
+        std::weak_ptr<LoopQuiter> loopQuiter;
         std::weak_ptr<Console> console;
     };
 }
