@@ -57,6 +57,7 @@
 		5B4C02C81B80578D003FCB02 /* ConsoleLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B4C02C61B80578D003FCB02 /* ConsoleLayer.cpp */; };
 		5B4C02CB1B805980003FCB02 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B4C02C91B805980003FCB02 /* Font.cpp */; };
 		5B4C02CE1B805B01003FCB02 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B4C02CC1B805B01003FCB02 /* Color.cpp */; };
+		5B570EFE1C476FEF005B3627 /* PauseMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B570EFC1C476FEF005B3627 /* PauseMenu.cpp */; };
 		5B5BB1C41856CEDA0019CAD1 /* CommandQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BB1C21856CEDA0019CAD1 /* CommandQueue.cpp */; };
 		5B5BB1C71856D5370019CAD1 /* XmlTileMapLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BB1C51856D5370019CAD1 /* XmlTileMapLoader.cpp */; };
 		5B5C97B11B80DFFE00C9D6C1 /* PressStart2P.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B5C97B01B80DFF400C9D6C1 /* PressStart2P.ttf */; };
@@ -255,6 +256,8 @@
 		5B4C02CA1B805980003FCB02 /* Font.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Font.hpp; sourceTree = "<group>"; };
 		5B4C02CC1B805B01003FCB02 /* Color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Color.cpp; sourceTree = "<group>"; };
 		5B4C02CD1B805B01003FCB02 /* Color.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Color.hpp; sourceTree = "<group>"; };
+		5B570EFC1C476FEF005B3627 /* PauseMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PauseMenu.cpp; sourceTree = "<group>"; };
+		5B570EFD1C476FEF005B3627 /* PauseMenu.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PauseMenu.hpp; sourceTree = "<group>"; };
 		5B5BB1C01856CE990019CAD1 /* Command.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Command.hpp; sourceTree = "<group>"; };
 		5B5BB1C21856CEDA0019CAD1 /* CommandQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommandQueue.cpp; sourceTree = "<group>"; };
 		5B5BB1C31856CEDA0019CAD1 /* CommandQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CommandQueue.hpp; sourceTree = "<group>"; };
@@ -540,6 +543,8 @@
 				5B40BF9D1C44D8B2001A2805 /* LevelListLayer.hpp */,
 				5B1817A91C305561001CDAD8 /* MainMenuLayer.cpp */,
 				5B1817A81C30554D001CDAD8 /* MainMenuLayer.hpp */,
+				5B570EFC1C476FEF005B3627 /* PauseMenu.cpp */,
+				5B570EFD1C476FEF005B3627 /* PauseMenu.hpp */,
 			);
 			path = Layers;
 			sourceTree = "<group>";
@@ -804,6 +809,7 @@
 				5B40BF9E1C44D8B2001A2805 /* LevelListLayer.cpp in Sources */,
 				5B4C02C81B80578D003FCB02 /* ConsoleLayer.cpp in Sources */,
 				5B5BB1C41856CEDA0019CAD1 /* CommandQueue.cpp in Sources */,
+				5B570EFE1C476FEF005B3627 /* PauseMenu.cpp in Sources */,
 				5BD6AD0518237F2D00E661DA /* Logger.cpp in Sources */,
 				5BF5549B1833F67D00DAC339 /* Log.cpp in Sources */,
 				5B9382191B81A75700C42269 /* LoopQuiter.cpp in Sources */,

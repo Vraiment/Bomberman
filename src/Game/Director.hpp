@@ -36,6 +36,7 @@ namespace Bomberman {
     class HudLayer;
     class LevelListLayer;
     class MainMenuLayer;
+    class PauseMenu;
     
     // In game stuff
     class TileMap;
@@ -58,6 +59,9 @@ namespace Bomberman {
         
         void showConsole();
         void hideConsole();
+        
+        void showPauseMenu();
+        void hidePauseMenu();
 
         void setLoopQuiter(std::weak_ptr<LoopQuiter> loopQuiter);
         void setScreenManager(std::weak_ptr<ScreenManager> screenManager);
@@ -66,6 +70,10 @@ namespace Bomberman {
     private:
         enum class ProgramState : std::uint8_t;
         ProgramState state, nextState;
+        
+        enum class Visibility : std::uint8_t;
+        Visibility consoleVisibility;
+        Visibility pauseMenuVisibility;
         
         std::weak_ptr<LoopQuiter> loopQuiter;
         std::weak_ptr<ScreenManager> screenManager;
@@ -79,6 +87,7 @@ namespace Bomberman {
         std::weak_ptr<HudLayer> hudLayer;
         std::weak_ptr<MainMenuLayer> mainMenuLayer;
         std::weak_ptr<LevelListLayer> levelListLayer;
+        std::weak_ptr<PauseMenu> pauseMenu;
         
         std::shared_ptr<CommandFactory> commandFactory;
         std::shared_ptr<Console> console;

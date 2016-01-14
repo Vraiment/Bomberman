@@ -24,6 +24,7 @@
 #include "Layers/HudLayer.hpp"
 #include "Layers/LevelListLayer.hpp"
 #include "Layers/MainMenuLayer.hpp"
+#include "Layers/PauseMenu.hpp"
 #include "Map/TileMap.hpp"
 #include "Map/TileMapBuilder.hpp"
 #include "Map/TxtTileMapLoader.hpp"
@@ -98,7 +99,13 @@ namespace Bomberman {
         InGame
     };
     
-    Director::Director() : state(ProgramState::None), nextState(ProgramState::None) {
+    enum class Director::Visibility : uint8_t {
+        None,
+        Hide,
+        Show
+    };
+    
+    Director::Director() : state(ProgramState::None), nextState(ProgramState::None), consoleVisibility(Visibility::None), pauseMenuVisibility(Visibility::None) {
         
     }
     
@@ -137,6 +144,12 @@ namespace Bomberman {
         consoleLayer->load(renderer);
         Log::get().addLogger(consoleLayer);
         
+        // Initialize pause menu
+        auto pauseMenu = make_shared<PauseMenu>();
+        pauseMenu->load(renderer);
+        pauseMenu->setDirector(self);
+        pauseMenu->setLoopQuiter(loopQuiter);
+        
         // Command stuff
         auto commandQueue = make_shared<CommandQueue>();
         auto commandFactory = make_shared<CommandFactory>();
@@ -167,12 +180,14 @@ namespace Bomberman {
         this->consoleLayer = consoleLayer;
         this->consoleEvents = consoleEvents;
         this->playerEvents = playerEvents;
+        this->pauseMenu = pauseMenu;
         
         // Register event listeners
         screenManager->addEventListener(mainMenuLayer);
         screenManager->addEventListener(levelListLayer);
         screenManager->addEventListener(consoleEvents);
         screenManager->addEventListener(playerEvents);
+        screenManager->addEventListener(pauseMenu);
         
         // Register drawables
         screenManager->addDrawable(mainMenuLayer);
@@ -180,12 +195,14 @@ namespace Bomberman {
         screenManager->addDrawable(gameLayer);
         screenManager->addDrawable(hudLayer);
         screenManager->addDrawable(consoleLayer);
+        screenManager->addDrawable(pauseMenu);
         
         // Register updatables
         screenManager->addUpdatable(gameLayer);
         screenManager->addUpdatable(mainMenuLayer);
         screenManager->addUpdatable(levelListLayer);
         screenManager->addUpdatable(commandQueue);
+        screenManager->addUpdatable(pauseMenu);
         
         // Set the default state for everything
         enableScreenComponent(mainMenuLayer);
@@ -195,6 +212,7 @@ namespace Bomberman {
         disableScreenComponent(levelListLayer);
         disableScreenComponent(consoleEvents);
         disableScreenComponent(playerEvents);
+        disableScreenComponent(pauseMenu);
     }
     
     void Director::update() {
@@ -205,10 +223,6 @@ namespace Bomberman {
     }
     
     void Director::postUpdate() {
-        if (ProgramState::None == nextState) {
-            return;
-        }
-        
         shared_ptr<CommandQueue> commandQueue;
         shared_ptr<ConsoleLayer> consoleLayer;
         shared_ptr<GameLayer> gameLayer;
@@ -217,6 +231,7 @@ namespace Bomberman {
         shared_ptr<LevelListLayer> levelListLayer;
         shared_ptr<ConsoleEvents> consoleEvents;
         shared_ptr<PlayerEvents> playerEvents;
+        shared_ptr<PauseMenu> pauseMenu;
         
         if (!_lock(this->mainMenuLayer, mainMenuLayer, "MainMenuLayer") ||
             !_lock(this->levelListLayer, levelListLayer, "LevelListLayer") ||
@@ -225,7 +240,8 @@ namespace Bomberman {
             !_lock(this->consoleLayer, consoleLayer, "ConsoleLayer") ||
             !_lock(this->gameLayer, gameLayer, "GameLayer") ||
             !_lock(this->consoleEvents, consoleEvents, "ConsoleEvents") ||
-            !_lock(this->playerEvents, playerEvents, "PlayerEvents")) {
+            !_lock(this->playerEvents, playerEvents, "PlayerEvents") ||
+            !_lock(this->pauseMenu, pauseMenu, "PauseMenu")) {
             return;
         }
         
@@ -240,6 +256,7 @@ namespace Bomberman {
             disableScreenComponent(commandQueue);
             disableScreenComponent(consoleEvents);
             disableScreenComponent(playerEvents);
+            disableScreenComponent(pauseMenu);
         } else if (ProgramState::LevelList == nextState) {
             state = ProgramState::LevelList;
             
@@ -252,6 +269,7 @@ namespace Bomberman {
             disableScreenComponent(commandQueue);
             disableScreenComponent(consoleEvents);
             disableScreenComponent(playerEvents);
+            disableScreenComponent(pauseMenu);
         }  else if (ProgramState::InGame == nextState) {
             state = ProgramState::InGame;
             
@@ -265,11 +283,16 @@ namespace Bomberman {
                 enableScreenComponent(consoleEvents);
                 enableScreenComponent(playerEvents);
                 
+                // set up the tileMap and the player for anything that require them
                 commandFactory->setTileMap(tileMap);
                 commandFactory->setPlayer(tileMap->player());
                 gameLayer->setTileMap(tileMap);
                 hudLayer->setTileMap(tileMap);
                 hudLayer->setPlayer(tileMap->player());
+                // Only the event listener of the pause menu should be active
+                pauseMenu->hide();
+                pauseMenu->EventListener::enable();
+                // Disable console drawing
                 consoleLayer->Drawable::disable();
                 
                 disableScreenComponent(mainMenuLayer);
@@ -284,6 +307,44 @@ namespace Bomberman {
             gameLayer->setTileMap(nullptr);
             
             clearGame = false;
+        }
+        
+        if (Visibility::Hide == consoleVisibility) {
+            disableScreenComponent(consoleLayer);
+            
+            gameLayer->Updatable::enable();
+            playerEvents->enable();
+            pauseMenu->EventListener::enable();
+            
+            consoleVisibility = Visibility::None;
+        } else if (Visibility::Show == consoleVisibility) {
+            gameLayer->Updatable::disable();
+            playerEvents->disable();
+            pauseMenu->EventListener::disable();
+            
+            enableScreenComponent(consoleLayer);
+            
+            consoleVisibility = Visibility::None;
+        }
+        
+        if (Visibility::Hide == pauseMenuVisibility) {
+            pauseMenu->hide();
+            
+            gameLayer->Updatable::enable();
+            consoleEvents->enable();
+            playerEvents->enable();
+            commandQueue->enable();
+            
+            pauseMenuVisibility = Visibility::None;
+        } else if (Visibility::Show == pauseMenuVisibility) {
+            gameLayer->Updatable::disable();
+            consoleEvents->disable();
+            playerEvents->disable();
+            commandQueue->disable();
+            
+            pauseMenu->show();
+            
+            pauseMenuVisibility = Visibility::None;
         }
         
         nextState = ProgramState::None;
@@ -310,37 +371,19 @@ namespace Bomberman {
     }
     
     void Director::showConsole() {
-        shared_ptr<GameLayer> gameLayer;
-        shared_ptr<PlayerEvents> playerEvents;
-        shared_ptr<ConsoleLayer> consoleLayer;
-        
-        if (!_lock(this->gameLayer, gameLayer, "GameLayer") ||
-            !_lock(this->consoleLayer, consoleLayer, "ConsoleLayer") ||
-            !_lock(this->playerEvents, playerEvents, "PlayerEvents")) {
-            return;
-        }
-        
-        gameLayer->Updatable::disable();
-        playerEvents->disable();
-        
-        enableScreenComponent(consoleLayer);
+        consoleVisibility = Visibility::Show;
     }
     
     void Director::hideConsole() {
-        shared_ptr<GameLayer> gameLayer;
-        shared_ptr<PlayerEvents> playerEvents;
-        shared_ptr<ConsoleLayer> consoleLayer;
-        
-        if (!_lock(this->gameLayer, gameLayer, "GameLayer") ||
-            !_lock(this->consoleLayer, consoleLayer, "ConsoleLayer") ||
-            !_lock(this->playerEvents, playerEvents, "PlayerEvents")) {
-            return;
-        }
-        
-        disableScreenComponent(consoleLayer);
-        
-        gameLayer->Updatable::enable();
-        playerEvents->enable();
+        consoleVisibility = Visibility::Hide;
+    }
+    
+    void Director::showPauseMenu() {
+        pauseMenuVisibility = Visibility::Show;
+    }
+    
+    void Director::hidePauseMenu() {
+        pauseMenuVisibility = Visibility::Hide;
     }
     
     void Director::setLoopQuiter(weak_ptr<LoopQuiter> loopQuiter) {
