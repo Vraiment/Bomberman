@@ -198,10 +198,6 @@ namespace Bomberman {
                 }
             }
         }
-        
-        if (tileMap->gameOver()) {
-            Updatable::disable();
-        }
     }
     
     void GameLayer::update() {
@@ -218,10 +214,6 @@ namespace Bomberman {
             }
         } else {
             drawPlayer = true;
-        }
-        
-        if (tileMap->playerWins()) {
-            this->Updatable::disable();
         }
     }
     
