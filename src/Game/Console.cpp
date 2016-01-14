@@ -50,7 +50,7 @@ namespace Bomberman {
         }
         
         consoleLayer->Drawable::disable();
-        director->pauseGame();
+        director->unPauseGame();
         
         _visible = false;
         
@@ -66,7 +66,7 @@ namespace Bomberman {
         }
         
         consoleLayer->Drawable::enable();
-        director->unPauseGame();
+        director->pauseGame();
         
         _visible = true;
         

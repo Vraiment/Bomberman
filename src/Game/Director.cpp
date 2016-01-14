@@ -273,12 +273,22 @@ namespace Bomberman {
             Log::get() << "Not in game, cannot pause game" << LogLevel::error;
             return;
         }
+        
+        shared_ptr<GameLayer> gameLayer;
+        if (_lock(this->gameLayer, gameLayer, "GameLayer")) {
+            gameLayer->Updatable::disable();
+        }
     }
     
     void Director::unPauseGame() {
         if (ProgramState::InGame != state) {
             Log::get() << "Not in game, cannot pause game" << LogLevel::error;
             return;
+        }
+        
+        shared_ptr<GameLayer> gameLayer;
+        if (_lock(this->gameLayer, gameLayer, "GameLayer")) {
+            gameLayer->Updatable::enable();
         }
     }
     
