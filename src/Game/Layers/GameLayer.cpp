@@ -243,8 +243,11 @@ namespace Bomberman {
     
     void GameLayer::setTileMap(shared_ptr<TileMap> tileMap) {
         this->tileMap = tileMap;
-        background.rectangle().width = tileMap->area().width * TILE_WIDTH;
-        background.rectangle().height = tileMap->area().height * TILE_HEIGHT;
+        
+        if (tileMap) {
+            background.rectangle().width = tileMap->area().width * TILE_WIDTH;
+            background.rectangle().height = tileMap->area().height * TILE_HEIGHT;
+        }
     }
     
     void GameLayer::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {

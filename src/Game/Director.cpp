@@ -234,6 +234,7 @@ namespace Bomberman {
             
             enableScreenComponent(mainMenuLayer);
             
+            disableScreenComponent(gameLayer);
             disableScreenComponent(levelListLayer);
             disableScreenComponent(hudLayer);
             disableScreenComponent(commandQueue);
@@ -264,7 +265,6 @@ namespace Bomberman {
                 enableScreenComponent(consoleEvents);
                 enableScreenComponent(playerEvents);
                 
-                commandQueue->clear();
                 commandFactory->setTileMap(tileMap);
                 commandFactory->setPlayer(tileMap->player());
                 gameLayer->setTileMap(tileMap);
@@ -277,6 +277,13 @@ namespace Bomberman {
             } else {
                 Log::get() << "Could not open map \"" << nextMap << "\"" << LogLevel::error;
             }
+        }
+        
+        if (clearGame) {
+            commandQueue->clear();
+            gameLayer->setTileMap(nullptr);
+            
+            clearGame = false;
         }
         
         nextState = ProgramState::None;
@@ -294,6 +301,12 @@ namespace Bomberman {
         overWriteNextState(ProgramState::InGame);
         
         nextMap = levelName;
+    }
+    
+    void Director::endGame() {
+        overWriteNextState(ProgramState::MainMenu);
+        
+        clearGame = true;
     }
     
     void Director::showConsole() {

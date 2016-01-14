@@ -54,6 +54,7 @@ namespace Bomberman {
         void hideLevelList();
         
         void loadLevel(std::string levelName);
+        void endGame();
         
         void showConsole();
         void hideConsole();
@@ -82,6 +83,7 @@ namespace Bomberman {
         std::shared_ptr<CommandFactory> commandFactory;
         std::shared_ptr<Console> console;
         
+        bool clearGame;
         std::string nextMap;
         
         void overWriteNextState(ProgramState state);
