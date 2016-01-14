@@ -10,6 +10,7 @@
 #define __MainMenuLayer__hpp__
 
 #include <memory>
+#include <vector>
 
 #include "../../Core/EventListener.hpp"
 #include "../../Core/Drawable.hpp"
@@ -31,9 +32,6 @@ namespace Bomberman {
         void draw();
         void postUpdate();
         
-        void select(Coordinate position);
-        void click(Coordinate position);
-        
         void setDirector(std::weak_ptr<Director> Director);
         void setLoopQuiter(std::weak_ptr<LoopQuiter> loopQuiter);
         
@@ -44,8 +42,15 @@ namespace Bomberman {
     private:
         static const int ENTRIES_SPACING;
         
+        void select(int entry);
+        void select(Coordinate position);
+        void pushSelectedButton();
+        
+        std::vector<Texture *> menuEntries;
+        int selectedEntry;
+        bool clicking;
+        
         bool shouldStartGame, shouldExit;
-        Texture *selected;
         Texture startGame;
         Texture exit;
         std::weak_ptr<LoopQuiter> loopQuiter;

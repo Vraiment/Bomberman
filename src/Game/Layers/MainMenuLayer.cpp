@@ -24,13 +24,25 @@
 #include "../../Core/Log/LogSystem.h"
 #include "../../Core/ScreenManager.hpp"
 #include "../Director.hpp"
+#include "../../Core/Utils/PointerUtils.hpp"
 
 using namespace std;
 
 namespace Bomberman {
+    template <typename T>
+    bool _lock(weak_ptr<T> in, shared_ptr<T>& out, string component) {
+        bool result = lockWeakPointer(in, out);
+        
+        if (!result) {
+            Log::get() << "No " << component << " for MainMenuLayer" << LogLevel::error;
+        }
+        
+        return result;
+    }
+    
     const int MainMenuLayer::ENTRIES_SPACING = 100;
     
-    MainMenuLayer::MainMenuLayer() : selected(nullptr), shouldStartGame(false), shouldExit(false) {
+    MainMenuLayer::MainMenuLayer() : shouldStartGame(false), shouldExit(false), clicking(false), selectedEntry(-1) {
         
     }
     
@@ -40,29 +52,38 @@ namespace Bomberman {
         if (SDL_MOUSEBUTTONDOWN == event.type) {
             SDL_GetMouseState(&position.i, &position.j);
             
-            click(position);
+            clicking = true;
+            select(position);
+        } else if (SDL_MOUSEBUTTONUP == event.type && clicking) {
+            clicking = false;
+            
+            pushSelectedButton();
         } else if (SDL_MOUSEMOTION == event.type) {
             SDL_GetMouseState(&position.i, &position.j);
             
             select(position);
+        } else if (SDL_KEYUP == event.type) {
+            auto keySym = event.key.keysym.sym;
+            
+            if (SDLK_UP == keySym && !clicking) {
+                select(selectedEntry - 1);
+            } else if (SDLK_DOWN == keySym && !clicking) {
+                select(selectedEntry + 1);
+            } else if (SDLK_RETURN == keySym && !clicking) {
+                pushSelectedButton();
+            }
         }
     }
     
     void MainMenuLayer::update() {
         if (shouldStartGame) {
-            if (this->director.expired()) {
-                Log::get() << "Invalid Director for MainMenuLayer" << LogLevel::error;
-            } else {
-                auto director = this->director.lock();
-                
+            shared_ptr<Director> director;
+            if (_lock(this->director, director, "Director")) {
                 director->showLevelList();
             }
         } else if (shouldExit) {
-            if (this->loopQuiter.expired()) {
-                Log::get() << "Invalid LoopQuiter for MainMenuLayer" << LogLevel::error;
-            } else {
-                auto loopQuiter = this->loopQuiter.lock();
-                
+            shared_ptr<LoopQuiter> loopQuiter;
+            if (_lock(this->loopQuiter, loopQuiter, "LoopQuiter")) {
                 loopQuiter->quitLoop();
             }
         }
@@ -78,31 +99,33 @@ namespace Bomberman {
         exit.draw();
     }
     
-    void MainMenuLayer::select(Coordinate position) {
-        if (startGame.rectangle().contains(position)) {
-            if (selected && &startGame != selected) {
-                selected->setColor(Color::WHITE);
-            }
-            
-            startGame.setColor(Color::BLUE);
-            selected =  &startGame;
-        } else if (exit.rectangle().contains(position)) {
-            if (selected && &exit != selected) {
-                selected->setColor(Color::WHITE);
-            }
-            
-            exit.setColor(Color::BLUE);
-            selected = &exit;
-        } else if (selected) {
-            selected->setColor(Color::WHITE);
-            selected = nullptr;
+    void MainMenuLayer::select(int entry) {
+        if (selectedEntry >= 0 && selectedEntry < menuEntries.size()) {
+            menuEntries[selectedEntry]->setColor(Color::WHITE);
+            selectedEntry = -1;
+        }
+        
+        if (entry >= 0 && entry < menuEntries.size()) {
+            selectedEntry = entry;
+            menuEntries[selectedEntry]->setColor(Color::BLUE);
         }
     }
     
-    void MainMenuLayer::click(Coordinate position) {
-        if (startGame.rectangle().contains(position)) {
+    void MainMenuLayer::select(Coordinate position) {
+        for (int n = 0; n < menuEntries.size(); ++n) {
+            if (menuEntries[n]->rectangle().contains(position)) {
+                select(n);
+                return;
+            }
+        }
+        
+        select(-1);
+    }
+    
+    void MainMenuLayer::pushSelectedButton() {
+        if (0 == selectedEntry) {
             shouldStartGame = true;
-        } else if (exit.rectangle().contains(position)) {
+        } else if (1 == selectedEntry) {
             shouldExit = true;
         }
     }
@@ -120,6 +143,9 @@ namespace Bomberman {
         
         startGame = font.write("Start Game");
         exit = font.write("Exit");
+        
+        menuEntries.push_back(&startGame);
+        menuEntries.push_back(&exit);
     }
     
     void MainMenuLayer::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {
