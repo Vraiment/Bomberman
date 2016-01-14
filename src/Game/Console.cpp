@@ -23,7 +23,7 @@ namespace Bomberman {
     const int Console::BUFFER_SIZE = 80;
     
     template <typename T>
-    bool lock(weak_ptr<T> in, shared_ptr<T>& out, string componentName) {
+    bool _lock(weak_ptr<T> in, shared_ptr<T>& out, string componentName) {
         bool result = lockWeakPointer(in, out);
         
         if (!result) {
@@ -44,8 +44,8 @@ namespace Bomberman {
     void Console::hide() {
         shared_ptr<ConsoleLayer> consoleLayer;
         shared_ptr<Director> director;
-        if (!lock<ConsoleLayer>(this->consoleLayer, consoleLayer, "ConsoleLayer") ||
-            !lock<Director>(this->director, director, "Director")) {
+        if (!_lock(this->consoleLayer, consoleLayer, "ConsoleLayer") ||
+            !_lock(this->director, director, "Director")) {
             return;
         }
         
@@ -60,8 +60,8 @@ namespace Bomberman {
     void Console::show() {
         shared_ptr<ConsoleLayer> consoleLayer;
         shared_ptr<Director> director;
-        if (!lock<ConsoleLayer>(this->consoleLayer, consoleLayer, "ConsoleLayer") ||
-            !lock<Director>(this->director, director, "Director")) {
+        if (!_lock(this->consoleLayer, consoleLayer, "ConsoleLayer") ||
+            !_lock(this->director, director, "Director")) {
             return;
         }
         
@@ -75,7 +75,7 @@ namespace Bomberman {
     
     void Console::addToBuffer(char character) {
         shared_ptr<ConsoleLayer> consoleLayer;
-        if (!lock<ConsoleLayer>(this->consoleLayer, consoleLayer, "ConsoleLayer")) {
+        if (!_lock(this->consoleLayer, consoleLayer, "ConsoleLayer")) {
             return;
         }
         
@@ -86,7 +86,7 @@ namespace Bomberman {
     
     void Console::addToBuffer(string str) {
         shared_ptr<ConsoleLayer> consoleLayer;
-        if (!lock<ConsoleLayer>(this->consoleLayer, consoleLayer, "ConsoleLayer")) {
+        if (!_lock(this->consoleLayer, consoleLayer, "ConsoleLayer")) {
             return;
         }
         
@@ -99,7 +99,7 @@ namespace Bomberman {
     
     void Console::removeLastFromBuffer() {
         shared_ptr<ConsoleLayer> consoleLayer;
-        if (!lock<ConsoleLayer>(this->consoleLayer, consoleLayer, "ConsoleLayer")) {
+        if (!_lock(this->consoleLayer, consoleLayer, "ConsoleLayer")) {
             return;
         }
         
@@ -116,7 +116,7 @@ namespace Bomberman {
     
     void Console::clearBuffer() {
         shared_ptr<ConsoleLayer> consoleLayer;
-        if (!lock<ConsoleLayer>(this->consoleLayer, consoleLayer, "ConsoleLayer")) {
+        if (!_lock(this->consoleLayer, consoleLayer, "ConsoleLayer")) {
             return;
         }
         
@@ -127,7 +127,7 @@ namespace Bomberman {
     
     void Console::commitBuffer() {
         shared_ptr<CommandQueue> commandQueue;
-        if (!lock<CommandQueue>(this->commandQueue, commandQueue, "CommandQueue")) {
+        if (!_lock(this->commandQueue, commandQueue, "CommandQueue")) {
             return;
         }
         

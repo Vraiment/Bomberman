@@ -30,7 +30,7 @@ using namespace std;
 
 namespace Bomberman {
     template <typename T>
-    bool lock(weak_ptr<T> in, shared_ptr<T>& out, string component) {
+    bool _lock(weak_ptr<T> in, shared_ptr<T>& out, string component) {
         bool result = lockWeakPointer(in, out);
         
         if (!result) {
@@ -101,16 +101,15 @@ namespace Bomberman {
     }
     
     void Director::load() {
-        if (this->screenManager.expired()) {
-            Log::get() << "No ScreenManager for GameStateManager" << LogLevel::error;
-            return;
-        } else if (this->renderer.expired()) {
-            Log::get() << "No Renderer for GameStateManager" << LogLevel::error;
+        auto self = shared_from_this();
+        shared_ptr<ScreenManager> screenManager;
+        shared_ptr<SDL_Renderer> renderer;
+        shared_ptr<LoopQuiter> loopQuiter;
+        if (!_lock(this->screenManager, screenManager, "ScreenManager") ||
+            !_lock(this->renderer, renderer, "Renderer") ||
+            !_lock(this->loopQuiter, loopQuiter, "LoopQuiter")) {
             return;
         }
-        auto self = shared_from_this();
-        auto screenManager = this->screenManager.lock();
-        auto renderer = this->renderer.lock();
         
         // Initialize main menu
         auto mainMenuLayer = make_shared<MainMenuLayer>();
@@ -138,6 +137,7 @@ namespace Bomberman {
         // Command stuff
         auto commandQueue = make_shared<CommandQueue>();
         auto commandFactory = make_shared<CommandFactory>();
+        commandFactory->setLoopQuiter(loopQuiter);
         
         // Console
         console = make_shared<Console>(commandFactory);
@@ -198,22 +198,26 @@ namespace Bomberman {
         shared_ptr<MainMenuLayer> mainMenuLayer;
         shared_ptr<LevelListLayer> levelListLayer;
         
-        if (!lock<MainMenuLayer>(this->mainMenuLayer, mainMenuLayer, "MainMenuLayer") ||
-            !lock<LevelListLayer>(this->levelListLayer, levelListLayer, "LevelListLayer") ||
-            !lock<HudLayer>(this->hudLayer, hudLayer, "HudLayer") ||
-            !lock<CommandQueue>(this->commandQueue, commandQueue, "CommandQueue") ||
-            !lock<ConsoleLayer>(this->consoleLayer, consoleLayer, "ConsoleLayer") ||
-            !lock<GameLayer>(this->gameLayer, gameLayer, "GameLayer")) {
+        if (!_lock(this->mainMenuLayer, mainMenuLayer, "MainMenuLayer") ||
+            !_lock(this->levelListLayer, levelListLayer, "LevelListLayer") ||
+            !_lock(this->hudLayer, hudLayer, "HudLayer") ||
+            !_lock(this->commandQueue, commandQueue, "CommandQueue") ||
+            !_lock(this->consoleLayer, consoleLayer, "ConsoleLayer") ||
+            !_lock(this->gameLayer, gameLayer, "GameLayer")) {
             return;
         }
         
         if (ProgramState::MainMenu == nextState) {
+            state = ProgramState::MainMenu;
+            
             enableScreenComponent(mainMenuLayer);
             
             disableScreenComponent(levelListLayer);
             disableScreenComponent(hudLayer);
             disableScreenComponent(commandQueue);
         } else if (ProgramState::LevelList == nextState) {
+            state = ProgramState::LevelList;
+            
             enableScreenComponent(levelListLayer);
             
             levelListLayer->fillMapList();
@@ -222,6 +226,8 @@ namespace Bomberman {
             disableScreenComponent(hudLayer);
             disableScreenComponent(commandQueue);
         }  else if (ProgramState::InGame == nextState) {
+            state = ProgramState::InGame;
+            
             auto tileMap = loadTileMap(nextMap);
             
             if (tileMap) {
@@ -231,6 +237,8 @@ namespace Bomberman {
                 enableScreenComponent(consoleLayer);
                 
                 commandQueue->clear();
+                commandFactory->setTileMap(tileMap);
+                commandFactory->setPlayer(tileMap->player());
                 gameLayer->setTileMap(tileMap);
                 hudLayer->setTileMap(tileMap);
                 hudLayer->setPlayer(tileMap->player());

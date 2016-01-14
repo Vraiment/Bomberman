@@ -23,7 +23,7 @@ using namespace std;
 
 namespace Bomberman {
     template <typename T>
-    bool lock(weak_ptr<T> in, shared_ptr<T>& out, string component) {
+    bool _lock(weak_ptr<T> in, shared_ptr<T>& out, string component) {
         bool result = lockWeakPointer(in, out);
         
         if (!result) {
@@ -40,7 +40,7 @@ namespace Bomberman {
         bool playerHasRemote = false;
         int playerMaxBombs = -1;
         int explosionSize = -1;
-        if (lock<Player>(this->player, player, "Player")) {
+        if (_lock(this->player, player, "Player")) {
             playerLifes = player->getLifesCount();
             playerMaxLifes = player->getMaxLifes();
             playerHasRemote = player->hasRemote();
@@ -51,7 +51,7 @@ namespace Bomberman {
         shared_ptr<TileMap> tileMap;
         int mapBombs = -1;
         int mapEnemies = -1;
-        if (lock<TileMap>(this->tileMap, tileMap, "TileMap")) {
+        if (_lock(this->tileMap, tileMap, "TileMap")) {
             auto tileMap = this->tileMap.lock();
             
             mapBombs = tileMap->bombCount();
