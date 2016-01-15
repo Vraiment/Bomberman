@@ -10,344 +10,402 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Math">
-      <UniqueIdentifier>{cdcfbec1-6758-4d18-89de-1546c29dcb54}</UniqueIdentifier>
-      <Extensions>
-      </Extensions>
-    </Filter>
-    <Filter Include="Source Files\Utils">
-      <UniqueIdentifier>{19683f4c-4184-4297-beb1-89194e53a76e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Log">
-      <UniqueIdentifier>{93a3378a-c0a1-4f14-82d3-c1f794be7ce2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Libraries">
       <UniqueIdentifier>{b2d44808-fa14-4884-a071-45fc9dc4ea23}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries\TinyXml2">
       <UniqueIdentifier>{e1d54875-d09c-4596-9102-b0595d21b2c1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Elements">
-      <UniqueIdentifier>{2459063b-987c-4adf-a505-637503563a49}</UniqueIdentifier>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{eb7bc092-b2c1-4a60-9db3-fa44095e87f7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Map">
-      <UniqueIdentifier>{a1247f1a-4311-458f-8cfe-f6ff6cf14fb2}</UniqueIdentifier>
+    <Filter Include="Source Files\Core\Log">
+      <UniqueIdentifier>{48e6ec0f-70df-4ff9-9572-6f720e3f45b8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Commands">
-      <UniqueIdentifier>{0c5f8023-08ed-4c5f-8b2e-ecaf0370a099}</UniqueIdentifier>
+    <Filter Include="Source Files\Core\Math">
+      <UniqueIdentifier>{d96bdcf9-44c7-45b2-95fd-5326f08b1344}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Console">
-      <UniqueIdentifier>{af120244-74d8-42c7-a3b4-33a58245da37}</UniqueIdentifier>
+    <Filter Include="Source Files\Core\Utils">
+      <UniqueIdentifier>{1197331b-70dd-44fe-ac5d-55d692e31462}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Layers">
-      <UniqueIdentifier>{44804ff4-fb42-435b-baa7-1e7181c20f46}</UniqueIdentifier>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{ea50c8c5-7d14-4553-bb0b-15087ee044bd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\EventListeners">
-      <UniqueIdentifier>{fd4f7f97-4736-48af-8e3a-47384ca6612b}</UniqueIdentifier>
+    <Filter Include="Source Files\Game\Commands">
+      <UniqueIdentifier>{2cba11ea-88a7-4094-924a-0cef25b4e950}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Console">
+      <UniqueIdentifier>{16dfce55-d43c-4baa-b49c-486898dcd753}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Elements">
+      <UniqueIdentifier>{91070d96-1edb-401b-b9ed-d551ec715231}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\EventListeners">
+      <UniqueIdentifier>{6ce2cbbb-56b3-4e6d-92d5-9a6fadb19e57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Layers">
+      <UniqueIdentifier>{4cd9af3b-550f-4b72-a402-d4c36c10577d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Map">
+      <UniqueIdentifier>{5c81f419-b228-4716-99ae-451b57dba438}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\Math\Coordinate.cpp">
-      <Filter>Source Files\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Math\Random.cpp">
-      <Filter>Source Files\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Math\Rectangle.cpp">
-      <Filter>Source Files\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Math\Transformer.cpp">
-      <Filter>Source Files\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Utils\OperatingSystem.cpp">
-      <Filter>Source Files\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Utils\StringUtils.cpp">
-      <Filter>Source Files\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Log\Logger.cpp">
-      <Filter>Source Files\Log</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Log\LogLevel.cpp">
-      <Filter>Source Files\Log</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Log\Log.cpp">
-      <Filter>Source Files\Log</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Command.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\CommandQueue.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\EventListener.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Layer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\LoopQuiter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\libs\tinyxml2\tinyxml2.cpp">
       <Filter>Libraries\TinyXml2</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Log\LoggerFactory.cpp">
-      <Filter>Source Files\Log</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Configuration.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Timer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Color.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Font.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Elements\Bomb.cpp">
-      <Filter>Source Files\Elements</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Elements\Brick.cpp">
-      <Filter>Source Files\Elements</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Elements\Item.cpp">
-      <Filter>Source Files\Elements</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Elements\Player.cpp">
-      <Filter>Source Files\Elements</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Elements\Enemy.cpp">
-      <Filter>Source Files\Elements</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Elements\Explosion.cpp">
-      <Filter>Source Files\Elements</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Map\DummyTileMapBuilder.cpp">
-      <Filter>Source Files\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Map\TileMap.cpp">
-      <Filter>Source Files\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Map\TxtTileMapLoader.cpp">
-      <Filter>Source Files\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Map\XmlTileMapLoader.cpp">
-      <Filter>Source Files\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Commands\PlayerCommand.cpp">
-      <Filter>Source Files\Commands</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Commands\QuitCommand.cpp">
-      <Filter>Source Files\Commands</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\CommandFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Console\First.cpp">
-      <Filter>Source Files\Console</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Console\Parser.cpp">
-      <Filter>Source Files\Console</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Console\Token.cpp">
-      <Filter>Source Files\Console</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Console\TokenFactory.cpp">
-      <Filter>Source Files\Console</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Layers\ConsoleLayer.cpp">
-      <Filter>Source Files\Layers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Layers\GameLayer.cpp">
-      <Filter>Source Files\Layers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Layers\HudLayer.cpp">
-      <Filter>Source Files\Layers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Console.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\EventListeners\ConsoleEvents.cpp">
-      <Filter>Source Files\EventListeners</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\EventListeners\PlayerEvents.cpp">
-      <Filter>Source Files\EventListeners</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Engine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\MainLoop.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Screen.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Core\Color.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Command.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\CommandQueue.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Drawable.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Engine.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\EventListener.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Font.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\LoopQuiter.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\MainLoop.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Screen.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\ScreenComponent.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\ScreenManager.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Texture.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Timer.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Updatable.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Log\Log.cpp">
+      <Filter>Source Files\Core\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Log\Logger.cpp">
+      <Filter>Source Files\Core\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Log\LoggerFactory.cpp">
+      <Filter>Source Files\Core\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Log\LogLevel.cpp">
+      <Filter>Source Files\Core\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Math\Coordinate.cpp">
+      <Filter>Source Files\Core\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Math\Random.cpp">
+      <Filter>Source Files\Core\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Math\Rectangle.cpp">
+      <Filter>Source Files\Core\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Math\Transformer.cpp">
+      <Filter>Source Files\Core\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Utils\OperatingSystem.cpp">
+      <Filter>Source Files\Core\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Utils\PointerUtils.cpp">
+      <Filter>Source Files\Core\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Utils\StringUtils.cpp">
+      <Filter>Source Files\Core\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Configuration.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\CommandFactory.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Console.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Director.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Commands\GameOverCommand.cpp">
+      <Filter>Source Files\Game\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Commands\PlayerCommand.cpp">
+      <Filter>Source Files\Game\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Commands\QuitCommand.cpp">
+      <Filter>Source Files\Game\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Console\First.cpp">
+      <Filter>Source Files\Game\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Console\Parser.cpp">
+      <Filter>Source Files\Game\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Console\Token.cpp">
+      <Filter>Source Files\Game\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Console\TokenFactory.cpp">
+      <Filter>Source Files\Game\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Elements\Bomb.cpp">
+      <Filter>Source Files\Game\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Elements\Brick.cpp">
+      <Filter>Source Files\Game\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Elements\Enemy.cpp">
+      <Filter>Source Files\Game\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Elements\Explosion.cpp">
+      <Filter>Source Files\Game\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Elements\Item.cpp">
+      <Filter>Source Files\Game\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Elements\Player.cpp">
+      <Filter>Source Files\Game\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\EventListeners\ConsoleEvents.cpp">
+      <Filter>Source Files\Game\EventListeners</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\EventListeners\PlayerEvents.cpp">
+      <Filter>Source Files\Game\EventListeners</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Layers\ConsoleLayer.cpp">
+      <Filter>Source Files\Game\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Layers\GameLayer.cpp">
+      <Filter>Source Files\Game\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Layers\HudLayer.cpp">
+      <Filter>Source Files\Game\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Layers\LevelListLayer.cpp">
+      <Filter>Source Files\Game\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Layers\MainMenuLayer.cpp">
+      <Filter>Source Files\Game\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Layers\PauseMenu.cpp">
+      <Filter>Source Files\Game\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Map\DummyTileMapBuilder.cpp">
+      <Filter>Source Files\Game\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Map\TileMap.cpp">
+      <Filter>Source Files\Game\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Map\TxtTileMapLoader.cpp">
+      <Filter>Source Files\Game\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Map\XmlTileMapLoader.cpp">
+      <Filter>Source Files\Game\Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\Math\Coordinate.hpp">
-      <Filter>Source Files\Math</Filter>
+    <ClInclude Include="..\src\Core\Color.hpp">
+      <Filter>Source Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Math\Matrix.hpp">
-      <Filter>Source Files\Math</Filter>
+    <ClInclude Include="..\src\Core\Command.hpp">
+      <Filter>Source Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Math\Random.hpp">
-      <Filter>Source Files\Math</Filter>
+    <ClInclude Include="..\src\Core\CommandQueue.hpp">
+      <Filter>Source Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Math\Rectangle.hpp">
-      <Filter>Source Files\Math</Filter>
+    <ClInclude Include="..\src\Core\Drawable.hpp">
+      <Filter>Source Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Math\Transformer.hpp">
-      <Filter>Source Files\Math</Filter>
+    <ClInclude Include="..\src\Core\Engine.hpp">
+      <Filter>Source Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Utils\Exception.hpp">
-      <Filter>Source Files\Utils</Filter>
+    <ClInclude Include="..\src\Core\EventListener.hpp">
+      <Filter>Source Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Utils\OperatingSystem.hpp">
-      <Filter>Source Files\Utils</Filter>
+    <ClInclude Include="..\src\Core\Font.hpp">
+      <Filter>Source Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Utils\StringUtils.hpp">
-      <Filter>Source Files\Utils</Filter>
+    <ClInclude Include="..\src\Core\LoopQuiter.hpp">
+      <Filter>Source Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Utils\VectorUtils.hpp">
-      <Filter>Source Files\Utils</Filter>
+    <ClInclude Include="..\src\Core\MainLoop.hpp">
+      <Filter>Source Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Log\Logger.hpp">
-      <Filter>Source Files\Log</Filter>
+    <ClInclude Include="..\src\Core\Screen.hpp">
+      <Filter>Source Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Log\LogLevel.hpp">
-      <Filter>Source Files\Log</Filter>
+    <ClInclude Include="..\src\Core\ScreenComponent.hpp">
+      <Filter>Source Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Log\Log.hpp">
-      <Filter>Source Files\Log</Filter>
+    <ClInclude Include="..\src\Core\ScreenManager.hpp">
+      <Filter>Source Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Command.hpp">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\src\Core\Texture.hpp">
+      <Filter>Source Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\CommandQueue.hpp">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\src\Core\Timer.hpp">
+      <Filter>Source Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Constants.hpp">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\src\Core\Updatable.hpp">
+      <Filter>Source Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\EventListener.hpp">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\src\Core\Log\Log.hpp">
+      <Filter>Source Files\Core\Log</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Layer.hpp">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\src\Core\Log\Logger.hpp">
+      <Filter>Source Files\Core\Log</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\LoopQuiter.hpp">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\src\Core\Log\LoggerFactory.hpp">
+      <Filter>Source Files\Core\Log</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Log\LoggerFactory.hpp">
-      <Filter>Source Files\Log</Filter>
+    <ClInclude Include="..\src\Core\Log\LogLevel.hpp">
+      <Filter>Source Files\Core\Log</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Configuration.hpp">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\src\Core\Log\LogSystem.h">
+      <Filter>Source Files\Core\Log</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Timer.hpp">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\src\Core\Math\Coordinate.hpp">
+      <Filter>Source Files\Core\Math</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Texture.hpp">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\src\Core\Math\Matrix.hpp">
+      <Filter>Source Files\Core\Math</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Color.hpp">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\src\Core\Math\Random.hpp">
+      <Filter>Source Files\Core\Math</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Font.hpp">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\src\Core\Math\Rectangle.hpp">
+      <Filter>Source Files\Core\Math</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Elements\Bomb.hpp">
-      <Filter>Source Files\Elements</Filter>
+    <ClInclude Include="..\src\Core\Math\Transformer.hpp">
+      <Filter>Source Files\Core\Math</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Elements\Brick.hpp">
-      <Filter>Source Files\Elements</Filter>
+    <ClInclude Include="..\src\Core\Utils\Exception.hpp">
+      <Filter>Source Files\Core\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Elements\Item.hpp">
-      <Filter>Source Files\Elements</Filter>
+    <ClInclude Include="..\src\Core\Utils\OperatingSystem.hpp">
+      <Filter>Source Files\Core\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Elements\Player.hpp">
-      <Filter>Source Files\Elements</Filter>
+    <ClInclude Include="..\src\Core\Utils\PointerUtils.hpp">
+      <Filter>Source Files\Core\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Elements\Enemy.hpp">
-      <Filter>Source Files\Elements</Filter>
+    <ClInclude Include="..\src\Core\Utils\StringUtils.hpp">
+      <Filter>Source Files\Core\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Elements\Explosion.hpp">
-      <Filter>Source Files\Elements</Filter>
+    <ClInclude Include="..\src\Core\Utils\VectorUtils.hpp">
+      <Filter>Source Files\Core\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Map\DummyTileMapBuilder.hpp">
-      <Filter>Source Files\Map</Filter>
+    <ClInclude Include="..\src\Game\Configuration.hpp">
+      <Filter>Source Files\Game</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Map\TileMap.hpp">
-      <Filter>Source Files\Map</Filter>
+    <ClInclude Include="..\src\Game\Constants.hpp">
+      <Filter>Source Files\Game</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Map\TileMapBuilder.hpp">
-      <Filter>Source Files\Map</Filter>
+    <ClInclude Include="..\src\Game\CommandFactory.hpp">
+      <Filter>Source Files\Game</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Map\TxtTileMapLoader.hpp">
-      <Filter>Source Files\Map</Filter>
+    <ClInclude Include="..\src\Game\Console.hpp">
+      <Filter>Source Files\Game</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Map\XmlTileMapLoader.hpp">
-      <Filter>Source Files\Map</Filter>
+    <ClInclude Include="..\src\Game\Director.hpp">
+      <Filter>Source Files\Game</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Commands\PlayerCommand.hpp">
-      <Filter>Source Files\Commands</Filter>
+    <ClInclude Include="..\src\Game\Commands\GameOverCommand.hpp">
+      <Filter>Source Files\Game\Commands</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Commands\QuitCommand.hpp">
-      <Filter>Source Files\Commands</Filter>
+    <ClInclude Include="..\src\Game\Commands\PlayerCommand.hpp">
+      <Filter>Source Files\Game\Commands</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\CommandFactory.hpp">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\src\Game\Commands\QuitCommand.hpp">
+      <Filter>Source Files\Game\Commands</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Console\First.hpp">
-      <Filter>Source Files\Console</Filter>
+    <ClInclude Include="..\src\Game\Console\First.hpp">
+      <Filter>Source Files\Game\Console</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Console\Parser.hpp">
-      <Filter>Source Files\Console</Filter>
+    <ClInclude Include="..\src\Game\Console\Parser.hpp">
+      <Filter>Source Files\Game\Console</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Console\Token.hpp">
-      <Filter>Source Files\Console</Filter>
+    <ClInclude Include="..\src\Game\Console\Token.hpp">
+      <Filter>Source Files\Game\Console</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Console\TokenFactory.hpp">
-      <Filter>Source Files\Console</Filter>
+    <ClInclude Include="..\src\Game\Console\TokenFactory.hpp">
+      <Filter>Source Files\Game\Console</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Layers\ConsoleLayer.hpp">
-      <Filter>Source Files\Layers</Filter>
+    <ClInclude Include="..\src\Game\Elements\Bomb.hpp">
+      <Filter>Source Files\Game\Elements</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Layers\GameLayer.hpp">
-      <Filter>Source Files\Layers</Filter>
+    <ClInclude Include="..\src\Game\Elements\Brick.hpp">
+      <Filter>Source Files\Game\Elements</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Layers\HudLayer.hpp">
-      <Filter>Source Files\Layers</Filter>
+    <ClInclude Include="..\src\Game\Elements\Enemy.hpp">
+      <Filter>Source Files\Game\Elements</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Console.hpp">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\src\Game\Elements\Explosion.hpp">
+      <Filter>Source Files\Game\Elements</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\EventListeners\ConsoleEvents.hpp">
-      <Filter>Source Files\EventListeners</Filter>
+    <ClInclude Include="..\src\Game\Elements\Item.hpp">
+      <Filter>Source Files\Game\Elements</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\EventListeners\PlayerEvents.hpp">
-      <Filter>Source Files\EventListeners</Filter>
+    <ClInclude Include="..\src\Game\Elements\Player.hpp">
+      <Filter>Source Files\Game\Elements</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Engine.hpp">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\src\Game\EventListeners\ConsoleEvents.hpp">
+      <Filter>Source Files\Game\EventListeners</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\MainLoop.hpp">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\src\Game\EventListeners\PlayerEvents.hpp">
+      <Filter>Source Files\Game\EventListeners</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Screen.hpp">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\src\Game\Layers\ConsoleLayer.hpp">
+      <Filter>Source Files\Game\Layers</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Log\LogSystem.h">
-      <Filter>Source Files\Log</Filter>
+    <ClInclude Include="..\src\Game\Layers\GameLayer.hpp">
+      <Filter>Source Files\Game\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Layers\HudLayer.hpp">
+      <Filter>Source Files\Game\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Layers\LevelListLayer.hpp">
+      <Filter>Source Files\Game\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Layers\MainMenuLayer.hpp">
+      <Filter>Source Files\Game\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Layers\PauseMenu.hpp">
+      <Filter>Source Files\Game\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Map\DummyTileMapBuilder.hpp">
+      <Filter>Source Files\Game\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Map\TileMap.hpp">
+      <Filter>Source Files\Game\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Map\TileMapBuilder.hpp">
+      <Filter>Source Files\Game\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Map\TxtTileMapLoader.hpp">
+      <Filter>Source Files\Game\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Map\XmlTileMapLoader.hpp">
+      <Filter>Source Files\Game\Map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
