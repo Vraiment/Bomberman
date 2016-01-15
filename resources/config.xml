@@ -9,4 +9,8 @@
 	<loggers>
 		<logger>stdout</logger>
 	</loggers>
+    
+    <start_map>
+        map1.txt
+    </start_map>
 </configuration>

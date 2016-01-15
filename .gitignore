@@ -221,3 +221,6 @@ FakesAssemblies/
 **/*.Server/GeneratedArtifacts
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
+
+# Ignore weird new XCode file
+*.xcscmblueprint
