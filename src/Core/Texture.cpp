@@ -12,7 +12,7 @@
 #include <SDL2_image/SDL_image.h>
 
 #include "Color.hpp"
-#include "Constants.hpp"
+#include "../Game/Constants.hpp"
 #include "Log/Log.hpp"
 #include "Log/LogLevel.hpp"
 #include "Utils/OperatingSystem.hpp"

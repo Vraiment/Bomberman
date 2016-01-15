@@ -21,7 +21,7 @@
 #include <ctime>
 #include <string>
 
-#include "Constants.hpp"
+#include "../Game/Constants.hpp"
 #include "Log/LogSystem.h"
 #include "Utils/Exception.hpp"
 #include "Utils/OperatingSystem.hpp"

@@ -48,8 +48,8 @@ namespace Bomberman {
         
         Font font;
         
-        enum Button selectedButton;
-        enum Button clickedButton;
+        Button selectedButton;
+        Button clickedButton;
         
         int selected, newSelected;
         

@@ -12,7 +12,7 @@
 #include <SDL2_ttf/SDL_ttf.h>
 #include <sstream>
 
-#include "Constants.hpp"
+#include "../Game/Constants.hpp"
 #include "Texture.hpp"
 #include "Log/LogSystem.h"
 #include "Utils/OperatingSystem.hpp"
