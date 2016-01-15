@@ -13,6 +13,9 @@
 #if defined(__APPLE__)
 #include <dirent.h>
 #endif
+#if defined(_WIN64)
+#include <Windows.h>
+#endif
 
 using namespace std;
 
@@ -48,6 +51,20 @@ namespace Bomberman {
                 }
             }
             
+            result = true;
+        }
+#elif defined(_WIN64)
+        path = getPath({ path }, "*");
+
+        HANDLE directoryHandle = INVALID_HANDLE_VALUE;
+        WIN32_FIND_DATAA data;
+
+        directoryHandle = FindFirstFileA(path.c_str(), &data);
+        if (INVALID_HANDLE_VALUE != directoryHandle) {
+            do {
+                contents.push_back(data.cFileName);
+            } while (FindNextFileA(directoryHandle, &data));
+
             result = true;
         }
 #endif
