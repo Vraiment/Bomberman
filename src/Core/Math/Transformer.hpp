@@ -14,7 +14,7 @@
 #include <stack>
 
 namespace Bomberman {
-    class Coordinate;
+    struct Coordinate;
     
     class Transformer {
     public:

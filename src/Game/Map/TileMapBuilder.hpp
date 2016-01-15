@@ -15,7 +15,7 @@
 
 namespace Bomberman {
     class Brick;
-    class Coordinate;
+    struct Coordinate;
     class Enemy;
     class Item;
     class Player;

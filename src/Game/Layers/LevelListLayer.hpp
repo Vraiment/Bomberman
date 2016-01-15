@@ -21,7 +21,7 @@
 struct SDL_Renderer;
 
 namespace Bomberman {
-    class Coordinate;
+    struct Coordinate;
     class Director;
     
     class LevelListLayer : public Drawable, public EventListener, public Updatable {

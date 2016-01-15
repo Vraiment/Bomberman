@@ -181,11 +181,11 @@ namespace Bomberman {
     }
     
     void LevelListLayer::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {
-        background.rectangle().i = newSize.width * .05;
-        background.rectangle().width = newSize.width * .9;
+        background.rectangle().i = static_cast<int>(newSize.width * .05);
+        background.rectangle().width = static_cast<int>(newSize.width * .9);
         
-        background.rectangle().j = newSize.height * .05;
-        background.rectangle().height = (newSize.height * .95) - ok.rectangle().height - 50;
+        background.rectangle().j = static_cast<int>(newSize.height * .05);
+        background.rectangle().height = static_cast<int>((newSize.height * .95) - ok.rectangle().height - 50);
         
         cancel.rectangle().i = background.rectangle().i;
         cancel.rectangle().j = background.rectangle().bottom() + 20;

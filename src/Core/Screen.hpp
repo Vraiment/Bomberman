@@ -16,8 +16,8 @@
 #include "Math/Rectangle.hpp"
 
 union SDL_Event;
-class SDL_Renderer;
-class SDL_Window;
+struct SDL_Renderer;
+struct SDL_Window;
 
 namespace Bomberman {
     class EventListener;

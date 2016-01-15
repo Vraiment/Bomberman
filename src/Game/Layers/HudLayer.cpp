@@ -71,16 +71,16 @@ namespace Bomberman {
             life.draw();
         }
         
-        life.setAlpha(Texture::OPAQUE * .25);
+        life.setAlpha(static_cast<uint8_t>(Texture::OPAQUE * .25));
         for (int n = playerLifes; n < playerMaxLifes; ++n) {
             life.rectangle().i = n * life.rectangle().height;
             life.draw();
         }
         
         if (playerHasRemote) {
-            remote.setAlpha(Texture::OPAQUE);
+            remote.setAlpha(static_cast<uint8_t>(Texture::OPAQUE));
         } else {
-            remote.setAlpha(Texture::OPAQUE * .25);
+            remote.setAlpha(static_cast<uint8_t>(Texture::OPAQUE * .25));
         }
         remote.rectangle().i = life.rectangle().right() + (life.rectangle().width);
         remote.draw();
@@ -163,7 +163,7 @@ namespace Bomberman {
         continueText = font.write("Press enter to return...", Color::RED);
         
         background = Texture::createRectangle(1, 1, Color::BLACK, renderer);
-        background.setAlpha(Texture::OPAQUE * .50);
+        background.setAlpha(static_cast<uint8_t>(Texture::OPAQUE * .50));
         
         font = Font("PressStart2P.ttf", 15, renderer);
         for (int n = 0; n < 10; ++n) {

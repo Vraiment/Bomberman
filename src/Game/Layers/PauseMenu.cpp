@@ -121,7 +121,7 @@ namespace Bomberman {
     
     void PauseMenu::load(shared_ptr<SDL_Renderer> renderer) {
         background = Texture::createRectangle(1, 1, Color::BLACK, renderer);
-        background.setAlpha(Texture::OPAQUE * .5);
+        background.setAlpha(static_cast<uint8_t>(Texture::OPAQUE * .5));
         
         Font font("PressStart2P.ttf", 35, renderer);
         
