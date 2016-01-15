@@ -127,8 +127,10 @@ namespace Bomberman {
             clickedButton = Button::none;
         } else if (Button::ok == clickedButton){
             if (!director.expired()) {
-                auto director = this->director.lock();
-                director->loadLevel(maps[selected].first);
+                if (selected >= 0 && selected < maps.size()) {
+                    auto director = this->director.lock();
+                    director->loadLevel(maps[selected].first);
+                }
             } else {
                 Log::get() << "No Director set for LevelListLayer" << LogLevel::error;
             }
