@@ -8,9 +8,13 @@
 
 #include "GameLayer.hpp"
 
+#include <SDL2/SDL.h>
+
 #include "../../Core/Log/LogSystem.h"
+#include "../../Core/Utils/PointerUtils.hpp"
 
 #include "../Constants.hpp"
+#include "../Director.hpp"
 #include "../Elements/Bomb.hpp"
 #include "../Elements/Brick.hpp"
 #include "../Elements/Enemy.hpp"
@@ -132,6 +136,17 @@ namespace Bomberman {
         
     }
     
+    void GameLayer::listenEvent(SDL_Event event) {
+        if (SDL_KEYUP == event.type && SDLK_RETURN == event.key.keysym.sym) {
+            shared_ptr<Director> director;
+            if (lockWeakPointer(this->director, director)) {
+                director->endGame();
+            } else {
+                Log::get() << "No Director for GameLayer" << LogLevel::error;
+            }
+        }
+    }
+
     void GameLayer::draw() {
         Texture texture;
         
@@ -215,6 +230,15 @@ namespace Bomberman {
         } else {
             drawPlayer = true;
         }
+
+        if (tileMap->gameOver() || tileMap->playerWins()) {
+            shared_ptr<Director> director;
+            if (lockWeakPointer(this->director, director)) {
+                director->freezeGame();
+            } else {
+                Log::get() << "No Director for GameLayer" << LogLevel::error;
+            }
+        }
     }
     
     void GameLayer::load(shared_ptr<SDL_Renderer> renderer) {
@@ -241,6 +265,10 @@ namespace Bomberman {
         enemies.push_back(enemy);
     }
     
+    void GameLayer::setDirector(weak_ptr<Director> director) {
+        this->director = director;
+    }
+
     void GameLayer::setTileMap(shared_ptr<TileMap> tileMap) {
         this->tileMap = tileMap;
         

@@ -10,6 +10,7 @@
 #define __GameLayer__hpp__
 
 #include "../../Core/Drawable.hpp"
+#include "../../Core/EventListener.hpp"
 #include "../../Core/Updatable.hpp"
 
 #include <memory>
@@ -20,19 +21,22 @@
 #include "../../Core/Timer.hpp"
 
 namespace Bomberman {
+    class Director;
     class TileMap;
     
-    class GameLayer : public Drawable, public Updatable {
+    class GameLayer : public Drawable, public EventListener, public Updatable {
     public:
         GameLayer();
         
         ~GameLayer();
         
+        void listenEvent(SDL_Event event);
         void draw();
         void update();
         
         void load(std::shared_ptr<SDL_Renderer> renderer);
         
+        void setDirector(std::weak_ptr<Director> director);
         void setTileMap(std::shared_ptr<TileMap> tileMap);
         
         void screenSizeChanged(Rectangle previousSize, Rectangle newSize);
@@ -56,6 +60,7 @@ namespace Bomberman {
         Texture door, destroyedDoor;
         Timer blinkPlayerTimer;
         
+        std::weak_ptr<Director> director;
         std::shared_ptr<TileMap> tileMap;
         
         std::shared_ptr<Camera> camera;

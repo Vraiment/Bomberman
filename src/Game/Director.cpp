@@ -105,7 +105,7 @@ namespace Bomberman {
         Show
     };
     
-    Director::Director() : state(ProgramState::None), nextState(ProgramState::None), consoleVisibility(Visibility::None), pauseMenuVisibility(Visibility::None) {
+    Director::Director() : state(ProgramState::None), nextState(ProgramState::None), consoleVisibility(Visibility::None), pauseMenuVisibility(Visibility::None), _freezeGame(false), clearGame(false) {
         
     }
     
@@ -138,6 +138,7 @@ namespace Bomberman {
         // Initialize game
         auto gameLayer = make_shared<GameLayer>();
         gameLayer->load(renderer);
+        gameLayer->setDirector(self);
         
         // Initialize console layer
         auto consoleLayer = make_shared<ConsoleLayer>();
@@ -188,6 +189,7 @@ namespace Bomberman {
         screenManager->addEventListener(consoleEvents);
         screenManager->addEventListener(playerEvents);
         screenManager->addEventListener(pauseMenu);
+        screenManager->addEventListener(gameLayer);
         
         // Register drawables
         screenManager->addDrawable(mainMenuLayer);
@@ -309,6 +311,17 @@ namespace Bomberman {
             clearGame = false;
         }
         
+        if (_freezeGame) {
+            commandQueue->disable();
+            consoleEvents->disable();
+            playerEvents->disable();
+            gameLayer->Updatable::disable();
+            disableScreenComponent(consoleLayer);
+            disableScreenComponent(pauseMenu);
+
+            _freezeGame = false;
+        }
+
         if (Visibility::Hide == consoleVisibility) {
             disableScreenComponent(consoleLayer);
             
@@ -364,6 +377,10 @@ namespace Bomberman {
         nextMap = levelName;
     }
     
+    void Director::freezeGame() {
+        _freezeGame = true;
+    }
+
     void Director::endGame() {
         overWriteNextState(ProgramState::MainMenu);
         
