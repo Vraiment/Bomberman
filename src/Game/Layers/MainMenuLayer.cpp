@@ -100,12 +100,12 @@ namespace Bomberman {
     }
     
     void MainMenuLayer::select(int entry) {
-        if (selectedEntry >= 0 && selectedEntry < menuEntries.size()) {
-            menuEntries[selectedEntry].setColor(Color::WHITE);
-            selectedEntry = -1;
-        }
-        
         if (entry >= 0 && entry < menuEntries.size()) {
+            if (selectedEntry >= 0 && selectedEntry < menuEntries.size()) {
+                menuEntries[selectedEntry].setColor(Color::WHITE);
+                selectedEntry = -1;
+            }
+            
             selectedEntry = entry;
             menuEntries[selectedEntry].setColor(Color::BLUE);
         }
