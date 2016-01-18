@@ -21,6 +21,7 @@
 #include "EventListeners/PlayerEvents.hpp"
 #include "Layers/ConsoleLayer.hpp"
 #include "Layers/GameLayer.hpp"
+#include "Layers/HowToPlay.hpp"
 #include "Layers/HudLayer.hpp"
 #include "Layers/LevelListLayer.hpp"
 #include "Layers/MainMenuLayer.hpp"
@@ -96,6 +97,7 @@ namespace Bomberman {
         None,
         MainMenu,
         LevelList,
+        Tutorial,
         InGame
     };
     
@@ -151,6 +153,11 @@ namespace Bomberman {
         pauseMenu->setDirector(self);
         pauseMenu->setLoopQuiter(loopQuiter);
         
+        // Initialize the tutorial layer
+        auto howToPlay = make_shared<HowToPlay>();
+        howToPlay->load(renderer);
+        howToPlay->setDirector(self);
+        
         // Command stuff
         auto commandQueue = make_shared<CommandQueue>();
         auto commandFactory = make_shared<CommandFactory>();
@@ -182,6 +189,7 @@ namespace Bomberman {
         this->consoleEvents = consoleEvents;
         this->playerEvents = playerEvents;
         this->pauseMenu = pauseMenu;
+        this->howToPlay = howToPlay;
         
         // Register event listeners
         screenManager->addEventListener(mainMenuLayer);
@@ -190,6 +198,7 @@ namespace Bomberman {
         screenManager->addEventListener(playerEvents);
         screenManager->addEventListener(pauseMenu);
         screenManager->addEventListener(gameLayer);
+        screenManager->addEventListener(howToPlay);
         
         // Register drawables
         screenManager->addDrawable(mainMenuLayer);
@@ -198,6 +207,7 @@ namespace Bomberman {
         screenManager->addDrawable(hudLayer);
         screenManager->addDrawable(consoleLayer);
         screenManager->addDrawable(pauseMenu);
+        screenManager->addDrawable(howToPlay);
         
         // Register updatables
         screenManager->addUpdatable(gameLayer);
@@ -205,6 +215,7 @@ namespace Bomberman {
         screenManager->addUpdatable(levelListLayer);
         screenManager->addUpdatable(commandQueue);
         screenManager->addUpdatable(pauseMenu);
+        screenManager->addUpdatable(howToPlay);
         
         // Set the default state for everything
         enableScreenComponent(mainMenuLayer);
@@ -215,6 +226,7 @@ namespace Bomberman {
         disableScreenComponent(consoleEvents);
         disableScreenComponent(playerEvents);
         disableScreenComponent(pauseMenu);
+        disableScreenComponent(howToPlay);
     }
     
     void Director::update() {
@@ -234,6 +246,7 @@ namespace Bomberman {
         shared_ptr<ConsoleEvents> consoleEvents;
         shared_ptr<PlayerEvents> playerEvents;
         shared_ptr<PauseMenu> pauseMenu;
+        shared_ptr<HowToPlay> howToPlay;
         
         if (!_lock(this->mainMenuLayer, mainMenuLayer, "MainMenuLayer") ||
             !_lock(this->levelListLayer, levelListLayer, "LevelListLayer") ||
@@ -243,7 +256,8 @@ namespace Bomberman {
             !_lock(this->gameLayer, gameLayer, "GameLayer") ||
             !_lock(this->consoleEvents, consoleEvents, "ConsoleEvents") ||
             !_lock(this->playerEvents, playerEvents, "PlayerEvents") ||
-            !_lock(this->pauseMenu, pauseMenu, "PauseMenu")) {
+            !_lock(this->pauseMenu, pauseMenu, "PauseMenu") ||
+            !_lock(this->howToPlay, howToPlay, "HowToPlay")) {
             return;
         }
         
@@ -259,6 +273,7 @@ namespace Bomberman {
             disableScreenComponent(consoleEvents);
             disableScreenComponent(playerEvents);
             disableScreenComponent(pauseMenu);
+            disableScreenComponent(howToPlay);
         } else if (ProgramState::LevelList == nextState) {
             state = ProgramState::LevelList;
             
@@ -302,6 +317,12 @@ namespace Bomberman {
             } else {
                 Log::get() << "Could not open map \"" << nextMap << "\"" << LogLevel::error;
             }
+        } else if (ProgramState::Tutorial == nextState) {
+            state = ProgramState::Tutorial;
+            
+            enableScreenComponent(howToPlay);
+            
+            disableScreenComponent(mainMenuLayer);
         }
         
         if (clearGame) {
@@ -401,6 +422,14 @@ namespace Bomberman {
     
     void Director::hidePauseMenu() {
         pauseMenuVisibility = Visibility::Hide;
+    }
+    
+    void Director::showHowToPlay() {
+        overWriteNextState(ProgramState::Tutorial);
+    }
+    
+    void Director::hideHowToPlay() {
+        overWriteNextState(ProgramState::MainMenu);
     }
     
     void Director::setLoopQuiter(weak_ptr<LoopQuiter> loopQuiter) {

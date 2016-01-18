@@ -63,6 +63,7 @@
 		5B5C97B11B80DFFE00C9D6C1 /* PressStart2P.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B5C97B01B80DFF400C9D6C1 /* PressStart2P.ttf */; };
 		5B5C97B31B80EC4600C9D6C1 /* EventListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B5C97B21B80EC4600C9D6C1 /* EventListener.cpp */; };
 		5B6C87511C437F7D003AA44A /* Director.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B6C874F1C437F7D003AA44A /* Director.cpp */; };
+		5B74B88A1C4DAC2C00E34D17 /* HowToPlay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B74B8881C4DAC2C00E34D17 /* HowToPlay.cpp */; };
 		5B755C771822E81300DADA25 /* Configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B755C751822E81300DADA25 /* Configuration.cpp */; };
 		5B7732B5182AFB2F003A2747 /* SDL2_image.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B1BF7511822E48B009DCA31 /* SDL2_image.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5B87384D184E582B0014D94B /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B87384C184E582B0014D94B /* Rectangle.cpp */; };
@@ -267,6 +268,8 @@
 		5B5C97B21B80EC4600C9D6C1 /* EventListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventListener.cpp; sourceTree = "<group>"; };
 		5B6C874F1C437F7D003AA44A /* Director.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Director.cpp; sourceTree = "<group>"; };
 		5B6C87501C437F7D003AA44A /* Director.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Director.hpp; sourceTree = "<group>"; };
+		5B74B8881C4DAC2C00E34D17 /* HowToPlay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HowToPlay.cpp; sourceTree = "<group>"; };
+		5B74B8891C4DAC2C00E34D17 /* HowToPlay.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HowToPlay.hpp; sourceTree = "<group>"; };
 		5B755C751822E81300DADA25 /* Configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Configuration.cpp; sourceTree = "<group>"; };
 		5B755C761822E81300DADA25 /* Configuration.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Configuration.hpp; sourceTree = "<group>"; };
 		5B76EC621820DD1B00D499EE /* Bomberman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bomberman.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -537,6 +540,8 @@
 				5B4C02C71B80578D003FCB02 /* ConsoleLayer.hpp */,
 				5BDBF7E51821780000BE71CC /* GameLayer.cpp */,
 				5BDBF7E61821780000BE71CC /* GameLayer.hpp */,
+				5B74B8881C4DAC2C00E34D17 /* HowToPlay.cpp */,
+				5B74B8891C4DAC2C00E34D17 /* HowToPlay.hpp */,
 				5BB4D8361B7FE6680066077D /* HudLayer.cpp */,
 				5BB4D8371B7FE6680066077D /* HudLayer.hpp */,
 				5B40BF9C1C44D8B2001A2805 /* LevelListLayer.cpp */,
@@ -814,6 +819,7 @@
 				5BF5549B1833F67D00DAC339 /* Log.cpp in Sources */,
 				5B9382191B81A75700C42269 /* LoopQuiter.cpp in Sources */,
 				5B0EEC2D1820E10A0084C40C /* main.cpp in Sources */,
+				5B74B88A1C4DAC2C00E34D17 /* HowToPlay.cpp in Sources */,
 				5B3B82D11857A82700CECE27 /* PlayerEvents.cpp in Sources */,
 				5B6C87511C437F7D003AA44A /* Director.cpp in Sources */,
 				5B0022831A2C1206008805D9 /* Random.cpp in Sources */,

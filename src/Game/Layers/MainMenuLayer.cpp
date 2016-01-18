@@ -82,6 +82,11 @@ namespace Bomberman {
                 director->showLevelList();
             }
         } else if (1 == clickedEntry) {
+            shared_ptr<Director> director;
+            if (_lock(this->director, director, "Director")) {
+                director->showHowToPlay();
+            }
+        } else if (2 == clickedEntry) {
             shared_ptr<LoopQuiter> loopQuiter;
             if (_lock(this->loopQuiter, loopQuiter, "LoopQuiter")) {
                 loopQuiter->quitLoop();
@@ -138,6 +143,7 @@ namespace Bomberman {
         Font font("PressStart2P.ttf", 50, renderer);
         
         menuEntries.push_back(font.write("Start Game"));
+        menuEntries.push_back(font.write("How to play"));
         menuEntries.push_back(font.write("Exit"));
     }
     

@@ -33,6 +33,7 @@ namespace Bomberman {
     // Layers
     class ConsoleLayer;
     class GameLayer;
+    class HowToPlay;
     class HudLayer;
     class LevelListLayer;
     class MainMenuLayer;
@@ -63,6 +64,9 @@ namespace Bomberman {
         
         void showPauseMenu();
         void hidePauseMenu();
+        
+        void showHowToPlay();
+        void hideHowToPlay();
 
         void setLoopQuiter(std::weak_ptr<LoopQuiter> loopQuiter);
         void setScreenManager(std::weak_ptr<ScreenManager> screenManager);
@@ -89,6 +93,7 @@ namespace Bomberman {
         std::weak_ptr<MainMenuLayer> mainMenuLayer;
         std::weak_ptr<LevelListLayer> levelListLayer;
         std::weak_ptr<PauseMenu> pauseMenu;
+        std::weak_ptr<HowToPlay> howToPlay;
         
         std::shared_ptr<CommandFactory> commandFactory;
         std::shared_ptr<Console> console;
