@@ -42,7 +42,7 @@ namespace Bomberman {
     
     const int MainMenuLayer::ENTRIES_SPACING = 100;
     
-    MainMenuLayer::MainMenuLayer() : shouldStartGame(false), shouldExit(false), clicking(false), selectedEntry(-1) {
+    MainMenuLayer::MainMenuLayer() : clicking(false), selectedEntry(-1), clickedEntry(-1) {
         
     }
     
@@ -76,12 +76,12 @@ namespace Bomberman {
     }
     
     void MainMenuLayer::update() {
-        if (shouldStartGame) {
+        if (0 == clickedEntry) {
             shared_ptr<Director> director;
             if (_lock(this->director, director, "Director")) {
                 director->showLevelList();
             }
-        } else if (shouldExit) {
+        } else if (1 == clickedEntry) {
             shared_ptr<LoopQuiter> loopQuiter;
             if (_lock(this->loopQuiter, loopQuiter, "LoopQuiter")) {
                 loopQuiter->quitLoop();
@@ -90,30 +90,30 @@ namespace Bomberman {
     }
     
     void MainMenuLayer::postUpdate() {
-        shouldStartGame = false;
-        shouldExit = false;
+        clickedEntry = -1;
     }
     
     void MainMenuLayer::draw() {
-        startGame.draw();
-        exit.draw();
+        for (auto entry : menuEntries) {
+            entry.draw();
+        }
     }
     
     void MainMenuLayer::select(int entry) {
         if (selectedEntry >= 0 && selectedEntry < menuEntries.size()) {
-            menuEntries[selectedEntry]->setColor(Color::WHITE);
+            menuEntries[selectedEntry].setColor(Color::WHITE);
             selectedEntry = -1;
         }
         
         if (entry >= 0 && entry < menuEntries.size()) {
             selectedEntry = entry;
-            menuEntries[selectedEntry]->setColor(Color::BLUE);
+            menuEntries[selectedEntry].setColor(Color::BLUE);
         }
     }
     
     void MainMenuLayer::select(Coordinate position) {
         for (int n = 0; n < menuEntries.size(); ++n) {
-            if (menuEntries[n]->rectangle().contains(position)) {
+            if (menuEntries[n].rectangle().contains(position)) {
                 select(n);
                 return;
             }
@@ -123,11 +123,7 @@ namespace Bomberman {
     }
     
     void MainMenuLayer::pushSelectedButton() {
-        if (0 == selectedEntry) {
-            shouldStartGame = true;
-        } else if (1 == selectedEntry) {
-            shouldExit = true;
-        }
+        clickedEntry = selectedEntry;
     }
     
     void MainMenuLayer::setDirector(weak_ptr<Director> Director) {
@@ -141,24 +137,25 @@ namespace Bomberman {
     void MainMenuLayer::load(shared_ptr<SDL_Renderer> renderer) {
         Font font("PressStart2P.ttf", 50, renderer);
         
-        startGame = font.write("Start Game");
-        exit = font.write("Exit");
-        
-        menuEntries.push_back(&startGame);
-        menuEntries.push_back(&exit);
+        menuEntries.push_back(font.write("Start Game"));
+        menuEntries.push_back(font.write("Exit"));
     }
     
     void MainMenuLayer::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {
-        startGame.rectangle() = Coordinate::ZERO;
-        exit.rectangle() = Coordinate::ZERO;
-        
-        int totalHeight = startGame.rectangle().height + exit.rectangle().height;
-        totalHeight += ENTRIES_SPACING * (1); // Spacing * menu entries less one
-        
-        startGame.rectangle().i = newSize.widthCenter() - startGame.rectangle().widthCenter();
-        startGame.rectangle().j = newSize.heightCenter() - (totalHeight / 2);
-        
-        exit.rectangle().i = newSize.widthCenter() - exit.rectangle().widthCenter();
-        exit.rectangle().j = startGame.rectangle().bottom() + ENTRIES_SPACING;
+        if (!menuEntries.empty()) {
+            int totalHeight = ENTRIES_SPACING * static_cast<int>(menuEntries.size());
+            for (auto entry : menuEntries) {
+                totalHeight += entry.rectangle().height;
+            }
+            
+            auto entry = menuEntries.begin();
+            entry->rectangle().i = newSize.widthCenter() - entry->rectangle().widthCenter();
+            entry->rectangle().j = newSize.heightCenter() - (totalHeight / 2);
+            
+            for (auto prevEntry = menuEntries.begin(); ++entry != menuEntries.end(); ++prevEntry) {
+                entry->rectangle().i = newSize.widthCenter() - entry->rectangle().widthCenter();
+                entry->rectangle().j = prevEntry->rectangle().bottom() + ENTRIES_SPACING;
+            }
+        }
     }
 }

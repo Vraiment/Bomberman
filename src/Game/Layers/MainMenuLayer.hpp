@@ -46,13 +46,11 @@ namespace Bomberman {
         void select(Coordinate position);
         void pushSelectedButton();
         
-        std::vector<Texture *> menuEntries;
-        int selectedEntry;
+        std::vector<Texture> menuEntries;
+        int selectedEntry, clickedEntry;
         bool clicking;
         
         bool shouldStartGame, shouldExit;
-        Texture startGame;
-        Texture exit;
         std::weak_ptr<LoopQuiter> loopQuiter;
         std::weak_ptr<Director> director;
     };
