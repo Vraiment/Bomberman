@@ -11,10 +11,16 @@
 
 #include "../../Core/Drawable.hpp"
 #include "../../Core/EventListener.hpp"
+#include "../../Core/Texture.hpp"
 #include "../../Core/Updatable.hpp"
+
+#include <Vector>
+
+struct SDL_Renderer;
 
 namespace Bomberman {
     class Director;
+    class Texture;
     
     class HowToPlay : public EventListener, public Drawable, public Updatable {
     public:
@@ -29,7 +35,15 @@ namespace Bomberman {
         void setDirector(std::weak_ptr<Director> director);
         
     private:
+        void select(Coordinate position);
+        
         std::weak_ptr<Director> director;
+        
+        enum class Page;
+        Page page;
+        
+        Texture prev, next;
+        std::vector<Texture> instructions;
     };
 }
 

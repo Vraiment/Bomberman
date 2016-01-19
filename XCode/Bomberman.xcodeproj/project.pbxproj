@@ -64,6 +64,12 @@
 		5B5C97B31B80EC4600C9D6C1 /* EventListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B5C97B21B80EC4600C9D6C1 /* EventListener.cpp */; };
 		5B6C87511C437F7D003AA44A /* Director.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B6C874F1C437F7D003AA44A /* Director.cpp */; };
 		5B74B88A1C4DAC2C00E34D17 /* HowToPlay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B74B8881C4DAC2C00E34D17 /* HowToPlay.cpp */; };
+		5B74B88C1C4E0BBD00E34D17 /* arrows_tutorial.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B74B88B1C4E0BAC00E34D17 /* arrows_tutorial.png */; };
+		5B74B88E1C4E0DC500E34D17 /* bomb_tutorial.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B74B88D1C4E0DB800E34D17 /* bomb_tutorial.png */; };
+		5B74B8901C4E0EDF00E34D17 /* enemies_tutorial.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B74B88F1C4E0ED200E34D17 /* enemies_tutorial.png */; };
+		5B74B8921C4E10B300E34D17 /* endgame_tutorial.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B74B8911C4E108B00E34D17 /* endgame_tutorial.png */; };
+		5B74B8951C4E17B400E34D17 /* arrow_left.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B74B8931C4E17A500E34D17 /* arrow_left.png */; };
+		5B74B8961C4E17B400E34D17 /* arrow_right.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B74B8941C4E17A500E34D17 /* arrow_right.png */; };
 		5B755C771822E81300DADA25 /* Configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B755C751822E81300DADA25 /* Configuration.cpp */; };
 		5B7732B5182AFB2F003A2747 /* SDL2_image.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B1BF7511822E48B009DCA31 /* SDL2_image.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5B87384D184E582B0014D94B /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B87384C184E582B0014D94B /* Rectangle.cpp */; };
@@ -131,6 +137,12 @@
 			dstPath = textures;
 			dstSubfolderSpec = 7;
 			files = (
+				5B74B8951C4E17B400E34D17 /* arrow_left.png in CopyFiles */,
+				5B74B8961C4E17B400E34D17 /* arrow_right.png in CopyFiles */,
+				5B74B8921C4E10B300E34D17 /* endgame_tutorial.png in CopyFiles */,
+				5B74B8901C4E0EDF00E34D17 /* enemies_tutorial.png in CopyFiles */,
+				5B74B88E1C4E0DC500E34D17 /* bomb_tutorial.png in CopyFiles */,
+				5B74B88C1C4E0BBD00E34D17 /* arrows_tutorial.png in CopyFiles */,
 				5B8997541C367DC3003AB8B0 /* destroyedDoor.png in CopyFiles */,
 				5B8997551C367DC3003AB8B0 /* door.png in CopyFiles */,
 				5B89974E1C360DCF003AB8B0 /* life.png in CopyFiles */,
@@ -270,6 +282,12 @@
 		5B6C87501C437F7D003AA44A /* Director.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Director.hpp; sourceTree = "<group>"; };
 		5B74B8881C4DAC2C00E34D17 /* HowToPlay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HowToPlay.cpp; sourceTree = "<group>"; };
 		5B74B8891C4DAC2C00E34D17 /* HowToPlay.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HowToPlay.hpp; sourceTree = "<group>"; };
+		5B74B88B1C4E0BAC00E34D17 /* arrows_tutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrows_tutorial.png; sourceTree = "<group>"; };
+		5B74B88D1C4E0DB800E34D17 /* bomb_tutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bomb_tutorial.png; sourceTree = "<group>"; };
+		5B74B88F1C4E0ED200E34D17 /* enemies_tutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemies_tutorial.png; sourceTree = "<group>"; };
+		5B74B8911C4E108B00E34D17 /* endgame_tutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = endgame_tutorial.png; sourceTree = "<group>"; };
+		5B74B8931C4E17A500E34D17 /* arrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_left.png; sourceTree = "<group>"; };
+		5B74B8941C4E17A500E34D17 /* arrow_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_right.png; sourceTree = "<group>"; };
 		5B755C751822E81300DADA25 /* Configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Configuration.cpp; sourceTree = "<group>"; };
 		5B755C761822E81300DADA25 /* Configuration.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Configuration.hpp; sourceTree = "<group>"; };
 		5B76EC621820DD1B00D499EE /* Bomberman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bomberman.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -647,13 +665,19 @@
 		5BD37AF21822145500BB1C28 /* Textures */ = {
 			isa = PBXGroup;
 			children = (
-				5B8997531C367CB3003AB8B0 /* destroyedDoor.png */,
+				5B74B8931C4E17A500E34D17 /* arrow_left.png */,
+				5B74B8941C4E17A500E34D17 /* arrow_right.png */,
+				5B74B88B1C4E0BAC00E34D17 /* arrows_tutorial.png */,
 				5B4A11FE18331CAB00C8A950 /* background.png */,
+				5B74B88D1C4E0DB800E34D17 /* bomb_tutorial.png */,
 				5B2174251A1AC2820033B3AA /* bomb.png */,
 				5B0C86821852550C0005CADD /* bomberman.png */,
 				5B4A11FF18331CAB00C8A950 /* brick.png */,
+				5B8997531C367CB3003AB8B0 /* destroyedDoor.png */,
 				5B4A120018331CAB00C8A950 /* destructibleBrick.png */,
 				5B8997521C3677A6003AB8B0 /* door.png */,
+				5B74B8911C4E108B00E34D17 /* endgame_tutorial.png */,
+				5B74B88F1C4E0ED200E34D17 /* enemies_tutorial.png */,
 				5B00227B1A2C0593008805D9 /* enemy1.png */,
 				5B00227D1A2C0A4C008805D9 /* enemy2.png */,
 				5B00227E1A2C0A4C008805D9 /* enemy3.png */,
