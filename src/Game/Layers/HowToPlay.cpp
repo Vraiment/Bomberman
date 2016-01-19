@@ -167,7 +167,7 @@ namespace Bomberman {
         instructions.push_back(font.write("Move with the arrow keys"));
         instructions.emplace_back("arrows_tutorial.png", renderer);
         
-        instructions.push_back(font.write("Press B to place bombs"));
+        instructions.push_back(font.write("Press 'B' to place bombs"));
         instructions.emplace_back("bomb_tutorial.png", renderer);
         
         instructions.push_back(font.write("Destroy all the enemies"));
@@ -178,7 +178,14 @@ namespace Bomberman {
     }
     
     void HowToPlay::loadItems(Font font, shared_ptr<SDL_Renderer> renderer) {
+        items.push_back(font.write("Increases the amount of bombs you can place"));
+        items.emplace_back("extraBomb_tutorial.png", renderer);
         
+        items.push_back(font.write("Increases the range of explosions"));
+        items.emplace_back("increaseRange_tutorial.png", renderer);
+        
+        items.push_back(font.write("Bombs will explode with the 'E' key"));
+        items.emplace_back("remote_tutorial.png", renderer);
     }
     
     void HowToPlay::loadHud(Font font, shared_ptr<SDL_Renderer> renderer) {
@@ -203,7 +210,27 @@ namespace Bomberman {
     }
     
     void HowToPlay::setItemsPos(Rectangle screenSize) {
+        if (items.empty()) {
+            return;
+        }
         
+        int totalHeight = 0;
+        for (auto item : items) {
+            totalHeight += item.rectangle().height;
+        }
+        
+        int spacing = 25;
+        totalHeight += spacing * static_cast<int>(items.size() - 1);
+
+        auto item = items.begin();
+        
+        item->position().i = screenSize.widthHalf() - item->rectangle().widthHalf();
+        item->position().j = screenSize.heightHalf() - (totalHeight / 2);
+        
+        for (auto prevItem = items.begin(); ++item != items.end(); ++prevItem) {
+            item->position().i = screenSize.widthHalf() - item->rectangle().widthHalf();
+            item->position().j = prevItem->rectangle().bottom() + spacing;
+        }
     }
     
     void HowToPlay::setHudPos(Rectangle screenSize) {

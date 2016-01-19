@@ -70,6 +70,9 @@
 		5B74B8921C4E10B300E34D17 /* endgame_tutorial.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B74B8911C4E108B00E34D17 /* endgame_tutorial.png */; };
 		5B74B8951C4E17B400E34D17 /* arrow_left.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B74B8931C4E17A500E34D17 /* arrow_left.png */; };
 		5B74B8961C4E17B400E34D17 /* arrow_right.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B74B8941C4E17A500E34D17 /* arrow_right.png */; };
+		5B74B89A1C4E2CD400E34D17 /* extraBomb_tutorial.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B74B8971C4E2CBD00E34D17 /* extraBomb_tutorial.png */; };
+		5B74B89B1C4E2CD400E34D17 /* increaseRange_tutorial.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B74B8981C4E2CBD00E34D17 /* increaseRange_tutorial.png */; };
+		5B74B89C1C4E2CD400E34D17 /* remote_tutorial.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B74B8991C4E2CBD00E34D17 /* remote_tutorial.png */; };
 		5B755C771822E81300DADA25 /* Configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B755C751822E81300DADA25 /* Configuration.cpp */; };
 		5B7732B5182AFB2F003A2747 /* SDL2_image.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B1BF7511822E48B009DCA31 /* SDL2_image.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5B87384D184E582B0014D94B /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B87384C184E582B0014D94B /* Rectangle.cpp */; };
@@ -137,6 +140,9 @@
 			dstPath = textures;
 			dstSubfolderSpec = 7;
 			files = (
+				5B74B89A1C4E2CD400E34D17 /* extraBomb_tutorial.png in CopyFiles */,
+				5B74B89B1C4E2CD400E34D17 /* increaseRange_tutorial.png in CopyFiles */,
+				5B74B89C1C4E2CD400E34D17 /* remote_tutorial.png in CopyFiles */,
 				5B74B8951C4E17B400E34D17 /* arrow_left.png in CopyFiles */,
 				5B74B8961C4E17B400E34D17 /* arrow_right.png in CopyFiles */,
 				5B74B8921C4E10B300E34D17 /* endgame_tutorial.png in CopyFiles */,
@@ -288,6 +294,9 @@
 		5B74B8911C4E108B00E34D17 /* endgame_tutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = endgame_tutorial.png; sourceTree = "<group>"; };
 		5B74B8931C4E17A500E34D17 /* arrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_left.png; sourceTree = "<group>"; };
 		5B74B8941C4E17A500E34D17 /* arrow_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_right.png; sourceTree = "<group>"; };
+		5B74B8971C4E2CBD00E34D17 /* extraBomb_tutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = extraBomb_tutorial.png; sourceTree = "<group>"; };
+		5B74B8981C4E2CBD00E34D17 /* increaseRange_tutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = increaseRange_tutorial.png; sourceTree = "<group>"; };
+		5B74B8991C4E2CBD00E34D17 /* remote_tutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remote_tutorial.png; sourceTree = "<group>"; };
 		5B755C751822E81300DADA25 /* Configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Configuration.cpp; sourceTree = "<group>"; };
 		5B755C761822E81300DADA25 /* Configuration.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Configuration.hpp; sourceTree = "<group>"; };
 		5B76EC621820DD1B00D499EE /* Bomberman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bomberman.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -682,10 +691,13 @@
 				5B00227D1A2C0A4C008805D9 /* enemy2.png */,
 				5B00227E1A2C0A4C008805D9 /* enemy3.png */,
 				5B1015091A26DFD400CCCC77 /* explosion.png */,
+				5B74B8971C4E2CBD00E34D17 /* extraBomb_tutorial.png */,
 				5BC95BC51B9CF00B005FAA0E /* extraBomb.png */,
 				5B31D6751A299A53004ECEBD /* hud.png */,
+				5B74B8981C4E2CBD00E34D17 /* increaseRange_tutorial.png */,
 				5BC95BC61B9CF00B005FAA0E /* increaseRange.png */,
 				5B89974D1C360DA9003AB8B0 /* life.png */,
+				5B74B8991C4E2CBD00E34D17 /* remote_tutorial.png */,
 				5B46E0EC1C2FECD20037426E /* remote.png */,
 				5BD37AF31822199200BB1C28 /* tile0.png */,
 				5BD37AF5182219F300BB1C28 /* tile1.png */,
