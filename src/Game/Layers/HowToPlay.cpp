@@ -33,50 +33,108 @@ namespace Bomberman {
         return result;
     }
     
-    enum class Page {
+    enum class HowToPlay::Page {
+        None,
         Instructions,
         Items,
         HUD
     };
+    
+    HowToPlay::HowToPlay() : page(Page::None), nextPage(Page::None), hide(false) {
+        
+    }
     
     void HowToPlay::listenEvent(SDL_Event event) {
         if (SDL_KEYUP == event.type) {
             auto keysym = event.key.keysym.sym;
             
             if (SDLK_ESCAPE == keysym) {
-                shared_ptr<Director> director;
-                if (_lock(this->director, director, "Director")) {
-                    director->hideHowToPlay();
-                }
+                hide = true;
+                nextPage = Page::Instructions;
             }
         } else if (SDL_MOUSEMOTION == event.type) {
             Coordinate position;
             SDL_GetMouseState(&position.i, &position.j);
             
             select(position);
+        } else if (SDL_MOUSEBUTTONUP == event.type) {
+            Coordinate position;
+            SDL_GetMouseState(&position.i, &position.j);
+            
+            click(position);
         }
     }
     
     void HowToPlay::draw() {
-        for (auto instruction : instructions) {
-            instruction.draw();
+        if (Page::Instructions == page) {
+            for (auto instruction : instructions) {
+                instruction.draw();
+            }
+        } else if (Page::Items == page) {
+            
+        } else if (Page::HUD == page) {
+            
         }
         
+        textLeft->draw();
         prev.draw();
-        next.draw();
+        
+        if (nullptr != textRight) {
+            textRight->draw();
+            next.draw();
+        }
     }
     
     void HowToPlay::update() {
+        if (Page::None != nextPage) {
+            page = nextPage;
+            nextPage = Page::None;
+            
+            if (Page::Instructions == page) {
+                textLeft = &mainMenu;
+                textRight = &items;
+            } else if (Page::Items == page) {
+                textLeft = &instructionsText;
+                textRight = &hud;
+            } else if (Page::HUD == page) {
+                textLeft = &items;
+                textRight = nullptr;
+            }
+            
+            textLeft->position().i = prev.rectangle().i;
+            textLeft->position().j = prev.rectangle().j - textLeft->rectangle().height;
+            
+            if (nullptr != textRight) {
+                textRight->position().i = next.rectangle().right() - textRight->rectangle().width;
+                textRight->position().j = next.rectangle().j - textRight->rectangle().height;
+            }
+        }
         
+        if (hide) {
+            shared_ptr<Director> director;
+            if (_lock(this->director, director, "Director")) {
+                director->hideHowToPlay();
+            }
+            
+            hide = false;
+        }
     }
     
     void HowToPlay::load(shared_ptr<SDL_Renderer> renderer) {
+        nextPage = Page::Instructions;
+        textLeft = textRight = &mainMenu;
+        
         Font font("PressStart2P.ttf", 15, renderer);
         
         prev = Texture("arrow_left.png", renderer);
         prev.setColor(normalColor);
         next = Texture("arrow_right.png", renderer);
         next.setColor(normalColor);
+        
+        mainMenu = font.write("Main menu");
+        instructionsText = font.write("Instructions");
+        items = font.write("Items");
+        hud = font.write("HUD");
         
         instructions.push_back(font.write("Move with the arrow keys"));
         instructions.emplace_back("arrows_tutorial.png", renderer);
@@ -115,6 +173,24 @@ namespace Bomberman {
     
     void HowToPlay::setDirector(weak_ptr<Director> director) {
         this->director = director;
+    }
+    
+    void HowToPlay::click(Coordinate position) {
+        if (next.rectangle().contains(position)) {
+            if (Page::Instructions == page) {
+                nextPage = Page::Items;
+            } else if (Page::Items == page) {
+                nextPage = Page::HUD;
+            }
+        } else if (prev.rectangle().contains(position)) {
+            if (Page::HUD == page) {
+                nextPage = Page::Items;
+            } else if (Page::Items == page) {
+                nextPage = Page::Instructions;
+            } else if (Page::Instructions == page) {
+                hide = true;
+            }
+        }
     }
     
     void HowToPlay::select(Coordinate position) {

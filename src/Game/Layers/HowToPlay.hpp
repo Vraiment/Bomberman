@@ -24,6 +24,8 @@ namespace Bomberman {
     
     class HowToPlay : public EventListener, public Drawable, public Updatable {
     public:
+        HowToPlay();
+        
         void listenEvent(SDL_Event event);
         void draw();
         void update();
@@ -35,13 +37,17 @@ namespace Bomberman {
         void setDirector(std::weak_ptr<Director> director);
         
     private:
+        void click(Coordinate position);
         void select(Coordinate position);
         
         std::weak_ptr<Director> director;
         
+        bool hide;
         enum class Page;
-        Page page;
+        Page page, nextPage;
         
+        Texture mainMenu, instructionsText, items, hud;
+        Texture *textRight, *textLeft;
         Texture prev, next;
         std::vector<Texture> instructions;
     };
