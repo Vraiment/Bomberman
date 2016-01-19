@@ -24,12 +24,15 @@ namespace Bomberman {
     class Drawable;
     class ScreenManager;
     class Updatable;
+    class SignalHandler;
+    class SignalSender;
     
     class Screen {
     public:
         Screen(int width, int height, std::string name);
         ~Screen();
         
+        void sendSignal();
         void listenEvent(SDL_Event event);
         void draw();
         void update();
@@ -48,6 +51,7 @@ namespace Bomberman {
         std::shared_ptr<SDL_Renderer> renderer() const;
         
         std::shared_ptr<ScreenManager> getScreenManager();
+        std::shared_ptr<SignalSender> getSignalSender();
         
         void refreshScreen();
         
@@ -64,7 +68,9 @@ namespace Bomberman {
         Rectangle _rectangle;
         
         std::shared_ptr<ScreenManager> screenManager;
+        std::shared_ptr<SignalSender> signalSender;
         
+        std::list<std::shared_ptr<SignalHandler>> signalHandlers;
         std::list<std::shared_ptr<EventListener>> eventListeners;
         std::list<std::shared_ptr<Drawable>> drawables;
         std::list<std::shared_ptr<Updatable>> updatables;

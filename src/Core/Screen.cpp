@@ -16,13 +16,30 @@
 #include "Drawable.hpp"
 #include "Log/LogSystem.h"
 #include "ScreenManager.hpp"
+#include "SignalSender.hpp"
+#include "SignalHandler.hpp"
 #include "Updatable.hpp"
 
 using namespace std;
 
 namespace Bomberman {
+    class SignalSenderImpl : public SignalSender {
+    public:
+        void sendSignal(Signal signal) {
+            signalSent = true;
+            this->signal = signal;
+        }
+        
+        bool signalSent = false;
+        Signal signal;
+    };
+    
     class ScreenManagerImpl : public ScreenManager {
     public:
+        void addSignalHandler(shared_ptr<SignalHandler> signalHandler) {
+            signalHandlers.push(signalHandler);
+        }
+        
         void addEventListener(shared_ptr<EventListener> eventListener) {
             eventListeners.push(eventListener);
         }
@@ -35,12 +52,13 @@ namespace Bomberman {
             updatables.push(updatable);
         }
         
+        queue<shared_ptr<SignalHandler>> signalHandlers;
         queue<shared_ptr<EventListener>> eventListeners;
         queue<shared_ptr<Drawable>> drawables;
         queue<shared_ptr<Updatable>> updatables;
     };
     
-    Screen::Screen(int width, int height, string name) : _name(name), _rectangle(0, 0, width, height), screenManager(new ScreenManagerImpl()) {
+    Screen::Screen(int width, int height, string name) : _name(name), _rectangle(0, 0, width, height), screenManager(new ScreenManagerImpl()), signalSender(new SignalSenderImpl()) {
         SDL_Window *w = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, _rectangle.width, _rectangle.height, SDL_WINDOW_SHOWN);
         
         if (w == nullptr) {
@@ -71,6 +89,21 @@ namespace Bomberman {
     
     Screen::~Screen() {
         
+    }
+    
+    void Screen::sendSignal() {
+        auto signalSender = dynamic_pointer_cast<SignalSenderImpl>(this->signalSender);
+        if (!signalSender->signalSent) {
+            return;
+        }
+        
+        for (auto signalHandler : signalHandlers) {
+            if (signalHandler->isEnabled()) {
+                signalHandler->handleSignal(signalSender->signal);
+            }
+        }
+        
+        signalSender->signalSent = false;
     }
     
     void Screen::draw() {
@@ -170,7 +203,15 @@ namespace Bomberman {
         return screenManager;
     }
     
+    shared_ptr<SignalSender> Screen::getSignalSender() {
+        return signalSender;
+    }
+    
     void Screen::refreshScreen() {
+        signalHandlers.remove_if([] (shared_ptr<SignalHandler> signalHandler) {
+            return signalHandler->isFinished();
+        });
+        
         eventListeners.remove_if([] (shared_ptr<EventListener> eventListener) {
             return eventListener->isFinished();
         });
@@ -184,6 +225,12 @@ namespace Bomberman {
         });
         
         auto screenManager = dynamic_pointer_cast<ScreenManagerImpl>(this->screenManager);
+        
+        while (!screenManager->signalHandlers.empty()) {
+            auto signalHandler = screenManager->signalHandlers.front();
+            
+            signalHandlers.push_back(signalHandler);
+        }
         
         while (!screenManager->eventListeners.empty()) {
             auto eventListener = screenManager->eventListeners.front();

@@ -41,6 +41,10 @@ namespace Bomberman {
         SDL_Event event;
         
         while (!_quiter->shouldQuit()) {
+            for (auto screen : screens) {
+                screen->sendSignal();
+            }
+            
             while (SDL_PollEvent(&event)) {
                 if (event.type == SDL_QUIT) {
                     _quiter->quitLoop();

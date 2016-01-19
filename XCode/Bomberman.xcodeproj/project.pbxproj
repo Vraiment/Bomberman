@@ -32,6 +32,8 @@
 		5B31D6761A299A66004ECEBD /* hud.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B31D6751A299A53004ECEBD /* hud.png */; };
 		5B3795CA1820F6E60050381F /* TileMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3795C81820F6E60050381F /* TileMap.cpp */; };
 		5B3795CE1820FBAA0050381F /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3795CC1820FBAA0050381F /* Texture.cpp */; };
+		5B39462F1C4ED9B100FA3CDA /* SignalHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B39462D1C4ED9B000FA3CDA /* SignalHandler.cpp */; };
+		5B3946321C4EEB8A00FA3CDA /* SignalSender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3946301C4EEB8A00FA3CDA /* SignalSender.cpp */; };
 		5B3B82D11857A82700CECE27 /* PlayerEvents.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B82CF1857A82700CECE27 /* PlayerEvents.cpp */; };
 		5B3B82D51857AB7800CECE27 /* PlayerCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B82D31857AB7800CECE27 /* PlayerCommand.cpp */; };
 		5B3B82DA1857ACB700CECE27 /* Command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B82D91857ACB700CECE27 /* Command.cpp */; };
@@ -252,6 +254,10 @@
 		5B3795C91820F6E60050381F /* TileMap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TileMap.hpp; sourceTree = "<group>"; };
 		5B3795CC1820FBAA0050381F /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		5B3795CD1820FBAA0050381F /* Texture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Texture.hpp; sourceTree = "<group>"; };
+		5B39462D1C4ED9B000FA3CDA /* SignalHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SignalHandler.cpp; sourceTree = "<group>"; };
+		5B39462E1C4ED9B000FA3CDA /* SignalHandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SignalHandler.hpp; sourceTree = "<group>"; };
+		5B3946301C4EEB8A00FA3CDA /* SignalSender.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SignalSender.cpp; sourceTree = "<group>"; };
+		5B3946311C4EEB8A00FA3CDA /* SignalSender.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SignalSender.hpp; sourceTree = "<group>"; };
 		5B3B82CF1857A82700CECE27 /* PlayerEvents.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerEvents.cpp; sourceTree = "<group>"; };
 		5B3B82D01857A82700CECE27 /* PlayerEvents.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlayerEvents.hpp; sourceTree = "<group>"; };
 		5B3B82D31857AB7800CECE27 /* PlayerCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerCommand.cpp; sourceTree = "<group>"; };
@@ -440,6 +446,10 @@
 				5B89973F1C35C16E003AB8B0 /* ScreenComponent.hpp */,
 				5B8997401C35C16E003AB8B0 /* ScreenManager.cpp */,
 				5B8997411C35C16E003AB8B0 /* ScreenManager.hpp */,
+				5B3946301C4EEB8A00FA3CDA /* SignalSender.cpp */,
+				5B3946311C4EEB8A00FA3CDA /* SignalSender.hpp */,
+				5B39462D1C4ED9B000FA3CDA /* SignalHandler.cpp */,
+				5B39462E1C4ED9B000FA3CDA /* SignalHandler.hpp */,
 				5B3795CC1820FBAA0050381F /* Texture.cpp */,
 				5B3795CD1820FBAA0050381F /* Texture.hpp */,
 				5B1015061A26BEE100CCCC77 /* Timer.cpp */,
@@ -836,6 +846,7 @@
 			files = (
 				5BEFA54F1A17E809001D1337 /* Transformer.cpp in Sources */,
 				5B2234761A16EEB8005BDA1C /* StringUtils.cpp in Sources */,
+				5B3946321C4EEB8A00FA3CDA /* SignalSender.cpp in Sources */,
 				5B5C97B31B80EC4600C9D6C1 /* EventListener.cpp in Sources */,
 				5B0022711A2BE5A7008805D9 /* Enemy.cpp in Sources */,
 				5B8997421C35C16E003AB8B0 /* ScreenComponent.cpp in Sources */,
@@ -887,6 +898,7 @@
 				5B87384D184E582B0014D94B /* Rectangle.cpp in Sources */,
 				5B3795CA1820F6E60050381F /* TileMap.cpp in Sources */,
 				5B25FA311A33D2040068AFC1 /* LoggerFactory.cpp in Sources */,
+				5B39462F1C4ED9B100FA3CDA /* SignalHandler.cpp in Sources */,
 				5B1015081A26BEE100CCCC77 /* Timer.cpp in Sources */,
 				5BB4D8321B7FD2F10066077D /* Console.cpp in Sources */,
 				5BBB9E541820EB3F00726BC5 /* Engine.cpp in Sources */,
