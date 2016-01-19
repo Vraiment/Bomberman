@@ -95,7 +95,15 @@ namespace Bomberman {
         return _rectangle;
     }
     
+    Coordinate Texture::position() const {
+        return _rectangle;
+    }
+    
     Rectangle& Texture::rectangle() {
+        return _rectangle;
+    }
+    
+    Rectangle Texture::rectangle() const {
         return _rectangle;
     }
     

@@ -39,7 +39,9 @@ namespace Bomberman {
         bool isLoaded() const;
         std::string name() const;
         Coordinate& position();
+        Coordinate position() const;
         Rectangle& rectangle();
+        Rectangle rectangle() const;
         void resetSize();
         
         static Texture createRectangle(int width, int height, Color color, std::shared_ptr<SDL_Renderer> renderer);
