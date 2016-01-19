@@ -149,7 +149,7 @@ namespace Bomberman {
     
     void MainMenuLayer::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {
         if (!menuEntries.empty()) {
-            int totalHeight = ENTRIES_SPACING * static_cast<int>(menuEntries.size());
+            int totalHeight = ENTRIES_SPACING * static_cast<int>(menuEntries.size() - 1);
             for (auto entry : menuEntries) {
                 totalHeight += entry.rectangle().height;
             }
