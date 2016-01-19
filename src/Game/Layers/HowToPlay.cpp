@@ -259,8 +259,8 @@ namespace Bomberman {
         title.position().i = screenSize.widthHalf() - title.rectangle().widthHalf();
         title.position().j = hudImage.rectangle().top() / 2;
         
-        auto placeAbove = [hudImage] (int height, float percentage, Rectangle& text, Rectangle& line) {
-            text.i = hudImage.position().i + (percentage * hudImage.rectangle().width) - text.widthHalf();
+        auto placeAbove = [hudImage, spacing] (int height, float percentage, Rectangle& text, Rectangle& line) {
+            text.i = hudImage.position().i + static_cast<int>(percentage * hudImage.rectangle().width) - text.widthHalf();
             text.j = hudImage.rectangle().top() - height - (2 * spacing) - text.height;
             
             line.width = 4;
@@ -269,8 +269,8 @@ namespace Bomberman {
             line.j = text.bottom() + spacing;
         };
         
-        auto placeBelow = [hudImage] (int height, float percentage, Rectangle& text, Rectangle& line) {
-            text.i = hudImage.position().i + (percentage * hudImage.rectangle().width) - text.widthHalf();
+        auto placeBelow = [hudImage, spacing] (int height, float percentage, Rectangle& text, Rectangle& line) {
+            text.i = hudImage.position().i + static_cast<int>(percentage * hudImage.rectangle().width) - text.widthHalf();
             text.j = hudImage.rectangle().bottom() + height + (2 * spacing);
             
             line.width = 4;
@@ -280,16 +280,16 @@ namespace Bomberman {
         };
         
         // Place the lifes text
-        placeAbove(25, .075, hud[3].rectangle(), hud[2].rectangle());
+        placeAbove(25, .075f, hud[3].rectangle(), hud[2].rectangle());
         
         // Place the controller text
-        placeBelow(60, .22, hud[5].rectangle(), hud[4].rectangle());
+        placeBelow(60, .22f, hud[5].rectangle(), hud[4].rectangle());
         
         // Place the bombs amount text
-        placeAbove(60, .37, hud[7].rectangle(), hud[6].rectangle());
+        placeAbove(60, .37f, hud[7].rectangle(), hud[6].rectangle());
         
         // Place the explosion range text
-        placeBelow(25, .52, hud[9].rectangle(), hud[8].rectangle());
+        placeBelow(25, .52f, hud[9].rectangle(), hud[8].rectangle());
     }
     
     void HowToPlay::click(Coordinate position) {

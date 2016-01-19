@@ -59,6 +59,7 @@
     <ClCompile Include="..\src\Game\EventListeners\PlayerEvents.cpp" />
     <ClCompile Include="..\src\Game\Layers\ConsoleLayer.cpp" />
     <ClCompile Include="..\src\Game\Layers\GameLayer.cpp" />
+    <ClCompile Include="..\src\Game\Layers\HowToPlay.cpp" />
     <ClCompile Include="..\src\Game\Layers\HudLayer.cpp" />
     <ClCompile Include="..\src\Game\Layers\LevelListLayer.cpp" />
     <ClCompile Include="..\src\Game\Layers\MainMenuLayer.cpp" />
@@ -122,6 +123,7 @@
     <ClInclude Include="..\src\Game\EventListeners\PlayerEvents.hpp" />
     <ClInclude Include="..\src\Game\Layers\ConsoleLayer.hpp" />
     <ClInclude Include="..\src\Game\Layers\GameLayer.hpp" />
+    <ClInclude Include="..\src\Game\Layers\HowToPlay.hpp" />
     <ClInclude Include="..\src\Game\Layers\HudLayer.hpp" />
     <ClInclude Include="..\src\Game\Layers\LevelListLayer.hpp" />
     <ClInclude Include="..\src\Game\Layers\MainMenuLayer.hpp" />

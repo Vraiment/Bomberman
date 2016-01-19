@@ -222,6 +222,9 @@
     <ClCompile Include="..\src\Game\Map\XmlTileMapLoader.cpp">
       <Filter>Source Files\Game\Map</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Game\Layers\HowToPlay.cpp">
+      <Filter>Source Files\Game\Layers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Core\Color.hpp">
@@ -406,6 +409,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Game\Map\XmlTileMapLoader.hpp">
       <Filter>Source Files\Game\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Layers\HowToPlay.hpp">
+      <Filter>Source Files\Game\Layers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
