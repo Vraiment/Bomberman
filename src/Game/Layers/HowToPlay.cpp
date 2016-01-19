@@ -71,9 +71,13 @@ namespace Bomberman {
                 instruction.draw();
             }
         } else if (Page::Items == page) {
-            
+            for (auto item : items) {
+                item.draw();
+            }
         } else if (Page::HUD == page) {
-            
+            for (auto h : hud) {
+                h.draw();
+            }
         }
         
         textLeft->draw();
@@ -92,12 +96,12 @@ namespace Bomberman {
             
             if (Page::Instructions == page) {
                 textLeft = &mainMenu;
-                textRight = &items;
+                textRight = &itemsText;
             } else if (Page::Items == page) {
                 textLeft = &instructionsText;
-                textRight = &hud;
+                textRight = &hudText;
             } else if (Page::HUD == page) {
-                textLeft = &items;
+                textLeft = &itemsText;
                 textRight = nullptr;
             }
             
@@ -133,9 +137,33 @@ namespace Bomberman {
         
         mainMenu = font.write("Main menu");
         instructionsText = font.write("Instructions");
-        items = font.write("Items");
-        hud = font.write("HUD");
+        itemsText = font.write("Items");
+        hudText = font.write("HUD");
         
+        loadInstructions(font, renderer);
+        loadItems(font, renderer);
+        loadHud(font, renderer);
+    }
+    
+    void HowToPlay::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {
+        setInstructionsPos(newSize);
+        
+        prev.position().i = 20;
+        prev.position().j = newSize.bottom() - prev.rectangle().height - 20;
+        
+        next.position().i = newSize.right() - next.rectangle().height - 20;
+        next.position().j = newSize.bottom() - next.rectangle().height - 20;
+        
+        setInstructionsPos(newSize);
+        setItemsPos(newSize);
+        setHudPos(newSize);
+    }
+    
+    void HowToPlay::setDirector(weak_ptr<Director> director) {
+        this->director = director;
+    }
+    
+    void HowToPlay::loadInstructions(Font font, shared_ptr<SDL_Renderer> renderer) {
         instructions.push_back(font.write("Move with the arrow keys"));
         instructions.emplace_back("arrows_tutorial.png", renderer);
         
@@ -149,30 +177,37 @@ namespace Bomberman {
         instructions.emplace_back("endgame_tutorial.png", renderer);
     }
     
-    void HowToPlay::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {
-        int spacing = 25;
+    void HowToPlay::loadItems(Font font, shared_ptr<SDL_Renderer> renderer) {
         
-        if (!instructions.empty()) {
-            auto instruction = instructions.begin();
-            
-            instruction->position().i = newSize.widthHalf() - instruction->rectangle().widthHalf();
-            instruction->position().j = 25;
-            
-            for (auto prevInstructions = instructions.begin(); ++instruction != instructions.end(); ++prevInstructions) {
-                instruction->position().i = newSize.widthHalf() - instruction->rectangle().widthHalf();
-                instruction->position().j = prevInstructions->rectangle().bottom() + spacing;
-            }
-        }
-        
-        prev.position().i = 20;
-        prev.position().j = newSize.bottom() - prev.rectangle().height - 20;
-        
-        next.position().i = newSize.right() - next.rectangle().height - 20;
-        next.position().j = newSize.bottom() - next.rectangle().height - 20;
     }
     
-    void HowToPlay::setDirector(weak_ptr<Director> director) {
-        this->director = director;
+    void HowToPlay::loadHud(Font font, shared_ptr<SDL_Renderer> renderer) {
+        
+    }
+    
+    void HowToPlay::setInstructionsPos(Rectangle screenSize) {
+        if (instructions.empty()) {
+            return;
+        }
+        
+        int spacing = 25;
+        auto instruction = instructions.begin();
+        
+        instruction->position().i = screenSize.widthHalf() - instruction->rectangle().widthHalf();
+        instruction->position().j = 25;
+        
+        for (auto prevInstructions = instructions.begin(); ++instruction != instructions.end(); ++prevInstructions) {
+            instruction->position().i = screenSize.widthHalf() - instruction->rectangle().widthHalf();
+            instruction->position().j = prevInstructions->rectangle().bottom() + spacing;
+        }
+    }
+    
+    void HowToPlay::setItemsPos(Rectangle screenSize) {
+        
+    }
+    
+    void HowToPlay::setHudPos(Rectangle screenSize) {
+        
     }
     
     void HowToPlay::click(Coordinate position) {

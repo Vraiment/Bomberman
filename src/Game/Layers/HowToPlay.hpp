@@ -20,6 +20,7 @@ struct SDL_Renderer;
 
 namespace Bomberman {
     class Director;
+    class Font;
     class Texture;
     
     class HowToPlay : public EventListener, public Drawable, public Updatable {
@@ -37,6 +38,14 @@ namespace Bomberman {
         void setDirector(std::weak_ptr<Director> director);
         
     private:
+        void loadInstructions(Font font, std::shared_ptr<SDL_Renderer> renderer);
+        void loadItems(Font font, std::shared_ptr<SDL_Renderer> renderer);
+        void loadHud(Font font, std::shared_ptr<SDL_Renderer> hud);
+        
+        void setInstructionsPos(Rectangle screenSize);
+        void setItemsPos(Rectangle screenSize);
+        void setHudPos(Rectangle screenSize);
+        
         void click(Coordinate position);
         void select(Coordinate position);
         
@@ -49,10 +58,12 @@ namespace Bomberman {
         enum class Page;
         Page page, nextPage;
         
-        Texture mainMenu, instructionsText, items, hud;
+        Texture mainMenu, instructionsText, itemsText, hudText;
         Texture *textRight, *textLeft;
         Texture prev, next;
         std::vector<Texture> instructions;
+        std::vector<Texture> items;
+        std::vector<Texture> hud;
     };
 }
 
