@@ -19,8 +19,8 @@
 using namespace std;
 
 namespace Bomberman {
-    const Color normalColor = Color::CYAN;
-    const Color selectedColor = Color::BLUE;
+    const Color normalColor = Color::WHITE;
+    const Color selectedColor = Color::CYAN;
     
     template <typename T>
     bool _lock(weak_ptr<T>in, shared_ptr<T>& out, string component) {
@@ -176,13 +176,13 @@ namespace Bomberman {
     }
     
     void HowToPlay::click(Coordinate position) {
-        if (next.rectangle().contains(position)) {
+        if (isRightButton(position)) {
             if (Page::Instructions == page) {
                 nextPage = Page::Items;
             } else if (Page::Items == page) {
                 nextPage = Page::HUD;
             }
-        } else if (prev.rectangle().contains(position)) {
+        } else if (isLeftButton(position)) {
             if (Page::HUD == page) {
                 nextPage = Page::Items;
             } else if (Page::Items == page) {
@@ -194,7 +194,23 @@ namespace Bomberman {
     }
     
     void HowToPlay::select(Coordinate position) {
-        next.setColor(next.rectangle().contains(position) ? selectedColor : normalColor);
-        prev.setColor(prev.rectangle().contains(position) ? selectedColor : normalColor);
+        if (isLeftButton(position)) {
+            prev.setColor(selectedColor);
+            next.setColor(normalColor);
+        } else if (isRightButton(position)) {
+            prev.setColor(normalColor);
+            next.setColor(selectedColor);
+        } else {
+            prev.setColor(normalColor);
+            next.setColor(normalColor);
+        }
+    }
+    
+    bool HowToPlay::isLeftButton(Coordinate position) {
+        return prev.rectangle().contains(position) || textLeft->rectangle().contains(position);
+    }
+    
+    bool HowToPlay::isRightButton(Coordinate position) {
+        return next.rectangle().contains(position) || (nullptr != textRight && textRight->rectangle().contains(position));
     }
 }

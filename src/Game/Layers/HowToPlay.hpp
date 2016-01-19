@@ -40,6 +40,9 @@ namespace Bomberman {
         void click(Coordinate position);
         void select(Coordinate position);
         
+        bool isLeftButton(Coordinate position);
+        bool isRightButton(Coordinate position);
+        
         std::weak_ptr<Director> director;
         
         bool hide;
