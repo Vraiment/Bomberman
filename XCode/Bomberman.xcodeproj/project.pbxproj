@@ -73,6 +73,7 @@
 		5B74B89A1C4E2CD400E34D17 /* extraBomb_tutorial.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B74B8971C4E2CBD00E34D17 /* extraBomb_tutorial.png */; };
 		5B74B89B1C4E2CD400E34D17 /* increaseRange_tutorial.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B74B8981C4E2CBD00E34D17 /* increaseRange_tutorial.png */; };
 		5B74B89C1C4E2CD400E34D17 /* remote_tutorial.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B74B8991C4E2CBD00E34D17 /* remote_tutorial.png */; };
+		5B74B89E1C4E309D00E34D17 /* hud_tutorial.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B74B89D1C4E309100E34D17 /* hud_tutorial.png */; };
 		5B755C771822E81300DADA25 /* Configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B755C751822E81300DADA25 /* Configuration.cpp */; };
 		5B7732B5182AFB2F003A2747 /* SDL2_image.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B1BF7511822E48B009DCA31 /* SDL2_image.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5B87384D184E582B0014D94B /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B87384C184E582B0014D94B /* Rectangle.cpp */; };
@@ -140,6 +141,7 @@
 			dstPath = textures;
 			dstSubfolderSpec = 7;
 			files = (
+				5B74B89E1C4E309D00E34D17 /* hud_tutorial.png in CopyFiles */,
 				5B74B89A1C4E2CD400E34D17 /* extraBomb_tutorial.png in CopyFiles */,
 				5B74B89B1C4E2CD400E34D17 /* increaseRange_tutorial.png in CopyFiles */,
 				5B74B89C1C4E2CD400E34D17 /* remote_tutorial.png in CopyFiles */,
@@ -297,6 +299,7 @@
 		5B74B8971C4E2CBD00E34D17 /* extraBomb_tutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = extraBomb_tutorial.png; sourceTree = "<group>"; };
 		5B74B8981C4E2CBD00E34D17 /* increaseRange_tutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = increaseRange_tutorial.png; sourceTree = "<group>"; };
 		5B74B8991C4E2CBD00E34D17 /* remote_tutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remote_tutorial.png; sourceTree = "<group>"; };
+		5B74B89D1C4E309100E34D17 /* hud_tutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hud_tutorial.png; sourceTree = "<group>"; };
 		5B755C751822E81300DADA25 /* Configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Configuration.cpp; sourceTree = "<group>"; };
 		5B755C761822E81300DADA25 /* Configuration.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Configuration.hpp; sourceTree = "<group>"; };
 		5B76EC621820DD1B00D499EE /* Bomberman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bomberman.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -674,6 +677,7 @@
 		5BD37AF21822145500BB1C28 /* Textures */ = {
 			isa = PBXGroup;
 			children = (
+				5B74B89D1C4E309100E34D17 /* hud_tutorial.png */,
 				5B74B8931C4E17A500E34D17 /* arrow_left.png */,
 				5B74B8941C4E17A500E34D17 /* arrow_right.png */,
 				5B74B88B1C4E0BAC00E34D17 /* arrows_tutorial.png */,

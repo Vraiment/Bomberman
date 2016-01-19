@@ -138,7 +138,7 @@ namespace Bomberman {
         mainMenu = font.write("Main menu");
         instructionsText = font.write("Instructions");
         itemsText = font.write("Items");
-        hudText = font.write("HUD");
+        hudText = font.write("User interface");
         
         loadInstructions(font, renderer);
         loadItems(font, renderer);
@@ -184,12 +184,25 @@ namespace Bomberman {
         items.push_back(font.write("Increases the range of explosions"));
         items.emplace_back("increaseRange_tutorial.png", renderer);
         
-        items.push_back(font.write("Bombs will explode with the 'E' key"));
+        items.push_back(font.write("Controller: Bombs will explode with the 'E' key"));
         items.emplace_back("remote_tutorial.png", renderer);
     }
     
     void HowToPlay::loadHud(Font font, shared_ptr<SDL_Renderer> renderer) {
+        hud.push_back(font.write("User interface"));
+        hud.emplace_back("hud_tutorial.png", renderer);
         
+        hud.push_back(Texture::createRectangle(1, 1, Color::WHITE, renderer));
+        hud.push_back(font.write("Amount of lifes"));
+        
+        hud.push_back(Texture::createRectangle(1, 1, Color::WHITE, renderer));
+        hud.push_back(font.write("Bombs controller"));
+        
+        hud.push_back(Texture::createRectangle(1, 1, Color::WHITE, renderer));
+        hud.push_back(font.write("Amount of bombs"));
+        
+        hud.push_back(Texture::createRectangle(1, 1, Color::WHITE, renderer));
+        hud.push_back(font.write("Explosion range"));
     }
     
     void HowToPlay::setInstructionsPos(Rectangle screenSize) {
@@ -234,7 +247,49 @@ namespace Bomberman {
     }
     
     void HowToPlay::setHudPos(Rectangle screenSize) {
+        const int spacing = 5;
         
+        // Sample image
+        auto& hudImage = hud[1];
+        hudImage.position().i = screenSize.widthHalf() - hudImage.rectangle().widthHalf();
+        hudImage.position().j = screenSize.heightHalf() - hudImage.rectangle().heightHalf();
+        
+        // Title
+        auto& title = hud[0];
+        title.position().i = screenSize.widthHalf() - title.rectangle().widthHalf();
+        title.position().j = hudImage.rectangle().top() / 2;
+        
+        auto placeAbove = [hudImage] (int height, float percentage, Rectangle& text, Rectangle& line) {
+            text.i = hudImage.position().i + (percentage * hudImage.rectangle().width) - text.widthHalf();
+            text.j = hudImage.rectangle().top() - height - (2 * spacing) - text.height;
+            
+            line.width = 4;
+            line.height = height;
+            line.i = text.widthCenter() - line.widthHalf();
+            line.j = text.bottom() + spacing;
+        };
+        
+        auto placeBelow = [hudImage] (int height, float percentage, Rectangle& text, Rectangle& line) {
+            text.i = hudImage.position().i + (percentage * hudImage.rectangle().width) - text.widthHalf();
+            text.j = hudImage.rectangle().bottom() + height + (2 * spacing);
+            
+            line.width = 4;
+            line.height = height;
+            line.i = text.widthCenter() - line.widthHalf();
+            line.j = hudImage.rectangle().bottom() + spacing;
+        };
+        
+        // Place the lifes text
+        placeAbove(25, .075, hud[3].rectangle(), hud[2].rectangle());
+        
+        // Place the controller text
+        placeBelow(60, .22, hud[5].rectangle(), hud[4].rectangle());
+        
+        // Place the bombs amount text
+        placeAbove(60, .37, hud[7].rectangle(), hud[6].rectangle());
+        
+        // Place the explosion range text
+        placeBelow(25, .52, hud[9].rectangle(), hud[8].rectangle());
     }
     
     void HowToPlay::click(Coordinate position) {
