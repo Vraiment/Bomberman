@@ -11,8 +11,9 @@
 #include "../../Core/Font.hpp"
 #include "../../Core/Log/LogSystem.h"
 #include "../../Core/Utils/PointerUtils.hpp"
+#include "../../Core/SignalSender.hpp"
 
-#include "../Director.hpp"
+#include "../Signal.hpp"
 
 #include <SDL2/SDL.h>
 
@@ -115,9 +116,9 @@ namespace Bomberman {
         }
         
         if (hide) {
-            shared_ptr<Director> director;
-            if (_lock(this->director, director, "Director")) {
-                director->hideHowToPlay();
+            shared_ptr<SignalSender> signalSender;
+            if (_lock(this->signalSender, signalSender, "SignalSender")) {
+                signalSender->sendSignal(Signal::MainMenu);
             }
             
             hide = false;
@@ -145,6 +146,18 @@ namespace Bomberman {
         loadHud(font, renderer);
     }
     
+    void HowToPlay::handleSignal(Signal signal) {
+        if (Signal::ShowTutorial == signal) {
+            EventListener::enable();
+            Drawable::enable();
+            Updatable::enable();
+        } else {
+            EventListener::disable();
+            Drawable::disable();
+            Updatable::disable();
+        }
+    }
+    
     void HowToPlay::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {
         setInstructionsPos(newSize);
         
@@ -159,8 +172,8 @@ namespace Bomberman {
         setHudPos(newSize);
     }
     
-    void HowToPlay::setDirector(weak_ptr<Director> director) {
-        this->director = director;
+    void HowToPlay::setSignalSender(weak_ptr<SignalSender> signalSender) {
+        this->signalSender = signalSender;
     }
     
     void HowToPlay::loadInstructions(Font font, shared_ptr<SDL_Renderer> renderer) {

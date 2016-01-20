@@ -18,7 +18,7 @@ namespace Bomberman {
     class CommandFactory;
     class CommandQueue;
     class ConsoleLayer;
-    class Director;
+    class SignalSender;
     
     class Console {
     public:
@@ -37,7 +37,7 @@ namespace Bomberman {
         
         void setCommandQueue(std::weak_ptr<CommandQueue> commandQueue);
         void setConsoleLayer(std::weak_ptr<ConsoleLayer> consoleLayer);
-        void setDirector(std::weak_ptr<Director> director);
+        void setSignalSender(std::weak_ptr<SignalSender> director);
         
     private:
         static const int BUFFER_SIZE;
@@ -47,7 +47,7 @@ namespace Bomberman {
         std::string buffer;
         std::weak_ptr<CommandQueue> commandQueue;
         std::weak_ptr<ConsoleLayer> consoleLayer;
-        std::weak_ptr<Director> director;
+        std::weak_ptr<SignalSender> signalSender;
         
         Parser parser;
     };

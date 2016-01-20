@@ -12,6 +12,7 @@
 #include "../../Core/Drawable.hpp"
 #include "../../Core/EventListener.hpp"
 #include "../../Core/Updatable.hpp"
+#include "../../Core/SignalHandler.hpp"
 
 #include <memory>
 #include <string>
@@ -21,10 +22,10 @@
 #include "../../Core/Timer.hpp"
 
 namespace Bomberman {
-    class Director;
     class TileMap;
+    class SignalSender;
     
-    class GameLayer : public Drawable, public EventListener, public Updatable {
+    class GameLayer : public Drawable, public EventListener, public Updatable, public SignalHandler {
     public:
         GameLayer();
         
@@ -33,10 +34,11 @@ namespace Bomberman {
         void listenEvent(SDL_Event event);
         void draw();
         void update();
+        void handleSignal(Signal signal);
         
         void load(std::shared_ptr<SDL_Renderer> renderer);
         
-        void setDirector(std::weak_ptr<Director> director);
+        void setSignalSender(std::weak_ptr<SignalSender> signalSender);
         void setTileMap(std::shared_ptr<TileMap> tileMap);
         
         void screenSizeChanged(Rectangle previousSize, Rectangle newSize);
@@ -60,7 +62,7 @@ namespace Bomberman {
         Texture door, destroyedDoor;
         Timer blinkPlayerTimer;
         
-        std::weak_ptr<Director> director;
+        std::weak_ptr<SignalSender> signalSender;
         std::shared_ptr<TileMap> tileMap;
         
         std::shared_ptr<Camera> camera;

@@ -14,7 +14,6 @@
 #include "Core/ScreenManager.hpp"
 
 #include "Game/Configuration.hpp"
-#include "Game/Director.hpp"
 
 using namespace Bomberman;
 using namespace std;
@@ -25,18 +24,9 @@ int main(int argc, char* argv[]) {
         Engine engine;
         Configuration config("config.xml");
         MainLoop loop;
-        auto director = make_shared<Director>();
         
         //Dependants objects
         shared_ptr<Screen> screen(new Screen(config.viewportWidth(), config.viewportHeight(), config.viewportTitle()));
-        
-        // Configure the director
-        director->setScreenManager(screen->getScreenManager());
-        director->setLoopQuiter(loop.quiter());
-        director->setRenderer(screen->renderer());
-        
-        // Register the director
-        screen->getScreenManager()->addUpdatable(director);
         
         //Game
         loop.addScreen(screen);

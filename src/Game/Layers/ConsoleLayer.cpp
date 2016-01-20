@@ -11,6 +11,8 @@
 #include "../../Core/Log/LogSystem.h"
 #include "../../Core/Math/Rectangle.hpp"
 
+#include "../Signal.hpp"
+
 using namespace std;
 
 namespace Bomberman {
@@ -62,6 +64,16 @@ namespace Bomberman {
         
         if (drawCursor) {
             cursor.draw();
+        }
+    }
+    
+    void ConsoleLayer::handleSignal(Signal signal) {
+        if (Signal::ShowConsole == signal) {
+            Drawable::disable();
+            Updatable::disable();
+        } else {
+            Drawable::disable();
+            Updatable::disable();
         }
     }
     

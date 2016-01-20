@@ -10,6 +10,7 @@
 #define __ConsoleEvents__hpp__
 
 #include "../../Core/EventListener.hpp"
+#include "../../Core/SignalHandler.hpp"
 
 #include <memory>
 
@@ -17,11 +18,13 @@ namespace Bomberman {
     class CommandQueue;
     class Console;
     
-    class ConsoleEvents : public EventListener {
+    class ConsoleEvents : public EventListener, public SignalHandler {
     public:
         void listenEvent(SDL_Event event);
         
         void setConsole(std::weak_ptr<Console> console);
+        
+        void handleSignal(Signal signal);
         
     private:
         std::weak_ptr<Console> console;

@@ -12,8 +12,9 @@
 #include "../../Core/Texture.hpp"
 #include "../../Core/Utils/OperatingSystem.hpp"
 #include "../../Core/Log/LogSystem.h"
+#include "../../Core/SignalSender.hpp"
 
-#include "../Director.hpp"
+#include "../Signal.hpp"
 
 #include <SDL2/SDL.h>
 #include <iostream>
@@ -114,11 +115,12 @@ namespace Bomberman {
         
         // Click stuff
         if (Button::cancel == clickedButton) {
-            if (!director.expired()) {
-                auto director = this->director.lock();
-                director->hideLevelList();
+            if (!signalSender.expired()) {
+                auto signalSender = this->signalSender.lock();
+                signalSender->sendSignal(Signal::MainMenu);
+                
             } else {
-                Log::get() << "No Director set for LevelListLayer" << LogLevel::error;
+                Log::get() << "No SignalSender set for LevelListLayer" << LogLevel::error;
             }
             
             clickedButton = Button::none;
@@ -126,13 +128,13 @@ namespace Bomberman {
             fillMapList();
             clickedButton = Button::none;
         } else if (Button::ok == clickedButton){
-            if (!director.expired()) {
+            if (!signalSender.expired()) {
                 if (selected >= 0 && selected < maps.size()) {
-                    auto director = this->director.lock();
-                    director->loadLevel(maps[selected].first);
+                    auto signalSender = this->signalSender.lock();
+                    signalSender->sendSignal(Signal::InGame);
                 }
             } else {
-                Log::get() << "No Director set for LevelListLayer" << LogLevel::error;
+                Log::get() << "No SignalSender set for LevelListLayer" << LogLevel::error;
             }
             
             clickedButton = Button::none;
@@ -149,6 +151,18 @@ namespace Bomberman {
         ok = buttons.write("Play");
         
         background = Texture::createRectangle(1, 1, Color(0x77), renderer);
+    }
+    
+    void LevelListLayer::handleSignal(Signal signal) {
+        if (Signal::LevelList == signal) {
+            Drawable::enable();
+            EventListener::enable();
+            Updatable::enable();
+        } else {
+            Drawable::disable();
+            EventListener::disable();
+            Updatable::disable();
+        }
     }
     
     void LevelListLayer::fillMapList() {
@@ -199,8 +213,8 @@ namespace Bomberman {
         ok.rectangle().j = reload.rectangle().j;
     }
     
-    void LevelListLayer::setDirector(weak_ptr<Director> director) {
-        this->director = director;
+    void LevelListLayer::setSignalSender(weak_ptr<SignalSender> signalSender) {
+        this->signalSender = signalSender;
     }
     
     void LevelListLayer::click(Coordinate position) {

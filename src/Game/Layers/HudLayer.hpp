@@ -12,13 +12,16 @@
 #include "../../Core/Drawable.hpp"
 #include "../../Core/Texture.hpp"
 
+#include "SignalHandler.hpp"
+
 namespace Bomberman {
     class Player;
     class TileMap;
     
-    class HudLayer : public Drawable {
+    class HudLayer : public Drawable, public SignalHandler {
     public:
         void draw();
+        void handleSignal(Signal signal);
         
         void load(std::shared_ptr<SDL_Renderer> renderer);
         

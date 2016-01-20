@@ -23,8 +23,9 @@
 #include "../Map/TxtTileMapLoader.hpp"
 #include "../../Core/Log/LogSystem.h"
 #include "../../Core/ScreenManager.hpp"
-#include "../Director.hpp"
 #include "../../Core/Utils/PointerUtils.hpp"
+#include "../Signal.hpp"
+#include "../../Core/SignalSender.hpp"
 
 using namespace std;
 
@@ -77,14 +78,14 @@ namespace Bomberman {
     
     void MainMenuLayer::update() {
         if (0 == clickedEntry) {
-            shared_ptr<Director> director;
-            if (_lock(this->director, director, "Director")) {
-                director->showLevelList();
+            shared_ptr<SignalSender> signalSender;
+            if (_lock(this->signalSender, signalSender, "Director")) {
+                signalSender->sendSignal(Signal::LevelList);
             }
         } else if (1 == clickedEntry) {
-            shared_ptr<Director> director;
-            if (_lock(this->director, director, "Director")) {
-                director->showHowToPlay();
+            shared_ptr<SignalSender> signalSender;
+            if (_lock(this->signalSender, signalSender, "Director")) {
+                signalSender->sendSignal(Signal::ShowTutorial);
             }
         } else if (2 == clickedEntry) {
             shared_ptr<LoopQuiter> loopQuiter;
@@ -96,6 +97,18 @@ namespace Bomberman {
     
     void MainMenuLayer::postUpdate() {
         clickedEntry = -1;
+    }
+    
+    void MainMenuLayer::handleSignal(Signal signal) {
+        if (Signal::MainMenu == signal) {
+            EventListener::enable();
+            Drawable::enable();
+            Updatable::enable();
+        } else {
+            EventListener::disable();
+            Drawable::disable();
+            Updatable::disable();
+        }
     }
     
     void MainMenuLayer::draw() {
@@ -131,8 +144,8 @@ namespace Bomberman {
         clickedEntry = selectedEntry;
     }
     
-    void MainMenuLayer::setDirector(weak_ptr<Director> Director) {
-        this->director = Director;
+    void MainMenuLayer::setSignalSender(weak_ptr<SignalSender> signalSender) {
+        this->signalSender = signalSender;
     }
     
     void MainMenuLayer::setLoopQuiter(weak_ptr<LoopQuiter> loopQuiter) {

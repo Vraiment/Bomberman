@@ -12,8 +12,9 @@
 #include "../../Core/Log/LogSystem.h"
 #include "../../Core/LoopQuiter.hpp"
 #include "../../Core/Utils/PointerUtils.hpp"
+#include "../../Core/SignalSender.hpp"
 
-#include "../Director.hpp"
+#include "../Signal.hpp"
 
 #include <SDL2/SDL.h>
 
@@ -61,16 +62,16 @@ namespace Bomberman {
                 } else if (SDLK_RETURN == keySym && selected >= 0 && selected < 3 && !clicking) {
                     pushSelectedButton();
                 } else if (SDLK_ESCAPE == keySym) {
-                    shared_ptr<Director> director;
-                    if (_lock(this->director, director, "Director")) {
-                        director->hidePauseMenu();
+                    shared_ptr<SignalSender> signalSender;
+                    if (_lock(this->signalSender, signalSender, "SignalSender")) {
+                        signalSender->sendSignal(Signal::InGame);
                     }
                 }
             }
         } else if (SDL_KEYUP == event.type && SDLK_ESCAPE == event.key.keysym.sym) {
-            shared_ptr<Director> director;
-            if (_lock(this->director, director, "Director")) {
-                director->showPauseMenu();
+            shared_ptr<SignalSender> signalSender;
+            if (_lock(this->signalSender, signalSender, "SignalSender")) {
+                signalSender->sendSignal(Signal::PauseGame);
             }
         }
     }
@@ -103,6 +104,22 @@ namespace Bomberman {
         }
     }
     
+    void PauseMenu::handleSignal(Signal signal) {
+        if (Signal::InGame == signal) {
+            EventListener::enable();
+            Drawable::disable();
+            Updatable::disable();
+        } else if (Signal::PauseGame == signal) {
+            EventListener::enable();
+            Drawable::enable();
+            Updatable::enable();
+        } else {
+            EventListener::disable();
+            Drawable::disable();
+            Updatable::disable();
+        }
+    }
+    
     void PauseMenu::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {
         int interline = 25;
         int totalHeight = (interline * 2) + continueGame.rectangle().height + quitToMainMenu.rectangle().height + quitToDesktop.rectangle().height;
@@ -131,19 +148,19 @@ namespace Bomberman {
     }
     
     void PauseMenu::pushSelectedButton() {
-        shared_ptr<Director> director;
+        shared_ptr<SignalSender> signalSender;
         shared_ptr<LoopQuiter> loopQuiter;
         
         if (selected < 0 ||
-            !_lock(this->director, director, "Director") ||
+            !_lock(this->signalSender, signalSender, "SignalSender") ||
             !_lock(this->loopQuiter, loopQuiter, "LoopQuiter")) {
             return;
         }
         
         if (0 == selected) {
-            director->hidePauseMenu();
+            signalSender->sendSignal(Signal::InGame);
         } else if (1 == selected) {
-            director->endGame();
+            signalSender->sendSignal(Signal::MainMenu);
         } else if (2 == selected) {
             loopQuiter->quitLoop();
         }
@@ -161,8 +178,8 @@ namespace Bomberman {
         }
     }
     
-    void PauseMenu::setDirector(weak_ptr<Director> director) {
-        this->director = director;
+    void PauseMenu::setSignalSender(weak_ptr<SignalSender> signalSender) {
+        this->signalSender = signalSender;
     }
     
     void PauseMenu::setLoopQuiter(weak_ptr<LoopQuiter> loopQuiter) {

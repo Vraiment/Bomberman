@@ -17,6 +17,7 @@
 #include "../Map/TileMap.hpp"
 #include "../../Core/Log/LogSystem.h"
 #include "../../Core/Utils/PointerUtils.hpp"
+#include "../Signal.hpp"
 
 using namespace Bomberman::Constants;
 using namespace std;
@@ -110,6 +111,14 @@ namespace Bomberman {
             background.draw();
             gameOver.draw();
             continueText.draw();
+        }
+    }
+    
+    void HudLayer::handleSignal(Signal signal) {
+        if (Signal::InGame == signal || Signal::HideConsole == signal || Signal::PauseGame == signal || Signal::EndGame == signal) {
+            Drawable::enable();
+        } else {
+            Drawable::disable();
         }
     }
     

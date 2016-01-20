@@ -14,6 +14,7 @@
 #include "../../Core/Updatable.hpp"
 #include "../../Core/Texture.hpp"
 #include "../../Core/Font.hpp"
+#include "../../Core/SignalHandler.hpp"
 
 #include <vector>
 #include <utility>
@@ -22,15 +23,16 @@ struct SDL_Renderer;
 
 namespace Bomberman {
     struct Coordinate;
-    class Director;
+    class SignalSender;
     
-    class LevelListLayer : public Drawable, public EventListener, public Updatable {
+    class LevelListLayer : public Drawable, public EventListener, public Updatable, public SignalHandler {
     public:
         LevelListLayer();
         
         void listenEvent(SDL_Event event);
         void draw();
         void update();
+        void handleSignal(Signal signal);
         
         bool loaded() const;
         void load(std::shared_ptr<SDL_Renderer> renderer);
@@ -38,7 +40,7 @@ namespace Bomberman {
         
         void screenSizeChanged(Rectangle previousSize, Rectangle newSize);
         
-        void setDirector(std::weak_ptr<Director> director);
+        void setSignalSender(std::weak_ptr<SignalSender> signalSender);
         
     private:
         enum class Button;
@@ -61,7 +63,7 @@ namespace Bomberman {
         Texture cancel;
         Texture ok;
         
-        std::weak_ptr<Director> director;
+        std::weak_ptr<SignalSender> signalSender;
     };
 }
 

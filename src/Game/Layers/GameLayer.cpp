@@ -12,9 +12,9 @@
 
 #include "../../Core/Log/LogSystem.h"
 #include "../../Core/Utils/PointerUtils.hpp"
+#include "../../Core/SignalSender.hpp"
 
 #include "../Constants.hpp"
-#include "../Director.hpp"
 #include "../Elements/Bomb.hpp"
 #include "../Elements/Brick.hpp"
 #include "../Elements/Enemy.hpp"
@@ -22,6 +22,8 @@
 #include "../Elements/Item.hpp"
 #include "../Elements/Player.hpp"
 #include "../Map/TileMap.hpp"
+
+#include "../Signal.hpp"
 
 using namespace std;
 using namespace Bomberman::Constants;
@@ -138,11 +140,11 @@ namespace Bomberman {
     
     void GameLayer::listenEvent(SDL_Event event) {
         if (SDL_KEYUP == event.type && SDLK_RETURN == event.key.keysym.sym) {
-            shared_ptr<Director> director;
-            if (lockWeakPointer(this->director, director)) {
-                director->endGame();
+            shared_ptr<SignalSender> signalSender;
+            if (lockWeakPointer(this->signalSender, signalSender)) {
+                signalSender->sendSignal(Signal::MainMenu);
             } else {
-                Log::get() << "No Director for GameLayer" << LogLevel::error;
+                Log::get() << "No SignalSender for GameLayer" << LogLevel::error;
             }
         }
     }
@@ -232,12 +234,32 @@ namespace Bomberman {
         }
 
         if (tileMap->gameOver() || tileMap->playerWins()) {
-            shared_ptr<Director> director;
-            if (lockWeakPointer(this->director, director)) {
-                director->freezeGame();
+            shared_ptr<SignalSender> signalSender;
+            if (lockWeakPointer(this->signalSender, signalSender)) {
+                signalSender->sendSignal(Signal::EndGame);
             } else {
-                Log::get() << "No Director for GameLayer" << LogLevel::error;
+                Log::get() << "No SignalSender for GameLayer" << LogLevel::error;
             }
+        }
+    }
+    
+    void GameLayer::handleSignal(Signal signal) {
+        if (Signal::InGame == signal || Signal::HideConsole == signal) {
+            Drawable::enable();
+            EventListener::disable();
+            Updatable::enable();
+        } else if (Signal::PauseGame == signal || Signal::ShowConsole == signal) {
+            Drawable::enable();
+            EventListener::disable();
+            Updatable::disable();
+        } else if (Signal::EndGame == signal) {
+            Drawable::enable();
+            EventListener::enable();
+            Updatable::disable();
+        } else {
+            Drawable::disable();
+            EventListener::disable();
+            Updatable::disable();
         }
     }
     
@@ -265,8 +287,8 @@ namespace Bomberman {
         enemies.push_back(enemy);
     }
     
-    void GameLayer::setDirector(weak_ptr<Director> director) {
-        this->director = director;
+    void GameLayer::setSignalSender(weak_ptr<SignalSender> signalSender) {
+        this->signalSender = signalSender;
     }
 
     void GameLayer::setTileMap(shared_ptr<TileMap> tileMap) {

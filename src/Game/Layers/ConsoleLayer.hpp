@@ -17,14 +17,16 @@
 #include "../../Core/Texture.hpp"
 #include "../../Core/Timer.hpp"
 #include "../../Core/Updatable.hpp"
+#include "../../Core/SignalHandler.hpp"
 
 namespace Bomberman {
-    class ConsoleLayer : public Drawable, public Updatable, public Logger {
+    class ConsoleLayer : public Drawable, public Updatable, public SignalHandler, public Logger {
     public:
         ConsoleLayer();
         
         void update();
         void draw();
+        void handleSignal(Signal signal);
         
         void load(std::shared_ptr<SDL_Renderer> renderer);
         

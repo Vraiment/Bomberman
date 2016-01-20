@@ -15,15 +15,16 @@
 #include "../../Core/EventListener.hpp"
 #include "../../Core/Drawable.hpp"
 #include "../../Core/Updatable.hpp"
+#include "../../Core/SignalHandler.hpp"
 
 #include "../../Core/Math/Coordinate.hpp"
 #include "../../Core/Texture.hpp"
 
 namespace Bomberman {
-    class Director;
     class LoopQuiter;
+    class SignalSender;
     
-    class MainMenuLayer : public EventListener, public Drawable, public Updatable {
+    class MainMenuLayer : public EventListener, public Drawable, public Updatable, public SignalHandler {
     public:
         MainMenuLayer();
         
@@ -31,8 +32,9 @@ namespace Bomberman {
         void update();
         void draw();
         void postUpdate();
+        void handleSignal(Signal signal);
         
-        void setDirector(std::weak_ptr<Director> Director);
+        void setSignalSender(std::weak_ptr<SignalSender> signalSender);
         void setLoopQuiter(std::weak_ptr<LoopQuiter> loopQuiter);
         
         void load(std::shared_ptr<SDL_Renderer> renderer);
@@ -52,7 +54,7 @@ namespace Bomberman {
         
         bool shouldStartGame, shouldExit;
         std::weak_ptr<LoopQuiter> loopQuiter;
-        std::weak_ptr<Director> director;
+        std::weak_ptr<SignalSender> signalSender;
     };
 }
 

@@ -18,6 +18,7 @@
 #include "../CommandFactory.hpp"
 #include "../Elements/Player.hpp"
 #include "../Map/TileMap.hpp"
+#include "../Signal.hpp"
 
 using namespace std;
 using namespace Bomberman::Constants;
@@ -82,6 +83,14 @@ namespace Bomberman {
         
         if (command) {
             commandQueue->addCommand(command);
+        }
+    }
+    
+    void PlayerEvents::handleSignal(Signal signal) {
+        if (Signal::InGame == signal) {
+            EventListener::enable();
+        } else {
+            EventListener::disable();
         }
     }
     

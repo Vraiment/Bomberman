@@ -13,9 +13,10 @@
 #include "../Core/CommandQueue.hpp"
 #include "../Core/Log/LogSystem.h"
 #include "../Core/Utils/PointerUtils.hpp"
+#include "../Core/SignalSender.hpp"
 
-#include "Director.hpp"
 #include "Layers/ConsoleLayer.hpp"
+#include "Signal.hpp"
 
 using namespace std;
 
@@ -43,13 +44,13 @@ namespace Bomberman {
     
     void Console::hide() {
         shared_ptr<ConsoleLayer> consoleLayer;
-        shared_ptr<Director> director;
+        shared_ptr<SignalSender> signalSender;
         if (!_lock(this->consoleLayer, consoleLayer, "ConsoleLayer") ||
-            !_lock(this->director, director, "Director")) {
+            !_lock(this->signalSender, signalSender, "SignalSender")) {
             return;
         }
         
-        director->hideConsole();
+        signalSender->sendSignal(Signal::HideConsole);
         
         _visible = false;
         
@@ -58,13 +59,13 @@ namespace Bomberman {
     
     void Console::show() {
         shared_ptr<ConsoleLayer> consoleLayer;
-        shared_ptr<Director> director;
+        shared_ptr<SignalSender> signalSender;
         if (!_lock(this->consoleLayer, consoleLayer, "ConsoleLayer") ||
-            !_lock(this->director, director, "Director")) {
+            !_lock(this->signalSender, signalSender, "SignalSender")) {
             return;
         }
         
-        director->showConsole();
+        signalSender->sendSignal(Signal::ShowConsole);
         
         _visible = true;
         
@@ -157,7 +158,7 @@ namespace Bomberman {
         }
     }
     
-    void Console::setDirector(weak_ptr<Director> director) {
-        this->director = director;
+    void Console::setSignalSender(weak_ptr<SignalSender> signalSender) {
+        this->signalSender = signalSender;
     }
 }

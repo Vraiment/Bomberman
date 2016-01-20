@@ -13,26 +13,28 @@
 #include "../../Core/EventListener.hpp"
 #include "../../Core/Texture.hpp"
 #include "../../Core/Updatable.hpp"
+#include "../../Core/SignalHandler.hpp"
 
 struct SDL_Renderer;
 
 namespace Bomberman {
-    class Director;
     class LoopQuiter;
+    class SignalSender;
     
-    class PauseMenu : public EventListener, public Drawable, public Updatable {
+    class PauseMenu : public EventListener, public Drawable, public Updatable, public SignalHandler {
     public:
         PauseMenu();
         
         void listenEvent(SDL_Event event);
         void draw();
         void update();
+        void handleSignal(Signal signal);
         
         void screenSizeChanged(Rectangle previousSize, Rectangle newSize);
         
         void load(std::shared_ptr<SDL_Renderer> renderer);
         
-        void setDirector(std::weak_ptr<Director> director);
+        void setSignalSender(std::weak_ptr<SignalSender> signalSender);
         void setLoopQuiter(std::weak_ptr<LoopQuiter> loopQuitter);
         
         void show();
@@ -42,7 +44,7 @@ namespace Bomberman {
         void pushSelectedButton();
         void select(Coordinate position);
         
-        std::weak_ptr<Director> director;
+        std::weak_ptr<SignalSender> signalSender;
         std::weak_ptr<LoopQuiter> loopQuiter;
         
         int selected;

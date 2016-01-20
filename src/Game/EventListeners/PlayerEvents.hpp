@@ -10,6 +10,7 @@
 #define __PlayerEvents__hpp__
 
 #include "../../Core/EventListener.hpp"
+#include "../../Core/SignalHandler.hpp"
 
 #include <memory>
 #include <vector>
@@ -18,9 +19,10 @@ namespace Bomberman {
     class CommandFactory;
     class CommandQueue;
     
-    class PlayerEvents : public EventListener {
+    class PlayerEvents : public EventListener, public SignalHandler {
     public:
         void listenEvent(SDL_Event event);
+        void handleSignal(Signal signal);
         
         void setCommandFactory(std::weak_ptr<CommandFactory> commandFactory);
         void setCommandQueue(std::weak_ptr<CommandQueue> commandQueue);

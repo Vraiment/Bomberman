@@ -13,29 +13,31 @@
 #include "../../Core/EventListener.hpp"
 #include "../../Core/Texture.hpp"
 #include "../../Core/Updatable.hpp"
+#include "../../Core/SignalHandler.hpp"
 
 #include <Vector>
 
 struct SDL_Renderer;
 
 namespace Bomberman {
-    class Director;
     class Font;
     class Texture;
+    class SignalSender;
     
-    class HowToPlay : public EventListener, public Drawable, public Updatable {
+    class HowToPlay : public EventListener, public Drawable, public Updatable, public SignalHandler {
     public:
         HowToPlay();
         
         void listenEvent(SDL_Event event);
         void draw();
         void update();
+        void handleSignal(Signal signal);
         
         void load(std::shared_ptr<SDL_Renderer> renderer);
         
         void screenSizeChanged(Rectangle previousSize, Rectangle newSize);
         
-        void setDirector(std::weak_ptr<Director> director);
+        void setSignalSender(std::weak_ptr<SignalSender> signalSender);
         
     private:
         void loadInstructions(Font font, std::shared_ptr<SDL_Renderer> renderer);
@@ -52,7 +54,7 @@ namespace Bomberman {
         bool isLeftButton(Coordinate position);
         bool isRightButton(Coordinate position);
         
-        std::weak_ptr<Director> director;
+        std::weak_ptr<SignalSender> signalSender;
         
         bool hide;
         enum class Page;

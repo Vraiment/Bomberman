@@ -64,7 +64,6 @@
 		5B5BB1C71856D5370019CAD1 /* XmlTileMapLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BB1C51856D5370019CAD1 /* XmlTileMapLoader.cpp */; };
 		5B5C97B11B80DFFE00C9D6C1 /* PressStart2P.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B5C97B01B80DFF400C9D6C1 /* PressStart2P.ttf */; };
 		5B5C97B31B80EC4600C9D6C1 /* EventListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B5C97B21B80EC4600C9D6C1 /* EventListener.cpp */; };
-		5B6C87511C437F7D003AA44A /* Director.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B6C874F1C437F7D003AA44A /* Director.cpp */; };
 		5B74B88A1C4DAC2C00E34D17 /* HowToPlay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B74B8881C4DAC2C00E34D17 /* HowToPlay.cpp */; };
 		5B74B88C1C4E0BBD00E34D17 /* arrows_tutorial.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B74B88B1C4E0BAC00E34D17 /* arrows_tutorial.png */; };
 		5B74B88E1C4E0DC500E34D17 /* bomb_tutorial.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B74B88D1C4E0DB800E34D17 /* bomb_tutorial.png */; };
@@ -258,6 +257,7 @@
 		5B39462E1C4ED9B000FA3CDA /* SignalHandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SignalHandler.hpp; sourceTree = "<group>"; };
 		5B3946301C4EEB8A00FA3CDA /* SignalSender.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SignalSender.cpp; sourceTree = "<group>"; };
 		5B3946311C4EEB8A00FA3CDA /* SignalSender.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SignalSender.hpp; sourceTree = "<group>"; };
+		5B3946331C4EF53A00FA3CDA /* Signal.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Signal.hpp; sourceTree = "<group>"; };
 		5B3B82CF1857A82700CECE27 /* PlayerEvents.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerEvents.cpp; sourceTree = "<group>"; };
 		5B3B82D01857A82700CECE27 /* PlayerEvents.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlayerEvents.hpp; sourceTree = "<group>"; };
 		5B3B82D31857AB7800CECE27 /* PlayerCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerCommand.cpp; sourceTree = "<group>"; };
@@ -292,8 +292,6 @@
 		5B5BB1C61856D5370019CAD1 /* XmlTileMapLoader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XmlTileMapLoader.hpp; sourceTree = "<group>"; };
 		5B5C97B01B80DFF400C9D6C1 /* PressStart2P.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PressStart2P.ttf; sourceTree = "<group>"; };
 		5B5C97B21B80EC4600C9D6C1 /* EventListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventListener.cpp; sourceTree = "<group>"; };
-		5B6C874F1C437F7D003AA44A /* Director.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Director.cpp; sourceTree = "<group>"; };
-		5B6C87501C437F7D003AA44A /* Director.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Director.hpp; sourceTree = "<group>"; };
 		5B74B8881C4DAC2C00E34D17 /* HowToPlay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HowToPlay.cpp; sourceTree = "<group>"; };
 		5B74B8891C4DAC2C00E34D17 /* HowToPlay.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HowToPlay.hpp; sourceTree = "<group>"; };
 		5B74B88B1C4E0BAC00E34D17 /* arrows_tutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrows_tutorial.png; sourceTree = "<group>"; };
@@ -473,12 +471,11 @@
 				5BB4D8301B7FD2F10066077D /* Console.cpp */,
 				5BB4D8311B7FD2F10066077D /* Console.hpp */,
 				5B9228971A107EA7009ADD10 /* Constants.hpp */,
-				5B6C874F1C437F7D003AA44A /* Director.cpp */,
-				5B6C87501C437F7D003AA44A /* Director.hpp */,
 				5B5BB1B61856ADA70019CAD1 /* Elements */,
 				5B3B82CE1857A80D00CECE27 /* EventListeners */,
 				5B5BB1B91856AE110019CAD1 /* Layers */,
 				5B03C1251860E7190011C3DA /* Map */,
+				5B3946331C4EF53A00FA3CDA /* Signal.hpp */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -872,7 +869,6 @@
 				5B0EEC2D1820E10A0084C40C /* main.cpp in Sources */,
 				5B74B88A1C4DAC2C00E34D17 /* HowToPlay.cpp in Sources */,
 				5B3B82D11857A82700CECE27 /* PlayerEvents.cpp in Sources */,
-				5B6C87511C437F7D003AA44A /* Director.cpp in Sources */,
 				5B0022831A2C1206008805D9 /* Random.cpp in Sources */,
 				5B0496431825D01600C1FBCB /* MainLoop.cpp in Sources */,
 				5B9382161B81A37B00C42269 /* QuitCommand.cpp in Sources */,

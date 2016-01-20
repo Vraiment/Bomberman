@@ -13,6 +13,7 @@
 #include "../../Core/Utils/PointerUtils.hpp"
 
 #include "../Console.hpp"
+#include "../Signal.hpp"
 
 using namespace std;
 
@@ -50,5 +51,13 @@ namespace Bomberman {
     
     void ConsoleEvents::setConsole(weak_ptr<Console> console) {
         this->console = console;
+    }
+    
+    void ConsoleEvents::handleSignal(Signal signal) {
+        if (Signal::ShowConsole == signal) {
+            EventListener::enable();
+        } else {
+            EventListener::disable();
+        }
     }
 }
