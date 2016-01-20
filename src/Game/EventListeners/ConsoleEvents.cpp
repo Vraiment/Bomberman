@@ -54,7 +54,7 @@ namespace Bomberman {
     }
     
     void ConsoleEvents::handleSignal(Signal signal) {
-        if (Signal::ShowConsole == signal) {
+        if (Signal::InGame == signal || Signal::ShowConsole == signal) {
             EventListener::enable();
         } else {
             EventListener::disable();
