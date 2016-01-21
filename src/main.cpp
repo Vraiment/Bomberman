@@ -81,7 +81,6 @@ int main(int argc, char* argv[]) {
         levelListLayer->load(screen->renderer());
         mainMenuLayer->load(screen->renderer());
         pauseMenu->load(screen->renderer());
-        Log::get().addLogger(consoleLayer);
         
         // Register everything
         auto screenManager = screen->getScreenManager();
@@ -111,6 +110,7 @@ int main(int argc, char* argv[]) {
         screenManager->addDrawable(consoleLayer);
         screenManager->addUpdatable(consoleLayer);
         screenManager->addSignalHandler(consoleLayer);
+        Log::get().addLogger(consoleLayer);
         
         screenManager->addEventListener(levelListLayer);
         screenManager->addDrawable(levelListLayer);
