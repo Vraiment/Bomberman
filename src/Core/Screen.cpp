@@ -228,6 +228,7 @@ namespace Bomberman {
         
         while (!screenManager->signalHandlers.empty()) {
             auto signalHandler = screenManager->signalHandlers.front();
+            screenManager->signalHandlers.pop();
             
             signalHandlers.push_back(signalHandler);
         }
