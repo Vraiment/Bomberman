@@ -72,6 +72,10 @@ namespace Bomberman {
         TTF_SetFontStyle(font.get(), TTF_STYLE_UNDERLINE);
     }
     
+    int Font::maxHeight() {
+        return TTF_FontHeight(font.get());
+    }
+    
     string Font::fontId() const {
         stringstream id;
         

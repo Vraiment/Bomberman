@@ -32,6 +32,8 @@ namespace Bomberman {
         
         void setUnderLine();
         
+        int maxHeight();
+        
     private:
         bool _loaded;
         std::shared_ptr<SDL_Renderer> renderer;
