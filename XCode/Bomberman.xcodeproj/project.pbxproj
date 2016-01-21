@@ -93,6 +93,7 @@
 		5B92289C1A10898E009ADD10 /* TxtTileMapLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B92289A1A10898E009ADD10 /* TxtTileMapLoader.cpp */; };
 		5B9382161B81A37B00C42269 /* QuitCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B9382141B81A37B00C42269 /* QuitCommand.cpp */; };
 		5B9382191B81A75700C42269 /* LoopQuiter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B9382171B81A75700C42269 /* LoopQuiter.cpp */; };
+		5B9E27FB1C514DC800C74CB7 /* MapEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B9E27F91C514DC800C74CB7 /* MapEditor.cpp */; };
 		5BB4D82C1B7FB2920066077D /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BB4D82A1B7FB2920066077D /* Item.cpp */; };
 		5BB4D82F1B7FCE380066077D /* ConsoleEvents.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BB4D82D1B7FCE380066077D /* ConsoleEvents.cpp */; };
 		5BB4D8321B7FD2F10066077D /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BB4D8301B7FD2F10066077D /* Console.cpp */; };
@@ -338,6 +339,8 @@
 		5B9382151B81A37B00C42269 /* QuitCommand.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = QuitCommand.hpp; sourceTree = "<group>"; };
 		5B9382171B81A75700C42269 /* LoopQuiter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoopQuiter.cpp; sourceTree = "<group>"; };
 		5B9382181B81A75700C42269 /* LoopQuiter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LoopQuiter.hpp; sourceTree = "<group>"; };
+		5B9E27F91C514DC800C74CB7 /* MapEditor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapEditor.cpp; sourceTree = "<group>"; };
+		5B9E27FA1C514DC800C74CB7 /* MapEditor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MapEditor.hpp; sourceTree = "<group>"; };
 		5BB4D82A1B7FB2920066077D /* Item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Item.cpp; sourceTree = "<group>"; };
 		5BB4D82B1B7FB2920066077D /* Item.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Item.hpp; sourceTree = "<group>"; };
 		5BB4D82D1B7FCE380066077D /* ConsoleEvents.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsoleEvents.cpp; sourceTree = "<group>"; };
@@ -598,6 +601,8 @@
 				5B40BF9D1C44D8B2001A2805 /* LevelListLayer.hpp */,
 				5B1817A91C305561001CDAD8 /* MainMenuLayer.cpp */,
 				5B1817A81C30554D001CDAD8 /* MainMenuLayer.hpp */,
+				5B9E27F91C514DC800C74CB7 /* MapEditor.cpp */,
+				5B9E27FA1C514DC800C74CB7 /* MapEditor.hpp */,
 				5B570EFC1C476FEF005B3627 /* PauseMenu.cpp */,
 				5B570EFD1C476FEF005B3627 /* PauseMenu.hpp */,
 			);
@@ -857,6 +862,7 @@
 				5BEFA54F1A17E809001D1337 /* Transformer.cpp in Sources */,
 				5B2234761A16EEB8005BDA1C /* StringUtils.cpp in Sources */,
 				5B3946321C4EEB8A00FA3CDA /* SignalSender.cpp in Sources */,
+				5B9E27FB1C514DC800C74CB7 /* MapEditor.cpp in Sources */,
 				5B5C97B31B80EC4600C9D6C1 /* EventListener.cpp in Sources */,
 				5B0022711A2BE5A7008805D9 /* Enemy.cpp in Sources */,
 				5B8997421C35C16E003AB8B0 /* ScreenComponent.cpp in Sources */,

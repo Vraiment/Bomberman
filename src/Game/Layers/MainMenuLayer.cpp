@@ -88,6 +88,11 @@ namespace Bomberman {
                 signalSender->sendSignal(Signal::ShowTutorial);
             }
         } else if (2 == clickedEntry) {
+            shared_ptr<SignalSender> signalSender;
+            if (_lock(this->signalSender, signalSender, "SignalSender")) {
+                signalSender->sendSignal(Signal::MapEditor);
+            }
+        } else if (3 == clickedEntry) {
             shared_ptr<LoopQuiter> loopQuiter;
             if (_lock(this->loopQuiter, loopQuiter, "LoopQuiter")) {
                 loopQuiter->quitLoop();
@@ -162,6 +167,7 @@ namespace Bomberman {
         
         menuEntries.push_back(font.write("Start Game"));
         menuEntries.push_back(font.write("How to play"));
+        menuEntries.push_back(font.write("Map builder"));
         menuEntries.push_back(font.write("Exit"));
     }
     

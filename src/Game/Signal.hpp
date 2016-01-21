@@ -22,7 +22,8 @@ namespace Bomberman {
         LevelList,
         MainMenu,
         PlayerDead,
-        PlayerAlive
+        PlayerAlive,
+        MapEditor
     };
     
     bool signalIn(Signal signal, std::initializer_list<Signal> signals);

@@ -26,6 +26,7 @@
 #include "Game/Layers/HudLayer.hpp"
 #include "Game/Layers/LevelListLayer.hpp"
 #include "Game/Layers/MainMenuLayer.hpp"
+#include "Game/Layers/MapEditor.hpp"
 #include "Game/Layers/PauseMenu.hpp"
 
 #include "Game/CommandFactory.hpp"
@@ -58,6 +59,7 @@ int main(int argc, char* argv[]) {
         auto hudLayer = make_shared<HudLayer>();
         auto levelListLayer = make_shared<LevelListLayer>();
         auto mainMenuLayer = make_shared<MainMenuLayer>();
+        auto mapEditor = make_shared<MapEditor>();
         auto pauseMenu = make_shared<PauseMenu>();
         
         // Intialize all the screen components
@@ -70,6 +72,7 @@ int main(int argc, char* argv[]) {
         levelListLayer->setMapSetter(mapSetter);
         mainMenuLayer->setLoopQuiter(loop.quiter());
         mainMenuLayer->setSignalSender(screen->getSignalSender());
+        mapEditor->setSignalSender(screen->getSignalSender());
         pauseMenu->setLoopQuiter(loop.quiter());
         pauseMenu->setSignalSender(screen->getSignalSender());
         
@@ -80,6 +83,7 @@ int main(int argc, char* argv[]) {
         hudLayer->load(screen->renderer());
         levelListLayer->load(screen->renderer());
         mainMenuLayer->load(screen->renderer());
+        mapEditor->load(screen->renderer());
         pauseMenu->load(screen->renderer());
         
         // Register everything
@@ -121,6 +125,11 @@ int main(int argc, char* argv[]) {
         screenManager->addDrawable(mainMenuLayer);
         screenManager->addUpdatable(mainMenuLayer);
         screenManager->addSignalHandler(mainMenuLayer);
+        
+        screenManager->addEventListener(mapEditor);
+        screenManager->addDrawable(mapEditor);
+        screenManager->addUpdatable(mapEditor);
+        screenManager->addSignalHandler(mapEditor);
         
         screenManager->addEventListener(pauseMenu);
         screenManager->addDrawable(pauseMenu);
