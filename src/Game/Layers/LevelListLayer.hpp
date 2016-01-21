@@ -23,6 +23,7 @@ struct SDL_Renderer;
 
 namespace Bomberman {
     struct Coordinate;
+    class MapSetter;
     class SignalSender;
     
     class LevelListLayer : public Drawable, public EventListener, public Updatable, public SignalHandler {
@@ -40,6 +41,7 @@ namespace Bomberman {
         
         void screenSizeChanged(Rectangle previousSize, Rectangle newSize);
         
+        void setMapSetter(std::weak_ptr<MapSetter> mapSetter);
         void setSignalSender(std::weak_ptr<SignalSender> signalSender);
         
     private:
@@ -63,6 +65,7 @@ namespace Bomberman {
         Texture cancel;
         Texture ok;
         
+        std::weak_ptr<MapSetter> mapSetter;
         std::weak_ptr<SignalSender> signalSender;
     };
 }

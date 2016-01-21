@@ -34,6 +34,8 @@
 		5B3795CE1820FBAA0050381F /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3795CC1820FBAA0050381F /* Texture.cpp */; };
 		5B39462F1C4ED9B100FA3CDA /* SignalHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B39462D1C4ED9B000FA3CDA /* SignalHandler.cpp */; };
 		5B3946321C4EEB8A00FA3CDA /* SignalSender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3946301C4EEB8A00FA3CDA /* SignalSender.cpp */; };
+		5B39463A1C4F711500FA3CDA /* InGameCommandQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3946381C4F711500FA3CDA /* InGameCommandQueue.cpp */; };
+		5B3946401C4F827300FA3CDA /* MapSetter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B39463E1C4F827300FA3CDA /* MapSetter.cpp */; };
 		5B3B82D11857A82700CECE27 /* PlayerEvents.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B82CF1857A82700CECE27 /* PlayerEvents.cpp */; };
 		5B3B82D51857AB7800CECE27 /* PlayerCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B82D31857AB7800CECE27 /* PlayerCommand.cpp */; };
 		5B3B82DA1857ACB700CECE27 /* Command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B82D91857ACB700CECE27 /* Command.cpp */; };
@@ -44,6 +46,7 @@
 		5B3D1312182C717A0070A335 /* tile2.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BD37AF6182219F300BB1C28 /* tile2.png */; };
 		5B3D1314182C71A90070A335 /* map1.xml in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BF63CA818218A41001315AD /* map1.xml */; };
 		5B40BF9E1C44D8B2001A2805 /* LevelListLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B40BF9C1C44D8B2001A2805 /* LevelListLayer.cpp */; };
+		5B4479871C50BC3300007754 /* Signal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B4479861C50BC3300007754 /* Signal.cpp */; };
 		5B46E0ED1C2FECD20037426E /* remote.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B46E0EC1C2FECD20037426E /* remote.png */; };
 		5B46E0EE1C2FECD90037426E /* remote.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B46E0EC1C2FECD20037426E /* remote.png */; };
 		5B4A120118331CAB00C8A950 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4A11FE18331CAB00C8A950 /* background.png */; };
@@ -258,6 +261,10 @@
 		5B3946301C4EEB8A00FA3CDA /* SignalSender.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SignalSender.cpp; sourceTree = "<group>"; };
 		5B3946311C4EEB8A00FA3CDA /* SignalSender.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SignalSender.hpp; sourceTree = "<group>"; };
 		5B3946331C4EF53A00FA3CDA /* Signal.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Signal.hpp; sourceTree = "<group>"; };
+		5B3946381C4F711500FA3CDA /* InGameCommandQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InGameCommandQueue.cpp; sourceTree = "<group>"; };
+		5B3946391C4F711500FA3CDA /* InGameCommandQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = InGameCommandQueue.hpp; sourceTree = "<group>"; };
+		5B39463E1C4F827300FA3CDA /* MapSetter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapSetter.cpp; sourceTree = "<group>"; };
+		5B39463F1C4F827300FA3CDA /* MapSetter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MapSetter.hpp; sourceTree = "<group>"; };
 		5B3B82CF1857A82700CECE27 /* PlayerEvents.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerEvents.cpp; sourceTree = "<group>"; };
 		5B3B82D01857A82700CECE27 /* PlayerEvents.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlayerEvents.hpp; sourceTree = "<group>"; };
 		5B3B82D31857AB7800CECE27 /* PlayerCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerCommand.cpp; sourceTree = "<group>"; };
@@ -269,6 +276,7 @@
 		5B3B82E01857CE3D00CECE27 /* Token.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Token.hpp; sourceTree = "<group>"; };
 		5B40BF9C1C44D8B2001A2805 /* LevelListLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelListLayer.cpp; sourceTree = "<group>"; };
 		5B40BF9D1C44D8B2001A2805 /* LevelListLayer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelListLayer.hpp; sourceTree = "<group>"; };
+		5B4479861C50BC3300007754 /* Signal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Signal.cpp; sourceTree = "<group>"; };
 		5B46E0EC1C2FECD20037426E /* remote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remote.png; sourceTree = "<group>"; };
 		5B4A11FE18331CAB00C8A950 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		5B4A11FF18331CAB00C8A950 /* brick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brick.png; sourceTree = "<group>"; };
@@ -473,8 +481,13 @@
 				5B9228971A107EA7009ADD10 /* Constants.hpp */,
 				5B5BB1B61856ADA70019CAD1 /* Elements */,
 				5B3B82CE1857A80D00CECE27 /* EventListeners */,
+				5B3946381C4F711500FA3CDA /* InGameCommandQueue.cpp */,
+				5B3946391C4F711500FA3CDA /* InGameCommandQueue.hpp */,
 				5B5BB1B91856AE110019CAD1 /* Layers */,
 				5B03C1251860E7190011C3DA /* Map */,
+				5B39463E1C4F827300FA3CDA /* MapSetter.cpp */,
+				5B39463F1C4F827300FA3CDA /* MapSetter.hpp */,
+				5B4479861C50BC3300007754 /* Signal.cpp */,
 				5B3946331C4EF53A00FA3CDA /* Signal.hpp */,
 			);
 			path = Game;
@@ -872,6 +885,7 @@
 				5B0022831A2C1206008805D9 /* Random.cpp in Sources */,
 				5B0496431825D01600C1FBCB /* MainLoop.cpp in Sources */,
 				5B9382161B81A37B00C42269 /* QuitCommand.cpp in Sources */,
+				5B4479871C50BC3300007754 /* Signal.cpp in Sources */,
 				5B92289C1A10898E009ADD10 /* TxtTileMapLoader.cpp in Sources */,
 				5B4A120B1833256800C8A950 /* OperatingSystem.cpp in Sources */,
 				5B8997491C35C8DF003AB8B0 /* Drawable.cpp in Sources */,
@@ -883,9 +897,11 @@
 				5B4C02CB1B805980003FCB02 /* Font.cpp in Sources */,
 				5B00227A1A2BEB8A008805D9 /* DummyTileMapBuilder.cpp in Sources */,
 				5B8997461C35C875003AB8B0 /* Updatable.cpp in Sources */,
+				5B3946401C4F827300FA3CDA /* MapSetter.cpp in Sources */,
 				5B3795CE1820FBAA0050381F /* Texture.cpp in Sources */,
 				5BDC7DA5182AA18C0093391D /* Coordinate.cpp in Sources */,
 				5B3B82DA1857ACB700CECE27 /* Command.cpp in Sources */,
+				5B39463A1C4F711500FA3CDA /* InGameCommandQueue.cpp in Sources */,
 				5B1B5F891C461D0200DDB79B /* PointerUtils.cpp in Sources */,
 				5B8997431C35C16E003AB8B0 /* ScreenManager.cpp in Sources */,
 				5B2174241A1AB20D0033B3AA /* Bomb.cpp in Sources */,

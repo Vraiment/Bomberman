@@ -105,11 +105,11 @@ namespace Bomberman {
     }
     
     void PauseMenu::handleSignal(Signal signal) {
-        if (Signal::InGame == signal) {
+        if (Signal::InGame == signal || Signal::HideConsole == signal) {
             EventListener::enable();
             Drawable::disable();
             Updatable::disable();
-        } else if (Signal::PauseGame == signal) {
+        } else if (signalIn(signal, { Signal::PauseGame, Signal::PlayerDead, Signal::PlayerAlive })) {
             EventListener::enable();
             Drawable::enable();
             Updatable::enable();

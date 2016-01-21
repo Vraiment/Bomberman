@@ -9,6 +9,8 @@
 #ifndef __Signal__hpp__
 #define __Signal__hpp__
 
+#include <initializer_list>
+
 namespace Bomberman {
     enum class Signal {
         ShowConsole,
@@ -18,8 +20,12 @@ namespace Bomberman {
         HideConsole,
         ShowTutorial,
         LevelList,
-        MainMenu
+        MainMenu,
+        PlayerDead,
+        PlayerAlive
     };
+    
+    bool signalIn(Signal signal, std::initializer_list<Signal> signals);
 }
 
 #endif //__Signal__hpp__

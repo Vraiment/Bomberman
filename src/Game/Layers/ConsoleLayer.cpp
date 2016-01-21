@@ -69,8 +69,8 @@ namespace Bomberman {
     
     void ConsoleLayer::handleSignal(Signal signal) {
         if (Signal::ShowConsole == signal) {
-            Drawable::disable();
-            Updatable::disable();
+            Drawable::enable();
+            Updatable::enable();
         } else {
             Drawable::disable();
             Updatable::disable();

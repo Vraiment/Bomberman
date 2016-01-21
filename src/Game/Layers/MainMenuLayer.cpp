@@ -104,6 +104,11 @@ namespace Bomberman {
             EventListener::enable();
             Drawable::enable();
             Updatable::enable();
+            
+            // select nothing
+            Coordinate position;
+            SDL_GetMouseState(&position.i, &position.j);
+            select(position);
         } else {
             EventListener::disable();
             Drawable::disable();
@@ -118,12 +123,12 @@ namespace Bomberman {
     }
     
     void MainMenuLayer::select(int entry) {
+        if (selectedEntry >= 0 && selectedEntry < menuEntries.size()) {
+            menuEntries[selectedEntry].setColor(Color::WHITE);
+            selectedEntry = -1;
+        }
+        
         if (entry >= 0 && entry < menuEntries.size()) {
-            if (selectedEntry >= 0 && selectedEntry < menuEntries.size()) {
-                menuEntries[selectedEntry].setColor(Color::WHITE);
-                selectedEntry = -1;
-            }
-            
             selectedEntry = entry;
             menuEntries[selectedEntry].setColor(Color::BLUE);
         }
@@ -175,6 +180,11 @@ namespace Bomberman {
                 entry->rectangle().i = newSize.widthCenter() - entry->rectangle().widthCenter();
                 entry->rectangle().j = prevEntry->rectangle().bottom() + ENTRIES_SPACING;
             }
+        }
+        
+        shared_ptr<SignalSender> signalSender;
+        if (_lock(this->signalSender, signalSender, "SignalSender")) {
+            signalSender->sendSignal(Signal::MainMenu); // Egotistical jerk
         }
     }
 }

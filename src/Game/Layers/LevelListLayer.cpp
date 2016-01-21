@@ -11,9 +11,11 @@
 #include "../../Core/Math/Rectangle.hpp"
 #include "../../Core/Texture.hpp"
 #include "../../Core/Utils/OperatingSystem.hpp"
+#include "../../Core/Utils/PointerUtils.hpp"
 #include "../../Core/Log/LogSystem.h"
 #include "../../Core/SignalSender.hpp"
 
+#include "../MapSetter.hpp"
 #include "../Signal.hpp"
 
 #include <SDL2/SDL.h>
@@ -41,6 +43,17 @@ namespace Bomberman {
         }
         
         return false;
+    }
+    
+    template <typename T>
+    bool _lock(weak_ptr<T> in, shared_ptr<T>& out, string component) {
+        bool result = lockWeakPointer(in, out);
+        
+        if (!result) {
+            Log::get() << "No " << component << " for LevelListLayer" << LogLevel::error;
+        }
+        
+        return result;
     }
     
     LevelListLayer::LevelListLayer() : selected(0), newSelected(-1), selectedButton(Button::none), clickedButton(Button::none) {
@@ -115,12 +128,9 @@ namespace Bomberman {
         
         // Click stuff
         if (Button::cancel == clickedButton) {
-            if (!signalSender.expired()) {
-                auto signalSender = this->signalSender.lock();
+            shared_ptr<SignalSender> signalSender;
+            if (_lock(this->signalSender, signalSender, "SignalSender")) {
                 signalSender->sendSignal(Signal::MainMenu);
-                
-            } else {
-                Log::get() << "No SignalSender set for LevelListLayer" << LogLevel::error;
             }
             
             clickedButton = Button::none;
@@ -128,13 +138,17 @@ namespace Bomberman {
             fillMapList();
             clickedButton = Button::none;
         } else if (Button::ok == clickedButton){
-            if (!signalSender.expired()) {
-                if (selected >= 0 && selected < maps.size()) {
-                    auto signalSender = this->signalSender.lock();
-                    signalSender->sendSignal(Signal::InGame);
+            // Check if the selected option is valid
+            if (selected >= 0 && selected < maps.size()) {
+                shared_ptr<MapSetter> mapSetter;
+                if (_lock(this->mapSetter, mapSetter, "MapSetter")) {
+                    if (mapSetter->setMap(maps[selected].first)) {
+                        shared_ptr<SignalSender> signalSender;
+                        if (_lock(this->signalSender, signalSender, "SignalSender")) {
+                            signalSender->sendSignal(Signal::InGame);
+                        }
+                    }
                 }
-            } else {
-                Log::get() << "No SignalSender set for LevelListLayer" << LogLevel::error;
             }
             
             clickedButton = Button::none;
@@ -158,6 +172,8 @@ namespace Bomberman {
             Drawable::enable();
             EventListener::enable();
             Updatable::enable();
+            
+            fillMapList();
         } else {
             Drawable::disable();
             EventListener::disable();
@@ -211,6 +227,10 @@ namespace Bomberman {
         
         ok.rectangle().i = background.rectangle().right() - ok.rectangle().width;
         ok.rectangle().j = reload.rectangle().j;
+    }
+    
+    void LevelListLayer::setMapSetter(weak_ptr<MapSetter> mapSetter) {
+        this->mapSetter = mapSetter;
     }
     
     void LevelListLayer::setSignalSender(weak_ptr<SignalSender> signalSender) {

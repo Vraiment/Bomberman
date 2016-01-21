@@ -107,6 +107,13 @@ namespace Bomberman {
             }
         }
         
+        void reset() {
+            firstUpdate = true;
+            
+            previousPlayerPos = Coordinate::ZERO;
+            tileMapOffset = Coordinate::ZERO;
+        }
+        
     private:
         const int RIGHT_BORDER = 1;
         const int LEFT_BORDER = 1;
@@ -297,6 +304,8 @@ namespace Bomberman {
         if (tileMap) {
             background.rectangle().width = tileMap->area().width * TILE_WIDTH;
             background.rectangle().height = tileMap->area().height * TILE_HEIGHT;
+            
+            camera->reset();
         }
     }
     
