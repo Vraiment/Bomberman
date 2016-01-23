@@ -25,6 +25,7 @@ namespace Bomberman {
     
     class MapEditor : public Drawable, public EventListener, public Updatable, public SignalHandler {
     public:
+        MapEditor();
         ~MapEditor();
         
         void draw();
@@ -38,10 +39,13 @@ namespace Bomberman {
         void setSignalSender(std::weak_ptr<SignalSender> signalSender);
         
     private:
-        class MenuItem;
-        std::vector<std::shared_ptr<MenuItem>> menu;
+        class MenuBarItem;
+        std::vector<std::shared_ptr<MenuBarItem>> menuBar;
         Texture background;
-        Rectangle menubar;
+        Rectangle menuBarRect;
+        
+        bool clicked, menuClicked;
+        Coordinate mousePos;
         
         std::weak_ptr<SignalSender> signalSender;
     };
