@@ -32,6 +32,8 @@
     <ClCompile Include="..\src\Core\Screen.cpp" />
     <ClCompile Include="..\src\Core\ScreenComponent.cpp" />
     <ClCompile Include="..\src\Core\ScreenManager.cpp" />
+    <ClCompile Include="..\src\Core\SignalHandler.cpp" />
+    <ClCompile Include="..\src\Core\SignalSender.cpp" />
     <ClCompile Include="..\src\Core\Texture.cpp" />
     <ClCompile Include="..\src\Core\Timer.cpp" />
     <ClCompile Include="..\src\Core\Updatable.cpp" />
@@ -48,7 +50,6 @@
     <ClCompile Include="..\src\Game\Console\Parser.cpp" />
     <ClCompile Include="..\src\Game\Console\Token.cpp" />
     <ClCompile Include="..\src\Game\Console\TokenFactory.cpp" />
-    <ClCompile Include="..\src\Game\Director.cpp" />
     <ClCompile Include="..\src\Game\Elements\Bomb.cpp" />
     <ClCompile Include="..\src\Game\Elements\Brick.cpp" />
     <ClCompile Include="..\src\Game\Elements\Enemy.cpp" />
@@ -57,6 +58,7 @@
     <ClCompile Include="..\src\Game\Elements\Player.cpp" />
     <ClCompile Include="..\src\Game\EventListeners\ConsoleEvents.cpp" />
     <ClCompile Include="..\src\Game\EventListeners\PlayerEvents.cpp" />
+    <ClCompile Include="..\src\Game\InGameCommandQueue.cpp" />
     <ClCompile Include="..\src\Game\Layers\ConsoleLayer.cpp" />
     <ClCompile Include="..\src\Game\Layers\GameLayer.cpp" />
     <ClCompile Include="..\src\Game\Layers\HowToPlay.cpp" />
@@ -64,10 +66,12 @@
     <ClCompile Include="..\src\Game\Layers\LevelListLayer.cpp" />
     <ClCompile Include="..\src\Game\Layers\MainMenuLayer.cpp" />
     <ClCompile Include="..\src\Game\Layers\PauseMenu.cpp" />
+    <ClCompile Include="..\src\Game\MapSetter.cpp" />
     <ClCompile Include="..\src\Game\Map\DummyTileMapBuilder.cpp" />
     <ClCompile Include="..\src\Game\Map\TileMap.cpp" />
     <ClCompile Include="..\src\Game\Map\TxtTileMapLoader.cpp" />
     <ClCompile Include="..\src\Game\Map\XmlTileMapLoader.cpp" />
+    <ClCompile Include="..\src\Game\Signal.cpp" />
     <ClCompile Include="..\src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +97,8 @@
     <ClInclude Include="..\src\Core\Screen.hpp" />
     <ClInclude Include="..\src\Core\ScreenComponent.hpp" />
     <ClInclude Include="..\src\Core\ScreenManager.hpp" />
+    <ClInclude Include="..\src\Core\SignalHandler.hpp" />
+    <ClInclude Include="..\src\Core\SignalSender.hpp" />
     <ClInclude Include="..\src\Core\Texture.hpp" />
     <ClInclude Include="..\src\Core\Timer.hpp" />
     <ClInclude Include="..\src\Core\Updatable.hpp" />
@@ -112,7 +118,6 @@
     <ClInclude Include="..\src\Game\Console\Token.hpp" />
     <ClInclude Include="..\src\Game\Console\TokenFactory.hpp" />
     <ClInclude Include="..\src\Game\Constants.hpp" />
-    <ClInclude Include="..\src\Game\Director.hpp" />
     <ClInclude Include="..\src\Game\Elements\Bomb.hpp" />
     <ClInclude Include="..\src\Game\Elements\Brick.hpp" />
     <ClInclude Include="..\src\Game\Elements\Enemy.hpp" />
@@ -121,6 +126,7 @@
     <ClInclude Include="..\src\Game\Elements\Player.hpp" />
     <ClInclude Include="..\src\Game\EventListeners\ConsoleEvents.hpp" />
     <ClInclude Include="..\src\Game\EventListeners\PlayerEvents.hpp" />
+    <ClInclude Include="..\src\Game\InGameCommandQueue.hpp" />
     <ClInclude Include="..\src\Game\Layers\ConsoleLayer.hpp" />
     <ClInclude Include="..\src\Game\Layers\GameLayer.hpp" />
     <ClInclude Include="..\src\Game\Layers\HowToPlay.hpp" />
@@ -128,11 +134,13 @@
     <ClInclude Include="..\src\Game\Layers\LevelListLayer.hpp" />
     <ClInclude Include="..\src\Game\Layers\MainMenuLayer.hpp" />
     <ClInclude Include="..\src\Game\Layers\PauseMenu.hpp" />
+    <ClInclude Include="..\src\Game\MapSetter.hpp" />
     <ClInclude Include="..\src\Game\Map\DummyTileMapBuilder.hpp" />
     <ClInclude Include="..\src\Game\Map\TileMap.hpp" />
     <ClInclude Include="..\src\Game\Map\TileMapBuilder.hpp" />
     <ClInclude Include="..\src\Game\Map\TxtTileMapLoader.hpp" />
     <ClInclude Include="..\src\Game\Map\XmlTileMapLoader.hpp" />
+    <ClInclude Include="..\src\Game\Signal.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0B241670-23DD-4B31-A63F-55D00782DD73}</ProjectGuid>
