@@ -118,7 +118,11 @@ namespace Bomberman {
     void MapEditor::listenEvent(SDL_Event event) {
         shared_ptr<SignalSender> signalSender;
         if (SDL_KEYUP == event.type && _lock(this->signalSender, signalSender, "SignalSender")) {
-            signalSender->sendSignal(Signal::MainMenu);
+            auto keysym = event.key.keysym.sym;
+            
+            if (SDLK_ESCAPE == keysym) {
+                signalSender->sendSignal(Signal::MainMenu);
+            }
         } else if (SDL_MOUSEBUTTONUP == event.type && event.button.button == SDL_BUTTON_LEFT) {
             clicked = true;
             mousePos.i = event.button.x;
