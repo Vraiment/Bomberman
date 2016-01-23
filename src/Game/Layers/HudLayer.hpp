@@ -12,7 +12,7 @@
 #include "../../Core/Drawable.hpp"
 #include "../../Core/Texture.hpp"
 
-#include "SignalHandler.hpp"
+#include "../../Core/SignalHandler.hpp"
 
 namespace Bomberman {
     class Player;

@@ -17,7 +17,7 @@
 #include "Core/SignalSender.hpp"
 
 // Screen Components
-#include "InGameCommandQueue.hpp"
+#include "Game/InGameCommandQueue.hpp"
 #include "Game/EventListeners/ConsoleEvents.hpp"
 #include "Game/EventListeners/PlayerEvents.hpp"
 #include "Game/Layers/ConsoleLayer.hpp"
