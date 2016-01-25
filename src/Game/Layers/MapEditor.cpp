@@ -93,12 +93,14 @@ namespace Bomberman {
         }
         
         void hide() {
-            if (visible) {
-                visible = false;
-                
-                for (auto& subMenuEntry : subMenu) {
-                    subMenuEntry.hide();
-                }
+            visible = false;
+            
+            hideChildren();
+        }
+        
+        void hideChildren() {
+            for (auto& subMenuEntry : subMenu) {
+                subMenuEntry.hide();
             }
         }
         
@@ -135,6 +137,10 @@ namespace Bomberman {
         
         void setCallback(function<void(MenuBarItem *)> callback) {
             this->callback = callback;
+        }
+        
+        bool isSelected() const {
+            return visible;
         }
         
         void addDownSubMenuItem(MenuBarItem subMenuItem) {
