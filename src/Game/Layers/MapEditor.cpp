@@ -139,29 +139,6 @@ namespace Bomberman {
             return result;
         }
         
-        bool mouseOver(Coordinate position) {
-            if (!visible) {
-                return false;
-            }
-            
-            bool result = bgRect.contains(position);
-            
-            if (result) {
-                if (onMouseOver) {
-                    onMouseOver(this);
-                }
-            } else {
-                for (auto& subMenuItem : subMenu) {
-                    result = subMenuItem.mouseOver(position);
-                    if (result) {
-                        break;
-                    }
-                }
-            }
-            
-            return result;
-        }
-        
         void setWidth(int width) {
             bgRect.width = width;
         }
@@ -172,10 +149,6 @@ namespace Bomberman {
         
         void setOnClick(function<void(MenuBarItem *)> callback) {
             onClick = callback;
-        }
-        
-        void setOnMouseOver(function<void(MenuBarItem *)> callback) {
-            onMouseOver = callback;
         }
         
         bool isSelected() const {
@@ -210,7 +183,6 @@ namespace Bomberman {
         
         vector<MenuBarItem> subMenu;
         function<void(MenuBarItem *)> onClick;
-        function<void(MenuBarItem *)> onMouseOver;
     };
     
     template <typename T>
@@ -263,16 +235,22 @@ namespace Bomberman {
     
     void MapEditor::update() {
         if (clicked) {
+            bool menuClicked = false;
+            
             for (auto menuBarEntry : menuBar) {
-                if (menuBarEntry->click(mousePos)) {
+                menuClicked = menuBarEntry->click(mousePos);
+                if (menuClicked) {
                     break;
                 }
             }
-        } else if (mouseMoved) {
-            if (menuActive) {
-                for (auto menuBarEntry : menuBar) {
-                    menuBarEntry->mouseOver(mousePos);
+            
+            if (!menuClicked) {
+                for (auto& menuBarEntry : menuBar) {
+                    menuBarEntry->unselect();
+                    menuBarEntry->hideChildren();
                 }
+                
+                menuActive = false;
             }
         }
     }
@@ -329,7 +307,6 @@ namespace Bomberman {
         menuBarItem = make_shared<MenuBarItem>(font.write("File"), background, menuBarColor);
         menuBarItem->setPosition(position);
         menuBarItem->setOnClick(onClick);
-        menuBarItem->setOnMouseOver(onMouseOver);
         menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("New Map"), background));
         menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("Load Map"), background));
         menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("Save Map"), background));
@@ -342,7 +319,6 @@ namespace Bomberman {
         menuBarItem = make_shared<MenuBarItem>(font.write("Elements"), background, menuBarColor);
         menuBarItem->setPosition(position);
         menuBarItem->setOnClick(onClick);
-        menuBarItem->setOnMouseOver(onMouseOver);
         menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("Brick*"), background));
         menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("Player"), background));
         menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("Enemy*"), background));
@@ -353,7 +329,6 @@ namespace Bomberman {
         menuBarItem = make_shared<MenuBarItem>(font.write("Items"), background, menuBarColor);
         menuBarItem->setPosition(position);
         menuBarItem->setOnClick(onClick);
-        menuBarItem->setOnMouseOver(onMouseOver);
         menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("Extra bomb"), background));
         menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("Increase range"), background));
         menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("Remote"), background));
