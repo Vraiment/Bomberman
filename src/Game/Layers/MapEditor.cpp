@@ -117,11 +117,23 @@ namespace Bomberman {
         }
         
         bool click(Coordinate position) {
-            bool result = false;
+            if (!visible) {
+                return false;
+            }
             
-            if (bgRect.contains(position)) {
-                result = true;
-                callback(this);
+            bool result = bgRect.contains(position);
+            
+            if (result) {
+                if (callback) {
+                    callback(this);
+                }
+            } else {
+                for (auto& subMenuItem : subMenu) {
+                    result = subMenuItem.click(position);
+                    if (result) {
+                        break;
+                    }
+                }
             }
             
             return result;
