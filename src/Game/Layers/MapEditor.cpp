@@ -23,7 +23,7 @@
 using namespace std;
 
 namespace Bomberman {
-    const int fontSize = 20;
+    const int menuFontSize = 20;
     
     const int leftMargin = 5;
     const int rightMargin = 15;
@@ -37,7 +37,7 @@ namespace Bomberman {
     const Color menuItemColor = Color(0x70);
     const Color menuBarSelectedColor = Color(0x40);
     
-    class MapEditor::MenuBarItem {
+    class MenuBarItem {
     public:
         MenuBarItem(Texture texture, Texture bg) : MenuBarItem(texture, bg, menuItemColor) {
             
@@ -203,6 +203,67 @@ namespace Bomberman {
         }
     };
     
+    class MapEditor::MenuBar {
+    public:
+        void draw() {
+            background.setColor(menuBarColor);
+            background.rectangle() = menuBarRectangle;
+            background.draw();
+            
+            for (auto& menuBarEntry : menuBarEntries) {
+                menuBarEntry.draw();
+            }
+        }
+        
+        void click(Coordinate position) {
+            bool menuClicked = false;
+            
+            for (auto& menuBarEntry : menuBarEntries) {
+                menuClicked = menuBarEntry.click(position);
+                if (menuClicked) {
+                    break;
+                }
+            }
+            
+            if (!menuClicked) {
+                for (auto& menuBarEntry : menuBarEntries) {
+                    menuBarEntry.unselect();
+                    menuBarEntry.hideChildren();
+                }
+            }
+        }
+        
+        void setBackground(Texture background) {
+            this->background = background;
+        }
+        
+        void setWidth(int width) {
+            menuBarRectangle.width = width;
+        }
+        
+        void setHeight(int height) {
+            menuBarRectangle.height = height;
+        }
+        
+        void addEntry(MenuBarItem menuBarItem) {
+            Coordinate position;
+            
+            for (auto& menuBarEntries : menuBarEntries) {
+                position.i += menuBarEntries.width();
+            }
+            
+            menuBarItem.setPosition(position);
+            menuBarItem.show();
+            
+            menuBarEntries.push_back(menuBarItem);
+        }
+        
+    private:
+        Rectangle menuBarRectangle;
+        Texture background;
+        vector<MenuBarItem> menuBarEntries;
+    };
+    
     template <typename T>
     bool _lock(weak_ptr<T> in, shared_ptr<T>& out, string component) {
         bool result = lockWeakPointer(in, out);
@@ -214,7 +275,7 @@ namespace Bomberman {
         return result;
     }
     
-    MapEditor::MapEditor() : clicked(false), menuActive(false) {
+    MapEditor::MapEditor() : clicked(false), menuBar(make_shared<MenuBar>()) {
         
     }
     
@@ -223,13 +284,7 @@ namespace Bomberman {
     }
     
     void MapEditor::draw() {
-        background.setColor(menuBarColor);
-        background.rectangle() = menuBarRect;
-        background.draw();
-        
-        for (auto menuBarItem : menuBar) {
-            menuBarItem->draw();
-        }
+        menuBar->draw();
     }
     
     void MapEditor::listenEvent(SDL_Event event) {
@@ -253,23 +308,7 @@ namespace Bomberman {
     
     void MapEditor::update() {
         if (clicked) {
-            bool menuClicked = false;
-            
-            for (auto menuBarEntry : menuBar) {
-                menuClicked = menuBarEntry->click(mousePos);
-                if (menuClicked) {
-                    break;
-                }
-            }
-            
-            if (!menuClicked) {
-                for (auto& menuBarEntry : menuBar) {
-                    menuBarEntry->unselect();
-                    menuBarEntry->hideChildren();
-                }
-                
-                menuActive = false;
-            }
+            menuBar->click(mousePos);
         }
     }
     
@@ -291,74 +330,52 @@ namespace Bomberman {
     }
     
     void MapEditor::load(shared_ptr<SDL_Renderer> renderer) {
-        Font font("PressStart2P.ttf", fontSize, renderer);
+        Font font("PressStart2P.ttf", menuFontSize, renderer);
+        auto background = Texture::createRectangle(1, 1, Color::WHITE, renderer);
+        auto menuBar = this->menuBar;
         
-        menuBarRect.height = font.maxHeight() + horizontalMargin;
+        menuBar->setHeight(font.maxHeight() + horizontalMargin);
+        menuBar->setBackground(background);
         
-        background = Texture::createRectangle(1, 1, Color::WHITE, renderer);
-        
-        function<void(MenuBarItem*)> onClick = [this] (MenuBarItem *self) {
+        function<void(MenuBarItem*)> onClickSubMenu = [] (MenuBarItem *self) {
             if (self->isSelected()) {
                 self->hideChildren();
                 self->unselect();
-                
-                this->menuActive = false;
             } else {
-                self->show(true);
                 self->select();
-                
-                this->menuActive = true;
+                self->show(true);
             }
         };
-        
-        function<void(MenuBarItem*)> onMouseOver = [this] (MenuBarItem *self) {
-            if (this->menuActive) {
-                self->show(true);
-                self->select();
-            }
-        };
-        
-        Coordinate position = Coordinate::ZERO;
-        shared_ptr<MenuBarItem> menuBarItem;
         
         // File menu
-        menuBarItem = make_shared<MenuBarItem>(font.write("File"), background, menuBarColor);
-        menuBarItem->setPosition(position);
-        menuBarItem->setOnClick(onClick);
-        menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("New Map"), background));
-        menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("Load Map"), background));
-        menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("Save Map"), background));
-        menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("Save Map As..."), background));
-        menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("Exit Map Editor"), background));
-        menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("Exit Bomberman"), background));
-        this->menuBar.push_back(menuBarItem);
+        MenuBarItem fileMenu(font.write("File"), background, menuBarColor);
+        fileMenu.setOnClick(onClickSubMenu);
+        fileMenu.addDownSubMenuItem(MenuBarItem(font.write("New Map"), background));
+        fileMenu.addDownSubMenuItem(MenuBarItem(font.write("Load Map"), background));
+        fileMenu.addDownSubMenuItem(MenuBarItem(font.write("Save Map"), background));
+        fileMenu.addDownSubMenuItem(MenuBarItem(font.write("Save Map As..."), background));
+        fileMenu.addDownSubMenuItem(MenuBarItem(font.write("Exit Map Editor"), background));
+        fileMenu.addDownSubMenuItem(MenuBarItem(font.write("Exit Bomberman"), background));
+        menuBar->addEntry(fileMenu);
         
-        position.i += menuBarItem->width();
-        menuBarItem = make_shared<MenuBarItem>(font.write("Elements"), background, menuBarColor);
-        menuBarItem->setPosition(position);
-        menuBarItem->setOnClick(onClick);
-        menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("Brick*"), background));
-        menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("Player"), background));
-        menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("Enemy*"), background));
-        menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("Door"), background));
-        this->menuBar.push_back(menuBarItem);
+        MenuBarItem elementsMenu(font.write("Elements"), background, menuBarColor);
+        elementsMenu.setOnClick(onClickSubMenu);
+        elementsMenu.addDownSubMenuItem(MenuBarItem(font.write("Brick*"), background));
+        elementsMenu.addDownSubMenuItem(MenuBarItem(font.write("Player"), background));
+        elementsMenu.addDownSubMenuItem(MenuBarItem(font.write("Enemy*"), background));
+        elementsMenu.addDownSubMenuItem(MenuBarItem(font.write("Door"), background));
+        menuBar->addEntry(elementsMenu);
         
-        position.i += menuBarItem->width();
-        menuBarItem = make_shared<MenuBarItem>(font.write("Items"), background, menuBarColor);
-        menuBarItem->setPosition(position);
-        menuBarItem->setOnClick(onClick);
-        menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("Extra bomb"), background));
-        menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("Increase range"), background));
-        menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("Remote"), background));
-        this->menuBar.push_back(menuBarItem);
-        
-        for (auto menuBarItem : menuBar) {
-            menuBarItem->show();
-        }
+        MenuBarItem itemsMenu(font.write("Items"), background, menuBarColor);
+        itemsMenu.setOnClick(onClickSubMenu);
+        itemsMenu.addDownSubMenuItem(MenuBarItem(font.write("Extra bomb"), background));
+        itemsMenu.addDownSubMenuItem(MenuBarItem(font.write("Increase range"), background));
+        itemsMenu.addDownSubMenuItem(MenuBarItem(font.write("Remote"), background));
+        menuBar->addEntry(itemsMenu);
     }
     
     void MapEditor::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {
-        menuBarRect.width = newSize.width;
+        menuBar->setWidth(newSize.width);
     }
     
     void MapEditor::setSignalSender(weak_ptr<SignalSender> signalSender) {

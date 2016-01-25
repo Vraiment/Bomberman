@@ -40,12 +40,10 @@ namespace Bomberman {
         void setSignalSender(std::weak_ptr<SignalSender> signalSender);
         
     private:
-        class MenuBarItem;
-        std::vector<std::shared_ptr<MenuBarItem>> menuBar;
-        Texture background;
-        Rectangle menuBarRect;
+        class MenuBar;
+        std::shared_ptr<MenuBar> menuBar;
         
-        bool clicked, mouseMoved, menuActive;
+        bool clicked, mouseMoved;
         Coordinate mousePos;
         
         std::weak_ptr<SignalSender> signalSender;
