@@ -157,14 +157,14 @@ namespace Bomberman {
         
         void addDownSubMenuItem(MenuBarItem subMenuItem) {
             int maxWidth = subMenuItem.texture.rectangle().width + verticalMargin;
-            int j = bgRect.bottom();
+            int j = bgRect.bottom() + 1;
             for (auto subMenuItem : subMenu) {
                 int width = subMenuItem.width();
                 if (width > maxWidth) {
                     maxWidth = width;
                 }
                 
-                j = subMenuItem.bgRect.bottom();
+                j = subMenuItem.bgRect.bottom() + 1;
             }
             
             subMenuItem.setPosition(Coordinate(bgRect.i, j));
