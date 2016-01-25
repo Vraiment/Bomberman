@@ -8,6 +8,7 @@
 
 #include "MapEditor.hpp"
 
+#include <functional>
 #include <SDL2/SDL.h>
 #include <string>
 
@@ -33,11 +34,16 @@ namespace Bomberman {
     const int horizontalMargin = topMargin + bottomMargin;
     
     const Color menuBarColor = Color(0xA0);
-    const Color menuBarSelectedColor = Color(0x70);
+    const Color menuItemColor = Color(0x70);
+    const Color menuBarSelectedColor = Color(0x40);
     
     class MapEditor::MenuBarItem {
     public:
-        MenuBarItem(Texture texture, Texture bg) : texture(texture), bg(bg), showing(false) {
+        MenuBarItem(Texture texture, Texture bg) : MenuBarItem(texture, bg, menuItemColor) {
+            
+        }
+        
+        MenuBarItem(Texture texture, Texture bg, Color normalColor) : texture(texture), bg(bg), visible(false), normalColor(normalColor) {
             
         }
         
@@ -56,10 +62,18 @@ namespace Bomberman {
         }
         
         void draw() {
-            if (showing) {
+            if (!visible) {
+                return;
+            }
+            
+            if (selected) {
+                for (auto subMenuItem : subMenu) {
+                    subMenuItem.draw();
+                }
+                
                 bg.setColor(menuBarSelectedColor);
             } else {
-                bg.setColor(menuBarColor);
+                bg.setColor(normalColor);
             }
             
             bg.rectangle() = bgRect;
@@ -68,22 +82,89 @@ namespace Bomberman {
             texture.draw();
         }
         
-        bool select(Coordinate position) {
-            showing = bg.rectangle().contains(position);
+        void show(bool showSubMenu = false) {
+            visible = true;
             
-            return showing;
+            if (showSubMenu) {
+                for (auto& subMenuEntry : subMenu) {
+                    subMenuEntry.visible = true;
+                }
+            }
+        }
+        
+        void hide() {
+            if (visible) {
+                visible = false;
+                
+                for (auto& subMenuEntry : subMenu) {
+                    subMenuEntry.hide();
+                }
+            }
+        }
+        
+        bool select(Coordinate position) {
+            selected = false;
+            
+            for (auto& subMenuItem : subMenu) {
+                selected |= subMenuItem.select(position);
+            }
+            
+            selected |= bgRect.contains(position);
+            
+            return selected;
+        }
+        
+        bool click(Coordinate position) {
+            bool result = false;
+            
+            if (bgRect.contains(position)) {
+                result = true;
+                callback(this);
+            }
+            
+            return result;
+        }
+        
+        void setWidth(int width) {
+            bgRect.width = width;
         }
         
         int width() {
             return bgRect.width;
         }
         
-    private:
-        const Color clickedColor;
+        void setCallback(function<void(MenuBarItem *)> callback) {
+            this->callback = callback;
+        }
         
-        bool showing;
+        void addDownSubMenuItem(MenuBarItem subMenuItem) {
+            int maxWidth = subMenuItem.texture.rectangle().width + verticalMargin;
+            int j = bgRect.bottom();
+            for (auto subMenuItem : subMenu) {
+                int width = subMenuItem.width();
+                if (width > maxWidth) {
+                    maxWidth = width;
+                }
+                
+                j = subMenuItem.bgRect.bottom();
+            }
+            
+            subMenuItem.setPosition(Coordinate(bgRect.i, j));
+            subMenu.push_back(subMenuItem);
+            
+            for (auto& subMenuItem : subMenu) {
+                subMenuItem.setWidth(maxWidth);
+            }
+        }
+        
+    private:
+        Color normalColor;
+        bool selected, visible;
         Rectangle bgRect;
         Texture texture, bg;
+        
+        vector<MenuBarItem> subMenu;
+        function<void(MenuBarItem *)> callback;
     };
     
     template <typename T>
@@ -135,8 +216,10 @@ namespace Bomberman {
     
     void MapEditor::update() {
         if (clicked) {
+            menuClicked = false;
+            
             for (auto menuBarEntry : menuBar) {
-                menuClicked = menuBarEntry->select(mousePos);
+                menuClicked = menuBarEntry->click(mousePos);
                 
                 if (menuClicked) {
                     break;
@@ -144,7 +227,9 @@ namespace Bomberman {
             }
             
             clicked = false;
-        } else if (menuClicked) {
+        }
+        
+        if (menuClicked) {
             for (auto menuBarEntry : menuBar) {
                 menuBarEntry->select(mousePos);
             }
@@ -171,13 +256,22 @@ namespace Bomberman {
         background = Texture::createRectangle(1, 1, Color::WHITE, renderer);
         
         Coordinate position = Coordinate::ZERO;
-        for (auto title : { "File", "Elements", "Items", "Help" }) {
-            auto menuBarItem = make_shared<MenuBarItem>(font.write(title), background);
-            menuBarItem->setPosition(position);
-            this->menuBar.push_back(menuBarItem);
-            
-            position.i += menuBarItem->width();
-        }
+        shared_ptr<MenuBarItem> menuBarItem;
+        
+        // File menu
+        menuBarItem = make_shared<MenuBarItem>(font.write("File"), background, menuBarColor);
+        menuBarItem->setPosition(position);
+        menuBarItem->show();
+        menuBarItem->setCallback([] (MenuBarItem *self) {
+            self->show(true);
+        });
+        menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("New Map"), background));
+        menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("Load Map"), background));
+        menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("Save Map"), background));
+        menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("Save Map As..."), background));
+        menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("Exit Map Editor"), background));
+        menuBarItem->addDownSubMenuItem(MenuBarItem(font.write("Exit Bomberman"), background));
+        this->menuBar.push_back(menuBarItem);
     }
     
     void MapEditor::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {
