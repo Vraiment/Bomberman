@@ -44,7 +44,10 @@ namespace Bomberman {
         }
         
         MenuBarItem(Texture texture, Texture bg, Color normalColor) : texture(texture), bg(bg), visible(false), normalColor(normalColor), selected(false) {
+            this->texture.position() = Coordinate(leftMargin, topMargin);
             
+            this->bgRect.width = this->texture.rectangle().width + verticalMargin;
+            this->bgRect.height = this->texture.rectangle().height + horizontalMargin;
         }
         
         virtual ~MenuBarItem() {
@@ -52,13 +55,12 @@ namespace Bomberman {
         }
         
         void setPosition(Coordinate position) {
-            bgRect.i = position.i;
-            bgRect.j = position.j;
-            bgRect.width = texture.rectangle().width + verticalMargin;
-            bgRect.height = texture.rectangle().height + horizontalMargin;
+            Coordinate delta = position - bgRect;
             
-            texture.position().i = position.i + leftMargin;
-            texture.position().j = position.j + topMargin;
+            bgRect += delta;
+            texture.position() += delta;
+            
+            alignChildren(delta);
         }
         
         void draw() {
@@ -183,6 +185,22 @@ namespace Bomberman {
         
         vector<MenuBarItem> subMenu;
         function<void(MenuBarItem *)> onClick;
+        
+        void alignChildren(Coordinate delta) {
+            for (auto& subMenuItem : subMenu) {
+                if (subMenuItem.bgRect.i == bgRect.i) {
+                    // Child is aligned down
+                    subMenuItem.bgRect.j += delta.j;
+                    subMenuItem.texture.rectangle().j += delta.j;
+                } else {
+                    // Child is aligned rigth
+                    subMenuItem.bgRect.i += delta.i;
+                    subMenuItem.texture.rectangle().i += delta.i;
+                }
+                
+                subMenuItem.alignChildren(delta);
+            }
+        }
     };
     
     template <typename T>
