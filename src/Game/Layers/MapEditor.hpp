@@ -31,6 +31,7 @@ namespace Bomberman {
         void draw();
         void listenEvent(SDL_Event event);
         void update();
+        void postUpdate();
         void handleSignal(Signal signal);
         
         void load(std::shared_ptr<SDL_Renderer> renderer);
@@ -44,7 +45,7 @@ namespace Bomberman {
         Texture background;
         Rectangle menuBarRect;
         
-        bool clicked, menuClicked;
+        bool clicked, mouseMoved, menuActive;
         Coordinate mousePos;
         
         std::weak_ptr<SignalSender> signalSender;
