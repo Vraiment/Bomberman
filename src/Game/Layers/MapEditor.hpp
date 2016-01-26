@@ -22,6 +22,7 @@ struct SDL_Renderer;
 
 namespace Bomberman {
     class SignalSender;
+    class LoopQuiter;
     
     class MapEditor : public Drawable, public EventListener, public Updatable, public SignalHandler {
     public:
@@ -37,6 +38,7 @@ namespace Bomberman {
         void load(std::shared_ptr<SDL_Renderer> renderer);
         void screenSizeChanged(Rectangle previousSize, Rectangle newSize);
         
+        void setLoopQuiter(std::weak_ptr<LoopQuiter> loopQuiter);
         void setSignalSender(std::weak_ptr<SignalSender> signalSender);
         
     private:
@@ -46,6 +48,7 @@ namespace Bomberman {
         bool clicked, mouseMoved;
         Coordinate mousePos;
         
+        std::weak_ptr<LoopQuiter> loopQuiter;
         std::weak_ptr<SignalSender> signalSender;
     };
 }

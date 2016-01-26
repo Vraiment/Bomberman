@@ -72,6 +72,7 @@ int main(int argc, char* argv[]) {
         levelListLayer->setMapSetter(mapSetter);
         mainMenuLayer->setLoopQuiter(loop.quiter());
         mainMenuLayer->setSignalSender(screen->getSignalSender());
+        mapEditor->setLoopQuiter(loop.quiter());
         mapEditor->setSignalSender(screen->getSignalSender());
         pauseMenu->setLoopQuiter(loop.quiter());
         pauseMenu->setSignalSender(screen->getSignalSender());

@@ -393,6 +393,10 @@ namespace Bomberman {
         menuBar->setWidth(newSize.width);
     }
     
+    void MapEditor::setLoopQuiter(weak_ptr<LoopQuiter> loopQuiter) {
+        this->loopQuiter = loopQuiter;
+    }
+    
     void MapEditor::setSignalSender(weak_ptr<SignalSender> signalSender) {
         this->signalSender = signalSender;
     }
