@@ -258,6 +258,18 @@ namespace Bomberman {
             menuBarEntries.push_back(menuBarItem);
         }
         
+        void hideAllChildren() {
+            for (auto& menuBarEntry : menuBarEntries) {
+                menuBarEntry.hideChildren();
+            }
+        }
+        
+        void unselectAll() {
+            for (auto& menuBarEntry : menuBarEntries) {
+                menuBarEntry.unselect();
+            }
+        }
+        
     private:
         Rectangle menuBarRectangle;
         Texture background;
@@ -337,11 +349,14 @@ namespace Bomberman {
         menuBar->setHeight(font.maxHeight() + horizontalMargin);
         menuBar->setBackground(background);
         
-        function<void(MenuBarItem*)> onClickSubMenu = [] (MenuBarItem *self) {
+        function<void(MenuBarItem*)> onClickSubMenu = [menuBar] (MenuBarItem *self) {
             if (self->isSelected()) {
                 self->hideChildren();
                 self->unselect();
             } else {
+                menuBar->hideAllChildren();
+                menuBar->unselectAll();
+                
                 self->select();
                 self->show(true);
             }
