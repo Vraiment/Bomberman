@@ -65,6 +65,7 @@
     <ClCompile Include="..\src\Game\Layers\HudLayer.cpp" />
     <ClCompile Include="..\src\Game\Layers\LevelListLayer.cpp" />
     <ClCompile Include="..\src\Game\Layers\MainMenuLayer.cpp" />
+    <ClCompile Include="..\src\Game\Layers\MapEditor.cpp" />
     <ClCompile Include="..\src\Game\Layers\PauseMenu.cpp" />
     <ClCompile Include="..\src\Game\MapSetter.cpp" />
     <ClCompile Include="..\src\Game\Map\DummyTileMapBuilder.cpp" />
@@ -133,6 +134,7 @@
     <ClInclude Include="..\src\Game\Layers\HudLayer.hpp" />
     <ClInclude Include="..\src\Game\Layers\LevelListLayer.hpp" />
     <ClInclude Include="..\src\Game\Layers\MainMenuLayer.hpp" />
+    <ClInclude Include="..\src\Game\Layers\MapEditor.hpp" />
     <ClInclude Include="..\src\Game\Layers\PauseMenu.hpp" />
     <ClInclude Include="..\src\Game\MapSetter.hpp" />
     <ClInclude Include="..\src\Game\Map\DummyTileMapBuilder.hpp" />
