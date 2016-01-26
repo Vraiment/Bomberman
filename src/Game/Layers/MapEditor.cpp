@@ -14,6 +14,7 @@
 
 #include "../../Core/Font.hpp"
 #include "../../Core/Log/LogSystem.h"
+#include "../../Core/LoopQuiter.hpp"
 #include "../../Core/Texture.hpp"
 #include "../../Core/SignalSender.hpp"
 #include "../../Core/Utils/PointerUtils.hpp"
@@ -345,6 +346,8 @@ namespace Bomberman {
         Font font("PressStart2P.ttf", menuFontSize, renderer);
         auto background = Texture::createRectangle(1, 1, Color::WHITE, renderer);
         auto menuBar = this->menuBar;
+        auto lq = this->loopQuiter;
+        auto ss = this->signalSender;
         
         menuBar->setHeight(font.maxHeight() + horizontalMargin);
         menuBar->setBackground(background);
@@ -364,13 +367,44 @@ namespace Bomberman {
         
         // File menu
         MenuBarItem fileMenu(font.write("File"), background, menuBarColor);
+        
+        MenuBarItem newMap(font.write("New Map"), background);
+        fileMenu.addDownSubMenuItem(newMap);
+        
+        MenuBarItem loadMap(font.write("Load Map"), background);
+        fileMenu.addDownSubMenuItem(loadMap);
+        
+        MenuBarItem saveMap(font.write("Save Map"), background);
+        fileMenu.addDownSubMenuItem(saveMap);
+        
+        MenuBarItem saveMapAs(font.write("Save Map As..."), background);
+        fileMenu.addDownSubMenuItem(saveMapAs);
+        
+        MenuBarItem exitEditor(font.write("Exit Map Editor"), background);
+        exitEditor.setOnClick([ss, menuBar] (MenuBarItem *self) {
+            shared_ptr<SignalSender> signalSender;
+            if (_lock(ss, signalSender, "SignalSender")) {
+                signalSender->sendSignal(Signal::MainMenu);
+            }
+            
+            menuBar->hideAllChildren();
+            menuBar->unselectAll();
+        });
+        fileMenu.addDownSubMenuItem(exitEditor);
+        
+        MenuBarItem exitBomberman(font.write("Exit Bomberman"), background);
+        exitBomberman.setOnClick([lq, menuBar] (MenuBarItem *self) {
+            shared_ptr<LoopQuiter> loopQuiter;
+            if (_lock(lq, loopQuiter, "LoopQuiter")) {
+                loopQuiter->quitLoop();
+            }
+            
+            menuBar->hideAllChildren();
+            menuBar->unselectAll();
+        });
+        fileMenu.addDownSubMenuItem(exitBomberman);
+        
         fileMenu.setOnClick(onClickSubMenu);
-        fileMenu.addDownSubMenuItem(MenuBarItem(font.write("New Map"), background));
-        fileMenu.addDownSubMenuItem(MenuBarItem(font.write("Load Map"), background));
-        fileMenu.addDownSubMenuItem(MenuBarItem(font.write("Save Map"), background));
-        fileMenu.addDownSubMenuItem(MenuBarItem(font.write("Save Map As..."), background));
-        fileMenu.addDownSubMenuItem(MenuBarItem(font.write("Exit Map Editor"), background));
-        fileMenu.addDownSubMenuItem(MenuBarItem(font.write("Exit Bomberman"), background));
         menuBar->addEntry(fileMenu);
         
         MenuBarItem elementsMenu(font.write("Elements"), background, menuBarColor);
