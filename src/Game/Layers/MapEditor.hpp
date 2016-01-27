@@ -22,6 +22,7 @@ struct SDL_Renderer;
 
 namespace Bomberman {
     class SignalSender;
+    class TileMap;
     class LoopQuiter;
     
     class MapEditor : public Drawable, public EventListener, public Updatable, public SignalHandler {
@@ -43,7 +44,11 @@ namespace Bomberman {
         
     private:
         bool clicked, mouseMoved;
+        bool lCtrl, rCtrl;
         Coordinate mousePos;
+        Texture noMap;
+        
+        std::shared_ptr<TileMap> tileMap;
         
         std::weak_ptr<LoopQuiter> loopQuiter;
         std::weak_ptr<SignalSender> signalSender;

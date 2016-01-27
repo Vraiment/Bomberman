@@ -35,7 +35,7 @@ namespace Bomberman {
         return result;
     }
     
-    MapEditor::MapEditor() : clicked(false), mouseMoved(false) {
+    MapEditor::MapEditor() : clicked(false), mouseMoved(false), lCtrl(false), rCtrl(false) {
         
     }
     
@@ -44,16 +44,33 @@ namespace Bomberman {
     }
     
     void MapEditor::draw() {
-        
+        if (!tileMap) {
+            noMap.draw();
+            return;
+        }
     }
     
     void MapEditor::listenEvent(SDL_Event event) {
-        shared_ptr<SignalSender> signalSender;
-        if (SDL_KEYUP == event.type && _lock(this->signalSender, signalSender, "SignalSender")) {
+        if (SDL_KEYUP == event.type) {
             auto keysym = event.key.keysym.sym;
             
             if (SDLK_ESCAPE == keysym) {
-                signalSender->sendSignal(Signal::MainMenu);
+                shared_ptr<SignalSender> signalSender;
+                if (_lock(this->signalSender, signalSender, "SignalSender")) {
+                    signalSender->sendSignal(Signal::MainMenu);
+                }
+            } else if (SDLK_LCTRL == keysym) {
+                lCtrl = false;
+            } else if (SDLK_RCTRL == keysym) {
+                rCtrl = false;
+            }
+        } else if (SDL_KEYDOWN == event.type) {
+            auto keysym = event.key.keysym.sym;
+            
+            if (SDLK_LCTRL == keysym) {
+                lCtrl = true;
+            } else if (SDLK_RCTRL == keysym) {
+                rCtrl = true;
             }
         } else if (SDL_MOUSEBUTTONUP == event.type && event.button.button == SDL_BUTTON_LEFT) {
             clicked = true;
@@ -88,11 +105,14 @@ namespace Bomberman {
     }
     
     void MapEditor::load(shared_ptr<SDL_Renderer> renderer) {
+        Font font("PressStart2P.ttf", 45, renderer);
         
+        noMap = font.write("No Map Loaded");
     }
     
     void MapEditor::screenSizeChanged(Rectangle previousSize, Rectangle newSize) {
-        
+        noMap.position().i = newSize.widthHalf() - noMap.rectangle().widthHalf();
+        noMap.position().j = newSize.heightHalf() - noMap.rectangle().heightHalf();
     }
     
     void MapEditor::setLoopQuiter(weak_ptr<LoopQuiter> loopQuiter) {
