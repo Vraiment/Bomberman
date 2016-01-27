@@ -29,6 +29,8 @@
 		5B2234761A16EEB8005BDA1C /* StringUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B2234741A16EEB8005BDA1C /* StringUtils.cpp */; };
 		5B2234771A16F57E005BDA1C /* map1.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B2234731A16ED72005BDA1C /* map1.txt */; };
 		5B25FA311A33D2040068AFC1 /* LoggerFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B25FA2F1A33D2040068AFC1 /* LoggerFactory.cpp */; };
+		5B275BFA1C5958D500080BAC /* MenuBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B275BF81C5958D500080BAC /* MenuBar.cpp */; };
+		5B275BFD1C59607F00080BAC /* MenuBarEntry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B275BFB1C59607F00080BAC /* MenuBarEntry.cpp */; };
 		5B31D6761A299A66004ECEBD /* hud.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B31D6751A299A53004ECEBD /* hud.png */; };
 		5B3795CA1820F6E60050381F /* TileMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3795C81820F6E60050381F /* TileMap.cpp */; };
 		5B3795CE1820FBAA0050381F /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3795CC1820FBAA0050381F /* Texture.cpp */; };
@@ -251,6 +253,10 @@
 		5B2234751A16EEB8005BDA1C /* StringUtils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StringUtils.hpp; sourceTree = "<group>"; };
 		5B25FA2F1A33D2040068AFC1 /* LoggerFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoggerFactory.cpp; sourceTree = "<group>"; };
 		5B25FA301A33D2040068AFC1 /* LoggerFactory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LoggerFactory.hpp; sourceTree = "<group>"; };
+		5B275BF81C5958D500080BAC /* MenuBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuBar.cpp; sourceTree = "<group>"; };
+		5B275BF91C5958D500080BAC /* MenuBar.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MenuBar.hpp; sourceTree = "<group>"; };
+		5B275BFB1C59607F00080BAC /* MenuBarEntry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuBarEntry.cpp; sourceTree = "<group>"; };
+		5B275BFC1C59607F00080BAC /* MenuBarEntry.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MenuBarEntry.hpp; sourceTree = "<group>"; };
 		5B31D6731A298524004ECEBD /* VectorUtils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = VectorUtils.hpp; sourceTree = "<group>"; };
 		5B31D6751A299A53004ECEBD /* hud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hud.png; sourceTree = "<group>"; };
 		5B3795C81820F6E60050381F /* TileMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TileMap.cpp; sourceTree = "<group>"; };
@@ -490,6 +496,10 @@
 				5B03C1251860E7190011C3DA /* Map */,
 				5B39463E1C4F827300FA3CDA /* MapSetter.cpp */,
 				5B39463F1C4F827300FA3CDA /* MapSetter.hpp */,
+				5B275BF81C5958D500080BAC /* MenuBar.cpp */,
+				5B275BF91C5958D500080BAC /* MenuBar.hpp */,
+				5B275BFB1C59607F00080BAC /* MenuBarEntry.cpp */,
+				5B275BFC1C59607F00080BAC /* MenuBarEntry.hpp */,
 				5B4479861C50BC3300007754 /* Signal.cpp */,
 				5B3946331C4EF53A00FA3CDA /* Signal.hpp */,
 			);
@@ -897,6 +907,8 @@
 				5B8997491C35C8DF003AB8B0 /* Drawable.cpp in Sources */,
 				5B3B82E11857CE3D00CECE27 /* Token.cpp in Sources */,
 				5BF5549E1833F70400DAC339 /* LogLevel.cpp in Sources */,
+				5B275BFA1C5958D500080BAC /* MenuBar.cpp in Sources */,
+				5B275BFD1C59607F00080BAC /* MenuBarEntry.cpp in Sources */,
 				5B3B82D51857AB7800CECE27 /* PlayerCommand.cpp in Sources */,
 				5B755C771822E81300DADA25 /* Configuration.cpp in Sources */,
 				5BB4D82C1B7FB2920066077D /* Item.cpp in Sources */,
