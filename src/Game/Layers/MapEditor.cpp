@@ -35,7 +35,7 @@ namespace Bomberman {
         return result;
     }
     
-    MapEditor::MapEditor() : clicked(false) {
+    MapEditor::MapEditor() : clicked(false), mouseMoved(false) {
         
     }
     
