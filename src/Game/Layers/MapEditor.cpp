@@ -40,6 +40,8 @@ namespace Bomberman {
     
     class MenuBarItem {
     public:
+        using OnClickCallback = function<void(MenuBarItem*)>;
+        
         MenuBarItem(Texture texture, Texture bg) : MenuBarItem(texture, bg, menuItemColor) {
             
         }
@@ -131,7 +133,7 @@ namespace Bomberman {
             return bgRect.width;
         }
         
-        void setOnClick(function<void(MenuBarItem *)> callback) {
+        void setOnClick(OnClickCallback callback) {
             onClick = callback;
         }
         
@@ -170,7 +172,7 @@ namespace Bomberman {
         Texture texture, bg;
         
         vector<MenuBarItem> subMenu;
-        function<void(MenuBarItem *)> onClick;
+        OnClickCallback onClick;
         
         bool mouseAction(Coordinate position, bool click) {
             if (!visible) {
