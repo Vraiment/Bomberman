@@ -85,13 +85,13 @@ namespace Bomberman {
             texture.draw();
         }
         
-        void show(bool showSubMenu = false) {
+        void show() {
             visible = true;
-            
-            if (showSubMenu) {
-                for (auto& subMenuEntry : subMenu) {
-                    subMenuEntry.visible = true;
-                }
+        }
+        
+        void showSubMenu() {
+            for (auto& subMenuEntry : subMenu) {
+                subMenuEntry.visible = true;
             }
         }
         
@@ -120,26 +120,7 @@ namespace Bomberman {
         }
         
         bool click(Coordinate position) {
-            if (!visible) {
-                return false;
-            }
-            
-            bool result = bgRect.contains(position);
-            
-            if (result) {
-                if (onClick) {
-                    onClick(this);
-                }
-            } else {
-                for (auto& subMenuItem : subMenu) {
-                    result = subMenuItem.click(position);
-                    if (result) {
-                        break;
-                    }
-                }
-            }
-            
-            return result;
+            return mouseAction(position, true);
         }
         
         void setWidth(int width) {
@@ -179,22 +160,7 @@ namespace Bomberman {
         }
         
         void mouseOver(Coordinate position) {
-            bool wasVisible = visible;
-            
-            selected = false;
-            visible = false;
-            
-            for (auto& subMenuEntry : subMenu) {
-                subMenuEntry.mouseOver(position);
-                
-                selected |= subMenuEntry.selected;
-            }
-            
-            selected |= bgRect.contains(position) & wasVisible;
-            
-            if (selected) {
-                show(true);
-            }
+            mouseAction(position, false);
         }
         
     private:
@@ -205,6 +171,34 @@ namespace Bomberman {
         
         vector<MenuBarItem> subMenu;
         function<void(MenuBarItem *)> onClick;
+        
+        bool mouseAction(Coordinate position, bool click) {
+            if (!visible) {
+                selected = false;
+                return false;
+            }
+            
+            selected = false;
+            visible = false;
+            
+            for (auto& subMenuEntry : subMenu) {
+                selected |= subMenuEntry.mouseAction(position, click);
+            }
+            
+            if (bgRect.contains(position)) {
+                selected = true;
+                visible = true;
+                if (click && onClick) {
+                    onClick(this);
+                }
+            }
+            
+            if (selected) {
+                showSubMenu();
+            }
+            
+            return selected;
+        }
         
         void alignChildren(Coordinate delta) {
             for (auto& subMenuItem : subMenu) {
@@ -239,17 +233,10 @@ namespace Bomberman {
             menuClicked = false;
             
             for (auto& menuBarEntry : menuBarEntries) {
-                menuClicked = menuBarEntry.click(position);
-                if (menuClicked) {
-                    break;
+                if (menuBarEntry.click(position)) {
+                    menuClicked = true;
                 }
-            }
-            
-            if (!menuClicked) {
-                for (auto& menuBarEntry : menuBarEntries) {
-                    menuBarEntry.unselect();
-                    menuBarEntry.hideChildren();
-                }
+                menuBarEntry.show();
             }
         }
         
